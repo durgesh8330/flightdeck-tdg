@@ -1,0 +1,591 @@
+<sa-modal [modal]="modalDetails" (buttonClicked)="buttonClicked($event)"></sa-modal>
+<div *ngIf="loaderTaskDetail || loader"  class="task_loader">
+	<!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+	<div class="spinner">
+		<div class="bounce1"></div>
+		<div class="bounce2"></div>
+		<div class="bounce3"></div>
+	</div>
+</div>
+<div *ngIf="loaderLmosTaskPopup" class="task_loader lmosbutton-openpopup">
+	<!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+	<div class="spinner">
+		<div class="bounce1"></div>
+		<div class="bounce2"></div>
+		<div class="bounce3"></div>
+	</div>
+</div>
+<div *ngIf="!loaderTaskDetail" >
+<div class="">
+		<div class="alert alert-success alert-dismissible" *ngIf="IsSuccess" style="background-color: green;color: #fff;">
+			<strong>Success! </strong>{{message}}.
+			<button type="button" class="close" data-dismiss="alert" (click)="IsSuccess = false">&times;</button>
+		</div>
+		<div class="alert alert-danger alert-dismissible" *ngIf="IsError" style="background-color: #ce2f2f;color: #fff;">
+			<strong>Error! </strong>{{message}}.
+			<button type="button" class="close" data-dismiss="alert" style="background-color: #fff;" (click)="IsError = false">&times;</button>
+		</div>
+		<div class="alert alert-warning  alert-dismissible" *ngIf="IsWarning">
+			<strong><i class="fa fa-warning"></i>
+				Warning! </strong>{{message}}.
+		    <button type="button" class="close" data-dismiss="alert" (click)="IsWarning = false">&times;</button>
+		</div>
+	<div id="systemtable">
+		<sa-widgets-grid>
+			<div sa-widget 
+			[editbutton]="false" 
+			[fullscreenbutton]="true"
+			[deletebutton]="false"
+			[colorbutton]="true"
+			[togglebutton]="true" 
+			name="taskresultwodgetwa">
+				<!-- <header>
+					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+					<h2>{{ layoutElem.sectionHeader }}</h2>
+				</header> -->
+				<sa-alert  [error]="error"></sa-alert>
+				<div class="widget-body" style="padding-top: 5px"  *ngIf="showSATable">
+						<sa-table 
+						[pagination]="pagination" 
+						[actionButton]="actionButton" 
+						[actionColumn]="actionColumn"
+						[defaultActionColumns]="defaultActionColumns"
+						[tableHeader]="actionColumn"
+						[tableData]="displayTaskResult"
+						[tableOtherContent]="systemParameter"
+						[filter]="filter"
+						[tablePaginationData]="tablePaginationData"
+						[actionList]="actionList"
+						
+						(addNewRowParent)="addNewRow()"
+						(onSaveParent)="onSaveClick($event)"
+						(onEditParent)="onEditClick($event)"
+						(onDeleteParent)="onDeleteClick($event)"
+						(onCloseParent)="onCloseClick($event)"
+						(openTabParent)="openDetailView($event)"
+						(expandRow)="expandRow($event)"
+						(nextAll)="nextTasks()"
+						(OnActionChangeStatus)="onActionChange($event)"
+						(onActionStatusSubmit)="onAction($event)"
+						(CheckUncheckAllRows)="checkAllRows($event)"
+						(SetActionDropdown)="SetActionDropdown($event)"
+						(refresh)="onRefresh()"
+						></sa-table>
+				</div>
+				<!-- Modal -->
+				<ng-template #template>
+					<div class="modal-header" #modal (onShow)="handler('onShow', $event)" (onShown)="handler('onShown', $event)"
+						(onHide)="handler('onHide', $event)" (onHidden)="handler('onHidden', $event)">
+						<h4 *ngIf="showTransferSection" class="modal-title pull-left" style="padding-left: 37%;font-weight: bold;">Transfer
+							Task</h4>
+						<h4 *ngIf="showRerouteSection" class="modal-title pull-left" style="padding-left: 37%;font-weight: bold;">Reroute
+							Task</h4>
+						<h4 *ngIf="showCloseSection" class="modal-title pull-left" style="padding-left: 37%;font-weight: bold;">Close
+							Task</h4>
+						<h4 *ngIf="showReturnTaskToWorkgroupSec" class="modal-title pull-left"
+							style="padding-left: 30%;font-weight: bold;"> Return Task To Workgroup</h4>
+						<h4 *ngIf="showCancelSection" class="modal-title pull-left" style="padding-left: 44%;font-weight: bold;">
+							Cancel</h4>
+						<h4 *ngIf="showLmosRecoredSection" class="modal-title pull-left" style="padding-left: 44%;font-weight: bold;">
+							LMOS record</h4>
+						<button type="button" class="close pull-right" aria-label="Close" (click)="IsOpenPopup = false; modalRef.hide()">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body {{(showCloseSection)? 'lmos-close-button-modal-body' :''}}">
+						<div *ngIf="showTransferSection">
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><label class="control-label">CUID:
+									</label></div>
+								<div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+									<ng-select2 [data]="cuidList" [width]="500" name="multiObj"
+										[(ngModel)]="transferTo" #multiObj="ngModel">
+									</ng-select2>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+									<label class="control-label">Comment: </label>
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+									<textarea class="form-control" name="comment" [(ngModel)]="comment"
+										maxlength="400"></textarea>
+									<div style="float: right">{{400-comment?.length}} characters
+										left</div>
+								</div>
+							</div>
+
+						</div>
+						<div *ngIf="showRerouteSection">
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"> <label class="control-label">Workgroup:
+									</label></div>
+								<div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+									<ng-select2 [data]="routWorkgroups" [width]="500" name="multiObj"
+										[(ngModel)]="transferTo" #multiObj="ngModel">
+									</ng-select2>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+									<label class="control-label">Result: </label>
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+									<ng-select2 [data]="RerouteResult" [width]="500" name="multiObj"
+										[(ngModel)]="RerouteResultvalue" #multiObj="ngModel">
+									</ng-select2>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+									<label class="control-label">Comment: </label>
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+									<textarea class="form-control" name="comment" [(ngModel)]="comment"
+										maxlength="400"></textarea>
+									<div style="float: right">{{400-comment?.length}} characters
+										left</div>
+								</div>
+							</div>
+
+						</div>
+						<div *ngIf="showCloseSection">
+							<sa-widgets-grid>
+								<div sa-widget [editbutton]="false" [fullscreenbutton]="false"
+									[deletebutton]="false" [colorbutton]="true" [togglebutton]="true"
+									name="wcmDispositionHeader">
+									<header>
+										<span class="widget-icon"> <i class="fa fa-table"></i>
+										</span>
+										<h2>Disposition Code</h2>
+									</header>
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+											<label class="control-label">---*: </label>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+											<ng-select2 [data]="dispositionCodes" [width]="500"
+												name="multiObj" [(ngModel)]="closePopupObj.parentDispositionCode"
+												#multiObj="ngModel" (valueChanged)="dispositionCodeChanged('parent');">
+											</ng-select2>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+											<label class="control-label">--**: </label>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+											<ng-select2 [data]="dispositionChildCodes" [width]="500"
+												name="multiObj" [(ngModel)]="closePopupObj.childDispositionCode"
+												#multiObj="ngModel" (valueChanged)="dispositionCodeChanged('child');">
+											</ng-select2>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+											<label class="control-label">----: </label>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+											<ng-select2 [data]="dispositionGrandChildCodes" [width]="500"
+												name="multiObj" [(ngModel)]="closePopupObj.grandChildDispositionCode"
+												#multiObj="ngModel">
+											</ng-select2>
+										</div>
+									</div>
+								</div>
+							</sa-widgets-grid>
+							<sa-widgets-grid>
+								<div sa-widget [editbutton]="false" [fullscreenbutton]="false"
+									[deletebutton]="false" [colorbutton]="true" [togglebutton]="true"
+									name="wcmCuaseCode">
+									<header>
+										<span class="widget-icon"> <i class="fa fa-table"></i>
+										</span>
+										<h2>Cause Code</h2>
+									</header>
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+											<label class="control-label">-**: </label>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+											<ng-select2 [data]="causeCodes" [width]="500" name="multiObj"
+												[(ngModel)]="closePopupObj.parentCauseCode"
+												#multiObj="ngModel" (valueChanged)="causeCodeChanged('parent');">
+											</ng-select2>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+											<label class="control-label">--*: </label>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+											<ng-select2 [data]="causeChildCodes" [width]="500" name="multiObj"
+												[(ngModel)]="closePopupObj.childCauseCode"
+												#multiObj="ngModel" (valueChanged)="causeCodeChanged('child');">
+											</ng-select2>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+											<label class="control-label">---: </label>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+											<ng-select2 [data]="causeGrandChildCodes" [width]="500"
+												name="multiObj" [(ngModel)]="closePopupObj.grandChildCauseCode"
+												#multiObj="ngModel">
+											</ng-select2>
+										</div>
+									</div>
+								</div>
+							</sa-widgets-grid>
+
+							<div class="row">
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+									<label class="control-label">Customer Contacted: </label>
+								</div>
+								<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+									<ng-select2 [data]="CustomerContacted" [width]="500" name="multiObj"
+										[(ngModel)]="closePopupObj.customerContacted" #multiObj="ngModel">
+									</ng-select2>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+									<label class="control-label">Narrative: </label>
+								</div>
+								<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+									<textarea class="form-control" name="comment" [(ngModel)]="closePopupObj.comment"
+										maxlength="400"></textarea>
+									<div style="float: right">{{400-closePopupObj.comment?.length}}
+										characters left</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+									<label class="control-label">WP Code: </label>
+								</div>
+								<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+									5
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+									<label class="control-label">FL2: </label>
+								</div>
+								<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+									<input type="text" name="fl2" [(ngModel)]="closePopupObj.fl2"
+										maxlength="20">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+									<label class="control-label">FL3: </label>
+								</div>
+								<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+									<ng-select2 [data]="fl3Values" [width]="500" name="multiObj"
+										[(ngModel)]="closePopupObj.fl3" #multiObj="ngModel">
+									</ng-select2>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+									<label class="control-label">Backtime: </label>
+								</div>
+								<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+									<input type="checkbox" name="backtime" [(ngModel)]="closePopupObj.backtime">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+									<label class="control-label">CloseOut Date/Time: </label>
+								</div>
+								<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+									<input type="text" name="closeout" [(ngModel)]="closePopupObj.closeOutDateTime"
+										[disabled]="!closePopupObj.backtime">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+									<label class="control-label">Time zone: </label>
+								</div>
+								<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+									<input type="text" name="timezone" [(ngModel)]="closePopupObj.timezone"
+										[disabled]="!closePopupObj.backtime">
+								</div>
+							</div>
+						</div>
+						<div *ngIf="showReturnTaskToWorkgroupSec">
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+									<label class="control-label">Narrative: </label>
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+									<textarea class="form-control" name="comment" [(ngModel)]="comment"
+										maxlength="400"></textarea>
+									<div style="float: right">{{400-comment?.length}} characters
+										left</div>
+								</div>
+							</div>
+						</div>
+						<div *ngIf="showCancelSection">
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+									<label class="control-label">Are you sure you want to cancel ?
+									</label>
+								</div>
+							</div>
+						</div>
+						<div *ngIf="showLmosRecoredSection">
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+									<label class="control-label">RECORD DOES NOT EXIST IN LMOS -
+										PERFORM AUTO SELECT </label>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row text-center">
+							<div id="wcmAction" class="dropdown" dropdown [insideClick]="true"
+								*ngIf="!showCancelSection">
+								<button [disabled]="PopupsubmitButtonDisabled()" mat-raised-button
+									(click)="submitDataToLMOS();" color="primary" class="blue__btn">
+									{{(showCancelSection || showLmosRecoredSection)?
+									'Ok':'Submit'}}
+								</button>
+							</div>
+							<div id="wcmAction" class="dropdown" dropdown [insideClick]="true"
+								*ngIf="showCancelSection">
+								<button mat-raised-button (click)="submitDataToLMOS();" color="primary"
+									class="blue__btn">
+									Yes
+								</button>
+								<button mat-raised-button (click)="CloseLmosButtonPopup();" class="clear-btn reset-bgclr">
+									No
+								</button>
+							</div>
+						</div>
+					</div>
+				</ng-template>
+
+				<!-- <div class="mat-elevation-z8" style="padding-top: 2px;">
+					<div class="table-container" style="padding-top: 0px">
+						<div style="height: auto;"> -->
+	
+							<!-- Upper pagination section -->
+							<!-- <div style="display:inline; position:relative; color:#15a703;top:10px;">	
+								Retrieving {{(pagination.pageNumber)*currentPageLimit + 1}} - 
+								{{
+									((pagination.pageNumber +1 )*currentPageLimit)>pagination.totalRecords ? pagination.totalRecords: ((pagination.pageNumber+1)* currentPageLimit) 
+								}} 
+								of {{pagination.totalRecords}} records.
+							</div>
+	
+							<div style=" display:inline;margin-left:60px; margin-right:60px;position:relative;top:10px;">
+								<label for="per-page" style=" color:#15a703;">
+								Per Page:
+								</label>&nbsp;
+								<select id="per-page" (change)="onLimitChange($event.target.value)">
+									<option *ngFor="let option of pageLimitOptions" [value]="option.value" [selected]="option.value == currentPageLimit">
+										{{ option.value }}
+									</option>
+								</select>						
+							</div>
+	
+							<div style=" display:inline;margin-left:60px; margin-right:60px;position:relative;top:10px;">
+								<label for="per-page" style=" color:#15a703;">
+									Page Number:
+								</label>&nbsp;
+								<label style=" color:#15a703;">{{currentPageNumber}}/{{tablePaginationData.length}}</label>
+							</div>
+	
+							<div style="float: right; margin: 3px 3px 9px 3px;">
+								<a class="btn btn-default buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_8" href="#"
+									(click)="printPDF()">
+								<span>PDF</span></a> &nbsp;
+								<a class="btn btn-default buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_8" (click)="printData()"
+									href="#">
+								<span>Print</span></a>
+							</div> -->
+
+							<!-- <div class="row mar--l10 actionbtnsection">
+								<div *ngFor="let button of actionButton">
+									<a class="btn btn-default buttons-pdf buttons-html5" *ngIf="button.fieldName != 'showHideColumns'" href="#"
+									(click)="viewerFn(button.fieldName)">
+									<span>{{button.label}}</span></a> &nbsp;
+									<div id="Profile Management" *ngIf="button.fieldName == 'showHideColumns'" class=" pull-right dropdown" dropdown [insideClick]="true">
+										<span class="project-selector dropdown-toggle" dropdownToggle> <a [title]="button.label" class="btn btn-default buttons-html5 show-hide">{{button.label}}</a>
+										</span>
+										<ul *dropdownMenu class="dropdown-menu ColVis_collection">
+											<li *ngFor="let fieldname of actionColumn">
+												<label><input type="checkbox" [(ngModel)]="fieldname.visible"><span>{{fieldname.label}}</span></label> 
+											</li> -->
+											<!-- <li *ngFor="let fieldname of skillTabs[0]['skillDetails']['header']">
+											<label><input type="checkbox" [(ngModel)]="fieldname.visible"><span>{{fieldname.label}}</span></label> 
+											</li> -->
+										<!-- </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="table-wrapper">
+								<table id="tablepdf" class="table table-bordered table-striped table-hover smart-form">
+									<thead>
+										<tr>
+											<th></th>
+											<ng-container *ngFor="let task of actionColumn; let i = index">
+												<th *ngIf="task.visible">
+													<div style="cursor: pointer; text-align: center;" [ngClass]="[ task.fieldName == activeSort ?(isSortAsc ? 'sort_asc': 'sort_desc'):'']"
+														(click)="onSortSelection(task.key)">
+														{{task.label}}
+														<span class="sortarrow">
+															<i class="fa upsortarrow"></i>
+															<i class="fa downsortarrow"></i>
+														</span>
+													</div>
+														
+													<div style="float: left;width:100%; margin-top: 5px;">
+														<input type="text" 
+															(input)="filterTaskResult(task.key)" 
+															[(ngModel)]="header[task.key]" [name]="task.key"
+															style="width: 100%;overflow: visible;padding: 3px;" />
+													</div>
+												</th>
+											</ng-container>
+										</tr>
+									</thead> -->
+
+									<!-- TBODY here -->
+									<!-- <tbody style="background: white;">
+										<tr *ngFor="let task of displayTaskResult; let i = index">
+											<td style="width: 1%;" *ngIf="!task.isRowDetailOpen">
+												<div (click)="onRowDetailClick(task,i)" style="cursor:pointer;">
+													<i *ngIf="task.isIconMinus" class="material-icons add_box" style="font-weight:bold;font-size:15px;">
+														remove
+													</i>
+													<i *ngIf="!task.isIconMinus" class="fa fa-plus add_box" style="font-weight:bold;font-size:15px;">
+														
+													</i>
+												</div>
+											</td>
+											
+											<ng-container *ngFor="let header of actionColumn; let j = index"> -->
+												<!-- <td style="width: 1%;">
+													<div (click)="onRowDetailClick(task,i)" style="cursor:pointer;">
+														<i *ngIf="task.isIconMinus" class="material-icons" style="font-weight:bold;font-size:15px;">
+															remove
+														</i>
+														<i *ngIf="!task.isIconMinus" class="material-icons" style="font-weight:bold;font-size:15px;">
+															add
+														</i>
+													</div>
+												</td> -->
+												<!-- <td *ngIf="!task.isRowDetailOpen && header.visible == true">
+													<span class="abcd" (click)="openDetailView(task)" style="text-decoration:underline;cursor: pointer;" *ngIf="header.key == 'taskInstanceId'">
+														{{task[header.key]}}
+													</span>
+													<span class="xyz" *ngIf="header.key != 'taskInstanceId'">
+														{{task[header.key]}}
+													</span>
+												</td>
+											</ng-container>
+
+											<ng-container *ngIf="task.isRowDetailOpen">
+												
+												<td [colSpan]="actionColumn.length + 1">
+													<div class="inner widget-name">
+														<div class="row">
+															<div class="dynamic-table">
+																<div class="widget-body">
+																	<div class="table-responsive">
+																		<div class="panel-body general-tasks">
+																			<div class="row">
+																				<div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 no-padding-right elemWrapper"  *ngFor="let header of actionColumn">
+
+																					<div>
+																						<label class="col-xs-12 col-sm-6 col-md-6 col-lg-6 control-label">
+																							{{header.label}}
+																						</label>
+																						
+																						<div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
+																							<input type="text" class="form-control"
+																								[ngModel]="task[header['key']]"
+																								disabled="true"
+																								readonly="true" />
+																						</div>
+																						
+																					</div>
+
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+
+												</td>
+											</ng-container>
+
+										</tr>
+									</tbody>
+
+								</table>
+
+							</div> -->
+							
+							<!-- Footer pagination section-->
+							<!-- <div style="float:left;width: 200px; margin-top: 5px;">{{selectedTaskResultCount}} selected / {{totalPageData}}
+								total
+							</div>
+
+							<div style="width: 70%;float: right; margin-top: 10px; margin-bottom:20px;" class="dataTables_paginate paging_simple_numbers"
+								id="DataTables_Table_0_paginate">
+								<ul class="pagination" style="float: right;">
+									<li class="paginate_button previous" [ngClass]="{'disabled':pagination.pageNumber == 0 }" id="DataTables_Table_0_previous">
+										<a  (click)="pagination.pageNumber == 0 || previousTasks()"  [ngClass]="{'disabled':pagination.pageNumber == 0 }" class="first__100"
+										aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">
+										<<</a>
+									</li>
+									<li class="paginate_button previous" [ngClass]="{'disabled':currentPageNumber === 1}" id="DataTables_Table_0_previous">
+								<a (click)="onGridPrevious()" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">
+								<</a>
+									</li>
+									<li *ngFor="let pageNumber of tablePaginationData" class="paginate_button" [ngClass]="{'active':currentPageNumber === pageNumber}">
+									<a aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" (click)="onPaginateInnerGrid(pageNumber)">
+									{{pageNumber}}</a></li>					 
+									<li class="paginate_button next" [ngClass]="{'disabled':currentPageNumber===tablePaginationData.length}" id="DataTables_Table_0_next">
+								<a (click)="onGridNext()" aria-controls="DataTables_Table_0" data-dt-idx="8" tabindex="0">></a>
+								<li class="paginate_button next" [ngClass]="{'disabled': pagination.totalRecords < 100}" id="DataTables_Table_0_next">
+									<a (click)="pagination.totalRecords < 100 || nextTasks()" [ngClass]="{'disabled': pagination.totalRecords < 100}" class="last__100" aria-controls="DataTables_Table_0" data-dt-idx="8" tabindex="0">>> </a>
+									</li>
+								</ul>
+							</div> -->
+							<!-- <div class="pad-l-13">
+								<div class="col-xs-2 col-lg-3" style="padding-top: 2%">
+									<label class="pr-10 perpagetext">{{Newpagination.perPageText}} </label>
+									<select [(ngModel)]="paginationLimitOption" (change)="onLimitChange($event.target.value)" class="perpage">
+										<option *ngFor="let value of Newpagination.pageLimitOptions" [value]="value">
+											{{value}}
+										</option>
+									</select>
+								</div>
+								<div class="col-xs-3 col-lg-2 perpagetext" style="padding-top: 2%">
+									{{Newpagination.pageNumberText}} {{pagination.totalRecords == 0 ? 1: pagination.pageNumber }}/{{totalPage}}
+								</div>
+								<div class="col-lg-7 col-6 text-right" *ngIf="pagination.totalRecords" style="margin: 18px 0;">
+									<pagination [totalItems]="pagination.totalRecords" previousText="<" nextText=">" [itemsPerPage]="paginationLimitOption"
+										[maxSize]="10" [(ngModel)]="pagination.pageNumber" (pageChanged)="onPaginateInnerGrid($event.page)"></pagination>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div> -->
+			</div>
+		</sa-widgets-grid>
+	</div>
+</div>
+</div>
+
+<!-- Old code was here -->

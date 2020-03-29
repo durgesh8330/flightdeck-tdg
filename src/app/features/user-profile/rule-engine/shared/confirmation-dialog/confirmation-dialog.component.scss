@@ -1,0 +1,19 @@
+.overlay {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.85);
+  z-index: 10000;
+}
+
+.popup {
+  padding: 15px;
+  left: 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 5px 5px 5px #000;
+}

@@ -1,0 +1,254 @@
+<form name="manageWorkgroupParamsForm" *ngIf="routingParametersData">
+  <div class="row">
+    <div
+      class="col-xs-6 col-xs-offset-6"
+      *ngIf="data && data.buttons && data.buttons.length"
+    >
+      <button
+        *ngFor="let field of data.buttons"
+        [title]="field.title"
+        [type]="field.type"
+        [class]="field.class"
+        (click)="clickAction(field.clickAction)"
+      >
+        {{ field.label }}
+      </button>
+    </div>
+    <div *ngFor="let field of data.fieldList" class="col-xs-12">
+      
+      <div [ngSwitch]="field.fieldType">
+        <div *ngSwitchCase="'button'">
+          <button
+            [title]="field.title"
+            [type]="field.type"
+            [class]="field.class"
+            (click)="clickAction(field.clickAction)"
+          >
+            {{ field.label }}
+          </button>
+        </div>
+
+        <div *ngSwitchCase="'switch'" [class]="field.class">
+          <span>{{ field.label }}</span>
+          <on-off-switch
+            [(model)]="routingParametersData[field.fieldName]"
+          ></on-off-switch>
+        </div>
+        <div *ngSwitchCase="'attributes'">
+            
+          <div class="row">
+            <div class="col-xs-12 attributes-header">
+              <span>{{ field.label }}</span>
+              <button
+                *ngIf="field.action"
+                [type]="field.action.type"
+                [class]="field.action.class"
+                (click)="clickAction(field.action.clickAction, field.action.modalData)"
+                [title]="field.action.title"
+              >
+                <i *ngIf="field.action.iconClass" [class]="field.action.iconClass"></i>
+              </button>
+            </div>
+          </div>
+          <div
+            class="row routing-attribute"
+            *ngFor="let attribute of field.routingAttributes; let aIndex = index"
+          >
+            <div class="row">
+              <div class="col-xs-12 workgroup-attr-header">
+                <span
+                  *ngIf="attribute.deletable"
+                  (click)="clickAction(attribute.clickAction, attribute, 0, attribute.OnCreate)"
+                  [class]="attribute.class"
+                  ><i [class]="attribute.iconClass" aria-hidden="true"></i
+                ></span>
+                <span>{{
+                  routingParametersData[field.fieldName][aIndex][
+                    attribute.fieldLabelName
+                  ] || attribute.fieldLabel
+                }}
+              </span>
+              </div>
+              <div class="col-xs-4">
+                <div class="select-label">{{ attribute.leftListLabel }} {{
+                  routingParametersData[field.fieldName][aIndex][
+                    attribute.fieldLabelName
+                  ] || attribute.fieldLabel
+                }}</div>
+                <select
+                  multiple
+                  [(ngModel)]="attribute.leftListSelectedItems"
+                  id="bootstrap-duallistbox-nonselected-list_"
+                  class="form-control"
+                  name="{{ 'leftSelect' + aIndex }} "
+                  style="height: 100px;"
+                >
+                  <option
+                    *ngFor="
+                      let element of routingParametersData[field.fieldName][aIndex][
+                        attribute.rightListFieldName
+                      ]
+                    "
+                    [value]="element"
+                    >{{ element }}</option
+                  >
+                </select>
+              </div>
+              <div class="col-xs-3">
+                <div *ngFor="let action of attribute.actions">
+                  <div [ngSwitch]="action.fieldType">
+                    <div *ngSwitchCase="'button'">
+                      <button
+                        [title]="action.title"
+                        [type]="action.type"
+                        [class]="action.class"
+                        (click)="clickAction(action.clickAction, attribute, aIndex)"
+                      >
+                        {{ action.label }}
+                        <i
+                          *ngIf="action.iconClass"
+                          [class]="action.iconClass"
+                          style="font-size:24px"
+                        ></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-4">
+                <div class="select-label">
+                  
+                  {{ attribute.rightListLabel }} {{
+                  routingParametersData[field.fieldName][aIndex][
+                    attribute.fieldLabelName
+                  ] || attribute.fieldLabel
+                }}
+                 </div>
+                 
+                <select
+                  multiple
+                  [(ngModel)]="attribute.rightListSelectedItems"
+                  id="bootstrap-duallistbox-selected-list_"
+                  class="form-control"
+                  name="{{ 'rightSelect' + aIndex }} "
+                  style="height: 100px;"
+                >
+                  <option
+                    *ngFor="
+                      let element of routingParametersData[field.fieldName][aIndex][
+                        attribute.leftListFieldName
+                      ]
+                    "
+                    [value]="element"
+                    >{{ element }}</option
+                  >
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- <form name="manageWorkgroupParamsForm">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-6">
+      <button
+        *ngFor="let action of paramData.formActions"
+        [title]="action.title"
+        type="button"
+        class="btn btn-success form-action-buttons"
+        (click)="action.primary ? submitForm() : closeForm()"
+      >
+        {{ action.label }}
+      </button>
+    </div>
+    <div class="col-xs-12" *ngFor="let field of paramData.fields">
+      <div [ngSwitch]="field.type">
+        <div *ngSwitchCase="'switch'" class="switch-input">
+          <span>{{ field.label }}</span>
+          <on-off-switch [(model)]="field.value"></on-off-switch>
+        </div>
+        <div *ngSwitchCase="'attributes'">
+          <div class="row">
+            <div class="col-xs-12 attributes-header">
+              <span>{{ field.label }}</span>
+              <button
+                *ngIf="field.action"
+                type="button"
+                class="btn remove btn-default  background-green"
+                (click)="addAttribute(field.action.modalData)"
+                [title]="field.action.title"
+              >
+                <i [class]="field.action.iconClass"></i>
+              </button>
+            </div>
+          </div>
+          <div
+            class="row routing-attribute"
+            *ngFor="let attribute of field.routingAttributes"
+          >
+            <div class="col-xs-12 workgroup-attr-header">
+              <span
+                *ngIf="attribute.removable"
+                (click)="removeAttribute(attribute)"
+                class="delete-attr-icon"
+                ><i [class]="attribute.removeIcon" aria-hidden="true"></i
+              ></span>
+              <span>{{ attribute.label }}</span>
+            </div>
+            <div class="row">
+              <div class="col-xs-4">
+                <div class="select-label">{{ attribute.leftListLabel }}</div>
+                <select
+                  multiple
+                  [(ngModel)]="attribute.leftSelectedList"
+                  id="bootstrap-duallistbox-nonselected-list_"
+                  class="form-control"
+                  name="_helper1"
+                  style="height: 100px;"
+                >
+                  <option
+                    *ngFor="let element of attribute.leftList"
+                    [value]="element"
+                    >{{ element }}</option
+                  >
+                </select>
+              </div>
+              <div class="col-xs-3">
+                <button
+                  *ngFor="let action of attribute.actions; let first = first"
+                  type="button"
+                  [class]="action.className"
+                  (click)="handleActionClick(attribute, first)"
+                  [title]="action.title"
+                >
+                  <i [class]="action.iconClass" style="font-size:24px"></i>
+                </button>
+              </div>
+              <div class="col-xs-4">
+                <div class="select-label">{{ attribute.rightListLabel }}</div>
+                <select
+                  multiple
+                  [(ngModel)]="attribute.rightSelectedList"
+                  id="bootstrap-duallistbox-selected-list_"
+                  class="form-control"
+                  name="_helper2"
+                  style="height: 100px;"
+                >
+                  <option
+                    *ngFor="let element of attribute.rightList"
+                    [value]="element"
+                    >{{ element }}</option
+                  >
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form> -->

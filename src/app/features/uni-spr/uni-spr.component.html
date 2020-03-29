@@ -1,0 +1,111 @@
+
+
+<div *ngIf="loader">
+  <!-- <mat-spinner class="spinner-style"></mat-spinner> -->
+  <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+  <div class="spinner">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+  </div>
+</div>
+<form name="form" (ngSubmit)="f1.form.valid && createUniSprTask()" #f1="ngForm" novalidate>
+  <div class="form-group"  *ngIf="!loader" style="overflow-x: hidden">
+    <div class="row" style="margin-bottom: 16px;">
+      <div class="col-lg-12 text-right">
+        <button mat-raised-button (click)="reset()" style="margin-right: 10px;margin-top: 16px">Clear</button>
+        <button mat-raised-button type="submit" color="primary" style="margin-right: 16px">Create</button>
+      </div>
+    </div>
+    <mat-card style="margin: 16px;">
+
+      <mat-card-header  class="search-card-heading" *ngIf="taskDetails && taskDetails['taskCommonFields']">
+        <mat-card-title><h1>{{taskDetails['taskCommonFields']['header']}}</h1></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row" *ngIf="taskDetails['taskCommonFields']" style="margin-top: 20px">
+          <div *ngFor="let obj of taskDetails['taskCommonFields']['fieldList']; let i=index;">
+            <div class="col-xs-12 col-md-4 col-sm-6 col-lg-3"
+                 [ngStyle]="{'margin-top':obj.type =='textArea' ? '-15px' : '' }">
+              <div [ngSwitch]="obj.type">
+                <div *ngSwitchCase="'text'">
+                  <mat-form-field>
+                    <input matInput [disabled]="!obj.editable" [(ngModel)]="obj.fieldValue" name='{{"fieldValue_1_"+i}}'
+                           [placeholder]="obj.label" [id]="obj.fieldName" [required]="obj.mandatory">
+                  </mat-form-field>
+                </div>
+                <div *ngSwitchCase="'textArea'">
+                  <mat-form-field class="this-feels-better">
+									<textarea matInput [disabled]="!obj.editable" [(ngModel)]="obj.fieldValue" [required]="obj.mandatory"
+                            [placeholder]="obj.label" [id]="obj.fieldName" name='{{"fieldValue_1_"+i}}'></textarea>
+                  </mat-form-field>
+                </div>
+                <div *ngSwitchCase="'select'" class="select-field-size">
+                  <mat-form-field>
+                    <mat-select [placeholder]="obj.label" [disabled]="!obj.editable" [(ngModel)]="obj.fieldValue" name='{{"fieldValue_1_"+i}}' [required]="obj.mandatory">
+                      <mat-option *ngFor="let element of obj.dropdownList" value="{{element}}">
+                        {{element}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div *ngSwitchCase="'lookup'" class="select-field-size">
+                  <mat-form-field>
+                    <mat-select multiple [placeholder]="obj.label" [disabled]="!obj.editable" [(ngModel)]="obj.fieldValue" name='{{"fieldValue_1_"+i}}' [required]="obj.mandatory">
+                      <mat-option *ngFor="let element of obj.dropdownList" value="{{element}}">
+                        {{element}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div *ngSwitchCase="'slide'">
+                  <mat-slide-toggle color="primary" [checked]="obj.fieldValue" [disabled]="!obj.editable">
+                    {{obj.label}}
+                  </mat-slide-toggle>
+                </div>
+                <div *ngSwitchCase="'checkbox'">
+                  <label class="example-margin">{{obj.label}}:</label>
+                  <mat-checkbox class="example-margin" color="primary" [disabled]="!obj.editable" name='{{"fieldValue_1_"+i}}'
+                                [(ngModel)]="obj.element">
+                    {{element}}
+                  </mat-checkbox>
+                </div>
+                <div *ngSwitchCase="'radio'">
+                  <label class="example-margin">{{obj.label}}:</label>
+                  <mat-radio-group [disabled]="!obj.editable" class="example-radio-group">
+                    <mat-radio-button class="example-radio-button" [(ngModel)]="obj.fieldValue"
+                                      color="primary" name='{{"fieldValue_1_"+i}}' [value]="obj.fieldValue">
+                      {{element}}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div *ngSwitchCase="'date'">
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="picker" [placeholder]="obj.label" [(ngModel)]="obj.fieldValue" name='{{"fieldValue_1_"+i}}' [required]="obj.mandatory">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div *ngSwitchCase="'multiSelect'" class="select-field-size">
+                  <mat-form-field>
+                    <mat-select multiple [placeholder]="obj.label" multiple [(ngModel)]="obj.fieldValue" name='{{"fieldValue_1_"+i}}' [required]="obj.mandatory">
+                      <mat-option *ngFor="let element of obj.dropdownList" [value]="element">{{element}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <!--<span>-->
+                  <!--<i class="fa fa-plus-square add-attr-icon" (click)="addAttribute(i);"></i>-->
+                  <!--</span>-->
+                </div>
+                <div *ngSwitchDefault>
+                  <label class="example-margin">{{obj.label}}:</label>
+                  field type <b>{{obj.type}}</b> is not supported yet.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</form>
+

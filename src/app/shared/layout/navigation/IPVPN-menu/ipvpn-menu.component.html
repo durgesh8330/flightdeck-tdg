@@ -1,0 +1,91 @@
+<aside  class="statusmanagermenu">
+  <nav id="nav_bar" class="ipvpnnav" (mouseleave)="toggleOnHover(false)" (mouseenter)="toggleOnHover(true)">
+    <!-- <div class="text-center">
+      <i class="fa fa-long-arrow-left fa-2x" aria-hidden="true" #tooltip="matTooltip" matTooltip="Back to Menu"
+        matTooltipPosition="right" style="color: white;cursor: pointer;" (click)="swithcToMainMenu();"></i>
+    </div> -->
+    <sa-widgets-grid>
+      <div class="menuitemsdiv">
+        <ul saSmartMenu class="navigationmenu ipvpn" id="menuitems">
+          <!-- <li>
+        <a title="Search" style="position: relative" (click)="showSearchMenu=!showSearchMenu;">
+              <i class="fa fa-search fa-lg"> </i> <span class="menu-item-parent">Search</span>
+        </a>
+      </li> -->
+          <li class="menulinklist" *ngFor="let menu of leftMenuData.leftMenu;let i = index"
+            (click)="openTab(menu.componentString, menu.title, menu.url)">
+            <!-- (click)="showChildMenuFn(i)" -->
+            <a class="menulink" [title]="menu.headerLabel" [ngClass]="'index_'+i" [routerLink]="menu.routerLink"
+              routerLinkActive="active">
+              <span class="menu-item-parent">{{ menu.headerLabel | i18n }}</span>
+              <i *ngIf="menu.chart === false" [class]="'menulinkicon ' + menu.headerIcon"> </i>
+              <sa-flot-chart *ngIf="menu.chart === true" [data]="chartjsData.sourceData" [options]="flotExamples.pieChartDemoOptions" ></sa-flot-chart>
+            </a>
+            <!-- <div class="smeSubMenu" *ngIf="menu.headerLabel == 'Dashboard'">
+              <div class="smeSubMenu-Body">
+                <div class="row">
+                  <div class="widget-body pie_chart_he">
+                    <sa-flot-chart [data]="chartjsData.sourceData" [options]="flotExamples.pieChartDemoOptions">
+                    </sa-flot-chart>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <div *ngIf="menu.headerType == 'search' && showChildMenu == 'child'+i" class="smeSubMenu">
+              <div class="smeSubMenu-Body">
+                <div class="row" *ngFor=" let labelType of searchTypeLabel">
+                  <div style="padding-bottom: 5px;">
+                    <label style="font-weight: bold; color: white">{{labelType.label}}</label>
+                  </div>
+                  <div style="padding-bottom: 15px" *ngIf="labelType.type =='select'">
+                    <select class="form-control" id="searchType" name="serviceType" [(ngModel)]="searchType">
+                      <option *ngFor="let searchType of searchTypes" [value]="searchType">{{searchType}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div *ngFor="let field of templateObj[searchType]" class="row">
+                  <div style="padding-bottom: 5px;">
+                    <label style="font-weight: bold; color: white">{{field.label}}</label>
+                  </div>
+                  <div style="padding-bottom: 15px">
+                    <input type="text" class="form-control" [placeholder]="field.label" [name]="field.fieldName">
+                  </div>
+                </div>
+              </div>
+              <div class="smeSubMenu-Footer search-btn-control">
+                <span *ngFor="let button of templateObj['Buttons']">
+                  <button [class]="'btn btn-success blue__btn '+ button.class" mat-raised-button
+                    (click)="showSearchMenu=!showSearchMenu;" color="primary" style="margin-right: 5px">
+                    {{button.label}}
+                  </button>
+                </span>
+              </div>
+            </div>
+            <ul *ngIf="menu.children.length">
+              <li *ngFor="let childMenu of menu.children">
+                <a [routerLink]="childMenu.routerLink" routerLinkActive="active"
+                  (click)="openTab(childMenu.componentString, childMenu.title, childMenu.url)">
+                  <i [class]="menu.icon"> </i>
+                  <span>{{ childMenu.label | i18n }}</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="sidebar-footer">
+          <div *ngFor="let menu of leftMenuData.leftBottomMenu;let i = index">
+              <a *ngIf="menu.link == true" [title]="menu.title" routerLink="{{menu.routerLink}}" class="link"><i class="{{menu.subMenuIcon}}"></i></a>
+              <a *ngIf="menu.link == false" [title]="menu.title" routerLink="{{menu.routerLink}}" class="link"
+              (click)="openTab(menu.componentString, menu.title, menu.url)">
+                <i class="{{menu.subMenuIcon}}"></i>
+              </a>
+          </div>
+          
+          <!-- <a href="" class="link"><i class="fa fa-user"></i></a>
+          <a href="" class="link"><i class="fa fa-user"></i></a> -->
+      </div>
+      </div>
+    </sa-widgets-grid>
+  </nav>
+  <sa-minify-menu></sa-minify-menu>
+</aside>

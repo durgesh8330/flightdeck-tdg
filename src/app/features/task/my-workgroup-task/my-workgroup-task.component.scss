@@ -1,0 +1,200 @@
+label {
+  font-weight: bold;
+}
+
+.break-text {
+  word-break: break-all;
+}
+
+.close-icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.close-icon:hover {
+  color: red;
+}
+.skillname {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.padding-left-5 {
+  padding-left: 5px;
+}
+.tab-pane {
+  overflow: hidden;
+}
+.table-container {
+  padding: 20px 0px;
+  overflow: auto;
+}
+th,
+tr {
+  white-space: nowrap;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow: scroll;
+}
+/* new table css */
+table {
+  width: 100%;
+}
+th {
+  color: black;
+  font-weight: bold;
+}
+.showHand{
+  cursor: pointer;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  padding: 0 15px 0 10px;
+}
+
+.table-container {
+  overflow: auto;
+}
+
+.table-wrapper {
+  width:100%;
+  overflow: scroll;
+}
+
+/* ngx-datatable{
+  height: 500px;
+} */
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  padding: 0 15px 0 20px !important;
+}
+
+::ng-deep .smart-form *, .smart-form :after, .smart-form :before {
+  /* margin: 0 !important; */
+  /* margin: 0*/
+  /*padding: initial !important;*/
+  box-sizing: border-box !important;
+}
+
+::ng-deep .smart-form header {
+  padding: 0px 0 !important;
+  border-bottom: 1px solid rgba(0,0,0,.2) !important;
+  margin: 0px 0px 0 !important;
+}
+
+.table {
+  margin-bottom: 0px !important;
+}
+.expanded-row-color{
+  background:lavender !important;
+}
+.table-container {
+  padding-left: 10px;
+}
+
+#systemtable .table th, #systemtable .table td {
+  min-width: 131px;
+}
+#systemtable .table th:nth-of-type(1), #systemtable .table td:nth-of-type(1) {
+  min-width: 37px !important;
+}
+.add_box {
+  font-weight: bold;
+  font-size: 15px;
+  color: #fff;
+  background: blue !important;
+  padding: 2px;
+  border-radius: 4px;
+}
+.actionbtnsection {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 4px;
+  padding-bottom: 5px;
+}
+.mar--l10 {
+  margin-left: 10px;
+}
+.table-container .buttons-pdf {
+  color: #fff !important;
+  background-color: #0047BB !important;
+  border-radius: 5px;
+  transition: all 500ms
+}
+.buttons-pdf:hover {
+  transform: scale(1.1);
+}
+.buttons-pdf:active {
+  transform: scale(1.1);
+  background-color: green !important;
+  box-shadow: 0 0 0 3px rgba(83,86,90,.3);
+}
+.buttons-pdf:focus {
+  box-shadow: 0 0 0 3px rgba(83,86,90,.3);
+}
+.pagination > li > a, .pagination > li > span {
+  box-shadow: none !important;
+}
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+  border-top-left-radius: 50% !important;
+  border-bottom-left-radius:  50% !important;
+}
+.pagination>li:last-child>a, .pagination>li:last-child>span {
+  border-top-right-radius:  50% !important;
+  border-bottom-right-radius:  50% !important;
+}
+.sortarrow {
+  float: right;
+}
+.upsortarrow::before {
+  content: "\2191";
+  opacity: 0.5;
+  font-size: 15px;
+}
+.downsortarrow::after {
+  content: "\2193";
+  opacity: 0.5;
+  font-size: 15px;
+}
+.sort_desc .upsortarrow::before, .sort_asc .downsortarrow::after {
+  opacity: 1;
+  color: #48d597;
+}
+.sort_desc .upsortarrow::before, .sort_asc .downsortarrow::after {
+  opacity: 1;
+  color: #48d597;
+}
+#systemtable .table th, #systemtable .table td {
+  min-width: 150px;
+}
+::ng-deep .pagination-prev.page-item a.page-link  {
+  border-top-left-radius: 50% !important;
+  border-bottom-left-radius: 50% !important;
+}
+::ng-deep .pagination-next.page-item a.page-link {
+  border-top-right-radius: 50% !important;
+  border-bottom-right-radius: 50% !important;
+}
+::ng-deep .pagination>li>a,::ng-deep .pagination>li>span {
+  padding: 4px 12px !important;
+}
+::ng-deep .pagination {
+  margin: 0 !important;
+}
+// ::ng-deep .table-responsive {
+//   max-height: 60vh;
+// }
+
+::ng-deep #systemtable .table-responsive {
+  max-height: calc(100vh - 285px) !important;
+}

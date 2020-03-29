@@ -1,0 +1,264 @@
+<h2>Add New Fields</h2>
+<div>
+  <form
+    name="form"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    #f="ngForm"
+    novalidate
+  >
+    <div class="form-group">
+      <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+        <div class="col-xs-4 col-md-4 col-sm-4 col-lg-4">
+          <label class="control-label">Label</label>
+          <span aria-hidden="true" class="text-danger">&nbsp;*</span>
+        </div>
+        <div
+          class="col-xs-8 col-md-8 col-sm-8 col-lg-8"
+          style="min-height: 30px"
+        >
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control input-text"
+              placeholder="Label"
+              name="label"
+              #label="ngModel"
+              [(ngModel)]="model.label"
+              required
+            />
+            <div
+              *ngIf="f.submitted && label.invalid"
+              class="text-danger text-left"
+            >
+              <small>Label is required.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--	<input matInput placeholder="Label" name="label" [(ngModel)]="model.label" #label="ngModel" required>-->
+      <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+        <div class="col-xs-4 col-md-4 col-sm-4 col-lg-4">
+          <label class="control-label">Field Name</label>
+          <span aria-hidden="true" class="text-danger">&nbsp;*</span>
+        </div>
+        <div
+          class="col-xs-8 col-md-8 col-sm-8 col-lg-8"
+          style="min-height: 30px"
+        >
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control input-text"
+              placeholder="Field Name"
+              name="fieldName"
+              #fieldName="ngModel"
+              [(ngModel)]="model.fieldName"
+              required
+            />
+            <div
+              *ngIf="f.submitted && fieldName.invalid"
+              class="text-danger text-left"
+            >
+              <small>Field Name is required.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--<mat-form-field class="example-full-width">
+					<input matInput placeholder="Field Name" name="fieldName" [(ngModel)]="model.fieldName" #fieldName="ngModel" required>
+				</mat-form-field>-->
+
+      <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+        <div class="col-xs-4 col-md-4 col-sm-4 col-lg-4">
+          <label class="control-label">Field Value</label>
+        </div>
+        <div
+          class="col-xs-8 col-md-8 col-sm-8 col-lg-8"
+          style="min-height: 30px"
+        >
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control input-text"
+              placeholder="Field Value"
+              name="fieldValue"
+              #fieldValue="ngModel"
+              [(ngModel)]="model.fieldValue"
+            />
+          </div>
+        </div>
+      </div>
+      <!--<mat-form-field class="example-full-width">
+					<input matInput placeholder="Field Value" name="fieldValue" [(ngModel)]="model.fieldValue" #fieldValue="ngModel">
+				</mat-form-field>-->
+
+      <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+        <div class="col-xs-4 col-md-4 col-sm-4 col-lg-4">
+          <label class="control-label">Editable</label>
+        </div>
+        <div
+          class="col-xs-8 col-md-8 col-sm-8 col-lg-8"
+          style="min-height: 30px"
+        >
+          <div class="form-group">
+            <input
+              type="checkbox"
+              [(ngModel)]="model.editable"
+              name="editable"
+              #editable="ngModel"
+            />
+          </div>
+        </div>
+      </div>
+      <!--<mat-checkbox [(ngModel)]="model.editable" name="editable" #editable="ngModel" [checked]="data.editable">Editable</mat-checkbox>-->
+      <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+        <div class="col-xs-4 col-md-4 col-sm-4 col-lg-4">
+          <label class="control-label">Mandatory</label>
+        </div>
+        <div
+          class="col-xs-8 col-md-8 col-sm-8 col-lg-8"
+          style="min-height: 30px"
+        >
+          <div class="form-group">
+            <input
+              type="checkbox"
+              [(ngModel)]="model.mandatory"
+              name="mandatory"
+              #mandatory="ngModel"
+            />
+          </div>
+        </div>
+      </div>
+      <!--<mat-checkbox [(ngModel)]="model.mandatory" name="mandatory" #mandatory="ngModel" [checked]="data.mandatory">Mandatory</mat-checkbox>-->
+      <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+        <div class="col-xs-4 col-md-4 col-sm-4 col-lg-4">
+          <label class="control-label">Type</label>
+          <span aria-hidden="true" class="text-danger">&nbsp;*</span>
+        </div>
+        <div
+          class="col-xs-8 col-md-8 col-sm-8 col-lg-8"
+          style="min-height: 30px"
+        >
+          <div class="form-group">
+            <select
+              class="form-control input-text"
+              id="select-1"
+              name="type"
+              #type="ngModel"
+              [(ngModel)]="model.type"
+              required
+            >
+              <option value="string">String</option>
+              <option value="textArea">TextArea</option>
+              <option value="checkbox">Checkbox</option>
+              <option value="select">Select</option>
+              <option value="slide">Slide</option>
+              <option value="radio">Radio</option>
+              <option value="multiselect">Multi Select</option>
+              <option value="date">Date</option>
+            </select>
+            <div
+              *ngIf="f.submitted && type.invalid"
+              class="text-danger text-left"
+            >
+              <small>Type is required.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-xs-12 col-md-12 col-sm-12 col-lg-12"
+        *ngIf="model.type === 'select' || model.type === 'multiselect'"
+      >
+        <div class="col-xs-4 col-md-4 col-sm-4 col-lg-4">
+          <label class="control-label">Provide options</label>
+          <span aria-hidden="true" class="text-danger">&nbsp;*</span>
+        </div>
+        <div
+          class="col-xs-8 col-md-8 col-sm-8 col-lg-8"
+          style="min-height: 30px"
+        >
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control input-text"
+              placeholder="option1,option2,option3,etc"
+              name="selectOptions"
+              #selectOptions="ngModel"
+              [(ngModel)]="model.selectOptions"
+              required
+            />
+            <div
+              *ngIf="f.submitted && selectOptions.invalid"
+              class="text-danger text-left"
+            >
+              <small>Options must be provided.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-xs-12 col-md-12 col-sm-12 col-lg-12"
+        *ngIf="model.type === 'radio'"
+      >
+        <div class="col-xs-4 col-md-4 col-sm-4 col-lg-4">
+          <label class="control-label">Provide Values</label>
+          <span aria-hidden="true" class="text-danger">&nbsp;*</span>
+        </div>
+        <div
+          class="col-xs-8 col-md-8 col-sm-8 col-lg-8"
+          style="min-height: 30px"
+        >
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control input-text"
+              placeholder="value1,value2,value3,etc"
+              name="selectOptions"
+              #selectOptions="ngModel"
+              [(ngModel)]="model.selectOptions"
+              required
+            />
+            <div
+              *ngIf="f.submitted && selectOptions.invalid"
+              class="text-danger text-left"
+            >
+              <small>Radio values must be provided.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--<mat-form-field>
+					<mat-select placeholder="Type" name="type" #type="ngModel" [(ngModel)]="model.type" required>
+						<mat-option value="string" value="string">String</mat-option>
+						<mat-option value="textArea">TextArea</mat-option>
+						<mat-option value="checkbox">checkbox</mat-option>
+						<mat-option value="select">Select</mat-option>
+						<mat-option value="slide">Slide</mat-option>
+						<mat-option value="radio">Radio</mat-option>
+						<mat-option value="multiselect">Multi Select</mat-option>
+						<mat-option value="date">Date</mat-option>
+					</mat-select>
+				</mat-form-field>
+-->
+
+      <div
+        class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-right"
+        style="padding-right: 27px"
+      >
+        <button type="button" class="btn btn-default" (click)="onNoClick()">
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-primary" style="margin-left: 16px">
+          Add
+        </button>
+      </div>
+      <!--<div mat-dialog-actions class="form-group" style="width:215px;">
+				<button mat-raised-button (click)="onNoClick()">Cancel</button>
+				<button mat-raised-button type="submit" color="primary">Add</button>
+			</div>-->
+    </div>
+  </form>
+</div>

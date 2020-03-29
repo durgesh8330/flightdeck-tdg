@@ -1,0 +1,36 @@
+<aside (mouseleave)="toggleOnHover(false)" (mouseenter)="toggleOnHover(true)">
+	<nav id="nav_bar">
+		<!-- NOTE: Notice the gaps after each icon usage <i></i>..
+		Please note that these links work a bit different than
+		traditional href="" links. See documentation for details.
+		-->
+		<sa-widgets-grid>
+			<ul saSmartMenu class="navigationmenu" id="menuitems">
+				<ng-container *ngFor="let menu of leftMenuData.leftMenu;let i = index">
+				<div *ngIf="menu.headerLabel == 'Auto Select'" class="text-center" style="padding: 5px; color: white;margin-top: 3%;">
+					<div *ngFor="let button of menu.children">
+						<button mat-stroked-button class="sbmt-btn auto-select-button-width"
+							(click)="AutoSelect()">{{ button.label }}</button>
+					</div>
+				</div>
+				<li *ngIf="menu.headerLabel != 'Auto Select'" (click)="openTab(menu.componentString, menu.title, menu.url)">
+					<a [title]="menu.headerLabel" [ngClass]="'index_'+i" [routerLink]="menu.routerLink"
+						routerLinkActive="active">
+						<i [class]="menu.headerIcon"> </i>
+						<span class="menu-item-parent">{{ menu.headerLabel | i18n }}</span>
+					</a>
+					<ul *ngIf="menu.children.length">
+						<li *ngFor="let childMenu of menu.children">
+							<a [routerLink]="childMenu.routerLink" routerLinkActive="active"
+								(click)="openTab(childMenu.componentString, childMenu.title, childMenu.url)">
+								{{ childMenu.label | i18n }}
+							</a>
+						</li>
+					</ul>
+				</li>
+				</ng-container>
+			</ul>
+		</sa-widgets-grid>
+	</nav>
+	<sa-minify-menu></sa-minify-menu>
+</aside>

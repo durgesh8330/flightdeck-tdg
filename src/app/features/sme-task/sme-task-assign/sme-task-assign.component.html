@@ -1,0 +1,55 @@
+<h2 class="modal-title" mat-dialog-title>Assign To</h2>
+<div mat-dialog-content>
+
+	<form name="form" novalidate>
+		<div mat-dialog-content class="model-content" style="width: 445px;">
+			<div class="row">
+				<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12" style="padding-left: 0;">
+
+					<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 control-label" style="padding-left: 0;">
+						<label class="col-md-4">Select Assign to</label>
+
+						<mat-radio-group class="control-label">
+							<mat-radio-button value="user" (click)="ShowGroup = 'cuid'">User &nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+							<mat-radio-button value="workgroup" (click)="ShowGroup = 'workgroup'">WorkGroup</mat-radio-button>
+						</mat-radio-group>
+
+					</div>
+					<div *ngIf="ShowGroup == 'cuid'" class="col-xs-12 col-md-12 col-sm-12 col-lg-12 control-label" style="padding-left: 0;">
+						<label class="control-label col-md-4">CUID </label>
+
+						<div class="datepicker col-md-8 p-0">
+							<!-- <mat-form-field class="example-full-width"> -->
+							<input class="form-control" style="width: 100%;" name="cuid" [(ngModel)]="cuid">
+							<!-- </mat-form-field> -->
+						</div>
+					</div>
+
+					<div *ngIf="ShowGroup == 'workgroup'" class="col-xs-12 col-md-12 col-sm-12 col-lg-12 control-label" style="padding-left: 0;">
+						<label class="control-label col-md-4">Select Workgroup </label>
+
+						<div class="datepicker col-md-8 p-0">
+							<!-- <mat-form-field class="example-full-width">
+								<mat-select placeholder="Select WorkGroup" name="workgroup" [(ngModel)]="workgroup" style="width: 100%;">
+								</mat-select>
+							</mat-form-field> -->
+							<div class="select-field-size">
+								<div class="form-group" style="width: 95%;">
+									<ng-select2 [data]="workgroupList" [width]="500" [options]="options" [(ngModel)]="workgroup" name="workgroup-list">
+									</ng-select2>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</form>
+
+</div>
+
+<div mat-dialog-actions class="pull-right">
+	<button mat-button (click)="onClose()">Assign</button>
+	<button mat-button (click)="onClose()">Cancel</button>
+</div>

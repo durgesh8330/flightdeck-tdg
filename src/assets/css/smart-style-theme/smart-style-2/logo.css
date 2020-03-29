@@ -1,0 +1,17 @@
+:root{
+    --navigation_background:#011208;
+}
+
+.smart-style-2 #logo-group span#activity {
+    background: none !important;
+    border: none !important;
+    color: #C5C6CA
+}
+
+.smart-style-2 #logo-group span#activity:hover {
+    color: #fff
+}
+
+.smart-style-2 #logo-group > span .badge {
+    background: var(--navigation_background);
+}

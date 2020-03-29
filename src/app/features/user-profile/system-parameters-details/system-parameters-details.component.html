@@ -1,0 +1,307 @@
+<div *ngIf="loading" class="center__loader">
+  <!-- <mat-spinner class="spinner-style"></mat-spinner> -->
+  <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+  <div class="spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+</div>
+<sa-modal [modal]="modalDetails" (buttonClicked)="buttonClicked($event)"></sa-modal>
+<div class="wrap" *ngIf="!loading">
+  <div class="alert alert-success alert-dismissible" *ngIf="IsSuccess" style="background-color: green;color: #fff;">
+    <span *ngIf="message == ''"><strong>Success!</strong></span>
+    <span *ngIf="message != ''"><strong>{{message}}</strong></span>
+    <button type="button" class="close" data-dismiss="alert" style="opacity: 1;color: #fff !important;" (click)="IsSuccess = false">&times;</button>
+  </div>
+  <div class="alert alert-danger alert-dismissible" *ngIf="IsError" style="background-color: #ce2f2f;color: #fff;">
+    <strong>Error! </strong>{{message}}.
+    <button type="button" class="close" data-dismiss="alert" style="opacity: 1;color: #fff !important;" (click)="IsError = false">&times;</button>
+  </div>
+  <div class="loaderOnSection" *ngIf="loaderOnSection">
+    <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+    <div class="spinner">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+  </div>
+  <div class="resizable resizable1 example-2">
+    <div class="form-group">
+      <div class="tab-pane show active search-tab-content" id="task-details" role="tabpanel" aria-labelledby="task-details-tab">
+        <div class="sticky-tab-header" *ngIf="level == 3">
+          <ul class="nav nav-tabs tabs-left text-align-center" id="demo-pill-nav">
+            <li *ngFor="let tab of tabList;let i = index" [class.active]="tab.default">
+              <a [ngStyle]="tab.style" (click)="activateTab(i)">
+                {{tab.label}}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="inner widget-name">
+          <div id="systemtable">
+            <div simple-snack-bar></div>
+            <div>
+              <div class="row mar-0">
+                <div>
+                  <div id="content1">
+                    <sa-widgets-grid *ngIf="isSectionVisible(systemDetailHead)">
+                      <div sa-widget [colorbutton]="false" [editbutton]="false" [name]="userdetailswodgetwa"
+                        [deletebutton]="false" [fullscreenbutton]="true" color="blueDark">
+                        <header>
+                          <span class="widget-icon"> <i class="fa fa-table"></i>
+                          </span>
+                          <h2 *ngIf="level == 2">{{systemDetail[0]?.fieldValue}}
+                          </h2>
+                          <h2 *ngIf="level == 3">{{systemDetailHead}}
+                          </h2>
+                        </header>
+                        <div>
+                          <div class="row mar-0 ">
+                            <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 no-padding-right" *ngFor="let detail of systemDetail">
+                              <label class="col-xs-12 col-sm-3 col-md-2 col-lg-2 p-0 control-label" *ngIf="detail.visible">
+                                {{detail.label}} : </label>
+                              <div *ngIf="detail.visible" class="col-xs-12 col-md-9 col-sm-9 col-lg-9 p-0">
+                                {{detail.fieldValue}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </sa-widgets-grid>
+                    <sa-widgets-grid *ngIf="isSectionVisible(itemHeadText)">
+                      <div sa-widget [colorbutton]="false" [editbutton]="false" [name]="userdetailswodgetwa"
+                        [deletebutton]="false" [fullscreenbutton]="true" color="blueDark">
+                        <header>
+                          <span class="widget-icon"> <i class="fa fa-table"></i>
+                          </span>
+                          <h2>{{systemDetail[0]?.fieldValue}} {{itemHeadText}}</h2>
+                        </header>
+                        <div class="widget-body table-container">
+                          <sa-alert [error]="error"></sa-alert>
+                          <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                              <div>
+                                <div>
+                                  <sa-table [pagination]="pagination" [actionButton]="actionButton" [actionColumn]="actionColumn"
+                                    [tableHeader]="systemParameterItem.header" [tableData]="systemParameterItem.tableData"
+                                    [tableOtherContent]="systemParameterItem" [filter]="filter" [tablePaginationData]="tablePaginationData"
+                                    (addNewRowParent)="addNewRow($event)" (onSaveParent)="onSaveClick($event)"
+                                    (pageChangedParent)="pageChanged($event)" (onEditParent)="onEditClick($event)"
+                                    (onDeleteParent)="onDeleteClick($event)" (onCloseParent)="onCloseClick($event)"
+                                    (paginationChangeParent)="paginationChange($event)" (openTabParent)="openTab($event)"
+                                    (filterColumnParent)="filterRows()" (onSortParent)="onSortSelection($event)" (next)="onGridNext()"
+                                    (nextAll)="nextItems()" (refresh)="onRefresh()"></sa-table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </sa-widgets-grid>
+                    <sa-widgets-grid *ngIf="isSectionVisible('Parameters') && PageLayoutTemplateName != 'taskTypeLayout'">
+                      <div sa-widget [colorbutton]="false" [editbutton]="false" [name]="userdetailswodgetwa"
+                        [deletebutton]="false" [fullscreenbutton]="true" color="blueDark">
+                        <header>
+                          <span class="widget-icon"> <i class="fa fa-table"></i>
+                          </span>
+                          <h2><span>{{paramsHeadText}}</span></h2>
+                        </header>
+                        <div>
+                          <div class="row mar-0 ">
+                            <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 no-padding-right pad_b6" *ngFor="let detail of paramHeader">
+                              <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 p-0 control-label" *ngIf="detail.editable">
+                                {{detail.label}} : </label>
+                              <div *ngIf="detail.editable" class="col-xs-12 col-md-8 col-sm-8 col-lg-8 p-0">
+                                <div [ngSwitch]="detail.type">
+                                  <div *ngSwitchCase="'TextBox'">
+                                    <div class="form-group mr-5-temp">
+                                      <input type="text" name="textParam-{{i}}" #texParam="ngModel" [(ngModel)]="detail.fieldValue"
+                                        style="width:95%;" />
+                                    </div>
+                                  </div>
+                                  <div *ngSwitchCase="'textArea'">
+                                    <div class="form-group mr-5-temp">
+                                      <textarea class="form-control input" autosize name="textAreaParam-{{i}}"
+                                        #textAreaParam="ngModel" [(ngModel)]="detail.fieldValue" rows="2" style="width:95%;">
+                                      </textarea>
+                                    </div>
+                                  </div>
+                                  <div *ngSwitchCase="'select'">
+                                    <div class="form-group" style="width: 95%; margin-bottom: 2px;">
+                                      <!-- ng-select2 [data]="detail.systemParameterItemModels" placeHolder='Please select' [options]="options"
+                                        [(ngModel)]="detail.systemParameterItems" name="selectParam-{{i}}" #selectParam="ngModel">
+                                      </ng-select2 -->
+                                      <select [(ngModel)]="detail.fieldValue">
+                                        <option *ngFor="let listOfValue of detail.ListOfValues">{{listOfValue}}</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div *ngSwitchCase="'MultiSelect'" class="select-field-size">
+                                    <div class="form-group" style="width: 95%;">
+                                      <ng-select2 [data]="detail.systemParameterItemModels" [options]="options"
+                                        [(ngModel)]="detail.selectedItems" name="multiSelectObj-{{i}}" #multiParam="ngModel"
+                                        (valueChanged)="onSourceChange($event, obj)">
+                                      </ng-select2>
+                                      <!-- select [(ngModel)]="detail.selectedItems"
+                                              class="form-control" style="height: 50px;">
+                                          <option *ngFor="let items of detail.systemParameterItemModels.value">{{detail.systemParameterItems}}</option>
+                                      </select>
+                                      <ng-select2 [data]="obj.dropdownList"
+                                        [options]="options"
+                                        [(ngModel)]="obj.fieldValue"
+                                        name="multiSelectObj-{{i}}"
+                                        #multiSelectObj="ngModel"
+                                        [required]="obj.mandatory"
+                                        (valueChanged)="onSourceChange($event, obj)">
+                                      </ng-select2-->
+                                    </div>
+                                  </div>
+                                  <!-- div *ngSwitchCase="'lookup'">
+                                    <div class="form-group" style="width: 95%;margin-bottom: 2px;">
+                                      <ng-select2 [data]="detail.dropdownList" placeHolder='Please select' [width]="500" 
+                                        [(ngModel)]="detail.fieldValue" name="lookUpParam-{{i}}" #lookUpParam="ngModel">
+                                      </ng-select2>
+                                    </div>
+                                  </div -->
+                                  <div *ngSwitchCase="'slide'">
+                                    <on-off-switch title="{{detail.label}}" [(ngModel)]="detail.fieldValue" (change)="onChange()">
+                                    </on-off-switch>
+                                  </div>
+                                  <div *ngSwitchCase="'checkbox'">
+                                    <input type="checkbox" style="margin-left: 0px" [disabled]="!detail.editable" class="checkbox"
+                                      style="visibility: visible" name='{{"fieldValue_1_"+i}}' [(ngModel)]="detail.fieldValue">
+                                  </div>
+                                  <div *ngSwitchCase="'radio'" class="smart-form">
+                                    <input type="radio" style="margin-left: 0px;visibility: visible" [disabled]="!detail.editable"
+                                      class="radiobox" name='{{"fieldValue_1_"+i}}' [(ngModel)]="detail.fieldValue">
+                                  </div>
+                                  <!-- div *ngSwitchCase="'Date'">
+                                    <div class="form-group mr-5-temp">
+                                      <div class="">
+                                          <input [matDatepicker]="picker" class="form-control input" name="dateParam-{{i}}" 
+                                            #dateParam="ngModel" [(ngModel)]="detail.fieldValue" 
+                                            style="width:83%;float: left;" (click)="picker.open()" (focus)="picker.open();">
+                                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                          <mat-datepicker #picker></mat-datepicker>
+                                      </div>
+                                    </div>
+                                  </div -->
+                                  <div *ngSwitchDefault>
+                                    field type <b>{{detail.type}}</b> is not supported yet.
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div>
+                            <button class="search-btn save_update_btn" (click)="saveAndUpdate()">Save & Update </button>
+                          </div>
+                        </div>
+                      </div>
+                    </sa-widgets-grid>
+                    <div *ngIf="PageLayoutTemplateName == 'taskTypeLayout'">
+                      <div *ngFor="let WorkgroupresourceLyt of WorkgroupresourceLayout.pageLayoutTemplate; let i = index">
+                      <sa-paramas-layout *ngIf="WorkgroupresourceLayout.pageLayoutTemplate" [paramfieldstatus]="Workgroupparamfieldstatus"
+                        [pageLayoutData]="WorkgroupresourceLyt" [templateName] = "WorkgroupresourceLayout.templateName" [pageLayoutValues]="WorkgroupresourceLayoutResp" (saveAndUpdate)="saveAndUpdateTaskType($event)"></sa-paramas-layout>
+                    </div>
+                  </div>
+                    <sa-widgets-grid *ngIf="isSectionVisible(modificationheader)">
+                      <div sa-widget [colorbutton]="false" [editbutton]="false" [colorbutton]="false" [name]="userdetailswodgetwa"
+                        [deletebutton]="false" [fullscreenbutton]="true" color="blueDark">
+                        <header>
+                          <span class="widget-icon"> <i class="fa fa-table"></i>
+                          </span>
+                          <h2>{{modificationheader}}</h2>
+                        </header>
+                        <div>
+                          <div class="row mar-0">
+                            <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 no-padding-right" *ngFor="let detail of modification">
+                              <label class="control-label">{{detail.label}} : </label>
+                              {{detail.fieldValue}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </sa-widgets-grid>
+                    <sa-widgets-grid *ngIf="isSectionVisible(paramsHeadText) && level != 3">
+                      <div sa-widget [colorbutton]="false" [editbutton]="false" [name]="userdetailswodgetwa"
+                        [deletebutton]="false" [fullscreenbutton]="true" color="blueDark">
+                        <header>
+                          <span class="widget-icon"> <i class="fa fa-table"></i>
+                          </span>
+                          <h2>{{systemDetail[0]?.fieldValue}} {{paramsHeadText}}</h2>
+                        </header>
+                        <div class="widget-body table-container">
+                          <sa-alert [error]="error"></sa-alert>
+                          <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                              <div id="manageskillTabContent" class="tab-content padding-10">
+                                <div class="">
+                                  <sa-table [pagination]="pagination" [actionButton]="actionButton" [actionColumn]="actionColumn"
+                                    [tableHeader]="systemParameterItem.header" [tableData]="systemParameterItem.tableData"
+                                    [tableOtherContent]="systemParameterItem" [filter]="filter" [tablePaginationData]="tablePaginationData"
+                                    (addNewRowParent)="addNewRow()" (onSaveParent)="onSaveClick($event)"
+                                    (pageChangedParent)="pageChanged($event)" (onEditParent)="onEditClick($event)"
+                                    (onDeleteParent)="onDeleteClick($event)" (onCloseParent)="onCloseClick($event)"
+                                    (paginationChangeParent)="paginationChange($event)" (openTabParent)="openTab($event)"
+                                    (filterColumnParent)="filterRows()" (onSortParent)="onSortSelection($event)" (next)="onGridNext()"
+                                    (nextAll)="nextItems()" (refresh)="onRefresh()"></sa-table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </sa-widgets-grid>
+                    <!-- -->
+                      <div style="position: relative;" *ngIf="PageLayoutTemplateName == 'taskTypeLayout'">
+                      <div *ngIf="loader" class="dashboard-task_loader">
+                        <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+                        <div class="spinner">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>                        </div>
+                      </div>  
+                      <sa-widgets-grid>
+                      <div sa-widget [colorbutton]="false" [editbutton]="false" [name]="userdetailswodgetwa"
+                        [deletebutton]="false" [fullscreenbutton]="true" color="blueDark">
+                        <header>
+                          <span class="widget-icon"> <i class="fa fa-table"></i>
+                          </span>
+                          <h2>Task Type Dependency</h2>
+                        </header>
+                        <div class="widget-body table-container">
+                          <sa-alert [error]="error"></sa-alert>
+                          <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                              <div id="manageskillTabContent" class="tab-content padding-10">
+                                <div class="" *ngIf='taskTypeDependency'>
+                                  <sa-table [pagination]="pagination" [actionButton]="actionButton" [actionColumn]="actionColumn"
+                                    [tableHeader]="systemParameter.header" [tableData]="systemParameter.tableData"
+                                    [tableOtherContent]="systemParameter" [filter]="filter" [tablePaginationData]="tablePaginationData"
+                                    (addNewRowParent)="addNewRowDependency($event)" (onSaveParent)="onDependencySave($event)"
+                                    (pageChangedParent)="pageChanged($event)" (onEditParent)="onEditClick($event)"
+                                    (onDeleteParent)=" onDeleteClickTaskDependency($event)" (onCloseParent)="onDependencyCloseClick($event)"
+                                    (paginationChangeParent)="paginationChange($event)" (openTabParent)="openTab($event)"
+                                    (filterColumnParent)="filterRows()" (onSortParent)="onSortSelection($event)" (next)="onGridNext()"
+                                    (nextAll)="nextItems()" (refresh)="onRefresh1()"></sa-table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </sa-widgets-grid>
+                  </div>
+                
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,4358 @@
+{
+  "transactionId": 550927538,
+  "product": {
+    "transactionId": 550927538,
+    "attributes": {
+      "productPackages": [
+        {
+          "action": "ADD",
+          "actionChangeInitiatorId": null,
+          "actionChangeReasonId": null,
+          "channelProgram": null,
+          "chargeOrchestrationIds": null,
+          "charges": {
+            "chargeTree": []
+          },
+          "committedDueDate": null,
+          "contractExpirationDate": null,
+          "currencyCode": "USD",
+          "customer": {
+            "accounts": {
+              "customerAccount": []
+            },
+            "customerId": 1181427,
+            "customerName": "TI Sparkle North America, Inc",
+            "address": {
+              "city": null,
+              "countryCode": null,
+              "county": null,
+              "dirPrefix": null,
+              "dirSuffix": null,
+              "postalZipCode": null,
+              "stateProvinceCode": null,
+              "streetFractional": null,
+              "streetName": null,
+              "streetNumber": null,
+              "streetNumberPrefix": null,
+              "suite": null,
+              "thoroughfare": null
+            },
+            "mainPhone": null,
+            "salesChannel": "National",
+            "segment": "Comm Service Provider",
+            "serviceLevel": "Elite",
+            "status": "Approved",
+            "subSegment": "Wireline"
+          },
+          "customerRequestedDate": "2019-06-10T06:00:00Z",
+          "disconnectReason": null,
+          "dueDate": null,
+          "effectiveBillingDate": null,
+          "inventoryStatus": null,
+          "isAcceptanceRequiredForBilling": false,
+          "isDueDateCommitted": false,
+          "isExpedited": false,
+          "isOrdered": false,
+          "isOriginal": false,
+          "negotiatedDueDate": null,
+          "negotiatedDueDateChangeInitiator": null,
+          "negotiatedDueDateChangeReason": null,
+          "orchestrationIds": {
+            "productOrchestration": [
+              {
+                "orchestrationId": 1336530,
+                "productInstanceId": 333909831
+              },
+              {
+                "orchestrationId": 1336531,
+                "productInstanceId": 333909832
+              },
+              {
+                "orchestrationId": 1336532,
+                "productInstanceId": 333909833
+              }
+            ]
+          },
+          "orderPackageDetails": {
+            "autoAssignOES": true,
+            "businessOrderId": 1488759,
+            "changeVersion": null,
+            "communicateWithBilling": false,
+            "communicateWithRsi": false,
+            "containsInstallProducts": false,
+            "containsRenewalProducts": false,
+            "createdBy": "AA86369",
+            "createdDate": "2019-05-08T14:54:33Z",
+            "createdInternal": false,
+            "creatorGlobalRegion": "NA",
+            "creditApprovalId": null,
+            "customerId": 1181427,
+            "disconnectReasonId": null,
+            "dueDate": null,
+            "dueDateTimeZone": null,
+            "expediteTypeId": null,
+            "expediteTypeName": null,
+            "isOpLegacyMacdOnly": false,
+            "legacyOpHasRsiProducts": true,
+            "legacyWorkflowHistoryId": null,
+            "macdGM": null,
+            "macdGMApprove": false,
+            "modifiedBy": "sisson.sierra",
+            "modifiedDate": "2019-05-13T12:55:48Z",
+            "orderInitiator": "AA86369",
+            "orderPackageSource": null,
+            "orderPackageWorkflowID": null,
+            "orderType": "Install",
+            "orderingGroup": "Install",
+            "isCspCustomerExecutedMsa": false,
+            "originatingGroup": "SALESFORCE",
+            "portingApplies": false,
+            "preDeployStatus": "None",
+            "primaryAE": null,
+            "requestedEBD": null,
+            "revenueCity": null,
+            "salesOffice": "Wholesale",
+            "salesTeam": null,
+            "selectedCPM": null,
+            "selectedCoordinator": "medwid.rich",
+            "selectedNAE": "fower.alan",
+            "selectedOES": "sisson.sierra",
+            "selectedTDE": null,
+            "selectedVAE": null,
+            "selectedVSC": null,
+            "selectedDirectoryListing": null,
+            "selectedSolutionManager": null,
+            "sendTaskToOnNet": true,
+            "serviceCenter": "Order Entry",
+            "source": "SALESFORCE",
+            "status": "APPROVED",
+            "transactionId": 550927538,
+            "workflowId": "0900000000000000000000007644661",
+            "ipjustificationRequired": false
+          },
+          "originalTransactionId": null,
+          "partnerSource": null,
+          "productPackageId": 441219411,
+          "productPackageProperties": {
+            "productPackageProperty": [
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "CapEx",
+                "propertyValue": "103290.74329",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "CostMethodology",
+                "propertyValue": "MIXED",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "Customer_Id",
+                "propertyValue": "1181427",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "Delivery_Region_Code",
+                "propertyValue": "NA",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "DisplayMetric",
+                "propertyValue": "Profit Fail",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "EbitdaGuardrail",
+                "propertyValue": "{\"Th\":0.25,\"Used\":true,\"Appd\":false,\"Rev\":36379.39628}",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "EbitdaPct",
+                "propertyValue": "-3.5636",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "GrossMarginGuardrail",
+                "propertyValue": "{\"Th\":null,\"Used\":false,\"Appd\":false,\"Rev\":0.0}",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "GrossMarginPct",
+                "propertyValue": "-3.36894",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "Install",
+                "propertyValue": "2976.54739",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "Irr",
+                "propertyValue": "0",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "IsLocked",
+                "propertyValue": "False",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "IsReprocessedAsMisc",
+                "propertyValue": "False",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "IsThresholdOk",
+                "propertyValue": "False",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "NetExSharedMrc",
+                "propertyValue": "0",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "NetExSharedNrc",
+                "propertyValue": "0",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "OpEx",
+                "propertyValue": "16172.25618",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "OpExMrc",
+                "propertyValue": "1099.642399537737",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "OpExNrc",
+                "propertyValue": "2976.547387217606",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "PaybackGuardrail",
+                "propertyValue": "{\"Th\":10.0,\"Used\":true,\"Appd\":false,\"Rev\":33674.98767}",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "PreDeploy",
+                "propertyValue": "False",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "Source",
+                "propertyValue": "Internal",
+                "transactionId": null
+              },
+              {
+                "actionType": null,
+                "productPackageId": null,
+                "propertyName": "Design_Layout_Record",
+                "propertyValue": null,
+                "transactionId": null
+              }
+            ]
+          },
+          "products": {
+            "productTree": [
+              {
+                "accountNumber": 573660,
+                "action": "ADD",
+                "category": null,
+                "currencyCode": "USD",
+                "effectiveBillingDate": null,
+                "isExistingProduct": false,
+                "isParentProduct": true,
+                "marketId": 0,
+                "marketName": null,
+                "originalTransactionId": 550927538,
+                "priceInfoTree": {
+                  "actionType": "ADD",
+                  "currencyCode": "USD",
+                  "isTieredPricing": false,
+                  "mrcAdjusted": 6500,
+                  "mrcDiscount": "5,481.18",
+                  "mrcStandard": 11981.18,
+                  "nrcAdjusted": 0,
+                  "nrcDiscount": "5,000.00",
+                  "nrcStandard": 5000,
+                  "prepaidMinutes": 0,
+                  "priceDetails": {
+                    "priceDetails": [
+                      {
+                        "description": "Pricing Approval Required: Sales discount applied with Pre-Negotiated Discount requires approval.",
+                        "itemNumber": 0,
+                        "productInstanceId": 333909831,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "No Capital Approval Request needed for this product configuration.",
+                        "itemNumber": 1,
+                        "productInstanceId": 333909831,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "A Address = 529  BRYANT PALO ALTO, CA 94301",
+                        "itemNumber": 2,
+                        "productInstanceId": 333909831,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Z Address = 1400  WALL CHURCH WALL TOWNSHIP, NJ 07719",
+                        "itemNumber": 3,
+                        "productInstanceId": 333909831,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Bandwidth = 100GIG-E",
+                        "itemNumber": 4,
+                        "productInstanceId": 333909831,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Protection = Unprotected",
+                        "itemNumber": 5,
+                        "productInstanceId": 333909831,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Latency Guarantee Level = None",
+                        "itemNumber": 6,
+                        "productInstanceId": 333909831,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Circuit Diversity Required = No",
+                        "itemNumber": 7,
+                        "productInstanceId": 333909831,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Custom Route = Yes",
+                        "itemNumber": 8,
+                        "productInstanceId": 333909831,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Pre-Negotiated Discount list price modifications applied (55.00% MRC, 50.00% NRC).",
+                        "itemNumber": 9,
+                        "productInstanceId": 333909831,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      }
+                    ]
+                  },
+                  "productInstanceId": null,
+                  "quantity": 1,
+                  "requiresICB": false,
+                  "transactionId": null,
+                  "usageDetails": {
+                    "usageDetails": []
+                  },
+                  "yrcAdjusted": null,
+                  "yrcApplicable": null,
+                  "yrcDiscount": null,
+                  "yrcStandard": null,
+                  "mrcApplicable": "Y",
+                  "nrcApplicable": "Y"
+                },
+                "productAttributes": {
+                  "productAttributeTree": [
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Level 3 Provided Access",
+                      "attributeName": "A Access Service",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Level 3 Provided Access",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Yes",
+                      "attributeName": "A Loc 3rd Party X-Connect",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Yes",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "No",
+                      "attributeName": "A Loc Budgetary Pricing",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "No",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Standard Delivery - To the MPoE (Customer Provided)",
+                      "attributeName": "A Loc Inside Wiring",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Standard Delivery - To the MPoE (Customer Provided)",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "No",
+                      "attributeName": "A Loc Inside Wiring Applicable",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "No",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Collector",
+                      "attributeName": "A Loc Waves Architecture",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Collector",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "e1d711a5-0f41-e911-8127-005056bfb76f",
+                      "attributeName": "A X-Connect Solution ID",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "e1d711a5-0f41-e911-8127-005056bfb76f",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "0",
+                      "attributeName": "AEMEAListMrc",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "0",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "0",
+                      "attributeName": "AEMEAListNrc",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "0",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "0",
+                      "attributeName": "AEMEANrcIcb",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "0",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "SAN JOSE",
+                      "attributeName": "AMarketName",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "SAN JOSE",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "2-KKVMPB",
+                      "attributeName": "Account Number",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "2-KKVMPB",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "529 BRYANT ST, Fl:2, Rm:100, PALO ALTO CALIFORNIA UNITED STATES 94301 1704: PLALCA01S1E",
+                      "attributeName": "Address1",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "SL0000606407",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "PL0000021334",
+                      "attributeName": "Address1POP",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "PL0000021334",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "PL0000728368",
+                      "attributeName": "Address2",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "PL0000728368",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "PL0000306625",
+                      "attributeName": "Address2POP",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "PL0000306625",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Sales",
+                      "attributeName": "Audience",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Sales",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "CSP3",
+                      "attributeName": "CPT",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "CSP3",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "No",
+                      "attributeName": "Circuit Diversity Required",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "No",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Lease",
+                      "attributeName": "Contract Type",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Lease",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Yes",
+                      "attributeName": "Custom Route",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Yes",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "1181427",
+                      "attributeName": "Customer Number",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "1181427",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "0",
+                      "attributeName": "EMEAToEMEA",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "0",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "No",
+                      "attributeName": "Encryption",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "No",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "None",
+                      "attributeName": "Latency Guarantee Level",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "None",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "No",
+                      "attributeName": "Local Country Addendum",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "No",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "No",
+                      "attributeName": "Metro",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "No",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "On Net",
+                      "attributeName": "Network Status",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "On Net",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Off Net",
+                      "attributeName": "Network Status 2",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Off Net",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "New",
+                      "attributeName": "Opportunity Type",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "New",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "6500",
+                      "attributeName": "OverrideMrc",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "6500",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "0",
+                      "attributeName": "OverrideNrc",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "0",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Wavelength",
+                      "attributeName": "Product",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "321",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Standard Price",
+                      "attributeName": "Promotion",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "NONE",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Unprotected",
+                      "attributeName": "Protection",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Unprotected",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "12",
+                      "attributeName": "Term",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "12",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Interstate",
+                      "attributeName": "USF Treatment",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Interstate",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "AA86369",
+                      "attributeName": "User",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "AA86369",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "100GIG-E",
+                      "attributeName": "Wave Bandwidth",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "100GIG-E",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Level 3 Provided Access",
+                      "attributeName": "Z Access Service",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Level 3 Provided Access",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Standard Delivery - To the MPoE (Customer Provided)",
+                      "attributeName": "Z Loc Inside Wiring",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Standard Delivery - To the MPoE (Customer Provided)",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "No",
+                      "attributeName": "Z Loc Inside Wiring Applicable",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "No",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Unprotected",
+                      "attributeName": "Z Loc Off Net Protection",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Unprotected",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Collector",
+                      "attributeName": "Z Loc Waves Architecture",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Collector",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "0",
+                      "attributeName": "ZEMEAListMrc",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "0",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "0",
+                      "attributeName": "ZEMEAListNrc",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "0",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "0",
+                      "attributeName": "ZEMEANrcIcb",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "0",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "NEW JERSEY",
+                      "attributeName": "ZMarketName",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "NEW JERSEY",
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538
+                    }
+                  ]
+                },
+                "parentProductInstanceId": 333909831,
+                "productInstanceId": 333909831,
+                "productLabel": null,
+                "productName": "Wavelength",
+                "productPackageId": 441219411,
+                "productProperties": {
+                  "productProperty": [
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Account_Number",
+                      "propertyValue": "573660",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Clone_Max_Quantity",
+                      "propertyValue": "1",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Clone_Min_Quantity",
+                      "propertyValue": "0",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Invoice_Display_BAN",
+                      "propertyValue": "1-EKHK0Q",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "IsMrcChangeAllowed",
+                      "propertyValue": "True",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "IsNrcChangeAllowed",
+                      "propertyValue": "True",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Is_Mandatory",
+                      "propertyValue": "True",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Kenan_BAN",
+                      "propertyValue": "1-EKHK0Q",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "MAC_Action",
+                      "propertyValue": "Add",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Product_Description",
+                      "propertyValue": "Wavelength - IOC - 100GIG-E",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Product_Name",
+                      "propertyValue": "Wavelength",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Promotion_Code",
+                      "propertyValue": "NONE",
+                      "transactionId": 550927538
+                    }
+                  ]
+                },
+                "promotionCode": "NONE",
+                "requestedDueDate": null,
+                "requestedDueDateTimeZone": null,
+                "rootProductInstanceId": 333909831,
+                "relatedNumbers": {
+                  "productInstanceRelatedNumber": []
+                },
+                "productCharges": {
+                  "productCharge": [
+                    {
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538,
+                      "name": "Mrc",
+                      "action": "Add",
+                      "amountStandard": 11981.18,
+                      "amountDiscount": 5481.18,
+                      "amountAdjusted": 6500,
+                      "allowOveride": true,
+                      "overrideAttribute": "OverrideMrc",
+                      "frequency": "MRC"
+                    },
+                    {
+                      "productInstanceId": 333909831,
+                      "transactionId": 550927538,
+                      "name": "Nrc",
+                      "action": "Add",
+                      "amountStandard": 5000,
+                      "amountDiscount": 5000,
+                      "amountAdjusted": 0,
+                      "allowOveride": true,
+                      "overrideAttribute": "OverrideNrc",
+                      "frequency": "NRC"
+                    }
+                  ]
+                },
+                "status": null,
+                "transactionId": 550927538,
+                "gpid": "333909831",
+                "pcatProductId": 321,
+                "pcatVersion": "13-MAR-19"
+              },
+              {
+                "accountNumber": 573660,
+                "action": "ADD",
+                "category": null,
+                "currencyCode": "USD",
+                "effectiveBillingDate": null,
+                "isExistingProduct": false,
+                "isParentProduct": false,
+                "marketId": 0,
+                "marketName": null,
+                "originalTransactionId": 550927538,
+                "priceInfoTree": {
+                  "actionType": "ADD",
+                  "currencyCode": "USD",
+                  "isTieredPricing": false,
+                  "mrcAdjusted": 0,
+                  "mrcDiscount": "26,143.56",
+                  "mrcStandard": 26143.56,
+                  "nrcAdjusted": 0,
+                  "nrcDiscount": "2,500.00",
+                  "nrcStandard": 2500,
+                  "prepaidMinutes": 0,
+                  "priceDetails": {
+                    "priceDetails": [
+                      {
+                        "description": "Request Status = {Completed}",
+                        "itemNumber": 0,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Pricing Approval Required: Discount amount requires CSG approval.",
+                        "itemNumber": 1,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Off-Net MRC = $26,143.56, USD",
+                        "itemNumber": 2,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Off-Net NRC = $2,500.00, USD",
+                        "itemNumber": 3,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Quoted Sub Bandwidth = 100GIG-E",
+                        "itemNumber": 4,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Vendor Type = No VendorType",
+                        "itemNumber": 5,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Provider = CenturyLink",
+                        "itemNumber": 6,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Interface = 100GIG-E",
+                        "itemNumber": 7,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Budgetary Pricing = No",
+                        "itemNumber": 8,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Port Speed = 100000",
+                        "itemNumber": 9,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Bandwidth = 100GIG-E",
+                        "itemNumber": 10,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Quantity = 1",
+                        "itemNumber": 11,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Interconnect = PHLAPA03",
+                        "itemNumber": 12,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Valid Until = 6/11/2019",
+                        "itemNumber": 13,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Access Type = Point to Point",
+                        "itemNumber": 14,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "ROC Comments = ORANGE MEETPOINT; 100G UNPROTECTED WAVE; CNDC 20190316JKCHRIS",
+                        "itemNumber": 15,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Comments = ORANGE MEETPOINT; 100G UNPROTECTED WAVE; CNDC 20190316JKCHRIS",
+                        "itemNumber": 16,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Set Solution ID = a56e1bbd-0f41-e911-8127-005056bfb76f",
+                        "itemNumber": 17,
+                        "productInstanceId": 333909833,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      }
+                    ]
+                  },
+                  "productInstanceId": null,
+                  "quantity": 1,
+                  "requiresICB": false,
+                  "transactionId": null,
+                  "usageDetails": {
+                    "usageDetails": []
+                  },
+                  "yrcAdjusted": null,
+                  "yrcApplicable": null,
+                  "yrcDiscount": null,
+                  "yrcStandard": null,
+                  "mrcApplicable": "Y",
+                  "nrcApplicable": "Y"
+                },
+                "productAttributes": {
+                  "productAttributeTree": [
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "SAN JOSE",
+                      "attributeName": "AMarketName",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "SAN JOSE",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "2-KKVMPB",
+                      "attributeName": "Account Number",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "2-KKVMPB",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "PL0000728368",
+                      "attributeName": "Address2",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "PL0000728368",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Sales",
+                      "attributeName": "Audience",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Sales",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "1114465",
+                      "attributeName": "Auto ROC ID",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "1114465",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "CSP3",
+                      "attributeName": "CPT",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "CSP3",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "NA",
+                      "attributeName": "CTL Indicator",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "NA",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Lease",
+                      "attributeName": "Contract Type",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Lease",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "None",
+                      "attributeName": "DLR",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "None",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "No",
+                      "attributeName": "Discountable",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "No",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "No",
+                      "attributeName": "EoTDM",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "No",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": null,
+                      "attributeName": "Loop Type",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": null,
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "No",
+                      "attributeName": "Metro",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "No",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "No",
+                      "attributeName": "Multi Term Request",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "No",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "On Net",
+                      "attributeName": "Network Status",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "On Net",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Off Net",
+                      "attributeName": "Network Status 2",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Off Net",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "New",
+                      "attributeName": "Opportunity Type",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "New",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "0",
+                      "attributeName": "OverrideMrc",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "0",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "0",
+                      "attributeName": "OverrideNrc",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "0",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "321",
+                      "attributeName": "ParentID",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "321",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Z-Side Access",
+                      "attributeName": "Product",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "325",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Standard Price",
+                      "attributeName": "Promotion",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "NONE",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Unprotected",
+                      "attributeName": "Protection",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Unprotected",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Please provide hybrid solution for this 100G wave. Hybrid solution will include fLVLT ¿red¿ network from Palo Alto ¿ Philadelphia and then fCTL ¿green¿ network from Philadelphia ¿ Wall Cable Landing Station. We need an offnet green network quote from 1400 Wall Church Rd (WLTPNJCS) to 2400 Market St (PHLAPA03). We also need RTD/latency and a routing diagram of the green solution",
+                      "attributeName": "ROC Instructions",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Please provide hybrid solution for this 100G wave. Hybrid solution will include fLVLT ¿red¿ network from Palo Alto ¿ Philadelphia and then fCTL ¿green¿ network from Philadelphia ¿ Wall Cable Landing Station. We need an offnet green network quote from 1400 Wall Church Rd (WLTPNJCS) to 2400 Market St (PHLAPA03). We also need RTD/latency and a routing diagram of the green solution",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "True",
+                      "attributeName": "ROC Needed",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "True",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Completed",
+                      "attributeName": "RequestStatus",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Completed",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "a56e1bbd-0f41-e911-8127-005056bfb76f",
+                      "attributeName": "Set Solution ID",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "a56e1bbd-0f41-e911-8127-005056bfb76f",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Firm Vendor Bid - CenturyLink",
+                      "attributeName": "Solution ID",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "a56e1bbd-0f41-e911-8127-005056bfb76f",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "12",
+                      "attributeName": "Term",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "12",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "100GIG-E",
+                      "attributeName": "Wave Bandwidth",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "100GIG-E",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Level 3 Provided Access",
+                      "attributeName": "Z Access Service",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Level 3 Provided Access",
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538
+                    }
+                  ]
+                },
+                "parentProductInstanceId": 333909831,
+                "productInstanceId": 333909833,
+                "productLabel": null,
+                "productName": "Z-Side Access",
+                "productPackageId": 441219411,
+                "productProperties": {
+                  "productProperty": [
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Account_Number",
+                      "propertyValue": "573660",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Assigned COG Planner",
+                      "propertyValue": "Christman, Joycelyn",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Clone_Max_Quantity",
+                      "propertyValue": "150",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Clone_Min_Quantity",
+                      "propertyValue": "1",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Costing_Reference",
+                      "propertyValue": "f05f55d6-9490-4b78-817e-a5e030c44d34",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Invoice_Display_BAN",
+                      "propertyValue": "1-EKHK0Q",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "IsMrcChangeAllowed",
+                      "propertyValue": "True",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "IsNrcChangeAllowed",
+                      "propertyValue": "True",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Is_Mandatory",
+                      "propertyValue": "True",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Kenan_BAN",
+                      "propertyValue": "1-EKHK0Q",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "MAC_Action",
+                      "propertyValue": "Add",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Product_Description",
+                      "propertyValue": "Level 3 Provided Access",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Product_Name",
+                      "propertyValue": "Z-Side Access",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Promotion_Code",
+                      "propertyValue": "NONE",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Bypass_Validation_Flag",
+                      "propertyValue": "Yes",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Bypass_Validation_Reason",
+                      "propertyValue": "Vendor Not Supported",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_City",
+                      "propertyValue": "WALL TOWNSHIP",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_CorrelationID",
+                      "propertyValue": "VendorNotSupported",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Location_Details_One",
+                      "propertyValue": null,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Location_Details_Three",
+                      "propertyValue": null,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Location_Details_Two",
+                      "propertyValue": null,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Location_Type_One",
+                      "propertyValue": null,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Location_Type_Three",
+                      "propertyValue": null,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Location_Type_Two",
+                      "propertyValue": null,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_State",
+                      "propertyValue": "NJ",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Street_Name",
+                      "propertyValue": null,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Street_Name_Directional_Prefix",
+                      "propertyValue": null,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Street_Name_Directional_Suffix",
+                      "propertyValue": null,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Street_Number",
+                      "propertyValue": null,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Street_Number_Directional_Prefix",
+                      "propertyValue": null,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Street_Number_Directional_Suffix",
+                      "propertyValue": null,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Street_Type",
+                      "propertyValue": null,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Type",
+                      "propertyValue": null,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Vendor_Address_Zip_Code",
+                      "propertyValue": "07719",
+                      "transactionId": 550927538
+                    }
+                  ]
+                },
+                "promotionCode": "NONE",
+                "requestedDueDate": null,
+                "requestedDueDateTimeZone": null,
+                "rootProductInstanceId": 333909831,
+                "relatedNumbers": {
+                  "productInstanceRelatedNumber": []
+                },
+                "productCharges": {
+                  "productCharge": [
+                    {
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538,
+                      "name": "Mrc",
+                      "action": "Add",
+                      "amountStandard": 0,
+                      "amountDiscount": 26143.56,
+                      "amountAdjusted": 0,
+                      "allowOveride": true,
+                      "overrideAttribute": "OverrideMrc",
+                      "frequency": "MRC"
+                    },
+                    {
+                      "productInstanceId": 333909833,
+                      "transactionId": 550927538,
+                      "name": "Nrc",
+                      "action": "Add",
+                      "amountStandard": 0,
+                      "amountDiscount": 2500,
+                      "amountAdjusted": 0,
+                      "allowOveride": true,
+                      "overrideAttribute": "OverrideNrc",
+                      "frequency": "NRC"
+                    }
+                  ]
+                },
+                "status": null,
+                "transactionId": 550927538,
+                "gpid": "333909833",
+                "pcatProductId": 325,
+                "pcatVersion": "07-MAR-19"
+              },
+              {
+                "accountNumber": 573660,
+                "action": "ADD",
+                "category": null,
+                "currencyCode": "USD",
+                "effectiveBillingDate": null,
+                "isExistingProduct": false,
+                "isParentProduct": false,
+                "marketId": 0,
+                "marketName": null,
+                "originalTransactionId": 550927538,
+                "priceInfoTree": {
+                  "actionType": "ADD",
+                  "currencyCode": "USD",
+                  "isTieredPricing": false,
+                  "mrcAdjusted": 394.2,
+                  "mrcDiscount": "0.00",
+                  "mrcStandard": 394.2,
+                  "nrcAdjusted": 350,
+                  "nrcDiscount": "0.00",
+                  "nrcStandard": 350,
+                  "prepaidMinutes": 0,
+                  "priceDetails": {
+                    "priceDetails": [
+                      {
+                        "description": "Pre-Negotiated Discount list price modifications applied (55.00% MRC, 50.00% NRC).",
+                        "itemNumber": 0,
+                        "productInstanceId": 333909832,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "Access Price: MRC: 0, NRC: 0",
+                        "itemNumber": 1,
+                        "productInstanceId": 333909832,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "3rd Party Cross Connect: Equinix (formerly SW&D) -> Level 3 (2 Fiber) @ 1st floor equinix mmr only",
+                        "itemNumber": 2,
+                        "productInstanceId": 333909832,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "3rd Party Cross Connect Converted MRC: 394.2, USD",
+                        "itemNumber": 3,
+                        "productInstanceId": 333909832,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "3rd Party Cross Connect Converted NRC: 350, USD",
+                        "itemNumber": 4,
+                        "productInstanceId": 333909832,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      },
+                      {
+                        "description": "3rd Party Cross Connect: Sent in Currency: USD, MRC: 394.2, NRC: 350",
+                        "itemNumber": 5,
+                        "productInstanceId": 333909832,
+                        "quantity": null,
+                        "transactionId": 550927538,
+                        "unitMRC": null,
+                        "unitNRC": null
+                      }
+                    ]
+                  },
+                  "productInstanceId": null,
+                  "quantity": 1,
+                  "requiresICB": false,
+                  "transactionId": null,
+                  "usageDetails": {
+                    "usageDetails": []
+                  },
+                  "yrcAdjusted": null,
+                  "yrcApplicable": null,
+                  "yrcDiscount": null,
+                  "yrcStandard": null,
+                  "mrcApplicable": "Y",
+                  "nrcApplicable": "Y"
+                },
+                "productAttributes": {
+                  "productAttributeTree": [
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Level 3 Provided Access",
+                      "attributeName": "A Access Service",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Level 3 Provided Access",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Yes",
+                      "attributeName": "A Loc 3rd Party X-Connect",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Yes",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Pricing override (metro cost)",
+                      "attributeName": "A Loc Waiver Type",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Pricing override (metro cost)",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "0",
+                      "attributeName": "AEMEAListMrc",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "0",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "0",
+                      "attributeName": "AEMEAListNrc",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "0",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "0",
+                      "attributeName": "AEMEANrcIcb",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "0",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "2-KKVMPB",
+                      "attributeName": "Account Number",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "2-KKVMPB",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "529 BRYANT ST, Fl:2, Rm:100, PALO ALTO CALIFORNIA UNITED STATES 94301 1704: PLALCA01S1E",
+                      "attributeName": "Address1",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "SL0000606407",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "PL0000021334",
+                      "attributeName": "Address1POP",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "PL0000021334",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Sales",
+                      "attributeName": "Audience",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Sales",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "CSP3",
+                      "attributeName": "CPT",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "CSP3",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "No",
+                      "attributeName": "Circuit Diversity Required",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "No",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Lease",
+                      "attributeName": "Contract Type",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Lease",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Yes",
+                      "attributeName": "Custom Route",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Yes",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "1181427",
+                      "attributeName": "Customer Number",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "1181427",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "0",
+                      "attributeName": "EMEAToEMEA",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "0",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "No",
+                      "attributeName": "Encryption",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "No",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "attributeDisplayValue": "2 Fiber",
+                      "attributeName": "Interface Type",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "2 Fiber",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "None",
+                      "attributeName": "Latency Guarantee Level",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "None",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "No",
+                      "attributeName": "Metro",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "No",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "On Net",
+                      "attributeName": "Network Status",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "On Net",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "New",
+                      "attributeName": "Opportunity Type",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "New",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "attributeDisplayValue": "-1",
+                      "attributeName": "OverrideMrc",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "-1",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "attributeDisplayValue": "-1",
+                      "attributeName": "OverrideNrc",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "-1",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "321",
+                      "attributeName": "ParentID",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "321",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "A-Side Access",
+                      "attributeName": "Product",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "322",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "Unprotected",
+                      "attributeName": "Protection",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "Unprotected",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "False",
+                      "attributeName": "ROC Needed",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "False",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "e1d711a5-0f41-e911-8127-005056bfb76f",
+                      "attributeName": "Set Solution ID",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "e1d711a5-0f41-e911-8127-005056bfb76f",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "e1d711a5-0f41-e911-8127-005056bfb76f",
+                      "attributeName": "Solution ID",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "e1d711a5-0f41-e911-8127-005056bfb76f",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "12",
+                      "attributeName": "Term",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "12",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "321",
+                      "attributeName": "TopLevelID",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "321",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "MODIFY",
+                      "attributeDisplayValue": "100GIG-E",
+                      "attributeName": "Wave Bandwidth",
+                      "attributeNumericEquivalent": 0,
+                      "attributeValue": "100GIG-E",
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538
+                    }
+                  ]
+                },
+                "parentProductInstanceId": 333909831,
+                "productInstanceId": 333909832,
+                "productLabel": null,
+                "productName": "A-Side Access",
+                "productPackageId": 441219411,
+                "productProperties": {
+                  "productProperty": [
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Account_Number",
+                      "propertyValue": "573660",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Clone_Max_Quantity",
+                      "propertyValue": "150",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Clone_Min_Quantity",
+                      "propertyValue": "1",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Invoice_Display_BAN",
+                      "propertyValue": "1-EKHK0Q",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "IsMrcChangeAllowed",
+                      "propertyValue": "True",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "IsNrcChangeAllowed",
+                      "propertyValue": "True",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Is_Mandatory",
+                      "propertyValue": "True",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Kenan_BAN",
+                      "propertyValue": "1-EKHK0Q",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "MAC_Action",
+                      "propertyValue": "Add",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Product_Description",
+                      "propertyValue": "Level 3 Provided Access",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Product_Name",
+                      "propertyValue": "A-Side Access",
+                      "transactionId": 550927538
+                    },
+                    {
+                      "action": "ADD",
+                      "productInstanceId": 0,
+                      "propertyName": "Promotion_Code",
+                      "propertyValue": null,
+                      "transactionId": 550927538
+                    }
+                  ]
+                },
+                "promotionCode": null,
+                "requestedDueDate": null,
+                "requestedDueDateTimeZone": null,
+                "rootProductInstanceId": 333909831,
+                "relatedNumbers": {
+                  "productInstanceRelatedNumber": []
+                },
+                "productCharges": {
+                  "productCharge": [
+                    {
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538,
+                      "name": "Mrc",
+                      "action": "Add",
+                      "amountStandard": 394.2,
+                      "amountDiscount": 0,
+                      "amountAdjusted": 394.2,
+                      "allowOveride": true,
+                      "overrideAttribute": "OverrideMrc",
+                      "frequency": "MRC"
+                    },
+                    {
+                      "productInstanceId": 333909832,
+                      "transactionId": 550927538,
+                      "name": "Nrc",
+                      "action": "Add",
+                      "amountStandard": 350,
+                      "amountDiscount": 0,
+                      "amountAdjusted": 350,
+                      "allowOveride": true,
+                      "overrideAttribute": "OverrideNrc",
+                      "frequency": "NRC"
+                    }
+                  ]
+                },
+                "status": null,
+                "transactionId": 550927538,
+                "gpid": "333909832",
+                "pcatProductId": 322,
+                "pcatVersion": "07-MAR-19"
+              }
+            ]
+          },
+          "pspSecondaryOrderTypeId": null,
+          "relatedNumbers": {
+            "productPackageRelatedNumber": []
+          },
+          "relatedProducts": {
+            "relatedProduct": []
+          },
+          "requestedEffectiveBillDate": null,
+          "salesTeamMembers": {
+            "salesTeamMember": [
+              {
+                "login": "AA86369",
+                "position": 1,
+                "productPackageId": 441219411,
+                "salesPerson": null,
+                "salesPersonSplit": 100,
+                "salesTeamMemberId": 3070306,
+                "transactionId": 550927538
+              }
+            ]
+          },
+          "serviceAcceptanceDate": null,
+          "serviceAddresses": {
+            "productServiceAddressTree": [
+              {
+                "action": "ADD",
+                "installIntervalId": null,
+                "intervalDate": null,
+                "productPackageId": 441219411,
+                "relationshipName": "Address1",
+                "serviceAddress": {
+                  "bswaLocationId": null,
+                  "building": null,
+                  "buildingClli": "PLAPCAIP",
+                  "clliName": null,
+                  "coLocClli": null,
+                  "community": "SF",
+                  "customerId": null,
+                  "endUserClli": "PLALCA01S1E",
+                  "floor": "2",
+                  "glmLocationId": "SL0000606407",
+                  "glmMasterSiteId": "PL0000015631",
+                  "hasGeocode": false,
+                  "inServiceArea": "Yes",
+                  "lata": "722",
+                  "latitude": 37.445533,
+                  "longitude": -122.160892,
+                  "lsoNumber": null,
+                  "marketName": "SAN JOSE",
+                  "npaNxx": "650 289",
+                  "onNetOffNetType": "On Net",
+                  "otherUnitType": null,
+                  "otherUnitValue": null,
+                  "pcatMarketId": "2058",
+                  "postalAddress": {
+                    "city": "PALO ALTO",
+                    "countryCode": "US",
+                    "county": "SANTA CLARA",
+                    "dirPrefix": null,
+                    "dirSuffix": null,
+                    "postalZipCode": "94301-1704",
+                    "stateProvinceCode": "CA",
+                    "streetFractional": null,
+                    "streetName": "BRYANT",
+                    "streetNumber": "529",
+                    "streetNumberPrefix": null,
+                    "suite": null,
+                    "thoroughfare": "ST"
+                  },
+                  "rateCenterName": "PALO ALTO",
+                  "relatedProductId": null,
+                  "room": "100",
+                  "served": null,
+                  "serviceAddressId": null,
+                  "serviceAddressRemarks": null,
+                  "wireCenter": "PLALCA02",
+                  "hcoordinate": 8668,
+                  "vcoordinate": 8562
+                },
+                "serviceAddressId": null,
+                "transactionId": 550927538
+              },
+              {
+                "action": "ADD",
+                "installIntervalId": null,
+                "intervalDate": null,
+                "productPackageId": 441219411,
+                "relationshipName": "Address2",
+                "serviceAddress": {
+                  "bswaLocationId": null,
+                  "building": null,
+                  "buildingClli": "WLTPNJCS",
+                  "clliName": null,
+                  "coLocClli": null,
+                  "community": "WALL TWP",
+                  "customerId": null,
+                  "endUserClli": "WLTPNJCSS00",
+                  "floor": null,
+                  "glmLocationId": "SL0001273710",
+                  "glmMasterSiteId": "PL0000728368",
+                  "hasGeocode": false,
+                  "inServiceArea": "Yes",
+                  "lata": "224",
+                  "latitude": 40.160029,
+                  "longitude": -74.052579,
+                  "lsoNumber": null,
+                  "marketName": "NEW JERSEY",
+                  "npaNxx": "732 282",
+                  "onNetOffNetType": "On Net",
+                  "otherUnitType": null,
+                  "otherUnitValue": null,
+                  "pcatMarketId": "1062",
+                  "postalAddress": {
+                    "city": "WALL TOWNSHIP",
+                    "countryCode": "US",
+                    "county": "MONMOUTH",
+                    "dirPrefix": null,
+                    "dirSuffix": null,
+                    "postalZipCode": "07719-3667",
+                    "stateProvinceCode": "NJ",
+                    "streetFractional": null,
+                    "streetName": "WALL CHURCH",
+                    "streetNumber": "1400",
+                    "streetNumberPrefix": null,
+                    "suite": null,
+                    "thoroughfare": "RD"
+                  },
+                  "rateCenterName": "SPRINGLAKE",
+                  "relatedProductId": null,
+                  "room": null,
+                  "served": null,
+                  "serviceAddressId": null,
+                  "serviceAddressRemarks": null,
+                  "wireCenter": "SPLKNJSL",
+                  "hcoordinate": 1334,
+                  "vcoordinate": 5104
+                },
+                "serviceAddressId": null,
+                "transactionId": 550927538
+              }
+            ]
+          },
+          "serviceCompleteDate": null,
+          "status": "APPROVED",
+          "transactionId": 550927538,
+          "transactionType": "NEW",
+          "turnUpProcessor": null,
+          "gpid": "441219411",
+          "hasHotCutAttribute": false,
+          "isThereLiveTraffic": false,
+          "existingServiceId": null,
+          "routingGroupName": "BPMS",
+          "hierarchyAltered": "2019-05-13T12:55:48Z",
+          "hasOverlappingService": false
+        }
+      ]
+    },
+    "orderRelatedNumbers": [
+      {
+        "relatedNumberId": "f1bd8269-eede-43e9-bde3-0a785e951a3d",
+        "relatedNumberType": "Customer",
+        "transactionId": 550927538,
+        "name": "Customer",
+        "value": "1181427",
+        "displayUrl": "http://am/AMWeb/Customer/Details/1181427",
+        "displayValue": "1181427"
+      },
+      {
+        "relatedNumberId": "38947d36-ef8f-4a15-9693-264a09e643ca",
+        "relatedNumberType": "SEO ID",
+        "transactionId": 550927538,
+        "name": "SEO ID",
+        "value": "273400",
+        "displayUrl": "",
+        "displayValue": "273400"
+      },
+      {
+        "relatedNumberId": "85cfd852-4e7d-4823-b5e7-92ed4c61fff3",
+        "relatedNumberType": "Salesforce Opportunity ID",
+        "transactionId": 550927538,
+        "name": "Salesforce Opportunity ID",
+        "value": "55873192",
+        "displayUrl": "",
+        "displayValue": "55873192"
+      }
+    ]
+  },
+  "servicePackages": [
+    {
+      "attributes": [
+        {
+          "name": "productComponentCode",
+          "displayValue": "321",
+          "value": "321",
+          "xrefValue": "20020",
+          "type": "STRING",
+          "pcatType": null,
+          "source": "OTHER",
+          "tags": [
+            "PAC_XREF"
+          ]
+        },
+        {
+          "name": "GPID",
+          "displayValue": "441219411",
+          "value": "441219411",
+          "xrefValue": null,
+          "type": "STRING",
+          "pcatType": null,
+          "source": "SWIFT_PRODUCTPACKAGETREE",
+          "tags": []
+        },
+        {
+          "name": "siteID_SL0000606407",
+          "displayValue": "SL0000606407",
+          "value": "SL0000606407",
+          "xrefValue": "1000914008",
+          "type": "STRING",
+          "pcatType": null,
+          "source": "OTHER",
+          "tags": [
+            "GLM_XREF"
+          ]
+        },
+        {
+          "name": "clli_PLALCA01S1E",
+          "displayValue": "PLALCA01S1E",
+          "value": "PLALCA01S1E",
+          "xrefValue": "PLALCA01",
+          "type": "STRING",
+          "pcatType": null,
+          "source": "OTHER",
+          "tags": [
+            "LMS_XREF"
+          ]
+        },
+        {
+          "name": "siteID_SL0001273710",
+          "displayValue": "SL0001273710",
+          "value": "SL0001273710",
+          "xrefValue": "1000729743",
+          "type": "STRING",
+          "pcatType": null,
+          "source": "OTHER",
+          "tags": [
+            "GLM_XREF"
+          ]
+        },
+        {
+          "name": "clli_WLTPNJCSS00",
+          "displayValue": "WLTPNJCSS00",
+          "value": "WLTPNJCSS00",
+          "xrefValue": "WLTPNJCS",
+          "type": "STRING",
+          "pcatType": null,
+          "source": "OTHER",
+          "tags": [
+            "LMS_XREF"
+          ]
+        },
+        {
+          "name": "regionCode_SL0000606407",
+          "displayValue": "NA",
+          "value": "NA",
+          "xrefValue": "NA",
+          "type": "STRING",
+          "pcatType": null,
+          "source": "OTHER",
+          "tags": [
+            "PAC_XREF"
+          ]
+        },
+        {
+          "name": "regionCode_SL0001273710",
+          "displayValue": "NA",
+          "value": "NA",
+          "xrefValue": "NA",
+          "type": "STRING",
+          "pcatType": null,
+          "source": "OTHER",
+          "tags": [
+            "PAC_XREF"
+          ]
+        },
+        {
+          "name": "customerID",
+          "displayValue": "1181427",
+          "value": "1181427",
+          "xrefValue": "2-KKVMPB",
+          "type": "INTEGER",
+          "pcatType": null,
+          "source": "OTHER",
+          "tags": [
+            "AM_XREF"
+          ]
+        }
+      ],
+      "servicePackageId": "441219411",
+      "action": "ADD",
+      "status": "APPROVED",
+      "originalOrderEntrySystem": "SWIFT",
+      "serviceInstances": [
+        {
+          "attributes": [
+            {
+              "name": "activity",
+              "displayValue": "Modify",
+              "value": "Modify",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": null,
+              "source": "PCAT_SERVKEY",
+              "tags": []
+            },
+            {
+              "name": "date",
+              "displayValue": "2019-03-13T00:00:00.000+0000",
+              "value": "2019-03-13T00:00:00.000+0000",
+              "xrefValue": null,
+              "type": "DATE",
+              "pcatType": null,
+              "source": "PCAT_SERVKEY",
+              "tags": []
+            },
+            {
+              "name": "customFraming",
+              "displayValue": "NONE",
+              "value": "NONE",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "A Loc Inside Wiring",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "latencyGuaranteeValueMillis",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "termType",
+              "displayValue": "12",
+              "value": "12",
+              "xrefValue": null,
+              "type": null,
+              "pcatType": "Integer",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "nonStandardDiversityRequired",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "customLineCoding",
+              "displayValue": "NONE",
+              "value": "NONE",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "encryption",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "ServiceAddress2",
+              "displayValue": "Address2",
+              "value": "Address2",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "usesPrivateDedicatedNetwork",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "circuitIdentifier",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "Z Loc Inside Wiring",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "productComponentCode",
+              "displayValue": "48",
+              "value": "48",
+              "xrefValue": "21014",
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": [
+                "PCAT_XREF"
+              ]
+            },
+            {
+              "name": "framingProfile",
+              "displayValue": "ETHERNET",
+              "value": "ETHERNET",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "bandwidth",
+              "displayValue": "100GIG-E",
+              "value": "100GIG-E",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "nonStandardDiversityDescription",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "customRouteFlag",
+              "displayValue": "Yes",
+              "value": "Yes",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "ServiceAddress1",
+              "displayValue": "Address1",
+              "value": "Address1",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "PCATProductID",
+              "displayValue": "321",
+              "value": "321",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "lineCodingProfile",
+              "displayValue": "NONE",
+              "value": "NONE",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "GPID",
+              "displayValue": "333909831",
+              "value": "333909831",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "productOrderUniversalServiceFundTreatment",
+              "displayValue": "Interstate",
+              "value": "Interstate",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "switchingType",
+              "displayValue": "NONE",
+              "value": "NONE",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "protection",
+              "displayValue": "Unprotected",
+              "value": "Unprotected",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "circuitDiversityRequired",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "productComponentInstanceIdentifier",
+              "displayValue": "NULL",
+              "value": "NULL",
+              "xrefValue": "NULL",
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": [
+                "PCAT_XREF"
+              ]
+            },
+            {
+              "name": "latencyGuaranteeLevel",
+              "displayValue": "None",
+              "value": "None",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "name",
+              "displayValue": "Level 3 Wavelength Service",
+              "value": "Level 3 Wavelength Service",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": null,
+              "source": "PCAT_SERVKEYPAIR",
+              "tags": []
+            }
+          ],
+          "parentServiceInstanceId": null,
+          "serviceInstanceId": "220115809",
+          "serviceId": "48",
+          "name": "Level 3 Wavelength Service",
+          "category": "",
+          "description": "Level 3 Waves Service",
+          "productInstanceAction": "ADD",
+          "altered": false,
+          "alteredReason": null
+        },
+        {
+          "attributes": [
+            {
+              "name": "activity",
+              "displayValue": "Modify",
+              "value": "Modify",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": null,
+              "source": "PCAT_SERVKEY",
+              "tags": []
+            },
+            {
+              "name": "date",
+              "displayValue": "2019-03-07T00:00:00.000+0000",
+              "value": "2019-03-07T00:00:00.000+0000",
+              "xrefValue": null,
+              "type": "DATE",
+              "pcatType": null,
+              "source": "PCAT_SERVKEY",
+              "tags": []
+            },
+            {
+              "name": "Product",
+              "displayValue": "Wave",
+              "value": "Wave",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "diverseBldgEntranceRequired",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "offnetDiversityRequired",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "equipDiversityRequired",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "ServiceAddress",
+              "displayValue": "Address2",
+              "value": "Address2",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "customProfile",
+              "displayValue": "NONE",
+              "value": "NONE",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "productComponentCode",
+              "displayValue": "49",
+              "value": "49",
+              "xrefValue": "21009",
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": [
+                "PCAT_XREF"
+              ]
+            },
+            {
+              "name": "buildingExtension",
+              "displayValue": "Standard Delivery",
+              "value": "Standard Delivery",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "avoidedAccessCarrierID",
+              "displayValue": "NONE",
+              "value": "NONE",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "bandwidth",
+              "displayValue": "100GIG-E",
+              "value": "100GIG-E",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "diverseBldgEntranceDescription",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "PCATProductID",
+              "displayValue": "325",
+              "value": "325",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "insideWiringRequired",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "LOASignatureDate",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "equipmentID",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "GPID",
+              "displayValue": "333909833",
+              "value": "333909833",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "customInterface",
+              "displayValue": "NONE",
+              "value": "NONE",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "LOASignatureName",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "protection",
+              "displayValue": "Unprotected",
+              "value": "Unprotected",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "interfaceProfile",
+              "displayValue": "SC",
+              "value": "SC",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "offnetSurvivabilityRequired",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "buildingSpecialAccessRequirement",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "Additional Inside Wiring Information",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "productComponentInstanceIdentifier",
+              "displayValue": "NULL",
+              "value": "NULL",
+              "xrefValue": "NULL",
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": [
+                "PCAT_XREF"
+              ]
+            },
+            {
+              "name": "LOACFARequiredToCustomer",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "customerProvidedTieDown",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "handoffFrameType",
+              "displayValue": "2 Fiber SMF",
+              "value": "2 Fiber SMF",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "name",
+              "displayValue": "Service Z",
+              "value": "Service Z",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": null,
+              "source": "PCAT_SERVKEYPAIR",
+              "tags": []
+            }
+          ],
+          "parentServiceInstanceId": null,
+          "serviceInstanceId": "220115810",
+          "serviceId": "49",
+          "name": "Level 3 Provided Transport Access Service",
+          "category": "",
+          "description": "Level 3 Provided Transport Access Service",
+          "productInstanceAction": "ADD",
+          "altered": false,
+          "alteredReason": null
+        },
+        {
+          "attributes": [
+            {
+              "name": "activity",
+              "displayValue": "Modify",
+              "value": "Modify",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": null,
+              "source": "PCAT_SERVKEY",
+              "tags": []
+            },
+            {
+              "name": "date",
+              "displayValue": "2019-03-07T00:00:00.000+0000",
+              "value": "2019-03-07T00:00:00.000+0000",
+              "xrefValue": null,
+              "type": "DATE",
+              "pcatType": null,
+              "source": "PCAT_SERVKEY",
+              "tags": []
+            },
+            {
+              "name": "Product",
+              "displayValue": "Wave",
+              "value": "Wave",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "diverseBldgEntranceRequired",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "offnetDiversityRequired",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "equipDiversityRequired",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "ServiceAddress",
+              "displayValue": "Address1",
+              "value": "Address1",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "customProfile",
+              "displayValue": "NONE",
+              "value": "NONE",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "productComponentCode",
+              "displayValue": "49",
+              "value": "49",
+              "xrefValue": "21009",
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": [
+                "PCAT_XREF"
+              ]
+            },
+            {
+              "name": "buildingExtension",
+              "displayValue": "Standard Delivery",
+              "value": "Standard Delivery",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "avoidedAccessCarrierID",
+              "displayValue": "NONE",
+              "value": "NONE",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "bandwidth",
+              "displayValue": "100GIG-E",
+              "value": "100GIG-E",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "diverseBldgEntranceDescription",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "PCATProductID",
+              "displayValue": "322",
+              "value": "322",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "insideWiringRequired",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "LOASignatureDate",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "equipmentID",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "GPID",
+              "displayValue": "333909832",
+              "value": "333909832",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "customInterface",
+              "displayValue": "NONE",
+              "value": "NONE",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "LOASignatureName",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "protection",
+              "displayValue": "Unprotected",
+              "value": "Unprotected",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "interfaceProfile",
+              "displayValue": "SC",
+              "value": "SC",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "offnetSurvivabilityRequired",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "buildingSpecialAccessRequirement",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "Additional Inside Wiring Information",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "productComponentInstanceIdentifier",
+              "displayValue": "NULL",
+              "value": "NULL",
+              "xrefValue": "NULL",
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": [
+                "PCAT_XREF"
+              ]
+            },
+            {
+              "name": "LOACFARequiredToCustomer",
+              "displayValue": "No",
+              "value": "No",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "customerProvidedTieDown",
+              "displayValue": "",
+              "value": "",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "Text",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "handoffFrameType",
+              "displayValue": "2 Fiber SMF",
+              "value": "2 Fiber SMF",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": "List",
+              "source": "PCAT_ATTRIBUTE",
+              "tags": []
+            },
+            {
+              "name": "name",
+              "displayValue": "Service A",
+              "value": "Service A",
+              "xrefValue": null,
+              "type": "STRING",
+              "pcatType": null,
+              "source": "PCAT_SERVKEYPAIR",
+              "tags": []
+            }
+          ],
+          "parentServiceInstanceId": null,
+          "serviceInstanceId": "220115811",
+          "serviceId": "49",
+          "name": "Level 3 Provided Transport Access Service",
+          "category": "",
+          "description": "Level 3 Provided Transport Access Service",
+          "productInstanceAction": "ADD",
+          "altered": false,
+          "alteredReason": null
+        }
+      ],
+      "changeLog": [],
+      "dirty": true,
+      "dirtyReason": "Service/Product Package [441219411] has not been accepted by BPMS"
+    }
+  ],
+  "offnetSolutions": [
+    {
+      "attributes": [
+        {
+          "name": "siteID_PL0000021334",
+          "displayValue": "PL0000021334",
+          "value": "PL0000021334",
+          "xrefValue": "1000887617",
+          "type": "STRING",
+          "pcatType": null,
+          "source": "OTHER",
+          "tags": [
+            "GLM_XREF"
+          ]
+        },
+        {
+          "name": "siteID_PL0000015631",
+          "displayValue": "PL0000015631",
+          "value": "PL0000015631",
+          "xrefValue": "8424346",
+          "type": "STRING",
+          "pcatType": null,
+          "source": "OTHER",
+          "tags": [
+            "GLM_XREF"
+          ]
+        }
+      ],
+      "solutionId": "e1d711a5-0f41-e911-8127-005056bfb76f",
+      "solution": {
+        "currencyCode": "USD",
+        "expirationDate": "2019-06-05T07:31:52Z",
+        "interfaceType": null,
+        "isBudgetary": false,
+        "isRocNeeded": false,
+        "mrc": 394.2,
+        "mrcWithoutMarkup": 365,
+        "nrc": 350,
+        "nrcWithoutMarkup": 350,
+        "providerName": "Equinix (formerly SW&D) -> Level 3",
+        "providerSolutionId": "e1d711a5-0f41-e911-8127-005056bfb76f",
+        "providerSolutionMessage": null,
+        "providerType": null,
+        "quantity": 1,
+        "quotedProviderSolutionCount": null,
+        "rocInformation": null,
+        "status": "Completed",
+        "tariffId": null,
+        "yrc": null,
+        "yrcWithoutMarkup": null,
+        "addressId": "PL0000015631",
+        "amsCostingSolutionId": null,
+        "asrNumber": 0,
+        "connectionType": "2 Fiber",
+        "forwardPricingFlag": "No",
+        "leadTime": null,
+        "nniVendorCode": null,
+        "offnetPriceOrigin": "PriceCube",
+        "prices": {
+          "price": [
+            {
+              "price": 394.2,
+              "priceType": "MRC"
+            },
+            {
+              "price": 350,
+              "priceType": "NRC"
+            },
+            {
+              "price": 365,
+              "priceType": "TotalCostMRC"
+            },
+            {
+              "price": 350,
+              "priceType": "TotalCostNRC"
+            }
+          ]
+        },
+        "pricingType": "No",
+        "properties": {
+          "property": [
+            {
+              "name": "SolutionId",
+              "value": "e1d711a5-0f41-e911-8127-005056bfb76f"
+            },
+            {
+              "name": "LvaLegacy",
+              "value": "No"
+            },
+            {
+              "name": "IsICB",
+              "value": "false"
+            },
+            {
+              "name": "IsBudgetary",
+              "value": "false"
+            },
+            {
+              "name": "CenturyLink",
+              "value": "NA"
+            },
+            {
+              "name": "Allow_Pricing_Override",
+              "value": "false"
+            },
+            {
+              "name": "OperatorType",
+              "value": "multiple"
+            },
+            {
+              "name": "XCLocation",
+              "value": "1st floor equinix mmr only"
+            },
+            {
+              "name": "PriceCubeId",
+              "value": "19866987"
+            },
+            {
+              "name": "Vendor",
+              "value": "equinix"
+            },
+            {
+              "name": "SolutionType",
+              "value": "3rd Party Cross Connect"
+            }
+          ]
+        },
+        "protection": "",
+        "quotedBandwidth": null,
+        "quotedClassOfService": null,
+        "quotedPortBandwidth": null,
+        "quotedServiceType": "3rd Party Cross Connect",
+        "quotedSolutionType": "3rd Party Cross Connect",
+        "requestedNetwork": null,
+        "segments": {
+          "segment": [
+            {
+              "lvaFootprint": null,
+              "networkFacilityOwner": null,
+              "orderingTerm": 12,
+              "prices": {
+                "price": [
+                  {
+                    "price": 0,
+                    "priceType": "MRC"
+                  },
+                  {
+                    "price": 0,
+                    "priceType": "NRC"
+                  },
+                  {
+                    "price": 0,
+                    "priceType": "TotalCostMRC"
+                  },
+                  {
+                    "price": 0,
+                    "priceType": "TotalCostNRC"
+                  }
+                ]
+              },
+              "primaryVendor": {
+                "vendor": [
+                  {
+                    "vendorName": "Level 3",
+                    "vendorType": "Primary"
+                  }
+                ]
+              },
+              "properties": null,
+              "quotedTransactionType": "New",
+              "secondaryVendors": null,
+              "segmentSequence": 1,
+              "segmentType": "On net",
+              "aend": {
+                "addressId": null,
+                "building": null,
+                "buildingClli": "SNFCCASY",
+                "city": null,
+                "countryCode": null,
+                "dirPrefix": null,
+                "dirSuffix": null,
+                "lata": null,
+                "latitude": null,
+                "longitude": null,
+                "market": null,
+                "npaNxx": null,
+                "postalZipCode": null,
+                "stateProvinceCode": null,
+                "streetName": null,
+                "streetNumber": null,
+                "thoroughfare": null,
+                "hcoord": null,
+                "vcoord": null
+              },
+              "zend": {
+                "addressId": null,
+                "building": null,
+                "buildingClli": "PLALCA01",
+                "city": null,
+                "countryCode": null,
+                "dirPrefix": null,
+                "dirSuffix": null,
+                "lata": null,
+                "latitude": null,
+                "longitude": null,
+                "market": null,
+                "npaNxx": null,
+                "postalZipCode": null,
+                "stateProvinceCode": null,
+                "streetName": null,
+                "streetNumber": null,
+                "thoroughfare": null,
+                "hcoord": null,
+                "vcoord": null
+              }
+            },
+            {
+              "lvaFootprint": null,
+              "networkFacilityOwner": null,
+              "orderingTerm": 12,
+              "prices": {
+                "price": [
+                  {
+                    "price": 394.2,
+                    "priceType": "MRC"
+                  },
+                  {
+                    "price": 350,
+                    "priceType": "NRC"
+                  },
+                  {
+                    "price": 365,
+                    "priceType": "TotalCostMRC"
+                  },
+                  {
+                    "price": 350,
+                    "priceType": "TotalCostNRC"
+                  }
+                ]
+              },
+              "primaryVendor": {
+                "vendor": [
+                  {
+                    "vendorName": "Equinix (formerly SW&D)",
+                    "vendorType": "Primary"
+                  }
+                ]
+              },
+              "properties": null,
+              "quotedTransactionType": "New",
+              "secondaryVendors": null,
+              "segmentSequence": 2,
+              "segmentType": "Cross Connect",
+              "aend": {
+                "addressId": null,
+                "building": null,
+                "buildingClli": "PLALCA01",
+                "city": null,
+                "countryCode": null,
+                "dirPrefix": null,
+                "dirSuffix": null,
+                "lata": null,
+                "latitude": null,
+                "longitude": null,
+                "market": null,
+                "npaNxx": null,
+                "postalZipCode": null,
+                "stateProvinceCode": null,
+                "streetName": null,
+                "streetNumber": null,
+                "thoroughfare": null,
+                "hcoord": null,
+                "vcoord": null
+              },
+              "zend": {
+                "addressId": null,
+                "building": null,
+                "buildingClli": "PLALCA01",
+                "city": null,
+                "countryCode": null,
+                "dirPrefix": null,
+                "dirSuffix": null,
+                "lata": null,
+                "latitude": null,
+                "longitude": null,
+                "market": null,
+                "npaNxx": null,
+                "postalZipCode": null,
+                "stateProvinceCode": null,
+                "streetName": null,
+                "streetNumber": null,
+                "thoroughfare": null,
+                "hcoord": null,
+                "vcoord": null
+              }
+            }
+          ]
+        },
+        "sequenceNumber": null,
+        "solutionDesign": null,
+        "solutionVendors": {
+          "vendor": [
+            {
+              "vendorName": "Level 3",
+              "vendorType": "Secondary Vendors List"
+            },
+            {
+              "vendorName": "Equinix (formerly SW&D)",
+              "vendorType": "Secondary Vendors List"
+            }
+          ]
+        },
+        "usocs": null,
+        "vendorProductName": null
+      },
+      "sites": [
+        {
+          "siteId": "PL0000021334",
+          "clliCode": "SNFCCASY",
+          "onNet": true,
+          "address": {
+            "address1": "185 BERRY ST",
+            "address2": "",
+            "city": "SAN FRANCISCO",
+            "state": "CA",
+            "postalCode": "94107",
+            "county": "SAN FRANCISCO",
+            "country": "US",
+            "regionCode": "NA",
+            "room": null,
+            "floor": null,
+            "suite": null,
+            "latitude": "37.776944",
+            "longitude": "-122.391897"
+          }
+        },
+        {
+          "siteId": "PL0000015631",
+          "clliCode": "PLALCA01",
+          "onNet": true,
+          "address": {
+            "address1": "529 BRYANT ST",
+            "address2": "",
+            "city": "PALO ALTO",
+            "state": "CA",
+            "postalCode": "94301",
+            "county": "SANTA CLARA",
+            "country": "US",
+            "regionCode": "NA",
+            "room": null,
+            "floor": null,
+            "suite": null,
+            "latitude": "37.445533",
+            "longitude": "-122.160892"
+          }
+        }
+      ]
+    },
+    {
+      "attributes": [
+        {
+          "name": "siteID_PL0000407217",
+          "displayValue": "PL0000407217",
+          "value": "PL0000407217",
+          "xrefValue": "1000487116",
+          "type": "STRING",
+          "pcatType": null,
+          "source": "OTHER",
+          "tags": [
+            "GLM_XREF"
+          ]
+        },
+        {
+          "name": "siteID_PL0000728368",
+          "displayValue": "PL0000728368",
+          "value": "PL0000728368",
+          "xrefValue": "1000729743",
+          "type": "STRING",
+          "pcatType": null,
+          "source": "OTHER",
+          "tags": [
+            "GLM_XREF"
+          ]
+        }
+      ],
+      "solutionId": "a56e1bbd-0f41-e911-8127-005056bfb76f",
+      "solution": {
+        "currencyCode": "USD",
+        "expirationDate": "2019-06-11T05:10:32Z",
+        "interfaceType": null,
+        "isBudgetary": false,
+        "isRocNeeded": true,
+        "mrc": 26143.56,
+        "mrcWithoutMarkup": 24207,
+        "nrc": 2500,
+        "nrcWithoutMarkup": 2500,
+        "providerName": "CenturyLink",
+        "providerSolutionId": "a56e1bbd-0f41-e911-8127-005056bfb76f",
+        "providerSolutionMessage": null,
+        "providerType": null,
+        "quantity": 1,
+        "quotedProviderSolutionCount": null,
+        "rocInformation": {
+          "additionalInformation": {
+            "additionalInformation": [
+              {
+                "name": "Access Diversity",
+                "value": "None"
+              },
+              {
+                "name": "Discountable",
+                "value": "No"
+              },
+              {
+                "name": "Multi Term Request",
+                "value": "No"
+              },
+              {
+                "name": "Protection",
+                "value": "Unprotected"
+              },
+              {
+                "name": "ROC Instructions",
+                "value": "Please provide hybrid solution for this 100G wave. Hybrid solution will include fLVLT ¿red¿ network from Palo Alto ¿ Philadelphia and then fCTL ¿green¿ network from Philadelphia ¿ Wall Cable Landing Station. We need an offnet green network quote from 1400 Wall Church Rd (WLTPNJCS) to 2400 Market St (PHLAPA03). We also need RTD/latency and a routing diagram of the green solution"
+              }
+            ]
+          },
+          "assignedCOGPlanner": "Christman, Joycelyn",
+          "assignedCOGPlannerEmail": "joycelyn.christman@centurylink.com",
+          "operatorType": null,
+          "originatorID": "AA86369",
+          "recommendedBid": {
+            "bandwidth": "100GIG-E",
+            "bwProductName": "EVPL EVC (Basic)",
+            "classOfService": null,
+            "clli": null,
+            "comments": "ORANGE MEETPOINT; 100G UNPROTECTED WAVE; CNDC 20190316JKCHRIS",
+            "currencyCode": "USD",
+            "downloadBandwidth": null,
+            "ethernetAccessType": "PB P2P",
+            "interconnect": "PHLAPA03",
+            "isBudgetary": false,
+            "isNearnet": false,
+            "localLoopOneTime": 2500,
+            "localLoopRecurring": 26143.56,
+            "markupPercent": 8,
+            "milage": 0,
+            "popRecurring": 0,
+            "portProductName": "EVPL UNI",
+            "portSpeed": "100000",
+            "productType": "PB P2P",
+            "provisioningMarket": null,
+            "quantity": 1,
+            "requestedTerm": 12,
+            "term": "12",
+            "transport": "100GIG-E",
+            "uploadBandwidth": null,
+            "vendorComments": "CNDC 20190316JKCHRIS\nCAPEX $0",
+            "vendorInterconnectPoint": "PHLAPA03",
+            "vendorName": "CenturyLink",
+            "yearlyRecurringCost": 0,
+            "poponeTime": 0
+          },
+          "rocId": 1114465,
+          "secondaryBids": null
+        },
+        "status": "Completed",
+        "tariffId": null,
+        "yrc": 0,
+        "yrcWithoutMarkup": null,
+        "addressId": "PL0000728368",
+        "amsCostingSolutionId": null,
+        "asrNumber": null,
+        "connectionType": "Ethernet",
+        "forwardPricingFlag": "No",
+        "leadTime": null,
+        "nniVendorCode": null,
+        "offnetPriceOrigin": null,
+        "prices": {
+          "price": [
+            {
+              "price": 26143.56,
+              "priceType": "MRC"
+            },
+            {
+              "price": 2500,
+              "priceType": "NRC"
+            },
+            {
+              "price": 0,
+              "priceType": "YRC"
+            },
+            {
+              "price": 24207,
+              "priceType": "TotalCostMRC"
+            },
+            {
+              "price": 2500,
+              "priceType": "TotalCostNRC"
+            },
+            {
+              "price": 0,
+              "priceType": "YrcWithoutMarkup"
+            }
+          ]
+        },
+        "pricingType": "No",
+        "properties": {
+          "property": [
+            {
+              "name": "SolutionId",
+              "value": "a56e1bbd-0f41-e911-8127-005056bfb76f"
+            },
+            {
+              "name": "CenturyLink",
+              "value": "NA"
+            },
+            {
+              "name": "IsBudgetary",
+              "value": "false"
+            },
+            {
+              "name": "Allow_Pricing_Override",
+              "value": "false"
+            }
+          ]
+        },
+        "protection": null,
+        "quotedBandwidth": "100000.00",
+        "quotedClassOfService": null,
+        "quotedPortBandwidth": null,
+        "quotedServiceType": "PB P2P",
+        "quotedSolutionType": null,
+        "requestedNetwork": null,
+        "segments": {
+          "segment": [
+            {
+              "lvaFootprint": null,
+              "networkFacilityOwner": null,
+              "orderingTerm": 12,
+              "prices": {
+                "price": [
+                  {
+                    "price": 24207,
+                    "priceType": "MRC"
+                  },
+                  {
+                    "price": 2500,
+                    "priceType": "NRC"
+                  },
+                  {
+                    "price": 0,
+                    "priceType": "YRC"
+                  }
+                ]
+              },
+              "primaryVendor": {
+                "vendor": [
+                  {
+                    "vendorName": "CenturyLink",
+                    "vendorType": "Primary"
+                  }
+                ]
+              },
+              "properties": {
+                "property": [
+                  {
+                    "name": "Comments",
+                    "value": "ORANGE MEETPOINT; 100G UNPROTECTED WAVE; CNDC 20190316JKCHRIS"
+                  },
+                  {
+                    "name": "QuotedSubBandwidth",
+                    "value": "100000"
+                  },
+                  {
+                    "name": "UploadBandwidth",
+                    "value": "0.0000"
+                  },
+                  {
+                    "name": "DownloadBandwidth",
+                    "value": "100000"
+                  }
+                ]
+              },
+              "quotedTransactionType": null,
+              "secondaryVendors": null,
+              "segmentSequence": 1,
+              "segmentType": "End Link",
+              "aend": {
+                "addressId": "PL0000407217",
+                "building": null,
+                "buildingClli": "PHLAPA03",
+                "city": null,
+                "countryCode": null,
+                "dirPrefix": null,
+                "dirSuffix": null,
+                "lata": null,
+                "latitude": null,
+                "longitude": null,
+                "market": null,
+                "npaNxx": null,
+                "postalZipCode": null,
+                "stateProvinceCode": null,
+                "streetName": null,
+                "streetNumber": null,
+                "thoroughfare": null,
+                "hcoord": null,
+                "vcoord": null
+              },
+              "zend": {
+                "addressId": "PL0000728368",
+                "building": null,
+                "buildingClli": "WLTPNJCS",
+                "city": null,
+                "countryCode": null,
+                "dirPrefix": null,
+                "dirSuffix": null,
+                "lata": null,
+                "latitude": null,
+                "longitude": null,
+                "market": null,
+                "npaNxx": null,
+                "postalZipCode": null,
+                "stateProvinceCode": null,
+                "streetName": null,
+                "streetNumber": null,
+                "thoroughfare": null,
+                "hcoord": null,
+                "vcoord": null
+              }
+            }
+          ]
+        },
+        "sequenceNumber": null,
+        "solutionDesign": null,
+        "solutionVendors": {
+          "vendor": [
+            {
+              "vendorName": "CenturyLink",
+              "vendorType": "Secondary Vendors List"
+            }
+          ]
+        },
+        "usocs": null,
+        "vendorProductName": null
+      },
+      "sites": [
+        {
+          "siteId": "PL0000407217",
+          "clliCode": "PHLAPA03",
+          "onNet": true,
+          "address": {
+            "address1": "2400 MARKET ST",
+            "address2": "",
+            "city": "PHILADELPHIA",
+            "state": "PA",
+            "postalCode": "19103",
+            "county": "PHILADELPHIA",
+            "country": "US",
+            "regionCode": "NA",
+            "room": null,
+            "floor": null,
+            "suite": null,
+            "latitude": "39.954118",
+            "longitude": "-75.178077"
+          }
+        },
+        {
+          "siteId": "PL0000728368",
+          "clliCode": "WLTPNJCS",
+          "onNet": true,
+          "address": {
+            "address1": "1400 WALL CHURCH RD",
+            "address2": "",
+            "city": "WALL TOWNSHIP",
+            "state": "NJ",
+            "postalCode": "07719",
+            "county": "MONMOUTH",
+            "country": "US",
+            "regionCode": "NA",
+            "room": null,
+            "floor": null,
+            "suite": null,
+            "latitude": "40.160029",
+            "longitude": "-74.052579"
+          }
+        }
+      ]
+    }
+  ],
+  "contacts": null,
+  "orderContacts": [
+    {
+      "id": "HRID-103545",
+      "firstName": "Richard",
+      "lastName": "Medwid",
+      "phoneNumber": null,
+      "cellNumber": null,
+      "faxNumber": " (720) 567-2825",
+      "emailAddress": "Rich.Medwid@Level3.com",
+      "jobTitle": "CUSTOMER CARE MANAGER II",
+      "companyName": "LEVEL 3 COMMUNICATIONSLLC",
+      "departmentName": "SD WHOLESALE, INDIRECT & ALLIANCES BU",
+      "roles": [
+        "Customer Care Manager"
+      ],
+      "orderContactRoles": [
+        {
+          "roleName": "Customer Care Manager",
+          "tags": [
+            "TRANSACTION"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "HRID-68554",
+      "firstName": "Alan",
+      "lastName": "Fower",
+      "phoneNumber": null,
+      "cellNumber": null,
+      "faxNumber": "",
+      "emailAddress": "Alan.Fower@Level3.com",
+      "jobTitle": "MGR SALES ENGINEERING",
+      "companyName": "LEVEL 3 COMMUNICATIONSLLC",
+      "departmentName": "WS SALES ENGINEERING 1",
+      "roles": [
+        "Network Application Engineer"
+      ],
+      "orderContactRoles": [
+        {
+          "roleName": "Network Application Engineer",
+          "tags": [
+            "TRANSACTION"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "HRID-158830",
+      "firstName": "Sierra",
+      "lastName": "Sisson",
+      "phoneNumber": null,
+      "cellNumber": null,
+      "faxNumber": "",
+      "emailAddress": "Sierra.Sisson@Level3.com",
+      "jobTitle": "ORDER ENTRY REP II",
+      "companyName": "LEVEL 3 COMMUNICATIONSLLC",
+      "departmentName": "SD WHOLESALE, INDIRECT & ALLIANCES BU",
+      "roles": [
+        "Order Entry Specialist"
+      ],
+      "orderContactRoles": [
+        {
+          "roleName": "Order Entry Specialist",
+          "tags": [
+            "TRANSACTION"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GCID-2659239",
+      "firstName": "Roberto",
+      "lastName": "Gambino",
+      "phoneNumber": "393351441636",
+      "cellNumber": null,
+      "faxNumber": null,
+      "emailAddress": "roberto.gambino@tisparkle.com",
+      "jobTitle": null,
+      "companyName": null,
+      "departmentName": null,
+      "roles": [
+        "Local Contact - Primary",
+        "Order Contact",
+        "Billing",
+        "Technical Data Gathering",
+        "Z End Local Contact - Primary",
+        "Z End Order Contact",
+        "A End Local Contact - Primary",
+        "A End Order Contact"
+      ],
+      "orderContactRoles": [
+        {
+          "roleName": "Local Contact - Primary",
+          "tags": [
+            "TRANSACTION"
+          ]
+        },
+        {
+          "roleName": "Order Contact",
+          "tags": [
+            "TRANSACTION",
+            "BUSINESS_ORDER"
+          ]
+        }
+      ]
+    }
+  ],
+  "status": "APPROVED",
+  "transformVersion": 2,
+  "relatedProductInstances": []
+}

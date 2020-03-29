@@ -1,0 +1,29 @@
+:root{    
+    --button_background:#15a703; 
+    --button_font:#ffffff;
+}
+
+.smart-style-0 .pagination > .active > a, .smart-style-0 .pagination > .active > a:focus, .smart-style-0 .pagination > .active > a:hover, .smart-style-0 .pagination > .active > span, .smart-style-0 .pagination > .active > span:focus, .smart-style-0 .pagination > .active > span:hover {
+    background: var(--button_background) !important;
+    color: var(--button_font) !important;
+  }
+  .smart-style-0 .pagination > li:last-child > a, .smart-style-0 .pagination > li:last-child > span, .smart-style-0 .pagination > li:first-child > a, .smart-style-0 .pagination > li:first-child > span {
+    color: #3276b1 !important;
+  }
+
+  .smart-style-0 .pagination > .active > a {
+    background-color: #36aecc;
+    border-color: #36aecc;
+  }
+  .smart-style-0 .pagination > .active > a:focus, .smart-style-0 .pagination > .active > a:hover {
+    background-color: #36aecc;
+    border-color: #36aecc;
+  }
+  .smart-style-0 .pagination > .active > span {
+    background-color: #36aecc;
+    border-color: #36aecc;
+  }
+  .smart-style-0 .pagination > .active > span:focus, .smart-style-0 .pagination > .active > span:hover {
+    background-color: #36aecc;
+    border-color: #36aecc;
+  }

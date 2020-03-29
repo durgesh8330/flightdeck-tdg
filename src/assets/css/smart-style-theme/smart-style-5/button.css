@@ -1,0 +1,47 @@
+:root{
+    --navigation_background:#22262e; 
+    --leftPanel_background:#1b1e24; 
+    --footer_background:#1b1e24; 
+    --header_background:#eeeeee;
+    --title_background:#353D4B; 
+    --leftPanel_font:#E1EAF1; 
+    --footer_font:#ffffff; 
+    --header_font:#000000; 
+    --button_background:#275b89; 
+    --button_font:#ffffff; 
+    --input_background:#ffffff; 
+    --input_font:#000000; 
+    --title_font:#000000; 
+    --content_background:#eeeeee; 
+    --content_font:#000000; 
+  }
+
+  .smart-style-5 .bootstrap-tagsinput > span {
+    border-color: rgba(117, 205, 241, 0.83);
+    background: var(--button_background) !important;
+    webkit-text-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    -moz-text-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  }
+  .smart-style-5 .btn-primary {
+    border-color: rgba(117, 205, 241, 0.83);
+    background: var(--button_background) !important;
+    webkit-text-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    -moz-text-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  }
+  .smart-style-5 .btn {
+    background-color: var(--button_background) !important;
+    color: var(--button_font) !important;
+  }
+  .smart-style-5 .open > .dropdown-toggle.btn-primary, .smart-style-5 .select2-container-multi .select2-choices .select2-search-choice {
+    border-color: rgba(117, 205, 241, 0.83);
+    background: var(--button_background) !important;
+    webkit-text-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    -moz-text-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  }
+  .smart-style-5 .btn {
+    background-color: var(--button_background) !important;
+    color: var(--button_font) !important;
+  }

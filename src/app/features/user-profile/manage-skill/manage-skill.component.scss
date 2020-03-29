@@ -1,0 +1,20 @@
+label{
+    font-weight: bold;
+}
+
+.break-text{
+    word-break: break-all;
+}
+
+.close-icon {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.close-icon:hover{
+    color: red;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}

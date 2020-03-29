@@ -1,0 +1,10 @@
+:root{    
+    --header_background:#5b7f28; 
+    --header_font:#ffffff;
+}
+
+
+.smart-style-2 .jarviswidget-color-blueDark > header {
+    background: var(--header_background) !important;
+    border-color: #2C3742 !important
+}

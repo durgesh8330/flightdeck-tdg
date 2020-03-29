@@ -1,0 +1,57 @@
+:root{
+  --navigation_background:#22262e; 
+  --leftPanel_background:#1b1e24; 
+  --footer_background:#1b1e24; 
+  --header_background:#eeeeee;
+  --title_background:#353D4B; 
+  --leftPanel_font:#E1EAF1; 
+  --footer_font:#ffffff; 
+  --header_font:#000000; 
+  --button_background:#275b89; 
+  --button_font:#ffffff; 
+  --input_background:#ffffff; 
+  --input_font:#000000; 
+  --title_font:#000000; 
+  --content_background:#eeeeee; 
+  --content_font:#000000; 
+}
+
+.smart-style-5 .jarviswidget header .nav-tabs > li.active > a {
+  background: var(--header_background);
+  color: var(--header_font) !important;
+}
+.smart-style-5 .jarviswidget header .nav-tabs > li.active > a:focus, .smart-style-5 .jarviswidget header .nav-tabs > li.active > a:hover {
+  background: var(--header_background);
+  color: var(--header_font);
+}
+.smart-style-5 .well-light .nav-tabs {
+  background: var(--header_background);
+  color: var(--header_font);
+  padding-left: 10px;
+}
+
+.smart-style-5 .table thead tr {
+  background-image: none;
+  background: var(--header_background);
+  color: var(--header_font);
+}
+
+.smart-style-5 .nav-tabs.bordered {
+  background: var(--header_background);
+  color: var(--header_font) !important;
+  border-color: rgba(255, 255, 225, 0.15) !important;
+}
+
+.smart-style-5 .jarviswidget header .nav-tabs > li.active > a {
+  background: var(--header_background);
+  color: var(--header_font) !important;
+}
+.smart-style-5 .jarviswidget header .nav-tabs > li.active > a:focus, .smart-style-5 .jarviswidget header .nav-tabs > li.active > a:hover {
+  background: var(--header_background);
+  color: var(--header_font);
+}
+.smart-style-5 .well-light .nav-tabs {
+  background: var(--header_background);
+  color: var(--header_font);
+  padding-left: 10px;
+}

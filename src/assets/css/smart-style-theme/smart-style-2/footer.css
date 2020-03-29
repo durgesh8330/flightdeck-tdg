@@ -1,0 +1,7 @@
+:root{    
+    --footer_background:#021e0f;    
+}
+
+.smart-style-1 .page-footer {
+    background: var(--footer_background);
+}

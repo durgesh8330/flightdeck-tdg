@@ -1,0 +1,13 @@
+:root{
+    --leftPanel_background:#021e0f;
+    --leftPanel_font:#5b7f27;
+}
+
+.smart-style-0 aside {
+    background: var(--leftPanel_background);
+  }
+
+  .smart-style-0 nav ul ul {
+    background: var(--leftPanel_background) !important;
+    color: var(--leftPanel_font) !important;
+  }

@@ -1,0 +1,19 @@
+
+.spinner-style{
+    position: absolute;
+    top: 30%;
+    left: 40%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    padding: 0 15px 0 10px;
+}
+
+mat-card{
+    width: 99.5%;
+}
+mat-slide-toggle{
+    padding-left: 10px;
+}

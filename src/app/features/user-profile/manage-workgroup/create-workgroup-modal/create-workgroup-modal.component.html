@@ -1,0 +1,45 @@
+<form name="form" novalidate>
+		<h4 mat-dialog-title style="text-align:center;font-weight: 700;">{{ uiObject.pageTitle }}</h4>
+		<hr>
+		<div mat-dialog-content>
+			<div class="row">
+				<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+					<div *ngFor="let field of uiObject.fields; let i = index" class="col-xs-12 col-md-4 col-sm-12 col-lg-4">
+					<label class="control-label">{{field.label}}</label>
+					<span *ngIf="field.mandatory" aria-hidden="true" class="text-danger">&nbsp;*</span>
+					<input [type]="field.type" class="form-control" [placeholder]="field.label" [name]="field.fieldName" #workgroupName="ngModel"
+					[attr.disabled]="field['editable'] == false ? '' : null" [(ngModel)]="field.fieldValue" required>
+					<div *ngIf="field.mandatory && !field.fieldName.valid" class="text-danger text-left">
+						<small>Workgroup Name is required.</small>
+					</div>
+					</div>
+					<!-- <div class="col-xs-12 col-md-5 col-sm-12 col-lg-5">
+						<label class="control-label">Workgroup Desc</label>
+						<span aria-hidden="true" class="text-danger">&nbsp;*</span>
+						<input type="textarea" class="form-control" placeholder="Workgroup Desc" name="workgroupDesc" required #workgroupDesc="ngModel" [(ngModel)]="workgroup.workgroupDesc">
+						<div *ngIf="!workgroupDesc.valid" class="text-danger text-left">
+								<small>Workgroup Desc is required.</small>
+							</div>
+					</div>
+					<div class="col-xs-12 col-md-3 col-sm-12 col-lg-3">
+						<label class="control-label">Created By</label>
+						<input type="text" disabled class="form-control" name="createdBy" #createdBy="ngModel" [(ngModel)]="workgroup.createdById">
+					</div> -->
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>
+				<div *ngFor="let action of uiObject.buttons" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<button  [type]="action.type" class="btn btn-primary" (click)="onButtonClick(action.fieldName)">
+						{{action.label}}
+					</button>
+				</div>
+				<!-- <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<button type="button" class="btn btn-default" (click)="closeModal();">
+						Cancel
+					</button>
+				</div> -->
+			</div>
+		</div>
+</form>

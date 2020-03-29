@@ -1,0 +1,14 @@
+:root{    
+    --footer_background:#021e0f;    
+}
+
+.smart-style-3 .page-footer, .smart-style-3 .superbox-show {
+    background: var(--footer_background);
+    color: var(--footer_font);
+  }
+
+  .txt-color-white {
+    color: var(--footer_font) !important;
+  }
+
+  

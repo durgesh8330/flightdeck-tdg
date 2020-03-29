@@ -1,0 +1,524 @@
+.spinner-style{
+    position: absolute;
+    top: 30%;
+    left: 40%;
+}
+
+label{
+    font-weight: bold;
+}
+
+.wrap {
+    width: 100%;
+    float:left;
+    overflow:hidden;
+    height:84vh;
+}
+
+.resizable1 {
+    width: 100%;
+    height:100%;
+    padding: 0;
+    display: block;
+    float:left;
+    color:#000;
+    position:relative;
+    overflow-x:hidden;
+    overflow-y: auto;
+}
+
+.resizable2 {
+    width: 0%;
+    height:100%;
+    padding: 0;
+    display: block;
+    float:left;
+    color:#000;
+    position:relative;
+    overflow-y: auto;
+}
+
+.resizable1 {
+    /* background-color: #f3f3f3; */
+    float:left;
+    border-right: 1px solid darkgray;
+}
+
+.resizable2 {
+    /* background-color: #eaeaea; */
+    float:right;
+}
+
+.resizable1 .inner {
+    /*overflow-y:auto;*/
+    height:100%;
+    top:0;
+    left:0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.resizable2 .inner {
+    overflow:hidden;
+    overflow-y:auto;
+    height:100%;
+    top:0;
+    left:0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.resizable2 .inner {
+    margin-left:10px;
+    border-left: 1px solid darkgrey;
+}
+
+.ui-resizable-e {
+    cursor: col-resize !important;
+    display:block!important;
+    width: 15px !important;
+    right: -7px;
+    top: 0;
+    bottom: 0;
+    background: #333;
+}
+.rightArrow {
+    position: absolute;
+    top: 3%;
+    margin-top: -15px;
+    cursor: pointer;
+}
+
+.leftArrow {
+    position: absolute;
+    top: 3%;
+    margin-top: 14px;
+    cursor: pointer;
+}
+
+.grabBar {
+    position: absolute;
+    top: 3%;
+    margin-top: 0px;
+}
+
+.input-text {
+    color: black;
+    margin-bottom: 3px;
+    float: left;
+    margin-left: 5px;
+}
+
+.example-2[max-width~="300px"] .input-text {
+    float: none;
+    width: 50px;
+}
+
+.label-layout {
+    float: left;
+}
+
+.input-text-color {
+    color: black;
+    margin-bottom: 3px;
+}
+
+/* .tab-content {
+    background-color: white;
+    margin-left: 100px;
+} */
+
+.tabs-left .tab-container {
+    display: block;
+    background-color: #fff;
+    margin-left: 89px;
+    border-left: 2px solid lightgray;
+    /*min-height: 100vh;*/
+}
+
+.tabs-left .nav-tabs li{
+    box-shadow: 0 0 1px darkgrey;
+}
+
+.tabs-left .nav-tabs a{
+    border-right: 1px solid darkgray;
+}
+
+.tabs-left .nav-pills, .tabs-left .nav-tabs {
+    margin-right: 0px;
+}
+
+.form-group {
+    margin-bottom: 0px;
+}
+
+.example-2-first,
+.example-2-second {
+    padding: 2px;
+    width: 50%;
+    float: left;
+    border: 5px solid #eee;
+}
+
+.example-2-second {
+    float: right;
+}
+
+.example-2-box {
+    color: white;
+    margin: 5px;
+    padding: 2px;
+}
+
+.example-2[max-width~="300px"] .example-2-first,
+.example-2[max-width~="300px"] .example-2-second {
+    float: none;
+    width: auto;
+}
+
+/*
+.example-2 .example-2-box {
+    background-color: #ba000d;
+}
+
+.example-2[min-width~="200px"] .example-2-box {
+    background-color: #ba6377;
+}
+
+.example-2[min-width~="300px"] .example-2-box {
+    background-color: #ba9196;
+}
+
+.example-2[min-width~="400px"] .example-2-box {
+    background-color: gray;
+}*/
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    resize: vertical;
+}
+
+label {
+    padding: 6px 6px 6px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 6px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 22%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.example-2[max-width~="300px"] .col-25 {
+    width: 100%;
+    float: none;
+    margin-top: 0;
+}
+
+.panel-body {
+    padding: 0px !important;
+}
+
+.jarviswidget .widget-body {
+    min-height: 30px;
+    padding-bottom: 0px;
+}
+
+.jarviswidget {
+    margin: 0 0 0;
+}
+
+.jarviswidget .div {
+    padding: 4px 0px 0;
+}
+
+.page-footer {
+    bottom: 10px;
+    z-index: 9;
+}
+
+.mat-form-field {
+    width: 100%;
+    height:40px;
+}
+
+.dynamic-table {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 4px;
+}
+
+.row {
+    padding-top: 4px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+article {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.no-padding-right {
+    padding-right: 0px;
+}
+
+.no-padding-left {
+    padding-right: 4px;
+}
+
+.spinner-style{
+    position: absolute;
+    top: 30%;
+    left: 40%;
+}
+
+.table-responsive {
+    overflow-y: hidden;
+}
+
+.mat-radio-button {
+    margin-right: 10px;
+}
+
+.jarviswidget-color-blueDark header {
+    height: 37px;
+    padding-top: 1px;
+}
+
+.jarviswidget-color-blueDark header input{
+    background-color: #fff;
+    color: #000000;
+}
+
+.select-field-size{
+    width: 30%;
+}
+
+::ng-deep .ngx-dropdown-list-container {
+    padding-right: 1px !important;
+    padding-left: 1px !important;
+    width: 75% !important;
+}
+
+::ng-deep .ngx-dropdown-list-container li {
+    padding: 0px 0px !important;
+}
+
+::ng-deep .ngx-dropdown-list-container ul {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    list-style-type: none !important;
+    padding-left: 0px !important;
+    margin-bottom: 4px !important;
+}
+
+/*::ng-deep .selected-items {
+    display: none;
+}*/
+
+::ng-deep .ngx-dropdown-list-container hr {
+    display: none;
+}
+
+::ng-deep .select2-container {
+    width: 100% !important;
+    border: 1px solid lightgrey !important;
+}
+
+::ng-deep .onoffswitch-container {
+    margin-left: 0px;
+}
+
+.general-tasks .select2-selection__choice__remove{
+    padding:0px !important;
+}
+
+.due-date-highligt{
+    border: 2px solid #673ab7;
+}
+
+.task-details-form .search-tab-content{
+    padding-top:0px;
+}
+
+/* .sticky-tab-header{
+    position: fixed;
+    z-index:111;
+    background: #fff;
+    width: calc(100% - 220px);
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.38);
+} */
+
+.sticky-tab-header ul{
+    display: inline-block;
+}
+
+/* .sticky-tab-header .nav-tabs > li > a:hover{
+    background: #fff;
+} */
+
+.elemWrapper{
+    padding-top:5px;
+}
+.elemWrapper:nth-child(2n+1) {  
+    clear: both;
+}
+
+.btn-square {
+    border-radius: 0px !important;
+}
+
+.left-tab-pane{
+    padding-top: 10px;
+}
+
+.left-wcm-tab-pane{
+    padding: 10px;
+    /* background-color: #f9f9f9; */
+}
+
+.right-tab-pane{
+    padding: 10px;
+}
+
+.wcm_background{
+    color: white !important;
+    background-color: black !important;
+}
+.mat-tab-body-content{
+    overflow: hidden !important;
+}
+
+.smart-style-0 .mat-tab-body-wrapper .mat-tab-body-content{
+    overflow: hidden !important;
+}
+
+.jarviswidget>div {
+    padding: 5px !important;
+}
+
+/* This is temporary CSS for today's demo*/
+.width50Per{
+    width: 50% !important;
+}
+
+.sticky-Width{
+    width: 44% !important;
+}
+
+
+mat-card-title{
+    font-weight: bold;
+    color: #0404f9;
+}
+
+/** WCM CSS Starts here*/
+.wcm-section{
+    padding-bottom: 5px;
+}
+.wcm-header{
+    font-weight: bold;
+    font-size: 15px;
+    background-color: #f9ea83;
+    padding: 10px;
+}
+.wcm-content{
+    border: solid 1px #d6cb7e;
+    border-top: none;
+}
+.field-value{
+    padding-top: 5px;
+    word-break: break-all;
+}
+.field-label{
+    padding: 3px 3px 3px 0 !important;
+    margin-bottom: 0 !important;
+}
+.errorMessage{
+    margin: 20px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+    color: red;
+}
+.cm-cog {
+    font-size: 200%;
+    position: relative;
+    top: 5px;
+}
+.open > .dropdown-menu {
+    -webkit-animation-name: none;
+    -moz-animation-name: none;
+    -o-animation-name: none;
+    animation-name: none;
+    -webkit-animation-duration: 0s;
+    -moz-animation-duration: 0s;
+    -o-animation-duration: 0s;
+    animation-duration: 0s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    display: block !important;
+}
+.fileddropdown {
+    width: 98%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+.filedNameOverflow {
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+.dropdown-menu.ColVis_collection {
+    overflow-y: auto;
+    max-height: 60vh;
+    display: none !important;
+}
+::ng-deep #jarviswidget-fullscreen-mode .jarviswidget .widget-body .wcm_background {
+    height: 92vh;
+}
+::ng-deep #jarviswidget-fullscreen-mode .resizable:parent  {
+    display: none;
+}

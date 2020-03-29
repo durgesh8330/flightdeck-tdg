@@ -1,0 +1,821 @@
+<div *ngIf="loader" class="taskloader_div">
+  <div class="task_loader">
+    <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+  </div>
+</div>
+<div class="wrap" *ngIf="!loader">
+  <div class="resizable resizable1 example-2">
+    <div class="inner">
+      <form name="form" class="task-details-form">
+        <div class="form-group">
+          <div class="sticky-tab-header spr-tabs">
+            <ul class="nav nav-tabs tabs-left text-align-center" id="demo-pill-nav">
+              <li [class.active]="leftSideTabs.tab == 'request-details'">
+                <a (click)="leftSideTabs.tab = 'request-details'">Request Details</a>
+              </li>
+              <li [class.active]="leftSideTabs.tab == 'log-details'">
+                <a (click)="leftSideTabs.tab = 'log-details'">Log Details</a>
+              </li>
+              <li [class.active]="leftSideTabs.tab == 'relationship-map'">
+                <a (click)="leftSideTabs.tab = 'relationship-map'">Relationship Map</a>
+              </li>
+            </ul>
+
+            <div class="pull-right" [hidden]="leftSideTabs.tab !== 'request-details'">
+              <div>
+                <div style="padding-top:5px;padding-right: 15px;">
+                  <div style="display:inline-block">
+                    <a class="cm-refresh pull-right margin-right-13" style="font-size:150%">
+                      <span class="glyphicon glyphicon-refresh"></span>
+                    </a>
+                    <div *ngFor="let button of HeaderButton.fieldsList" style="display: inline-flex;">
+                      <button (click)="ButtonClick(button.fieldName)" class="btn btn-success blue__btn pull-right margin-right-13"
+                        mat-raised-button>
+                        <i class="fa {{button.class}}" aria-hidden="true"></i> {{button.label}}
+                      </button>
+                    </div>
+                    <!-- <button class="btn btn-success blue__btn pull-right margin-right-13" mat-raised-button>
+                                          <i class="fa fa-user-plus" aria-hidden="true"></i> Add User
+                                      </button>
+                                      <button class="btn btn-success blue__btn pull-right margin-right-13" mat-raised-button>
+                                          <i class="fa fa-comment" aria-hidden="true"></i> Add Comments
+                                      </button>
+                                      <button class="btn btn-success blue__btn pull-right margin-right-13" mat-raised-button>
+                                          <i class="fa fa-pencil" aria-hidden="true"></i> Edit & Retry
+                                      </button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <tabset>
+            <tab class="left-tab-pane" [active]="leftSideTabs.tab == 'request-details'">
+              <div class="col-sm-12">
+                <div class="col-sm-12 lightdarkborderbottom" style="padding-left: 0;">
+                  <div class="form-group">
+                    <div class="input-group cm-pd-top-15" style="padding-left: 0;">
+                      <label class="key">ID:</label>
+                      <label class="value">{{taskDetails.sourceTaskId}}</label>
+                    </div>
+                    <div class="input-group cm-pd-top-15">
+                      <label class="key">Name:</label>
+                      <label class="value">{{taskDetails.taskName}}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12" style="margin-top:2%;margin-bottom: 2%;">
+                <div class="col-sm-12">
+                  <div *ngFor="let box of Summary.fieldsList" class="col-md-4 border-right-bottom">
+                    <div class="col-md-12 darkborderbottom p-0">
+                      <div class="col-md-12" style="padding-left: 0px;">
+                        <label class="key">{{box.header.label}}:
+                          <span *ngIf="box.header.label=='Status'" [ngStyle]="{color: getStatusColor(taskDetails.taskStatus)}">{{taskDetails.taskStatus}}</span>
+                          <span *ngIf="box.header.label=='Assigned To'">{{taskDetails.assignedCuid}}</span>
+                          <span *ngIf="box.header.showHistory" (click)="box.header.history = !box.header.history; getParentTaskStatusHistory(taskDetails, box.header.history, box)"
+                            style="cursor: pointer;position: relative;top: 5px;">
+                            <mat-icon *ngIf="box.header.history" class="material-icons add_box system__add">play_arrow</mat-icon>
+                            <mat-icon *ngIf="!box.header.history" class="system__add add_box" style="transform: rotate(90deg);">play_arrow</mat-icon>
+                          </span>
+                        </label>
+                        <label class="valuedarkblue"></label>
+                      </div>
+                      <!-- <div *ngIf="box.header.headerButton == true" class="col-md-5 text-right">
+                        <button class="btn btn-success blue__btn" mat-raised-button style="margin-top: 5%;">
+                          {{taskDetails.taskStatus}}
+                        </button>
+                      </div> -->
+                      <div class="col-md-12 HistoryDiv p-0" *ngIf="!box.header.history && box.header.label=='Status'">
+                        <h4>Status History:</h4>
+                        <div id="table-section" class="tab-content table-responsive">
+                          <table class="table table-striped table-hover">
+                            <tbody>
+                              <tr *ngFor="let historyDetails of parentTaskHistory;">
+                                <td style="padding:5px; white-space: nowrap;">{{historyDetails.statusCode}}</td>
+                                <td style="padding:5px; white-space: nowrap;">{{historyDetails.status}}</td>
+                                <!-- <td style="padding:5px; white-space: nowrap;">{{historyDetails.createdById}}</td> -->
+                                <td style="padding:5px; white-space: nowrap;">{{historyDetails.createdDttm}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!-- <div class="col-md-5 text-left" style="padding-left: 0; margin-bottom: -20px;">
+                            <label class="smallkey">Status Code</label>
+                          </div>
+                          <div class="col-md-7 text-left" style="margin-bottom: -20px;">
+                            <label class="smallvalue">{{historyDetails.statusCode}}</label>
+                          </div>
+                          <div class="col-md-5 text-left" style="padding-left: 0; margin-bottom: -20px;">
+                            <label class="smallkey">Status Message</label>
+                          </div>
+                          <div class="col-md-7 text-left" style="margin-bottom: -20px;">
+                            <label class="smallvalue">{{historyDetails.statusMessage}}</label>
+                          </div>
+                          <div class="col-md-5 text-left" style="padding-left: 0; margin-bottom: -20px;">
+                            <label class="smallkey">Created On</label>
+                          </div>
+                          <div class="col-md-7 text-left" style="margin-bottom: -20px;">
+                            <label class="smallvalue">{{historyDetails.createdDttm}}</label>
+                          </div>
+                          <div class="col-md-5 text-left" style="padding-left: 0; margin-bottom: -20px;">
+                            <label class="smallkey">Created By</label>
+                          </div>
+                          <div class="col-md-7 text-left" style="margin-bottom: -20px;">
+                            <label class="smallvalue">{{historyDetails.createdById}}</label>
+                          </div> -->
+                        <div class="col-md-12" style="margin:10px;"></div>
+                        <!-- <div class="col-md-12" style="margin-bottom: -20px;">
+                          <div class="col-md-6 text-left" style="padding-left: 0;">
+                            <label class="smallkey">Planned</label>
+                          </div>
+                          <div class="col-md-6 text-right">
+                            <label class="smallvalue"></label>
+                          </div>
+                        </div> -->
+                      </div>
+                      <div class="col-md-12 HistoryDiv p-0" *ngIf="!box.header.history && box.header.label=='Assigned To'">
+                        <div id="table-section" class="tab-content table-responsive padding-top">
+                          <table class="table table-striped table-hover">
+                            <tbody>
+                              <tr *ngFor="let assignedDetails of parentTaskAssignLog;">
+                                <td style="padding:5px; white-space: nowrap;">{{assignedDetails.activityValue}}</td>
+                                <td style="padding:5px; white-space: nowrap;">{{assignedDetails.createdById}}</td>
+                                <td style="padding:5px; white-space: nowrap;">{{assignedDetails.createdDateTime}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="col-md-12" style="margin:10px;"></div>
+                      </div>
+                    </div>
+                    <div *ngFor="let boxbody of box.body">
+                      <div *ngIf="!boxbody.textarea" class="col-md-12 p-0" style="margin-bottom: -20px;">
+                        <div class="col-md-5 text-left" style="padding-left: 0;">
+                          <label class="smallkey">{{boxbody.label}}:</label>
+                        </div>
+                        <div class="col-md-7 text-left">
+                          <label class="smallvalue">{{taskDetails[boxbody.fieldName]}}</label>
+                        </div>
+                      </div>
+                      <div *ngIf="boxbody.textarea" class="col-md-12 p-0" style="margin-top: 20px;">
+                        <textarea rows="5" class="form-control"></textarea>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-12" style="margin-bottom: -20px;">
+                                <div class="col-md-6 text-left" style="padding-left: 0;">
+                                  <label class="smallkey">Status Code:</label>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <label class="smallvalue">500</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12" style="margin-bottom: -20px;">
+                                <div class="col-md-6 text-left" style="padding-left: 0;">
+                                  <label class="smallkey">Status Message:</label>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <label class="smallvalue">In Progress - Error</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12" style="margin-bottom: -20px;">
+                                <div class="col-md-6 text-left" style="padding-left: 0;">
+                                  <label class="smallkey">Version:</label>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <label class="smallvalue"></label>
+                                </div>
+                              </div>
+                              <div class="col-md-12" style="margin-bottom: -20px;">
+                                <div class="col-md-6 text-left" style="padding-left: 0;">
+                                  <label class="smallkey">Description:</label>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <label class="smallvalue"></label>
+                                </div>
+                              </div>
+                              <div class="col-md-12" style="margin-top: 20px;">
+                                <textarea rows="5" class="form-control"></textarea>
+                              </div> -->
+                  </div>
+                  <!-- <div class="col-md-4 border-right-bottom">
+                              <div class="col-md-12 darkborderbottom">
+                                <div class="col-md-9" style="padding-left: 0px;">
+                                  <label class="key">Assigned To:</label>
+                                  <label class="valuedarkblue">arglove</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12" style="margin-bottom: -20px;">
+                                <div class="col-md-6 text-left" style="padding-left: 0;">
+                                  <label class="smallkey">Assigned To Name:</label>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <label class="smallvalue">Andrew Glover</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12" style="margin-bottom: -20px;">
+                                <div class="col-md-6 text-left" style="padding-left: 0;">
+                                  <label class="smallkey">Escalated:</label>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <label class="smallvalue">N</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12" style="margin-bottom: -20px;">
+                                <div class="col-md-6 text-left" style="padding-left: 0;">
+                                  <label class="smallkey">Parent ID:</label>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <label class="smallvalue"></label>
+                                </div>
+                              </div>
+                              <div class="col-md-12" style="margin-bottom: -20px;">
+                                <div class="col-md-6 text-left" style="padding-left: 0;">
+                                  <label class="smallkey">Assigned Workgroup(s):</label>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <label class="smallvalue"></label>
+                                </div>
+                              </div>
+                              <div class="col-md-12" style="margin-top: 20px;">
+                                <textarea rows="5" class="form-control"></textarea>
+                              </div>
+                            </div> -->
+                  <!-- <div class="col-md-4 border-right-bottom">
+                              <div class="col-md-12 darkborderbottom">
+                                <div class="col-md-9" style="padding-left: 0px;">
+                                  <label class="key">Duration:</label>
+                                  <label class="valuedarkblue">25 Minutes</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12" style="margin-bottom: -20px;">
+                                <div class="col-md-6 text-left" style="padding-left: 0;">
+                                  <label class="smallkey">Created DT:</label>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <label class="smallvalue">06/12/19 17:52:22</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12" style="margin-bottom: -20px;">
+                                <div class="col-md-6 text-left" style="padding-left: 0;">
+                                  <label class="smallkey">Created By:</label>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <label class="smallvalue">arglove</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12" style="margin-bottom: -20px;">
+                                <div class="col-md-6 text-left" style="padding-left: 0;">
+                                  <label class="smallkey">Modified By:</label>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <label class="smallvalue">arglove</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12" style="margin-bottom: -20px;">
+                                <div class="col-md-6 text-left" style="padding-left: 0;">
+                                  <label class="smallkey">Modified DT:</label>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <label class="smallvalue">06/12/19 17:58:19</label>
+                                </div>
+                              </div>
+                              <div class="col-md-12" style="margin-bottom: -20px;">
+                                <div class="col-md-6 text-left" style="padding-left: 0;">
+                                  <label class="smallkey">Completed DT:</label>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <label class="smallvalue"></label>
+                                </div>
+                              </div>
+                              <div class="col-md-12" style="margin-bottom: -20px;">
+                                <div class="col-md-6 text-left" style="padding-left: 0;">
+                                  <label class="smallkey">Completed By:</label>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <label class="smallvalue"></label>
+                                </div>
+                              </div>
+                            </div> -->
+                </div>
+              </div>
+              <div class="col-md-12">
+                <!-- <div class="col-md-3">
+                            <div class="panel panel-primary spr-panel">
+                              <div class="panel-heading">Children Status Summary</div>
+                              <div class="panel-body">
+                                <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right"> 
+                                  <span class="btn btn-primary box-status-style">Success</span> - 12<br>
+                                  <span class="btn btn-info box-status-style">In-Progress</span> - 2<br>
+                                  <span class="btn btn-danger box-status-style">Failed</span> - 1<br>
+                                  <span class="btn btn-warning box-status-style">Cancelled</span> - 1
+                                </div>
+                              </div>
+                            </div>
+                          </div> -->
+                <div class="col-md-3" *ngFor="let box of Details.fieldsList">
+                  <div class="panel panel-primary spr-panel">
+                    <div class="panel-heading">{{box.headerLabel}}</div>
+                    <div class="panel-body" style="overflow:auto;">
+                      <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right" *ngIf="box.headerLabel.toLowerCase()=='children status summary'">
+                        <!-- <sa-flot-chart *ngIf="chartjsData.sourceData  && chartjsData.sourceData.length>0" [data]="chartjsData.sourceData"
+                          [options]="flotExamples.pieChartDemoOptions"></sa-flot-chart> -->
+                        <div class="col-md-6" style="display: block;margin-top: 5%;margin-left: 0;">
+                          <canvas baseChart class="parentChart" [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                            [chartType]="doughnutChartType" [colors]="donutColors" [legend]="false" [options]="chartOptions"
+                            style="">
+                          </canvas>
+                        </div>
+                        <div class="col-md-5" style="margin-top: 10px; padding: 0;">
+                          <div *ngFor="let data of statusTag; let i = index" style="margin-bottom: 10%">
+                            <span class="statusTag " [ngStyle]="{backgroundColor: donutColors[0]['backgroundColor'][i]}"
+                              style="color: #fff">{{data.label}}</span>
+                            <h4 class="pull-right"> - {{data.value}}</h4>
+                          </div><br>
+                        </div>
+                      </div>
+                      <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right" style="max-height: 150px; overflow: auto;"
+                        *ngIf="box.headerLabel.toLowerCase()=='customer'">
+                        <div *ngFor="let paramDetails of customerDetails.paramList;">
+                          <!-- <label class="smallkey m-0">{{paramDetails.name}}: </label>
+                          <label class="smallvalue m-0">{{paramDetails.value}}</label> -->
+                          <div class="col-md-5 text-left" style="padding-left: 0;">
+                            <label class="smallkey p-0">{{paramDetails.name}}:</label>
+                          </div>
+                          <div class="col-md-7 text-left">
+                            <label class="smallvalue p-0">{{paramDetails.value}}</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="col-md-3">
+                            <div class="panel panel-primary spr-panel">
+                              <div class="panel-heading">Customer</div>
+                              <div class="panel-body">
+                                <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="panel panel-primary spr-panel">
+                              <div class="panel-heading">Info Used</div>
+                              <div class="panel-body">
+                                <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right">
+                                </div>
+                              </div>
+                            </div>
+                          </div> -->
+              </div>
+              <div class="col-md-12">
+                <div id="table-section" class="tab-content padding-10 table-responsive">
+                  <table class="table table-striped table-hover">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th class="tbl-field-sp"></th>
+                        <th *ngFor="let field of TableFiedls.fieldsList" class="tbl-field-sp">
+                          <div class="cursor-pointer activesort">
+                            <span>{{field.label}}</span>
+                            <span class="sortarrow">
+                              <i class="fa upsortarrow"></i>
+                              <i class="fa downsortarrow"></i>
+                            </span>
+                          </div>
+                        </th>
+                        <!-- <th>
+                                    <div class="cursor-pointer activesort">
+                                      <span>Sub Task</span>
+                                      <span class="sortarrow">
+                                          <i class="fa upsortarrow"></i>
+                                          <i class="fa downsortarrow"></i>
+                                      </span>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="cursor-pointer activesort">
+                                      <span>Status</span>
+                                      <span class="sortarrow">
+                                          <i class="fa upsortarrow"></i>
+                                          <i class="fa downsortarrow"></i>
+                                      </span>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="cursor-pointer activesort">
+                                      <span>Status Details</span>
+                                      <span class="sortarrow">
+                                          <i class="fa upsortarrow"></i>
+                                          <i class="fa downsortarrow"></i>
+                                      </span>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="cursor-pointer activesort">
+                                      <span>Status CD</span>
+                                      <span class="sortarrow">
+                                          <i class="fa upsortarrow"></i>
+                                          <i class="fa downsortarrow"></i>
+                                      </span>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="cursor-pointer activesort">
+                                      <span>RCV Date</span>
+                                      <span class="sortarrow">
+                                          <i class="fa upsortarrow"></i>
+                                          <i class="fa downsortarrow"></i>
+                                      </span>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="cursor-pointer activesort">
+                                      <span>CMP Date</span>
+                                      <span class="sortarrow">
+                                          <i class="fa upsortarrow"></i>
+                                          <i class="fa downsortarrow"></i>
+                                      </span>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="cursor-pointer activesort">
+                                      <span>Duration</span>
+                                      <span class="sortarrow">
+                                          <i class="fa upsortarrow"></i>
+                                          <i class="fa downsortarrow"></i>
+                                      </span>
+                                    </div>
+                                  </th>
+                                  <th>
+                                    <div class="cursor-pointer activesort">
+                                      <span>CHILDREN</span>
+                                      <span class="sortarrow">
+                                          <i class="fa upsortarrow"></i>
+                                          <i class="fa downsortarrow"></i>
+                                      </span>
+                                    </div>
+                                  </th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngFor="let rowData of tableData; let rowIndex = index;">
+                        <tr *ngIf="!rowData.isRowDetailOpen">
+                          <td class="tbl-field-sp">
+                            <div>
+                              <span (click)="expandAddRow(rowData,rowIndex)" style="cursor: pointer;">
+                                <mat-icon *ngIf="rowData.isIconMinus" class="material-icons add_box system__add">play_arrow</mat-icon>
+                                <mat-icon *ngIf="!rowData.isIconMinus" class="system__add add_box" style="transform: rotate(90deg);">play_arrow</mat-icon>
+                              </span>
+                            </div>
+                          </td>
+                          <td *ngFor="let field of TableFiedls.fieldsList" class="tbl-field-sp">
+                            <span class="{{(field.fieldName == 'totalCounts')? 'Table-value':''}}">{{rowData[field.fieldName]}}</span>
+                            <div *ngIf="field.fieldName == 'totalCounts'" style="display: block;margin-top: 5%;margin-left: 0;">
+                              <canvas baseChart class="childChart" [data]="rowData['doughnutChartData']" [labels]="rowData['doughnutChartLabels']"
+                                [chartType]="doughnutChartType" [colors]="donutColors" [legend]="false" [options]="chartOptions">
+                              </canvas>
+                            </div>
+                          </td>
+                          <!-- <td>{{rowData.subTask}}</td>
+                                    <td>{{rowData.statusName}}</td>
+                                    <td>{{rowData.statusDetails}}</td>
+                                    <td>{{rowData.statusCD}}</td>
+                                    <td>{{rowData.rcvDate}}</td>
+                                    <td>{{rowData.cmpDate}}</td>
+                                    <td>{{rowData.duration}}</td>
+                                    <td>{{rowData.children}}</td> -->
+                        </tr>
+                        <tr *ngIf="rowData.isRowDetailOpen">
+                          <td colspan="10">
+                            <sa-card [rowData]="rowData" [childHistoryList]="childHistoryList" [TableFiedls]="TableFiedls"
+                              [subLoader]="subLoader" [grandChildList]="grandChildList" (GetStatusHistory)="getStatusHistory($event)"
+                              (GetGrandChildList)="getGrandChildList($event)"></sa-card>
+                            <!-- <div class="sticky-tab-header spr-tabs">
+                              <ul class="nav nav-tabs tabs-left text-align-center" id="demo-pill-nav">
+                                <li>
+                                  <a>Summary</a>
+                                </li>
+                                <li>
+                                  <a>Status History</a>
+                                </li>
+                                <li>
+                                  <a>RMA</a>
+                                </li>
+                                <li>
+                                  <a>Response</a>
+                                </li>
+                                <li>
+                                  <a>Child MicroServices</a>
+                                </li>
+                              </ul>
+
+                              <div class="pull-right">
+                                <div>
+                                  <div style="padding-top:5px;">
+                                    <div style="display:inline-block">
+                                      <a class="cm-refresh pull-right margin-right-13" style="font-size:150%">
+                                        <span class="glyphicon glyphicon-question-sign"></span>
+                                      </a>
+                                      <button class="btn btn-success blue__btn pull-right margin-right-13"
+                                        mat-raised-button [disabled]="true">
+                                        Cancel
+                                      </button>
+                                      <button class="btn btn-success blue__btn pull-right margin-right-13"
+                                        mat-raised-button>
+                                        Force Complete
+                                      </button>
+                                      <button class="btn btn-success blue__btn pull-right margin-right-13"
+                                        mat-raised-button [disabled]="true">
+                                        Verify Complete
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <tabset>
+                              <tab class="left-tab-pane">
+                                <div class="col-md-4">
+                                  <div class="panel panel-primary spr-panel">
+                                    <div class="panel-heading">Status Summary</div>
+                                    <div class="panel-body">
+                                      <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right" style="margin-top: 5px;">
+                                        <div>
+                                          <span>Status: </span> <b style="font-size: 18px;">{{rowData.statusName}} -
+                                            {{rowData.statusCD}}</b>
+                                        </div>
+                                        <div>
+                                          <span>Status Message: </span> <b style="font-size: 18px;">{{rowData.subTask}}</b>
+                                        </div>
+                                        <div>
+                                          <span>EVENT OCCURRED DATE: </span> <b></b>
+                                        </div>
+                                        <div>
+                                          <span>COMMENT: </span> <small>{{rowData.subTask}}</small>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="panel panel-primary spr-panel">
+                                    <div class="panel-heading">Key Dates</div>
+                                    <div class="panel-body">
+                                      <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right" style="margin-top: 5px;">
+                                        <div class="col-md-6">
+                                          <pre>{{rowData.rcvDate}}</pre>
+                                        </div>
+                                        <div class="col-md-6">
+                                          <strong>Date Received</strong><br>
+                                          <span>by Status Manager</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-5">
+                                  <div class="panel panel-primary spr-panel">
+                                    <div class="panel-heading">Info Used By Service</div>
+                                    <div class="panel-body">
+                                      <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </tab>
+                            </tabset> -->
+                          </td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+                  <!-- <ul class="p-0 cstm-tbl">
+                    <li class="list-style-none cstm-tbl-hdr">
+                      <div class="cstm-tbl-cll" style="width: 40px;"></div>
+                      <div *ngFor="let field of TableFiedls.fieldsList" class="cstm-tbl-cll">
+                        <div class="cursor-pointer activesort">
+                          <span>{{field.label}}</span>
+                        </div>
+                      </div>
+                    </li>
+                    <div *ngFor="let rowData of tableData; let rowIndex = index;">
+                      <li class="list-style-none cstm-tbl-rw" >
+                        <div class="cstm-tbl-cll" style="width: 40px;">
+                          <span (click)="expandAddRow(rowData,rowIndex)" style="cursor: pointer;">
+                            <mat-icon *ngIf="rowData.isIconMinus" class="material-icons add_box system__add align-mddl">play_arrow</mat-icon>
+                            <mat-icon *ngIf="!rowData.isIconMinus" class="system__add add_box align-mddl" style="transform: rotate(90deg);">play_arrow</mat-icon>
+                          </span>
+                        </div>
+                        <div *ngFor="let field of TableFiedls.fieldsList" class="cstm-tbl-cll">
+                          <div class="cursor-pointer activesort">
+                            <span>{{rowData[field.fieldName]}}</span>
+                          </div>
+                        </div> -->
+                  <!-- <div class="cstm-tbl-cll">
+                          <div class="sticky-tab-header spr-tabs">
+                            <ul class="nav nav-tabs tabs-left text-align-center" id="demo-pill-nav">
+                              <li>
+                                <a>Summary</a>
+                              </li>
+                              <li>
+                                <a>Status History</a>
+                              </li>
+                              <li>
+                                <a>RMA</a>
+                              </li>
+                              <li>
+                                <a>Response</a>
+                              </li>
+                              <li>
+                                <a>Child MicroServices</a>
+                              </li>
+                            </ul>
+  
+                            <div class="pull-right">
+                              <div>
+                                <div style="padding-top:5px;">
+                                  <div style="display:inline-block">
+                                    <a class="cm-refresh pull-right margin-right-13" style="font-size:150%">
+                                      <span class="glyphicon glyphicon-question-sign"></span>
+                                    </a>
+                                    <button class="btn btn-success blue__btn pull-right margin-right-13"
+                                      mat-raised-button [disabled]="true">
+                                      Cancel
+                                    </button>
+                                    <button class="btn btn-success blue__btn pull-right margin-right-13"
+                                      mat-raised-button>
+                                      Force Complete
+                                    </button>
+                                    <button class="btn btn-success blue__btn pull-right margin-right-13"
+                                      mat-raised-button [disabled]="true">
+                                      Verify Complete
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <tabset>
+                            <tab class="left-tab-pane">
+                              <div class="col-md-4">
+                                <div class="panel panel-primary spr-panel">
+                                  <div class="panel-heading">Status Summary</div>
+                                  <div class="panel-body">
+                                    <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right" style="margin-top: 5px;">
+                                      <div>
+                                        <span>Status: </span> <b style="font-size: 18px;">{{rowData.statusName}} -
+                                          {{rowData.statusCD}}</b>
+                                      </div>
+                                      <div>
+                                        <span>Status Message: </span> <b style="font-size: 18px;">{{rowData.subTask}}</b>
+                                      </div>
+                                      <div>
+                                        <span>EVENT OCCURRED DATE: </span> <b></b>
+                                      </div>
+                                      <div>
+                                        <span>COMMENT: </span> <small>{{rowData.subTask}}</small>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="panel panel-primary spr-panel">
+                                  <div class="panel-heading">Key Dates</div>
+                                  <div class="panel-body">
+                                    <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right" style="margin-top: 5px;">
+                                      <div class="col-md-6">
+                                        <pre>{{rowData.rcvDate}}</pre>
+                                      </div>
+                                      <div class="col-md-6">
+                                        <strong>Date Received</strong><br>
+                                        <span>by Status Manager</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-5">
+                                <div class="panel panel-primary spr-panel">
+                                  <div class="panel-heading">Info Used By Service</div>
+                                  <div class="panel-body">
+                                    <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </tab>
+                          </tabset>
+                        </div> -->
+                  <!-- </li>
+                    </div>
+                    
+                  </ul> -->
+                </div>
+              </div>
+            </tab>
+            <tab class="left-tab-pane" [active]="leftSideTabs.tab == 'log-details'">
+              <div id="systemtable" class="table-responsive col-md-12" *ngFor="let layoutElem of logPageLayout['pageLayoutTemplate']"
+                style="margin-top: 12px;">
+                <div class="panel panel-primary spr-panel" *ngIf="layoutElem.sectionHeader == 'Log Details'">
+                  <div class="panel-heading">{{layoutElem.sectionHeader}}</div>
+                  <div class="panel-body" style="column-count: 1;">
+                    <div class="widget-body" style="padding-top: 5px;overflow-y: hidden;padding: 1%;">
+                      <sa-table [pagination]="pagination" [actionButton]="actionButton" [actionColumn]="actionColumn"
+                        [tableHeader]="actionColumn" [tableData]="displayTaskResult" [tableOtherContent]="systemParameter"
+                        [filter]="actionColumn" [tablePaginationData]="tablePaginationData" (showAdditionalDetailsParent)="showAdditionalDetails($event, taskDetails)" (addNewRowParent)="addNewRow()"
+                        (onSaveParent)="onSaveClick($event)" (pageChangedParent)="onPaginateInnerGrid($event)"
+                        (onEditParent)="onEditClick($event)" (onDeleteParent)="onDeleteClick($event)" (onCloseParent)="onCloseClick($event)"
+                        (paginationChangeParent)="onLimitChange($event)" (openTabParent)="openDetailView($event)"
+                        (filterColumnParent)="filterTaskResult($event)" (onSortParent)="onSortSelection($event)"
+                        (expandRow)="expandRow($event)" (previousAll)="previousTasks()" (previous)="onGridPrevious()"
+                        (nextAll)="nextTasks()" (next)="onGridNext()"></sa-table>
+                    </div>
+                    <!-- <div>
+                      <div id="tablesection" class="tablesectiondiv">
+                        <div id="table-section" class="tab-content table-responsive" style="width:100%;">
+                          <table class="table table-bordered table-striped table-hover smart-form">
+                            <thead>
+                              <tr>
+                                <th *ngFor="let elem of layoutElem['fieldsList']">
+                                  <div style="float: left;cursor: pointer;" (click)="onSortSelection(elem.fieldName)">
+                                    {{elem.label}}
+                                  </div>
+                                  <div>
+                                    <input type="text" (input)="filterTaskResult(elem.fieldName)" [(ngModel)]="activityLog[elem.fieldName]"
+                                      [name]="elem.fieldName" style="width: 100%;overflow: visible;padding: 3px;" />
+                                  </div>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let row of logData">
+                                <td *ngFor="let elem of layoutElem['fieldsList']">
+                                  <div *ngIf="elem.fieldName == 'activityDetails'" style="width:400px;">
+                                    <pre class="pre-style" style="white-space: pre-wrap;">{{row[elem.fieldName]}}</pre>
+                                  </div>
+                                  <div *ngIf="elem.fieldName != 'activityDetails'">
+                                    {{(elem.fieldName === 'logdetailscreatedById') ? row['createdById'] :
+                                    (elem.fieldName ===
+                                    'logdeatilscreatedDateTime')? row['createdDateTime'] : row[elem.fieldName]}}
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </tab>
+            <tab class="left-tab-pane" [active]="leftSideTabs.tab == 'relationship-map'">
+              <div class="comingbox"> Coming Soon...</div>
+            </tab>
+          </tabset>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- <div class="resizable resizable2">
+
+        <div class="inner">
+            <div class="widget-body">
+                <div class="tabs-left">
+                    <ul class="nav nav-tabs tabs-left text-align-center" id="demo-pill-nav1">
+                        <li [class.active]="tab.active" *ngFor="let tab of wcmPageLayout['wcmRelatedTabs']; let tabIndex=index;">
+                            <a (click)="loadTabDetails(tabIndex);" *ngIf="tab.visible">
+                                {{tab.title}}
+                            </a>
+                        </li>
+                    </ul>
+                    <tabset>
+                        <tab [active]="tab.active" *ngFor="let tab of wcmPageLayout['wcmRelatedTabs'];">
+                            <sa-widgets-grid>
+                                <article class="col-sm-12">
+                                    <div sa-widget *ngIf="tab.visible" [editbutton]="false" [fullscreenbutton]="true"
+                                        [deletebutton]="false" [colorbutton]="true" [togglebutton]="true" name="rihtTabContent">
+                                        <header>
+                                            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                            <h2>{{tab.title}} Details</h2>
+                                        </header>
+                                        <div class="widget-body">
+                                            <pre class="wcm_background">{{tab.content}}</pre>
+                                        </div>
+                                    </div>
+                                </article>
+                            </sa-widgets-grid>
+                        </tab>
+                    </tabset>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>

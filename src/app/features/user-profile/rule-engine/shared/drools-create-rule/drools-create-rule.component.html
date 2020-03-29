@@ -1,0 +1,47 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-9" *ngIf="!isEditScreen">
+      <h3>Decision Table:</h3>
+    </div>
+    <div class="col-sm-12" *ngIf="showTable">
+      <hr>
+      <div class="row">
+        <div class="col-md-9">
+          <div>
+            <button type="button" class="btn btn-success" (click)="addRow()">Add Row</button>
+            <button type="button" class="btn btn-primary" (click)="addColumn()" *ngIf="!isEditScreen">Add Column</button>
+            <button type="button" class="btn btn-danger" (click)="removeColumn(0)" *ngIf="!isEditScreen">Remove Column</button>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-12">
+          <table class="table table-bordered">
+            <thead>
+              <tr *ngIf="!isEditScreen">
+                <th></th>
+                <th *ngFor="let heading of rule.headings; let k = index" contenteditable='true' [textContent]="heading.value" (input)="heading.value=$event.target.textContent">{{heading.value}} - {{i}}</th>
+              </tr>
+              <tr *ngIf="isEditScreen">
+                <th></th>
+                <th *ngFor="let heading of rule.headings; let k = index" contenteditable='false' [textContent]="heading.value" (input)="heading.value=$event.target.textContent">{{heading.value}} - {{i}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of rule.data; let i = index">
+                <td>
+                  <button class="btn btn-danger" (click)="removeRow(i)">Remove row</button>
+                </td>
+                <td *ngFor="let col of row" contenteditable='true' [textContent]="col.value" (input)="col.value=$event.target.textContent">
+                  {{col.value}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

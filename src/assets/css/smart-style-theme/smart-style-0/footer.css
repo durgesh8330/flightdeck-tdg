@@ -1,0 +1,14 @@
+:root{    
+    --footer_background:#021e0f;    
+}
+
+
+
+.smart-style-0 .txt-color-white {
+    color: var(--footer_font) !important;
+  }
+
+  .smart-style-0 .page-footer {
+    background: var(--footer_background) !important;
+    color: var(--footer_font);
+  }

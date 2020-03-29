@@ -1,0 +1,645 @@
+{
+    "pageLayoutTemplate": [
+      {
+        "sectionHeader": "Related-Tabs",
+        "fieldsList": [
+          {
+            "fieldName": "detr",
+            "visible": true,
+            "editable": false,
+            "service": "http://vlodts012.test.intranet:3000/v1/MCMD?CMD=detr&ARG=TN",
+            "icon": "phone-call-warning-attention-512.png",
+            "active": true,
+            "label": "Trouble Ticket",
+            "httpMethod": "put",
+            "type": "related-tab",
+            "fieldValue": "",
+            "accessPoint": "Tabs_LMOS_DETR"
+          },
+          {
+            "fieldName": "dsh",
+            "visible": true,
+            "editable": false,
+            "service": "http://vlodts012.test.intranet:3000/v1/MCMD?CMD=dsh&ARG=TN",
+            "icon": "account_history.png",
+            "active": false,
+            "label": "Ticket Status History",
+            "httpMethod": "put",
+            "type": "related-tab",
+            "fieldValue": "",
+            "accessPoint": "Tabs_LMOS_DSH"
+          },
+          {
+            "fieldName": "dlrl",
+            "visible": true,
+            "editable": false,
+            "service": "http://vlodts012.test.intranet:3000/v1/DLR/TN?EC=",
+            "icon": "vinyl-record-512.png",
+            "active": false,
+            "label": "Line Record",
+            "httpMethod": "get",
+            "type": "related-tab",
+            "fieldValue": "",
+            "accessPoint": "Tabs_LMOS_DLRL"
+          },
+          {
+            "fieldName": "dleth",
+            "visible": true,
+            "editable": false,
+            "service": "http://vlodts012.test.intranet:3000/v1/DLETH/TN?EC=",
+            "icon": "ticket.svg",
+            "active": false,
+            "label": "Ticket History",
+            "httpMethod": "get",
+            "type": "related-tab",
+            "fieldValue": "",
+            "accessPoint": "Tabs_LMOS_DLETH"
+          },
+          {
+            "fieldName": "mltfx",
+            "visible": true,
+            "editable": false,
+            "service": "http://vlodts012.test.intranet:3000/v1/TV?EC=replaceEC&TN=replaceTN&REQ=replaceREQ",
+            "icon": "MLTX.svg",
+            "active": false,
+            "label": "Mech Loop Test",
+            "httpMethod": "post",
+            "type": "related-tab",
+            "fieldValue": "",
+            "accessPoint": "Tabs_LMOS_MLTFX"
+          },
+          {
+            "fieldName": "Predictor",
+            "visible": true,
+            "editable": false,
+            "service": "https://sasi-sasiwrap-dev1.kubeodc.corp.intranet/wrappers/predictor/scrapePredictor?TN=replaceTN&predictorRegion=PREDICTOR_CENTRAL&modeIndicator=y",
+            "icon": "predictor.svg",
+            "active": false,
+            "label": "VTN Macro",
+            "httpMethod": "get",
+            "type": "related-tab",
+            "fieldValue": "",
+            "accessPoint": "Tabs_LMOS_MLTFX"
+          }
+        ]
+      },
+      {
+        "sectionHeader": "Buttons",
+        "fieldsList": [
+          {
+            "buttonIcon": "",
+            "fieldName": "close",
+            "visible": true,
+            "color": "warn",
+            "toolTip": "",
+            "label": "Close",
+            "fieldValue": "",
+            "class": "search-btn",
+            "accessPoint": "Button_close",
+            "order": 2
+          },
+          {
+            "buttonIcon": "",
+            "fieldName": "cancel",
+            "visible": true,
+            "color": "warn",
+            "toolTip": "",
+            "label": "Cancel",
+            "fieldValue": "",
+            "class": "search-btn",
+            "accessPoint": "Button_cancel",
+            "order": 3
+          },
+          {
+            "buttonIcon": "",
+            "fieldName": "reroute",
+            "visible": true,
+            "color": "primary",
+            "toolTip": "",
+            "label": "Reroute",
+            "fieldValue": "",
+            "class": "search-btn",
+            "accessPoint": "Button_dispatch",
+            "order": 4
+          },
+          {
+            "buttonIcon": "",
+            "fieldName": "transfter",
+            "visible": true,
+            "color": "primary",
+            "toolTip": "",
+            "label": "Transfer",
+            "fieldValue": "",
+            "class": "search-btn",
+            "accessPoint": "Button_assign",
+            "order": 5
+          },
+          {
+            "buttonIcon": "",
+            "fieldName": "returntasktoworkgroup",
+            "visible": true,
+            "color": "primary",
+            "service": "http://vlodts012.test.intranet:3000/v1/MSCR/TTN/UPDATE?MC=placeMC&EC=999&TTN=placeTTN&WP=3&IST=112&RTE=452&NARR=placeCUID",
+            "toolTip": "",
+            "label": "Return Task To Workgroup",
+            "fieldValue": "",
+            "class": "search-btn",
+            "accessPoint": "Button_release",
+            "order": 6
+          }
+        ]
+      },
+      {
+        "sectionHeader": "Task Summary",
+        "fieldsList": [
+          {
+            "fieldName": "sourceTaskId",
+            "visible": "true",
+            "editable": "false",
+            "label": "Task ID",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "taskStatus",
+            "visible": "true",
+            "editable": "false",
+            "label": "Status",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "taskName",
+            "visible": "true",
+            "editable": "false",
+            "label": "Type",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "createdDtTm",
+            "visible": "true",
+            "editable": "false",
+            "label": "Create Dt",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "sourceSystemName",
+            "visible": "true",
+            "editable": "false",
+            "label": "Source",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "assignedCuid",
+            "visible": "true",
+            "editable": "false",
+            "label": "AssignCuid",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "workgroupList",
+            "visible": "true",
+            "editable": "false",
+            "label": "Work Group Name",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "modifiedDtTm",
+            "visible": "true",
+            "editable": "false",
+            "label": "modifiedDt",
+            "type": "readyOnly",
+            "fieldValue": ""
+          }
+        ]
+      },
+      {
+        "sectionHeader": "Trouble Report",
+        "fieldsList": [
+          {
+            "fieldName": "TTN",
+            "visible": "true",
+            "editable": "false",
+            "label": "TTN",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "TN",
+            "visible": "true",
+            "editable": "false",
+            "label": "TN",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "LASTCLEARED",
+            "visible": "true",
+            "editable": "false",
+            "label": "Last Cleared",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "CUSTOMERIRATE",
+            "visible": "true",
+            "editable": "false",
+            "label": "Customer Irate",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "OUTOFSERVICE",
+            "visible": "true",
+            "editable": "false",
+            "label": "Out of Service",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "STATE",
+            "visible": "true",
+            "editable": "false",
+            "label": "State",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "ACCESSA",
+            "visible": "true",
+            "editable": "false",
+            "label": "Access A/B Window",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "SERVICEADDRESS",
+            "visible": "true",
+            "editable": "false",
+            "label": "Address",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "SUB",
+            "visible": "true",
+            "editable": "false",
+            "label": "Subsequent(#)",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "workType",
+            "visible": "true",
+            "editable": "false",
+            "label": "Cust Type",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "RECEIPT",
+            "visible": "true",
+            "editable": "false",
+            "label": "Receipt Date",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "OFFICEEQUIPMENT",
+            "visible": "true",
+            "editable": "false",
+            "label": "Office Equipment",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "Region",
+            "visible": "true",
+            "editable": "false",
+            "label": "Region",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "SUMMARY",
+            "visible": "true",
+            "editable": "false",
+            "label": "Summary",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "TROUBLE",
+            "visible": "true",
+            "editable": "false",
+            "label": "Trouble",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "STATUS",
+            "visible": "true",
+            "editable": "false",
+            "label": "LMOS Status",
+            "type": "readyOnly",
+            "fieldValue": ""
+          }
+        ]
+      },
+      {
+        "sectionHeader": "Facilities",
+        "fieldsList": [
+          {
+            "filter": true,
+            "fieldName": "FAC",
+            "visible": true,
+            "label": "Facility",
+            "sort": true,
+            "type": "tableHeader",
+            "fieldValue": ""
+          },
+          {
+            "filter": true,
+            "fieldName": "CABLENAME",
+            "visible": true,
+            "label": "Cable Name",
+            "sort": true,
+            "type": "tableHeader",
+            "fieldValue": ""
+          },
+          {
+            "filter": true,
+            "fieldName": "PAIR",
+            "visible": true,
+            "label": "Pair",
+            "sort": true,
+            "type": "tableHeader",
+            "fieldValue": ""
+          },
+          {
+            "filter": true,
+            "fieldName": "BINDINGPOST",
+            "visible": true,
+            "label": "Building Post",
+            "sort": true,
+            "type": "tableHeader",
+            "fieldValue": ""
+          },
+          {
+            "filter": true,
+            "fieldName": "COLOR",
+            "visible": true,
+            "label": "Color",
+            "sort": true,
+            "type": "tableHeader",
+            "fieldValue": ""
+          },
+          {
+            "filter": true,
+            "fieldName": "XCON",
+            "visible": true,
+            "label": "XCON",
+            "sort": true,
+            "type": "tableHeader",
+            "fieldValue": ""
+          }
+        ]
+      },
+      {
+        "sectionHeader": "Customer",
+        "fieldsList": [
+          {
+            "fieldName": "NAME",
+            "visible": "true",
+            "editable": "false",
+            "label": "Name",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "REACH",
+            "visible": "true",
+            "editable": "false",
+            "label": "Reach",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "REMARK",
+            "visible": "true",
+            "editable": "false",
+            "label": "CBR Remark",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "CBRTYPE",
+            "visible": "true",
+            "editable": "false",
+            "label": "CBR Type",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "CLASSOFSERVICE",
+            "visible": "true",
+            "editable": "false",
+            "label": "Class of Svc",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "CLASSOFSERVICE",
+            "visible": "true",
+            "editable": "false",
+            "label": "LRte",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "SVCCATEGORY",
+            "visible": "true",
+            "editable": "false",
+            "label": "Svc Category",
+            "type": "readyOnly",
+            "fieldValue": ""
+          },
+          {
+            "fieldName": "VER",
+            "visible": "true",
+            "editable": "false",
+            "label": "Ver",
+            "type": "readyOnly",
+            "fieldValue": ""
+          }
+        ]
+      },
+      {
+        "sectionHeader": "pagination",
+        "fieldsList": [
+          {
+            "totalRecords": 1,
+            "fieldName": "pagination",
+            "pageNumber": 1,
+            "pageNumberText": "Page Number -",
+            "totalRecordsText": "Total number of records: ",
+            "pageLimitOptions": [
+              10,
+              20,
+              50,
+              100
+            ],
+            "pageSize": 10,
+            "label": "pagination",
+            "perPageText": "Per Page",
+            "type": "pagination",
+            "fieldValue": ""
+          }
+        ]
+      },
+      {
+        "sectionHeader": "WCM-ScreeningTable Buttons",
+        "fieldsList": [
+          {
+            "fieldName": "Filter",
+            "visible": true,
+            "actionbutton": true,
+            "apiUrl": "",
+            "label": "Filter",
+            "fieldValue": "",
+            "class": "search-btn"
+          },
+          {
+            "fieldName": "Pdf",
+            "visible": true,
+            "actionbutton": true,
+            "apiUrl": "",
+            "label": "PDF",
+            "fieldValue": "",
+            "class": "search-btn"
+          },
+          {
+            "fieldName": "Print",
+            "visible": true,
+            "actionbutton": true,
+            "apiUrl": "",
+            "label": "Print",
+            "fieldValue": "",
+            "class": "search-btn"
+          },
+          {
+            "fieldName": "showHideColumns",
+            "visible": true,
+            "actionbutton": true,
+            "apiUrl": "",
+            "label": "Show / Hide columns",
+            "fieldValue": "",
+            "class": "search-btn"
+          }
+        ]
+      },
+      {
+        "sectionHeader": "summary",
+        "fieldsList": [
+          {
+            "fieldName": "",
+            "header": {
+              "showHistory": true,
+              "headerButton": true,
+              "label": "Status",
+              "history": true,
+              "key": "status"
+            },
+            "label": "",
+            "body": [
+              {
+                "fieldName": "assignedCuid",
+                "textarea": false,
+                "label": "Assigned To",
+                "key": "status_code"
+              },
+              {
+                "fieldName": "assignedName",
+                "textarea": false,
+                "label": "Assigned To Name",
+                "key": "status_code"
+              },
+              {
+                "fieldName": "workgroupList",
+                "textarea": false,
+                "label": "Assigned Workgroup(s)",
+                "key": "description"
+              },
+              {
+                "fieldName": "EC",
+                "textarea": false,
+                "label": "EC",
+                "key": "ec"
+              },
+              {
+                "fieldName": "MC",
+                "textarea": true,
+                "label": "MC",
+                "key": "mc"
+              },
+              {
+                "fieldName": "COMMITDATE",
+                "textarea": true,
+                "label": "Commitment Date",
+                "key": "cd"
+              }
+            ],
+            "fieldValue": ""
+          }
+        ]
+      },
+      {
+        "sectionHeader": "Task History",
+        "fieldsList": [
+          {
+            "filter": true,
+            "fieldName": "FAC",
+            "visible": true,
+            "label": "Transaction",
+            "sort": true,
+            "type": "tableHeader",
+            "fieldValue": ""
+          },
+          {
+            "filter": true,
+            "fieldName": "CABLENAME",
+            "visible": true,
+            "label": "Date/Time",
+            "sort": true,
+            "type": "tableHeader",
+            "fieldValue": ""
+          },
+          {
+            "filter": true,
+            "fieldName": "PAIR",
+            "visible": true,
+            "label": "User",
+            "sort": true,
+            "type": "tableHeader",
+            "fieldValue": ""
+          },
+          {
+            "filter": true,
+            "fieldName": "BINDINGPOST",
+            "visible": true,
+            "label": "Note",
+            "sort": true,
+            "type": "tableHeader",
+            "fieldValue": ""
+          }
+        ]
+      }
+    ],
+    "templateName": "LMOS TaskDetails",
+    "createdById": "AC30161"
+  }

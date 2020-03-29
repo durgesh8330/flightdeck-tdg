@@ -1,0 +1,388 @@
+{
+    "pageLayoutTemplate": [
+      {
+        "sectionHeader": "R2DG Search Parameters",
+        "fieldsList": [
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceTaskId",
+            "label": "Source Task Id",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "orderId",
+            "label": "Swift Order ID",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Action Type",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "AMS Quote ID",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Bandwidth",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "A End City",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "A End CLLI",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "A End Postal Code",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "A End State",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "A End Street Address",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Z End City",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Z End CLLI",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Z End Postal Code",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Z End State",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Z End Street Address",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "CCM Email Address",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "CCM label",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "CCM Number",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "CNDC",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Company label",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Customer PON",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Hand Off Type",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Order Remarks",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Order Type",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Originator CUID",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Port Speed",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Primary Contact Details",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Primary Contact Email",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Primary Contact Firstlabel",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Primary Contact Lastlabel",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Primary Contact Number",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Project ID",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "ROCID",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Service Term",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          },
+          {
+            "visible": true,
+            "editable": true,
+            "service": "",
+            "fieldlabel": "sourceSystem",
+            "label": "Vendor Comments",
+            "type": "TextBox",
+            "value": "",
+            "fieldValue": ""
+          }
+        ]
+      },
+      {
+        "sectionHeader": "Buttons",
+        "fieldsList": [
+          {
+            "visible": true,
+            "toolTip": " clears data",
+            "fieldlabel": "Reset",
+            "label": "Reset",
+            "type": "Button",
+            "fieldValue": "",
+            "class": "search-btn  reset-bgclr",
+            "click": "clear",
+            "order": 1
+          },
+          {
+            "visible": true,
+            "toolTip": "Used to search non hidden tasks",
+            "fieldlabel": "Search",
+            "label": "Search",
+            "type": "Button",
+            "fieldValue": "",
+            "class": "search-btn",
+            "click": "searchTask",
+            "order": 2
+          }
+        ]
+      }
+    ],
+    "templateName": "R2DG Search Template",
+    "createdById": "AC30161"
+  }

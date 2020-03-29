@@ -1,0 +1,46 @@
+label{
+    font-weight: bold;
+}
+
+.break-text{
+    word-break: break-all;
+}
+
+.close-icon {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.skillname {
+    text-decoration: underline;
+    cursor: pointer;
+    word-break: break-word;
+}
+::ng-deep ul.pagination{
+    margin: 0px !important;
+    padding-right: 13px !important;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+.jarviswidget {
+    margin: 0px !important;
+}
+
+ 
+ ::ng-deep .pagination>li>a,::ng-deep .pagination>li>span {
+    padding: 4px 12px !important;
+ }
+
+.system__parameter  {
+    margin-top: 4px;
+}
+.tablesectiondiv {
+    overflow-x: overlay;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+// ::ng-deep .table-responsive {
+//     height: 60vh;
+// }

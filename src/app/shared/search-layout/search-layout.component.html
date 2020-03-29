@@ -1,0 +1,132 @@
+<div id="searchLayoutDiv" class="col-sm-12 row" style="width:100%;"
+  *ngIf="pageLayout && pageLayout['pageLayoutTemplate']">
+
+  <div *ngFor="let layoutElem of pageLayout['pageLayoutTemplate']; let isFirst = first">
+    <div class="search-task-widget-wrapper"
+      *ngIf="layoutElem.sectionHeader != 'Buttons' && layoutElem.sectionVisibility==true">
+
+      <mat-accordion id="srchLayoutAccordion">
+        <mat-expansion-panel class="accordionPanel" [expanded]="layoutElem.expanded">
+          <mat-expansion-panel-header [collapsedHeight]="'30px'" [expandedHeight]="'30px'"
+            class="accordionPanelHeading">
+            {{layoutElem.sectionHeader}}
+          </mat-expansion-panel-header>
+
+          <div class="accordionPanelBody" style="column-count: 1;">
+            <form (keyup.enter)="searchData($event,layoutElem)">
+              <div style="padding-left:0px; width: 100%;" class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+                <div *ngFor="let obj of layoutElem.fieldsList; let i=index;">
+                  <div *ngIf="i%2 == 0">
+                    <div id="searchLayout" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">&nbsp;</div>
+                  </div>
+                  <div id="searchLayout" class="col-xs-12 col-sm-12 col-md-12 col-lg-6" style="width: 50%;">
+                    <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <label style="font-size:12px;">{{obj.label}}</label>
+                    </span>
+
+                    <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 span-operator">
+                      <!-- <ng-select2 class="srchLayoutSelect2" id="{{obj.pageLayoutFieldId}}"
+                        (ngModelChange)="onChange(obj, $event)" [data]="dataTypeToOperator.get(obj.type)"
+                        placeHolder='Please select' [(ngModel)]="obj.operator"
+                        name="selectObj-{{obj.pageLayoutFieldId}}-{{i}}" #selectObj="ngModel">
+                      </ng-select2> -->
+
+                      <select class="srchLayoutSingleSelect" id="{{obj.pageLayoutFieldId}}" placeHolder='Please select'
+                        name="selectObj-{{obj.pageLayoutFieldId}}-{{i}}" #selectObj="ngModel"
+                        (ngModelChange)="onChange(obj, $event)" [(ngModel)]="obj.operator">
+                        <option *ngFor="let listOfValue of getOperators(obj.type)">{{listOfValue}}</option>
+                      </select>
+                    </span>
+
+                    <span class="col-xs-4 col-sm-4 col-md-4 col-lg-6">
+                      <div [ngSwitch]="obj.type">
+                        <div *ngSwitchCase="'TextBox'">
+                          <input type="text" name="textObj-{{i}}" #textObj="ngModel"
+                            [(ngModel)]="modelValue[obj.label]">
+                        </div>
+                        <div *ngSwitchCase="'textArea'">
+                          <textarea autosize name="textAreaObj-{{i}}" #textAreaObj="ngModel"
+                            [(ngModel)]="modelValue[obj.label]" rows="1"></textarea>
+                        </div>
+                        <div *ngSwitchCase="'SingleSelect'">
+                          <select class="srchLayoutSingleSelect" [(ngModel)]="modelValue[obj.label]"
+                            name="selectObj-{{i}}" #selectObj="ngModel">
+                            <option></option>
+                            <option *ngFor="let listOfValue of obj.dataSource">{{listOfValue}}</option>
+                          </select>
+                        </div>
+                        <div *ngSwitchCase="'Select'">
+                          <select class="srchLayoutSingleSelect" [(ngModel)]="modelValue[obj.label]"
+                            name="selectObj-{{i}}" #selectObj="ngModel">
+                            <option></option>
+                            <option *ngFor="let listOfValue of obj.dataSource">{{listOfValue}}</option>
+                          </select>
+                        </div>
+                        <div *ngSwitchCase="'MultiSelect'">
+                          <ng-select2 class="srchLayoutMultiSelect" [data]="obj.dataSource" [options]="options"
+                            [(ngModel)]="modelValue[obj.label]" name="multiObj-{{i}}" #multiObj="ngModel">
+                          </ng-select2>
+                        </div>
+                        <div *ngSwitchCase="'Date'">
+                          <div *ngIf="obj.operator == 'between'">
+                            <input type="text" bsDaterangepicker name="textObj-{{i}}" #textObj="ngModel"
+                              (ngModelChange)="dateUpdated(obj, $event)" [(ngModel)]="modelValue[obj.label]" [bsConfig]=bsCfg>
+                          </div>
+                          <div *ngIf="obj.operator != 'between'">
+                            <input type="text" bsDatepicker name="textObj-{{i}}"  #textObj="ngModel"
+                              (ngModelChange)="dateUpdated(obj, $event)"
+                              [(ngModel)]="modelValue[obj.label]" [bsConfig]=bsCfg>
+                          </div>
+                          <!--  (bsValueChange)="dateUpdated(obj, $event)" -->
+                        </div>
+                        <div *ngSwitchCase="'SearchTextBox'">
+                          <mat-form-field class="srchLayoutMatFormField">
+                            <input type="text" name="search" matInput [matAutocomplete]="auto" [(ngModel)]="modelValue[obj.label]"
+                              (input)="filter($event.target.value, obj)">
+                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" class="srchLayoutMatAutoComplete">
+                              <mat-option class="srchLayoutMatOption" *ngFor="let object of obj.dataSource" [value]="object.value">
+                                {{object.data}}
+                              </mat-option>
+                            </mat-autocomplete>
+                            </mat-form-field>
+
+                          <!-- <select class="srchLayoutSingleSelect" [(ngModel)]="modelValue[obj.label]"
+                            name="selectObj-{{i}}" #selectObj="ngModel" (input)="filter($event.target.value, obj)">
+                            <option></option>
+                            <option *ngFor="let object of obj.dataSource"  [value]="object.modalValue">{{object.data}}</option>
+                          </select> -->
+                        </div>
+                        <div *ngSwitchDefault>
+                          <input type="text" name="textObj-{{i}}" #textObj="ngModel"
+                            [(ngModel)]="modelValue[obj.label]">
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+
+  <div *ngFor="let layoutElem of pageLayout['pageLayoutTemplate']">
+    <div class="row search-btn-control text-right" *ngIf="layoutElem.sectionHeader == 'Buttons'">
+      <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9"> </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" style="position: relative;right: 10px;">
+        <span *ngFor="let button of layoutElem.fieldsList">
+          <button class="btn btn-success blue__btn mr-0" mat-raised-button (click)="searchData(layoutElem);"
+            color="primary" *ngIf="button.click == 'searchTask' && button.btnVisibility == true">
+            {{ button.label }}
+          </button>
+          <a mat-raised-button (click)="clearData(pageLayout['pageLayoutTemplate']);" routerLink="."
+            class="clear-btn reset-bgclr" *ngIf="button.click == 'clear' && button.btnVisibility == true">
+            {{ button.label }}
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

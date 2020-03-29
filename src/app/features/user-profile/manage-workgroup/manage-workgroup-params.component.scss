@@ -1,0 +1,50 @@
+.attributes-header {
+  margin: 10px 0px;
+  background: #9b9b9b;
+  color: white;
+  padding: 5px;
+  span {
+    font-size: 1.3em;
+  }
+  button {
+    float: right;
+  }
+}
+.switch-label {
+  padding: 2em;
+}
+.switch-input {
+  margin: 1.2em 0;
+}
+.routing-attribute {
+  margin: 1em 0;
+}
+.form-action-buttons {
+  float: right;
+  margin-right: 1em;
+}
+.workgroup-attr-header {
+  padding: 10px 0px;
+  margin-bottom: 10px;
+  // float: left;
+  font-size: 1.2em;
+}
+.delete-attr-icon {
+  color: red;
+  margin-right: 1em;
+}
+.custom-button-margin {
+  margin-top: 1.4em;
+}
+.float-content-right {
+  button {
+    float: right;
+  }
+}
+button.search-btn {
+  font-size: 0.8em;
+  margin: 0;
+}
+i {
+  cursor: pointer;
+}

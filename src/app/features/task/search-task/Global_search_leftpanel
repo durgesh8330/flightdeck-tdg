@@ -1,0 +1,152 @@
+[{
+    "fieldLabel": "General Search Parameters",
+    "fieldName": "generalSearchParameter",
+    "type": "SectionalHeader",
+    "metadata": {
+      "color": "blueDark",
+      "editbutton": false,
+      "fullscreenbutton": true,
+      "togglebutton": true,
+      "deletebutton": false,
+      "custombutton": false,
+      "sortable": false,
+      "service": null,
+      "size": null,
+      "visible": "true",
+      "cssRef": "search-task-widget-wrapper"
+    },
+    "fieldsList": [
+      {
+        "fieldName": "appTaskInstanceId",
+        "fieldValue": "",
+        "label": "SourceSystem Transaction Id",
+        "service": null,
+        "type": "text"
+      },
+      {
+        "fieldName": "assignedCuid",
+        "fieldValue": "",
+        "label": "Task Assigned Id",
+        "service": null,
+        "type": "text"
+      },
+      {
+        "fieldName": "createdById",
+        "fieldValue": "",
+        "label": "Created By Id",
+        "service": null,
+        "type": "text"
+      },
+      {
+        "fieldName": "modifiedById",
+        "fieldValue": "",
+        "label": "Modified By Id",
+        "service": null,
+        "type": "text"
+      },
+      {
+        "fieldName": "sourceSystemList",
+        "fieldValue": "",
+        "label": "SourceSystem",
+        "service": "/SourceSystem/GetAll",
+        "type": "multiselect",
+        "dropdownList":[
+          "ASP",
+          "ASRI"
+        ]
+      },
+      {
+        "label": "Task Types",
+        "fieldName": "taskTypeList",
+        "fieldValue": "",
+        "type": "multiselect",
+        "service": "/TaskType/GetAll",
+        "dropdownList":[
+          "ASP",
+          "ASRI"
+        ]
+      },
+      {
+        "label": "Workgroups",
+        "fieldName": "workgroupList",
+        "fieldValue": "",
+        "type": "multiselect",
+        "service": "/CommonProfile/Workgroup/GetAll",
+        "dropdownList":[
+          "ASP",
+          "ASRI"
+        ]
+      },
+      {
+        "label": "Skills",
+        "fieldName": "skillList",
+        "fieldValue": "",
+        "type": "multiselect",
+        "service": "/CommonProfile/Skill/GetAll",
+        "dropdownList":[
+          "ASP",
+          "ASRI"
+        ]
+      },
+      {
+        "label": "Core Sales Order ID",
+        "fieldName": "customerOrderID",
+        "fieldValue": "",
+        "type": "text",
+        "service": null
+      },
+      {
+        "label": "PON",
+        "fieldName": "purchaseOrderNumber",
+        "fieldValue": "",
+        "type": "text",
+        "service": null
+      },
+      {
+        "label": "Engineering Order ID",
+        "fieldName": "engineeringOrderId",
+        "fieldValue": "",
+        "type": "text",
+        "service": null
+      },
+      {
+        "label": "CKR - (National ELA Circuit ID)",
+        "fieldName": "ckr",
+        "fieldValue": "",
+        "type": "text",
+        "service": null
+      },
+      {
+        "label": "Local Circuit ID - (UNI or OVC)",
+        "fieldName": "localCircuitId",
+        "fieldValue": "",
+        "type": "text",
+        "service": null
+      },
+      {
+        "label": "Task Escalated",
+        "fieldName": "escalated",
+        "fieldValue": "false",
+        "type": "slide",
+        "service": null
+      },
+    ],
+    "buttonList":[
+      {
+        "label": "Search",
+        "fieldName": "search",
+        "fieldValue": "search",
+        "type": "button",
+        "service": null,
+        "click":"searchTask"
+      },
+      {
+        "label": "Clear",
+        "fieldName": "clear",
+        "fieldValue": "clear",
+        "type": "button",
+        "service": null,
+        "click":"clear"
+      },
+    ]
+  }];

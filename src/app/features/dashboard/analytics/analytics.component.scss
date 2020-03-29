@@ -1,0 +1,31 @@
+.dashboard-task_loader {
+    position: absolute;
+    top: 21%;
+    /* width: 100%; */
+    z-index: 10;
+    left: 40%;
+    /* overflow-y: hidden !important; */
+}
+.table_graph_con article.overflow-scroll{
+    overflow-x: auto 
+}
+.table_graph_con article.overflow-hidden{
+    overflow-x: hidden
+}
+::ng-deep .source-pie .pie_chart_he .sa-flot-chart .sa-flot-chart{
+    height: 180px !important;
+}
+.source-pie .pie_chart_he .sa-flot-chart{
+    display: flex;
+    height: 100% !important;
+    align-items: center;
+    justify-content: center;
+}
+.source-pie .pie_chart_he{
+    height: 100%;
+}
+a.disabled {
+    color:black;
+    pointer-events: none;
+    text-decoration: none;
+}

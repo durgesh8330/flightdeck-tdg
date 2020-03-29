@@ -1,0 +1,89 @@
+.operatorDropDown {
+    width: 30px;
+    height: 10px;
+}
+
+#srchLayoutAccordion .accordionPanel {
+    padding: 0;
+    border-radius: 10px;
+    border-color: #53565a;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    background-color: #d7d2cb;
+    background: linear-gradient(180deg, #d7d2cb, #e6e5e4);
+}
+
+.accordionPanelHeading {
+    height: 30px !important;
+    color: #53565A;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    border-color: #53565a;
+    border-bottom: 1px solid transparent;
+    background: linear-gradient(180deg, #d7d2cb, #e6e5e4);
+}
+
+.accordionPanelBody {
+    background-color: #fff;
+    padding: 0px 0px 10px 0px;
+}
+
+::ng-deep .accordionPanel .mat-expansion-panel-body {
+    padding: 0px 0px 0px 0px;
+}
+
+.span-operator {
+    font-size: 12px;
+    padding-left: 5px;
+}
+
+::ng-deep .srchLayoutSelect2 .select2-container {
+    border: 0px solid rgba(119, 119, 119, 0.56) !important;
+}
+
+input[type=text] {
+    background-image: none !important;
+}
+
+.srchLayoutSingleSelect {
+    width: 73%;
+    height: 25px;
+}
+
+.srchLayoutMultiSelect {
+    width: 73%;
+    height: auto;
+}
+
+::ng-deep .srchLayoutMultiSelect .select2-container {
+    width: 73% !important;
+    border: 1px solid rgba(119, 119, 119, 0.56) !important;
+}
+
+::ng-deep .srchLayoutMultiSelect .select2-container .select2-selection--multiple {
+    overflow-y: scroll;
+    border: none;
+}
+
+::ng-deep .srchLayoutMultiSelect .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    text-align: center;
+    padding-top: 1px;
+    min-height: 17px;
+}
+
+#srchLayoutAccordion .srchLayoutMatFormField {
+    width: 70%;
+}
+
+.srchLayoutMatOption.mat-option {
+    height: 40px !important;
+    font-size: 12px;
+}
+
+::ng-deep .mat-form-field-infix {
+    /*     padding: 0 !important; */
+    border-top: 0;
+}

@@ -1,0 +1,63 @@
+<sa-modal [modal]="modalDetails" (buttonClicked)="buttonClicked($event)"></sa-modal>
+<div class="alert alert-success alert-dismissible" *ngIf="IsSuccess" style="background-color: green;color: #fff;">
+	<strong>Success! </strong>{{message}}.
+	<button type="button" class="close" data-dismiss="alert" (click)="IsSuccess = false">&times;</button>
+</div>
+<div class="alert alert-danger alert-dismissible" *ngIf="IsError" style="background-color: #ce2f2f;color: #fff;">
+	<strong>Error! </strong>{{message}}.
+	<button type="button" class="close" data-dismiss="alert" style="background-color: #fff;" (click)="IsError = false">&times;</button>
+</div>
+<div class="alert alert-warning  alert-dismissible" *ngIf="IsWarning">
+	<strong><i class="fa fa-warning"></i>
+		Warning! </strong>{{message}}.
+</div>
+<div *ngIf="loaderTaskDetail || loader" class="task_loader">
+
+	<!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+	<div class="spinner">
+		<div class="bounce1"></div>
+		<div class="bounce2"></div>
+		<div class="bounce3"></div>
+	</div>
+</div>
+
+<div class="" *ngIf="!loaderTaskDetail">
+	<div id="systemtable">
+		<sa-widgets-grid>
+			<div sa-widget [editbutton]="false" [fullscreenbutton]="true" [deletebutton]="false" [colorbutton]="true"
+				[togglebutton]="true" name="taskresultwodgetwa">
+				<sa-alert [error]="error"></sa-alert>
+				<div class="widget-body" style="padding-top: 5px;overflow-y: hidden;" *ngIf="showSATable">
+					<sa-table 
+						[pagination]="pagination" 
+						[actionButton]="actionButton" 
+						[actionColumn]="actionColumn"
+						[tableHeader]="actionColumn" 
+						[defaultActionColumns]="defaultActionColumns"
+						[tableData]="displayTaskResult"
+						[tableOtherContent]="systemParameter" 
+						[filter]="filter"
+						[tablePaginationData]="tablePaginationData"
+						[actionList]="actionList"
+
+						(addNewRowParent)="addNewRow()"
+						(onSaveParent)="onSaveClick($event)" 
+						(pageChangedParent)="onPaginateInnerGrid($event)"
+						(onEditParent)="onEditClick($event)" 
+						(onDeleteParent)="onDeleteClick($event)"
+						(onCloseParent)="onCloseClick($event)" 
+						(openTabParent)="openDetailView($event)"
+						(expandRow)="expandRow($event)" 
+						(nextAll)="nextTasks()"
+						(OnActionChangeStatus)="onActionChange($event)"
+						(onActionStatusSubmit)="onAction($event)"
+						(CheckUncheckAllRows)="checkAllRows($event)"
+						(SetActionDropdown)="SetActionDropdown($event)"
+						(refresh)="onRefresh()" 
+						>
+					</sa-table>
+				</div>
+			</div>
+		</sa-widgets-grid>
+	</div>
+</div>

@@ -1,0 +1,865 @@
+<sa-modal [modal]="modalDetails" (buttonClicked)="buttonClicked($event)"></sa-modal>
+<div class="wrap" *ngIf="!displayWCMDetails">
+    <div class="resizable resizable1 example-2">
+        <div class="inner">
+            <form name="form" class="task-details-form" (ngSubmit)="f.form.valid && hideSection()" #f="ngForm"
+                novalidate>
+                <div class="form-group">
+
+                    <div class="sticky-tab-header spr-tabs">
+                        <ul class="nav nav-tabs tabs-left text-align-center" id="demo-pill-nav">
+                            <li [class.active]="leftSideTabs.tab == 'task-details'">
+                                <a (click)="leftSideTabs.tab = 'task-details'">
+                                    Task Details</a>
+                            </li>
+                            <li [class.active]="leftSideTabs.tab == 'log-details'">
+                                <a (click)="(leftSideTabs.tab = 'log-details'); getLogDetails()">
+                                    Log Details</a>
+                            </li>
+                            <li *ngIf="isSPRApplication" [class.active]="leftSideTabs.tab == 'version-details'">
+                                <a (click)="(leftSideTabs.tab = 'version-details');">
+                                    Version Details</a>
+                            </li>
+                        </ul>
+
+                        <div *ngIf="leftSideTabs.tab == 'task-details'" class="pull-right">
+                            <div *ngFor="let layoutElem of pageLayout.pageLayoutTemplate">
+                                <div *ngIf="layoutElem.sectionHeader == 'Buttons'" style="padding-top:5px;">
+                                    <div *ngFor="let button of layoutElem.fieldsList" style="display:inline-block">
+                                        <!-- <div *ngIf="button.visible && button.type == 'iconButton'" (click)="onRefreshTaskDetails('taskdetails')"
+                                            class="pull-right margin-right-13">
+                                            <i class="material-icons">cached</i>
+                                        </div> -->
+                                        <a class="cm-refresh pull-right margin-right-13" *ngIf="button.visible && button.type == 'iconButton' && button.fieldName != 'action'" (click)="onRefreshTaskDetails('taskdetails')" style="font-size:150%">
+                                            <span class="glyphicon glyphicon-refresh"></span>
+                                        </a>
+
+                                        <!-- <a  *ngIf="button.visible && button.type == 'iconButton'" (click)="onRefreshTaskDetails('taskdetails')"
+                                        class="pull-right margin-right-13 cm-refresh" style="font-size:150%">
+                                            material-icons
+                                          </a> -->
+
+                                        <div id="Profile Management" *ngIf="button.visible && button.type == 'iconButton' && button.fieldName == 'action' && actionList.length > 0" class=" pull-right dropdown"
+                                          dropdown [insideClick]="true">
+                                          <span class="project-selector dropdown-toggle" dropdownToggle> 
+                                              <a class="btn btn-default buttons-html5 show-hide">
+                                                <i class="fa fa-cog showimg"></i>
+                                                <i class="fa fa-cog hideimg"></i>
+                                              </a>
+                                          </span>
+                                            <ul *dropdownMenu class="dropdown-menu ColVis_collection">
+                                                <li class="fileddropdown" *ngFor="let fieldname of actionList">
+                                                    <label class="filedNameOverflow" (click)="OnAction(fieldname.value)">
+                                                        <span>{{fieldname.value}}</span>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <button *ngIf="button.visible && button.type == 'Button'" type="submit" class="btn btn-success blue__btn pull-right margin-right-13" mat-raised-button>
+                                            {{button.label}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <sa-boxed-layout [leftSideTabs]="leftSideTabs" [pageLayout]="pageLayout" [logPageLayout]="logPageLayout"
+                        [taskDetails]="taskDetails" [isShow]="'taskdetails'" [logData]="logData" [loaderTaskDetail]="loaderTaskDetail"
+                        [activityLog]="activityLog" (filterValue)="filterTaskResult($event)">
+                    </sa-boxed-layout>
+
+                    <!-- <tabset>
+                        <tab [active]="leftSideTabs.tab == 'task-details'" class="left-tab-pane">
+                            <div *ngIf="loaderTaskDetail" class="task_loader">
+                                <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" />
+                            </div>
+                            <div *ngIf="!displayWCMDetails && !loaderTaskDetail">
+                                <div *ngFor="let layoutElem of pageLayout['pageLayoutTemplate']">
+                                    <div class="tab-pane show active search-tab-content" [id]="task-details" role="tabpanel"
+                                        aria-labelledby="task-details-tab" *ngIf="layoutElem.sectionHeader !== 'Buttons'">
+                                        <div class="inner widget-name">
+                                            <div *ngIf="showViewSection && layoutElem.sectionHeader != 'Other Fields'">
+                                                <div class="row">
+                                                    <div id="content1">
+                                                        <sa-widgets-grid>
+                                                            <article class="col-sm-12">
+                                                                <div sa-widget [editbutton]="false" [fullscreenbutton]="true"
+                                                                    [deletebutton]="false" [colorbutton]="true"
+                                                                    [togglebutton]="true" name="taskDetailWidget">
+
+                                                                    <header>
+                                                                        <span class="widget-icon">
+                                                                            <i class="fa fa-table"></i>
+                                                                        </span>
+
+                                                                        <h2>{{layoutElem.sectionHeader}}</h2>
+                                                                    </header>
+
+                                                                    <div class="dynamic-table">
+                                                                        <div class="widget-body">
+                                                                            <div class="table-responsive">
+                                                                                <div class="panel-body general-tasks">
+                                                                                    <div class="row">
+                                                                                        <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 no-padding-right elemWrapper"
+                                                                                            *ngFor="let elem of layoutElem.fieldsList">
+                                                                                            <div class="" *ngIf="elem.type == 'TextBox' && elem.visible">
+                                                                                                <label [class]="elem.labelCssClass">
+                                                                                                    {{elem.label}}
+                                                                                                </label>
+                                                                                                <div [class]="elem.inputWrapperCssClass"
+                                                                                                    *ngIf="elem.fieldName !== 'ng2Taskdd'">
+                                                                                                    <input type="text"
+                                                                                                        [name]="elem.fieldName"
+                                                                                                        [(ngModel)]="taskDetails[elem.model]"
+                                                                                                        *ngIf="!taskDetails[elem.model] || taskDetails[elem.model]==''"
+                                                                                                        [disabled]="true"
+                                                                                                        [required]="elem.required"
+                                                                                                        [readonly]="!elem.editable"
+                                                                                                        class="form-control" />
+                                                                                                    <input type="text"
+                                                                                                        [name]="elem.fieldName"
+                                                                                                        [(ngModel)]="taskDetails[elem.model]"
+                                                                                                        *ngIf="taskDetails[elem.model] && taskDetails[elem.model].length<40"
+                                                                                                        [disabled]="true"
+                                                                                                        [required]="elem.required"
+                                                                                                        [readonly]="!elem.editable" 
+                                                                                                        class="form-control" />
+                                                                                                    <textarea [class]="elem.inputClass"
+                                                                                                        [name]="elem.fieldName"
+                                                                                                        [(ngModel)]="taskDetails[elem.model]"
+                                                                                                        *ngIf="taskDetails[elem.model] && taskDetails[elem.model].length>=40"
+                                                                                                        [disabled]="true"
+                                                                                                        [required]="elem.required"
+                                                                                                        [readonly]="!elem.editable"
+                                                                                                        class="form-control" ></textarea>
+                                                                                                </div>
+                                                                                                <div [class]="elem.inputWrapperCssClass"
+                                                                                                    *ngIf="elem.fieldName == 'ng2Taskdd'">
+                                                                                                    <input type="text"
+                                                                                                        [name]="elem.fieldName"
+                                                                                                        [(ngModel)]="taskDetails['taskName']"
+                                                                                                        [disabled]="elem.disabled"
+                                                                                                        [required]="elem.required"
+                                                                                                        [readonly]="!elem.editable" 
+                                                                                                        class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="" *ngIf="elem.type == 'MultiSelect' && elem.visible">
+                                                                                                <label [class]="elem.labelCssClass">
+                                                                                                    {{elem.label}}
+                                                                                                </label>
+                                                                                                <div [class]="elem.inputWrapperCssClass">
+                                                                                                    <ng-select2 [data]="workGroupNamenew"
+                                                                                                        [options]="elem.options"
+                                                                                                        [width]="500"
+                                                                                                        [class]="elem.inputClass"
+                                                                                                        [name]="elem.fieldName"
+                                                                                                        [(ngModel)]="taskDetails[elem.model]"
+                                                                                                        [disabled]="elem.disabled"
+                                                                                                        [required]="elem.required">
+                                                                                                    </ng-select2>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="" *ngIf="elem.type == 'switch' && elem.visible">
+                                                                                                <label [class]="elem.labelCssClass">
+                                                                                                    {{elem.label}}
+                                                                                                </label>
+                                                                                                <div [class]="elem.inputWrapperCssClass">
+                                                                                                    <on-off-switch
+                                                                                                        title=""
+                                                                                                        [(model)]="taskDetails[elem.model]"
+                                                                                                        [disabled]="elem.disabled"
+                                                                                                        (change)="this[elem.change]()">
+                                                                                                    </on-off-switch>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="" *ngIf="elem.type == 'textarea' && elem.visible">
+                                                                                                <label [class]="elem.labelCssClass">
+                                                                                                    {{elem.label}}
+                                                                                                </label>
+                                                                                                <div [class]="elem.inputWrapperCssClass">
+                                                                                                    <textarea [class]="elem.inputClass"
+                                                                                                        [name]="elem.fieldName"
+                                                                                                        [(ngModel)]="taskDetails[elem.model]"
+                                                                                                        [disabled]="elem.disabled"
+                                                                                                        [required]="elem.required"
+                                                                                                        [readonly]="!elem.editable"
+                                                                                                        [rows]="elem.rows"
+                                                                                                        [ngClass]="{ 'was-validated': f.submitted && taskInstNotes && taskInstNotes.invalid }">
+                                                                                                </textarea>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </article>
+                                                        </sa-widgets-grid>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div *ngIf="taskDetails['taskSectionModels'] && taskDetails['taskSectionModels'].length > 0 && layoutElem.sectionHeader != 'Other Fields'">
+                                                <div class="row" *ngFor="let component of taskDetails['taskSectionModels']">
+                                                    <div id="content1">
+                                                        <sa-widgets-grid>
+                                                            <article class="col-sm-12">
+                                                                <div sa-widget [editbutton]="false" [fullscreenbutton]="true"
+                                                                    [deletebutton]="false" [colorbutton]="true"
+                                                                    [togglebutton]="true" name="{{component['header']}}Widget">
+
+                                                                    <header>
+                                                                        <span class="widget-icon">
+                                                                            <i class="fa fa-table"></i>
+                                                                        </span>
+
+                                                                        <h2>{{component['header']}}</h2>
+                                                                    </header>
+
+                                                                    <div class="dynamic-table">
+                                                                        <div class="widget-body">
+                                                                            <div class="table-responsive">
+                                                                                <div class="panel-body general-tasks">
+                                                                                    <div class="row">
+                                                                                        <ng-container *ngFor="let elem of component['paramList']">
+                                                                                            <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 no-padding-right elemWrapper">
+                                                                                                <label [class]="layoutElem.fieldsList[0].labelCssClass">
+                                                                                                    {{elem.paramFieldLayout.label}}
+                                                                                                </label>
+                                                                                                <div [class]="layoutElem.fieldsList[0].inputWrapperCssClass">
+                                                                                                    <input type="text"
+                                                                                                        [class]="layoutElem.fieldsList[0].inputClass"
+                                                                                                        [name]="elem.name || 'tempName'"
+                                                                                                        [(ngModel)]="elem['value']"
+                                                                                                        *ngIf="!elem['value'] || elem['value']==''"
+                                                                                                        [disabled]="false"
+                                                                                                        [required]="layoutElem.fieldsList[0].required" />
+                                                                                                    <input type="text"
+                                                                                                        [class]="layoutElem.fieldsList[0].inputClass"
+                                                                                                        [name]="elem.name || 'tempName'"
+                                                                                                        [(ngModel)]="elem['value']"
+                                                                                                        *ngIf="elem['value'] && elem['value'].length<40"
+                                                                                                        [disabled]="false"
+                                                                                                        [required]="layoutElem.fieldsList[0].required" />
+                                                                                                    <textarea [class]="layoutElem.fieldsList[0].inputClass"
+                                                                                                        [name]="elem.name || 'tempName'"
+                                                                                                        [(ngModel)]="elem['value']"
+                                                                                                        *ngIf="elem['value'] && elem['value'].length>=40"
+                                                                                                        [disabled]="layoutElem.fieldsList[0].disabled"
+                                                                                                        [required]="layoutElem.fieldsList[0].required"
+                                                                                                        [readonly]="!elem.editable"></textarea>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </ng-container>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </article>
+                                                        </sa-widgets-grid>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tab>
+
+                        <tab [active]="leftSideTabs.tab == 'log-details'" class="left-tab-pane">
+                            <div *ngIf="loaderTaskDetail" class="task_loader">
+                                <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" />
+                            </div>
+
+                            <div class="table-responsive" *ngFor="let layoutElem of logPageLayout['pageLayoutTemplate']">
+
+                                <sa-widgets-grid>
+
+                                    <div sa-widget [editbutton]="false" [fullscreenbutton]="isHeaderControlVisible"
+                                        [deletebutton]="false" color="blueDark" [colorbutton]="isHeaderControlVisible"
+                                        [togglebutton]="isHeaderControlVisible">
+                                        <header>
+                                            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+
+                                            <h2>{{layoutElem['sectionHeader']}}</h2>
+                                        </header>
+                                        <div id="tablesection" class="tablesectiondiv">
+                                            <div id="table-section" class="tab-content padding-10 table-responsive" style="width:100%;">
+                                              <table class="table table-bordered table-striped table-hover smart-form">
+                                                  <thead>
+                                                      <tr>
+                                                          <th *ngFor="let elem of layoutElem['fieldsList']">
+                                                              <div style="float: left;cursor: pointer;" (click)="onSortSelection(elem.fieldName)">
+                                                                  {{elem.label}}
+                                                              </div>
+                                                              <div style="float: left;width:100%; margin-top: 5px;">
+                                                                  <input type="text" (input)="filterTaskResult(elem.fieldName)"
+                                                                      [(ngModel)]="activityLog[elem.fieldName]" 
+                                                                      [name]="elem.fieldName"
+                                                                      [disabled]="elem.editable"
+                                                                      style="width: 100%;overflow: visible;padding: 3px;" />
+                                                              </div>
+                                                          </th>
+                                                      </tr>
+                                                  </thead>
+                                                  <tbody *ngFor="let row of logData">
+                                                      <tr>
+                                                          <td *ngFor="let elem of layoutElem['fieldsList']">
+                                                              <div *ngIf="elem.fieldName == 'activityDetails'" style="width:400px;">
+                                                                  <pre class="pre-style" style="white-space: pre-wrap;" >{{row[elem.fieldName]}}</pre>
+                                                              </div>
+                                                              <div *ngIf="elem.fieldName != 'activityDetails'">
+                                                                  {{(elem.fieldName === 'logdetailscreatedById') ? row['createdById'] : (elem.fieldName === 'logdeatilscreatedDateTime')? row['createdDateTime'] : row[elem.fieldName]}}
+                                                              </div>
+                                                          </td>
+                                                      </tr>
+                                                  </tbody>
+                                              </table>
+                                            </div>
+                                          </div>
+                                    </div>
+                                </sa-widgets-grid>
+                            </div>
+
+                        </tab>
+                    </tabset> -->
+
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="resizable resizable2">
+
+        <div class="inner">
+            <!-- widget content -->
+            <div class="widget-body">
+                <div class="tabs-left">
+                    <ul class="nav nav-tabs tabs-left text-align-center" id="demo-pill-nav1">
+                        <li [class.active]="tab.active" *ngFor="let tab of wcmPageLayout['wcmRelatedTabs']; let tabIndex=index;">
+                            <a (click)="loadTabDetails(tabIndex);" *ngIf="tab.visible">
+                                {{tab.title}}
+                            </a>
+                        </li>
+                    </ul>
+                    <tabset>
+                        <tab [active]="tab.active" *ngFor="let tab of wcmPageLayout['wcmRelatedTabs'];">
+                            <sa-widgets-grid>
+                                <article class="col-sm-12">
+                                    <div sa-widget *ngIf="tab.visible" [editbutton]="false" [fullscreenbutton]="true"
+                                        [deletebutton]="false" [colorbutton]="true" [togglebutton]="true" name="rihtTabContent">
+                                        <header>
+                                            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                            <h2>{{tab.title}} Details</h2>
+                                        </header>
+                                        <div class="widget-body">
+                                            <pre class="wcm_background">{{tab.content}}</pre>
+                                        </div>
+                                    </div>
+                                </article>
+                            </sa-widgets-grid>
+                        </tab>
+                    </tabset>
+                </div>
+            </div>
+            <!-- end widget content -->
+        </div>
+    </div>
+    <!-- <span>
+            <img src="assets/img/grabBar.png" class="grabBar">
+        </span> -->
+</div>
+
+<div class="wrap" *ngIf="displayWCMDetails && authorizedLMOSUser">
+    <div class="resizable resizable1 example-2" (dblclick)="maximizeLeftPanelWindow();">
+        <div class="inner">
+            <form name="form" class="task-details-form" novalidate>
+                <div class="form-group spr-tabs">
+                    <ul class="nav nav-tabs tabs-left text-align-center" id="demo-pill-nav">
+                        <li [class.active]="leftSideTabs.tab == 'task-details'">
+                            <a (click)="leftSideTabs.tab = 'task-details'">
+                                Task Details</a>
+                        </li>
+                    </ul>
+
+                    <tabset>
+                        <tab [active]="leftSideTabs.tab == 'task-details'" class="left-wcm-tab-pane">
+                            <div *ngIf="loaderTaskDetail" class="task_loader">
+                                <!-- <mat-spinner class="spinner-style"></mat-spinner> -->
+                                <!-- <img src="assets/img/task_loader.svg" width="125px" alt="task" /> -->
+                                <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+                                <div class="spinner">
+                                    <div class="bounce1"></div>
+                                    <div class="bounce2"></div>
+                                    <div class="bounce3"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="errorMessage" *ngIf="lmosButtonDisabled == true">
+                                    Trouble Ticket Locked
+                                </div>
+                                <div *ngFor="let layoutElem of wcmPageLayout;">
+                                    <div *ngIf="layoutElem.sectionHeader == 'Buttons'">
+                                            <div class="row mar--l10 actionbtnsection" style="margin-bottom: 5px;">
+                                                <div id="Profile Management" class=" pull-right dropdown" dropdown [insideClick]="true" *ngIf="actionList.length > 0">
+                                                    <span class="project-selector dropdown-toggle" dropdownToggle> 
+                                                        <a class="btn btn-default buttons-html5 show-hide">
+                                                            <i class="fa fa-cog showimg"></i>
+                                                            <i class="fa fa-cog hideimg"></i>
+                                                        </a>
+                                                    </span>
+                                                    <ul *dropdownMenu class="dropdown-menu ColVis_collection">
+                                                        <li class="fileddropdown" *ngFor="let fieldname of actionList">
+                                                            <label class="filedNameOverflow" (click)="OnAction(fieldname.value)">
+                                                                <span>{{fieldname.value}}</span>
+                                                            </label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                    <div *ngFor="let button of layoutElem.fieldsList">
+                                                        <button mat-raised-button (click)="lmosAction(button, template);" color="{{button.color}}" class="blue__btn pull-right" [class]="button.color == 'warn' ? 'blue__btn pull-right mat-raised-button mat-warn' : 'blue__btn pull-right mat-raised-button mat-primary btn btn-success' "
+                                                        [disabled]="lmosButtonDisabled">
+                                                           {{ button.label }}
+                                                        </button>
+                                                    </div>
+                                                    <i class="material-icons" (click)="onRefreshTaskDetails('taskdetails')">cached</i>
+                                            </div>
+                                    </div>
+                                    <div *ngIf="layoutElem.sectionHeader == 'Task Summary'">
+                                        <sa-widgets-grid>
+                                                <div sa-widget [editbutton]="false" 
+                                                    [fullscreenbutton]="true"
+                                                    [deletebutton]="false"
+                                                    [colorbutton]="true"
+                                                    [togglebutton]="true" 
+                                                    name="wcmSummaySection">
+                                                   <header>
+                                                      <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                                      <h2>{{layoutElem.sectionHeader}}</h2>
+                                                   </header>
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" *ngFor="let field of layoutElem.fieldsList;">
+                                                        <div class="row">
+                                                                            <div class="col-md-6"><label class="control-label field-label">{{field.label}}: </label></div>
+                                                            <div class="col-md-6 field-value">
+                                                                {{taskDetails[field.fieldName]}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </sa-widgets-grid>
+                                        </div>
+                                    <div *ngIf="layoutElem.sectionHeader != 'Buttons' && layoutElem.sectionHeader != 'Related-Tabs' && layoutElem.sectionHeader != 'Facilities' && layoutElem.sectionHeader != 'Task Summary'">
+                                            <sa-widgets-grid>
+                                                    <div sa-widget [editbutton]="false" 
+                                                    [fullscreenbutton]="true"
+                                                    [deletebutton]="false"
+                                                    [colorbutton]="true"
+                                                    [togglebutton]="true" 
+                                                    name="wcm{{layoutElem.sectionHeader}}">
+                                                       <header>
+                                                          <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                                          <h2>{{layoutElem.sectionHeader}}</h2>
+                                                       </header>
+                                                <div class="row">
+                                                    <div *ngFor="let field of layoutElem.fieldsList;">
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" *ngIf="field.fieldName != '3270SCREENDATA'">
+                                                            <div class="row">
+                                                                            <div class="col-md-6"><label class="control-label field-label">{{field.label}}: </label></div>
+                                                                <div class="col-md-6 field-value">
+                                                                    {{field.fieldValue}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </sa-widgets-grid>  
+                                        </div>
+                                    <div *ngIf="layoutElem.sectionHeader == 'Facilities'">
+                                            <sa-widgets-grid>
+                                                    <div sa-widget [editbutton]="false" 
+                                                        [fullscreenbutton]="true"
+                                                        [deletebutton]="false"
+                                                        [colorbutton]="true"
+                                                        [togglebutton]="true" 
+                                                        name="wcmFacilities">
+                                                       <header>
+                                                          <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                                          <h2>{{layoutElem.sectionHeader}}</h2>
+                                                       </header>
+                                                <div class="table-wrapper" style="padding: 5px;">
+                                                    <table id="Facilities" class="table table-bordered table-striped table-hover smart-form">
+                                                        <thead>
+                                                            <tr>
+                                                                <th *ngFor="let tableHeader of layoutElem.headers; let i = index">
+                                                                    <div style="cursor: pointer; text-align: center;">
+                                                                        {{tableHeader.label}}
+                                                                    </div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <!-- TBODY here -->
+                                                                        <tbody style="background: white;text-align: center;">
+                                                            <tr *ngFor="let field of layoutElem.fieldsList; let i = index">
+                                                                                <td *ngFor="let tableHeader of layoutElem.headers;">{{field.facilityParsed?field.facilityParsed[tableHeader.fieldName] : ''}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </sa-widgets-grid>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- Modal -->
+                            <ng-template #template>
+                                <div class="modal-header">
+                                  <h4 *ngIf="showTransferSection" class="modal-title pull-left" style="padding-left: 37%;font-weight: bold;">Transfer Task</h4>
+                                  <h4 *ngIf="showRerouteSection" class="modal-title pull-left" style="padding-left: 37%;font-weight: bold;">Reroute Task</h4>
+                                  <h4 *ngIf="showCloseSection" class="modal-title pull-left" style="padding-left: 37%;font-weight: bold;">Close Task</h4>
+                                  <h4 *ngIf="showReturnTaskToWorkgroupSec" class="modal-title pull-left" style="padding-left: 30%;font-weight: bold;"> Return Task To Workgroup</h4>
+                                    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                        <div *ngIf="showTransferSection" >
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><label class="control-label">CUID: </label></div>
+                                                <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                                                        <ng-select2 [data]="cuidList"
+                                                            [width]="500"
+                                                            [options]="lmosOptions"
+                                                            name="multiObj"
+                                                            [(ngModel)]="transferTo"
+                                                            #multiObj="ngModel">
+                                                        </ng-select2>
+                                                </div>
+                                            </div>
+                                    <div class="row">
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                                <label class="control-label">Comment: </label>
+                                                        </div>
+                                                        <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                                                            <textarea class="form-control" name="comment" [(ngModel)]="comment" maxlength="400"></textarea>
+                                                            <div style="float: right">{{400-comment?.length}} characters left</div>
+                                        </div>
+                                        </div>
+                                            
+                                        </div>
+                                        <div *ngIf="showRerouteSection">
+                                            <div class="row">
+                                                <div  class="col-lg-3 col-md-3 col-sm-6 col-xs-12"> <label class="control-label">Workgroup: </label></div>
+                                                <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                                                        <ng-select2 [data]="routWorkgroups"
+                                                            [width]="500"
+                                                            [options]="lmosOptions"
+                                                            name="multiObj"
+                                                            [(ngModel)]="transferTo"
+                                                            #multiObj="ngModel">
+                                            </ng-select2>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                            <label class="control-label">Comment: </label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                                                            <textarea class="form-control" name="comment" [(ngModel)]="comment" maxlength="400"></textarea>
+                                                            <div style="float: right">{{400-comment?.length}} characters left</div>
+                                                        </div>
+                                                </div>
+                                            
+                                        </div>
+                                        <div *ngIf="showCloseSection">
+                                                <sa-widgets-grid>
+                                                        <div sa-widget [editbutton]="false" 
+                                                            [fullscreenbutton]="false"
+                                                            [deletebutton]="false"
+                                                            [colorbutton]="true"
+                                                            [togglebutton]="true" 
+                                                            name="wcmDispositionHeader">
+                                                           <header>
+                                                              <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                                              <h2>Disposition Code</h2>
+                                                           </header>
+                                                            <div class="row">
+                                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                    <label class="control-label">---*: </label>
+                                                                </div>
+                                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                                                        <ng-select2 [data]="dispositionCodes"
+                                                                            [width]="500"
+                                                                            [options]="lmosOptions"
+                                                                            name="multiObj"
+                                                                            [(ngModel)]="closePopupObj.parentDispositionCode"
+                                                                            #multiObj="ngModel"
+                                                                            (valueChanged)="dispositionCodeChanged('parent');">
+                                                                        </ng-select2>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                        <label class="control-label">--**: </label>
+                                                                    </div>
+                                                                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                                                            <ng-select2 [data]="dispositionChildCodes"
+                                                                                [width]="500"
+                                                                                [options]="lmosOptions"
+                                                                                name="multiObj"
+                                                                                [(ngModel)]="closePopupObj.childDispositionCode"
+                                                                                #multiObj="ngModel"
+                                                                                (valueChanged)="dispositionCodeChanged('child');">
+                                                                            </ng-select2>
+                                                                    </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                        <label class="control-label">----: </label>
+                                                                    </div>
+                                                                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                                                            <ng-select2 [data]="dispositionGrandChildCodes"
+                                                                                [width]="500"
+                                                                                [options]="lmosOptions"
+                                                                                name="multiObj"
+                                                                                [(ngModel)]="closePopupObj.grandChildDispositionCode"
+                                                                                #multiObj="ngModel">
+                                                                            </ng-select2>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                </sa-widgets-grid>
+                                                <sa-widgets-grid>
+                                                                <div sa-widget [editbutton]="false" 
+                                                                    [fullscreenbutton]="false"
+                                                                    [deletebutton]="false"
+                                                                    [colorbutton]="true"
+                                                                    [togglebutton]="true" 
+                                                                    name="wcmCuaseCode">
+                                                                   <header>
+                                                                      <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                                                      <h2>Cause Code</h2>
+                                                                   </header>
+                                                                    <div class="row">
+                                                                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                                <label class="control-label">-**: </label>
+                                                                            </div>
+                                                                            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                                                                    <ng-select2 [data]="causeCodes"
+                                                                                        [width]="500"
+                                                                                        [options]="lmosOptions"
+                                                                                        name="multiObj"
+                                                                                        [(ngModel)]="closePopupObj.parentCauseCode"
+                                                                                        #multiObj="ngModel"
+                                                                                        (valueChanged)="causeCodeChanged('parent');">
+                                                                                    </ng-select2>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                                    <label class="control-label">--*: </label>
+                                                                                </div>
+                                                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                                                                        <ng-select2 [data]="causeChildCodes"
+                                                                                            [width]="500"
+                                                                                            [options]="lmosOptions"
+                                                                                            name="multiObj"
+                                                                                            [(ngModel)]="closePopupObj.childCauseCode"
+                                                                                            #multiObj="ngModel"
+                                                                                            (valueChanged)="causeCodeChanged('child');">
+                                                                                        </ng-select2>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                                    <label class="control-label">---: </label>
+                                                                                </div>
+                                                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                                                                        <ng-select2 [data]="causeGrandChildCodes"
+                                                                                            [width]="500"
+                                                                                            [options]="lmosOptions"
+                                                                                            name="multiObj"
+                                                                                            [(ngModel)]="closePopupObj.grandChildCauseCode"
+                                                                                            #multiObj="ngModel">
+                                                                                        </ng-select2>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                        </sa-widgets-grid>
+                                                        
+                                                        <div class="row">
+                                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                        <label class="control-label">Customer Contacted: </label>
+                                                                </div>
+                                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                                                        <ng-select2 [data]="routWorkgroups"
+                                                                            [width]="500"
+                                                                            [options]="lmosOptions"
+                                                                            name="multiObj"
+                                                                            [(ngModel)]="closePopupObj.customerContacted"
+                                                                            #multiObj="ngModel">
+                                                                        </ng-select2>
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                        <label class="control-label">Narrative: </label>
+                                                                </div>
+                                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                                                    <textarea class="form-control" name="comment" [(ngModel)]="closePopupObj.comment" maxlength="400"></textarea>
+                                                                    <div style="float: right">{{400-closePopupObj.comment?.length}} characters left</div>
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                        <label class="control-label">WP Code: </label>
+                                                                </div>
+                                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                                                        5
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                        <label class="control-label">FL2: </label>
+                                                                </div>
+                                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                                                        <input type="text" name="fl2" [(ngModel)]="closePopupObj.fl2" maxlength="20">
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                        <label class="control-label">FL3: </label>
+                                                                </div>
+                                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                                                        <ng-select2 [data]="fl3Values"
+                                                                            [width]="500"
+                                                                            [options]="lmosOptions"
+                                                                            name="multiObj"
+                                                                            [(ngModel)]="closePopupObj.fl3"
+                                                                            #multiObj="ngModel">
+                                                                        </ng-select2>
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                        <label class="control-label">Backtime: </label>
+                                                                </div>
+                                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                                                        <input type="checkbox" name="backtime" [(ngModel)]="closePopupObj.backtime">
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                        <label class="control-label">CloseOut Date/Time: </label>
+                                                                </div>
+                                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                                                        <input type="text" name="closeout" [(ngModel)]="closePopupObj.closeOutDateTime" disabled>
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                        <label class="control-label">Time zone: </label>
+                                                                </div>
+                                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                                                        <input type="text" name="timezone" [(ngModel)]="closePopupObj.timezone" disabled>
+                                                                </div>
+                                        </div>
+                                    </div>
+                                        <div *ngIf="showReturnTaskToWorkgroupSec">
+                                    <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                        <label class="control-label">Narrative: </label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                                                    <textarea class="form-control" name="comment" [(ngModel)]="comment" maxlength="400"></textarea>
+                                                    <div style="float: right">{{400-comment?.length}} characters left</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row text-center">
+                                                <div id="wcmAction" class="dropdown" dropdown [insideClick]="true">
+                                                        <button mat-raised-button (click)="submitDataToLMOS();" color="primary" class="blue__btn">
+                                                            Submit
+                                                         </button>
+                                                </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </tab>
+                    </tabset>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="resizable resizable2" (dblclick)="maximizeRightPanelWindow()">
+
+        <div class="inner">
+            <!-- widget content -->
+            <div class="widget-body">
+                <div class="tabs-left spr-tabs">
+                    <ul class="nav nav-tabs tabs-left text-align-center" id="demo-pill-nav1">
+                        <li [class.active]="tab.active" *ngFor="let tab of relatedTabs; let tabIndex=index;">
+                            <a (click)="loadTabDetails(tabIndex);" *ngIf="tab.visible">
+                                {{tab.label}}
+                            </a>
+                        </li>
+                    </ul>
+                    <tabset>
+                        <tab [active]="tab.active" *ngFor="let tab of relatedTabs; let tabIndex=index;">
+                            <sa-widgets-grid>
+                                <article class="col-sm-12">
+                                                <div sa-widget *ngIf="tab.visible"
+                                                    [editbutton]="false" 
+                                                    [fullscreenbutton]="true"
+                                                    [deletebutton]="false"
+                                                    [colorbutton]="true"
+                                                    [togglebutton]="true" 
+                                                    name="rihtTabContent">
+                                        <header>
+                                            <div class="jarviswidget-ctrls" role="menu">
+                                                <a (click)="loadTabDetails(tabIndex);" href="javascript:void(0);" class="button-icon" rel="tooltip" title="Refresh" data-placement="bottom">
+                                                    <i class="material-icons" style="color: #fff; margin-top: 4px;">cached</i>
+                                                </a>
+                                            </div>
+                                            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                            <h2>{{tab.label}} Details</h2>
+                                        </header>
+                                        <div class="widget-body">
+                                            <pre class="wcm_background">{{tab.content}}</pre>
+                                        </div>
+                                    </div>
+                                </article>
+                            </sa-widgets-grid>
+                        </tab>
+                    </tabset>
+                </div>
+            </div>
+            <!-- end widget content -->
+        </div>
+    </div>
+    <!-- <span>
+            <img src="assets/img/grabBar.png" class="grabBar">
+        </span> -->
+</div>
+
+<div *ngIf="displayWCMDetails && !authorizedLMOSUser" class="errorMessage">
+    {{errorMessage}}, Please click <a target="_blank" href="https://audio.level3.com/new/request.asp?platid=5232"><b>here</b></a> to request access using Audio.
+</div>

@@ -1,0 +1,251 @@
+<div class="sticky-tab-header spr-tabs">
+  <ul class="nav nav-tabs tabs-left text-align-center" id="demo-pill-nav">
+    <li [class.active]="cardTabs.tab == 'child-summary'">
+      <a (click)="cardTabs.tab = 'child-summary';">Summary</a>
+    </li>
+    <li [class.active]="cardTabs.tab == 'status-history'">
+      <a (click)="cardTabs.tab = 'status-history'; getStatusHistory(rowData);">
+        Status History</a>
+    </li>
+    <!-- <li [class.active]="cardTabs.tab == 'child-RMA'">
+      <a (click)="cardTabs.tab = 'child-RMA';">RMA</a>
+    </li> -->
+    <li [class.active]="cardTabs.tab == 'child-response'">
+      <a (click)="cardTabs.tab = 'child-response';">Response</a>
+    </li>
+    <li [class.active]="cardTabs.tab == 'child-MicroServices'">
+      <a (click)="cardTabs.tab = 'child-MicroServices'; getGrandChildList(rowData);">Child MicroServices</a>
+    </li>
+  </ul>
+
+  <div class="pull-right">
+    <div>
+      <div style="padding-top:5px;">
+        <div style="display:inline-block">
+          <!-- <a class="cm-refresh pull-right margin-right-13" style="font-size:150%">
+            <span class="glyphicon glyphicon-question-sign"></span>
+          </a> -->
+          <button class="btn btn-success blue__btn pull-right margin-right-13" mat-raised-button [disabled]="btn.label == 'Cancel'" *ngFor ="let btn of buttons.fieldsList" (click)="ForceComplete();">
+            {{btn.label}}
+          </button>
+          <!-- <button class="btn btn-success blue__btn pull-right margin-right-13" mat-raised-button (click)="ForceComplete();">
+            Force Complete
+          </button> -->
+          <!-- <button class="btn btn-success blue__btn pull-right margin-right-13" mat-raised-button>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            Edit & Retry
+          </button> -->
+          <!-- <button class="btn btn-success blue__btn pull-right margin-right-13" mat-raised-button [disabled]="true">
+            Verify Complete
+          </button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<tabset>
+  <tab class="left-tab-pane" [active]="cardTabs.tab == 'child-summary'">
+    <div class="taskloader_div" style="height: 80px;" *ngIf="rowData.isLoader">
+      <div class="task_loader">
+        <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!rowData.isLoader">
+      <div *ngFor = "let header of pageHeader.fieldsList">
+      <div  [ngClass]="header.header.label == 'Info Used By Service' ? 'col-md-6' : 'col-md-3'">
+        <div class="panel panel-primary spr-panel" [ngClass]="header.header.label == 'Info Used By Service' ? 'info-service' : 'status-code'">          
+          <div class="panel-heading" >{{header.header.label}}      
+                <div *ngFor="let saobtn of infousedbyServiceButtons.fieldsList" > 
+                  <div *ngIf="header.header.label =='Info Used By Service'">                 
+                <button class="btn btn-success blue__btn pull-right" *ngIf="saobtn.visible"
+                 (click)="onActionButtonClick(saobtn.fieldName, rowData); " 
+                mat-raised-button style="margin-top: -24px;line-height: 30px;" [disabled]="rowData.taskStatus == 'Completed' || rowData.taskStatus == 'Cancelled' || !showRetry">
+              <span *ngIf="!rowData.isEditing && header.header.label =='Info Used By Service'"><i class="fa fa-pencil" aria-hidden="true" ></i> </span>
+                {{ saobtn.label }} 
+              </button>
+            </div>
+              
+            </div>
+          </div>
+          <div class="panel-body" [ngClass]="header.header.label != 'Info Used By Service' ? 'status-code' : ''">
+            <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right" style="margin-top: 5px;" *ngFor ="let box of header.body">
+              <div class="col-md-6 text-left" style="padding: 0;">
+                <label class="smallkey p-0">{{box.label }}</label>
+              </div>
+              <div class="col-md-6 text-left" *ngIf="box.label =='Status Code'">
+                <label class="smallvalue p-0">
+                  {{rowData.taskStatus}} - {{rowData.statusCode}}</label>
+              </div>
+              <!-- <div class="col-md-6 text-left" style="padding: 0;">
+                <label class="smallkey p-0">Status Message:</label>
+              </div> -->
+              <div class="col-md-6 text-left" *ngIf="box.label =='Status Message'">
+                <label class="smallvalue p-0">{{rowData.statusMessage}}</label>
+              </div>
+              <!-- <div class="col-md-6 text-left" style="padding: 0;">
+                <label class="smallkey p-0">Event Occurred Date:</label>
+              </div> -->
+              <div class="col-md-6 text-left" *ngIf="box.label =='Version'">
+                <label class="smallvalue p-0">{{rowData.version}}</label>
+              </div>
+              <!-- <div class="col-md-6 text-left" style="padding: 0;">
+                <label class="smallkey p-0">Notes:</label>
+              </div> -->
+              <div class="col-md-6 text-left" *ngIf="box.label =='Notes'">
+                <label class="smallvalue p-0">{{rowData.notes}}</label>
+              </div>
+              <!-- <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 p-0" style="margin-top: 5px;" > -->
+                <!-- <div class="col-md-6">
+                  <strong>Date Received</strong><br>
+                  <span>by Status Manager</span>                  
+                </div> -->
+                <div class="col-md-6 text-right" *ngIf="box.label == 'Key Dates'">
+                  <label class="smallvalue p-0">{{rowData.createdDtTm}}</label>
+                  <pre></pre>
+                </div>
+              <!-- </div> -->
+            </div>
+          </div>
+          <div class="panel-body" *ngIf="header.header.label =='Info Used By Service'">
+            <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 p-0" >
+              <!-- <div class="col-md-12"><b>{{box.label }} </b></div> -->
+              <div *ngFor="let paramDetails of rowData.taskSectionModels;">
+                <div *ngIf="paramDetails.header != 'AdditionalMicroserviceDetailsList'">
+                  <div class="col-md-12" style="margin-top: 2%;margin-bottom: 2%;"><b>{{paramDetails.header}} :</b></div>                 
+                  <div class="col-md-6" *ngFor="let details of paramDetails.paramList">
+                     <div class="col-md-5 text-left" style="padding-left: 0;" *ngIf="!((rowData.isEditing === true || rowData.isEditing === 'true' || rowData.isEditing) && (details.paramFieldLayout.editable === 'true' ||details.paramFieldLayout.editable === true))">
+                      <label class="smallkey p-0">{{details.name}}</label>
+                    </div>
+                    <!-- <div class="col-md-7 text-left" *ngFor="let details of paramDetails.paramList">  -->
+                          <div class="col-md-7 text-left"><label class="smallvalue p-0" *ngIf="!((rowData.isEditing === true || rowData.isEditing === 'true' || rowData.isEditing) && (details.paramFieldLayout.editable === 'true' ||details.paramFieldLayout.editable === true))">
+                      {{details.value}}</label> </div>
+                            <ng-container  *ngIf="details.paramFieldLayout.editable === true || details.paramFieldLayout.editable ==='true'">
+                              <span  *ngIf="rowData.isEditing === true || rowData.isEditing === 'true'">
+                                <input *ngIf="details.type != 'select'" type="text" class="form-control card-inputs" [(ngModel)]="details.value">
+                            </span> </ng-container>      
+                          <ng-container  *ngIf="details.paramFieldLayout.editable === true || details.paramFieldLayout.editable ==='true'">
+                              <span  *ngIf="rowData.isEditing === true || rowData.isEditing === 'true'">
+                              <select *ngIf="details.type == 'select'" name="dropdown" [(ngModel)]="details.value">
+                            <option *ngFor="let option of details.dropdown" [value]="option">
+                                  {{option}} 
+                          </option>
+                        </select>  
+                          </span> </ng-container>                                                      
+                         
+                    <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-3">
+        <div class="panel panel-primary spr-panel">
+          <div class="panel-heading">Key Dates</div>
+          <div class="panel-body">
+            <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 p-0" style="margin-top: 5px;">
+              <div class="col-md-6">
+                <pre>{{rowData.createdDtTm}}</pre>
+              </div>
+              <div class="col-md-6">
+                <strong>Date Received</strong><br>
+                <span>by Status Manager</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      </div>
+    </div>
+
+  </tab>
+  <tab class="left-tab-pane" [active]="cardTabs.tab == 'status-history'">
+    <div class="taskloader_div" style="height: 80px;" *ngIf="rowData.isLoader">
+      <div class="task_loader">
+        <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+      </div>
+    </div>
+    <div id="table-section" *ngIf="!rowData.isLoader" class="tab-content padding-10 table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Status Code</th>
+            <th>Status</th>
+            <th>Status Message</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let historyDetails of childHistoryList; let rowIndex = index;">
+            <tr>
+              <td>{{historyDetails.statusCode}}</td>
+              <td>{{historyDetails.status}}</td>
+              <td>{{historyDetails.statusMessage}}</td>
+              <td>{{historyDetails.createdDttm}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </tab>
+  <tab class="left-tab-pane" [active]="cardTabs.tab == 'child-RMA'">
+
+  </tab>
+  <tab class="left-tab-pane" [active]="cardTabs.tab == 'child-response'">
+
+  </tab>
+  <tab class="left-tab-pane" [active]="cardTabs.tab == 'child-MicroServices'">
+    <div class="col-md-12">
+      <div id="table-section" class="tab-content padding-10 table-responsive">
+        <table class="table table-striped table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th></th>
+              <th *ngFor="let field of TableFiedls.fieldsList">
+                <div class="cursor-pointer activesort">
+                  <span>{{field.label}}</span>
+                  <span class="sortarrow">
+                    <i class="fa upsortarrow"></i>
+                    <i class="fa downsortarrow"></i>
+                  </span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let grandChild of grandChildList; let rowIndex = index;">
+              <tr *ngIf="!grandChild.isRowDetailOpen">
+                <td>
+                  <div>
+                    <span (click)="expandAddRow(grandChild,rowIndex)" style="cursor: pointer;">
+                      <mat-icon *ngIf="grandChild.isIconMinus" class="material-icons add_box system__add">play_arrow</mat-icon>
+                      <mat-icon *ngIf="!grandChild.isIconMinus" class="system__add add_box" style="transform: rotate(90deg);">play_arrow</mat-icon>
+                    </span>
+                  </div>
+                </td>
+                <td *ngFor="let field of TableFiedls.fieldsList">{{grandChild[field.fieldName]}}</td>
+              </tr>
+              <tr *ngIf="grandChild.isRowDetailOpen">
+                <td colspan="10">
+                  <sa-card [rowData]="grandChild" [childHistoryList]="childHistoryList" [TableFiedls]="TableFiedls"
+                    [subLoader]="subLoader" (GetStatusHistory)="getStatusHistory($event)"></sa-card>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </tab>
+</tabset>

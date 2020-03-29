@@ -1,0 +1,16 @@
+<div class="popup">
+  <div *ngIf="!alert">
+    <p>{{confirmMessage}}</p>
+    <div class="text-right">
+      <button class="btn btn-cancel" (click)="matDialogRef.close(false)">Cancel</button>
+      <button class="btn btn-primary" (click)="matDialogRef.close(true)">Ok</button>
+    </div>
+  </div>
+
+  <div *ngIf="alert">
+    <p>{{errorMessage}}</p>
+    <div class="text-right">
+      <button class="btn btn-danger" (click)="matDialogRef.close(true)">Ok</button>
+    </div>
+  </div>
+</div>

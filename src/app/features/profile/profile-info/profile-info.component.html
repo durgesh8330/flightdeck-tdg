@@ -1,0 +1,641 @@
+<div *ngIf="loader" class="task_loader">
+  <!-- <mat-spinner class="spinner-style"></mat-spinner> -->
+  <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+  <div class="spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+</div>
+<div class="alert alert-success alert-dismissible" *ngIf="IsSuccess" style="background-color: green;color: #fff;">
+  <strong>Success! </strong>{{message}}.
+  <button type="button" class="close" data-dismiss="alert" style="opacity: 1;color: #fff;" (click)="IsSuccess = false">&times;</button>
+</div>
+<div class="alert alert-danger alert-dismissible" *ngIf="IsError" style="background-color: #ce2f2f;color: #fff;">
+  <strong>Error! </strong>{{message}}.
+  <button type="button" class="close" data-dismiss="alert" style="opacity: 1;color: #fff;" (click)="IsError = false">&times;</button>
+</div>
+<sa-widgets-grid>
+  <div *ngFor="let layoutSection of profilePageLayout['pageLayoutTemplate']">
+    <div sa-widget *ngIf="layoutSection['sectionHeader'] != 'Tabs'" class="user-details-wrapper" [color]="true"
+      [editbutton]="false" [fullscreenbutton]="true" [togglebutton]="true" [deletebutton]="false" [custombutton]="false"
+      [sortable]="false">
+
+      <header>
+        <span class="widget-icon">
+          <i class="fa fa-user"></i>
+        </span>
+        <h2>{{layoutSection['sectionHeader']}}</h2>
+      </header>
+
+      <div class="user-details-inn-wrp" id="usrDtlsWrp">
+        <div class="widget-body">
+          <div class="row">
+
+            <div *ngFor="let section of layoutSection['fieldsList']" [ngClass]="['inner-wrapper',section.sizeClass]">
+
+              <div class="col-sm-12 inner-wrapper-content" *ngIf="section.fieldName!='Buttons'">
+
+                <div class="inner-wrapper-header">
+                  {{section.label}}
+                </div>
+
+                <div *ngIf="section.fieldName=='UserInfoPanel'">
+                  <div *ngFor="let innerSection of section.params; index as i" [ngClass]="['inner-wrapper-body','cell-row',section.columnClass]">
+                    <div class="cell-label">
+                      {{innerSection.label}}
+                    </div>
+                    <div class="cell-value">
+                      {{ this.profileData[innerSection.fieldName]}}
+                    </div>
+                  </div>
+                  <!-- <div *ngFor="let paramMdl of paramModelKey;"
+                    [ngClass]="['inner-wrapper-body','cell-row',section.columnClass]">
+                      <div class="cell-label">
+                        {{paramMdl.name}}
+                      </div>
+                      <div class="cell-value">
+                          <input name="number" style="width: 40px;" type="text" maxlength="3" onlyNumber [(ngModel)]="paramMdl.value" >
+                      </div>
+                    </div> -->
+                </div>
+
+                <div *ngIf="section.fieldName=='SystemPermission'">
+                  <div class="cell-row" *ngFor="let cell of section['dataSource']">
+                    <div class="cell-label">
+                      <input type="radio" name="permission{{this.profileData['personalInfo']['cuid']}}" (ngModelChange)="onSelectSystemPermission($event)"
+                        [(ngModel)]="this.profileData['systemPermission']" [value]="cell" />
+                    </div>
+                    <div class="cell-value">
+                      {{cell}}
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="section.fieldName=='UserWorkgroups'">
+                  <select multiple class="form-control mng-usr-sel-2" style="min-height:87px;">
+                    <option *ngFor="let option of profileData.workgroupsList">
+                      {{option.name}}
+                    </option>
+                  </select>
+                </div>
+
+              </div>
+
+              <div class="user-profile-submit-button" *ngIf="section.fieldName=='Buttons' && paramfieldstatus == false">
+                <button class="btn btn-success blue__btn pull-right" (click)="submitData()"> {{section.label}} </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <ul style="border-bottom: none;background-color: white;" id="usrTbs" class="nav nav-tabs mat-tab-list user-tbs"
+      *ngIf="layoutSection['sectionHeader'] == 'Tabs'">
+      <li *ngFor="let tab of layoutSection['fieldsList']; let ind = index" (click)="selectTab(layoutSection['fieldsList'], ind, tab)"
+        class="nav nav-tab user-tab" [ngClass]="{'active':tab.isWorkflowActive}">
+        <a href='#a{{tab.fieldValue}}{{userId}}' data-toggle="tab">{{tab.fieldName}}</a>
+      </li>
+
+      <div class="tab-content padding-top-10" style="margin-top:40px;">
+        <!-- start:conflict -->
+        <div class="tab-pane fade in active" *ngFor="let tabInfo of layoutSection['fieldsList']" id="a{{tabInfo.fieldValue}}{{userId}}"
+          [ngClass]="{'active':tabInfo.isWorkflowActive}">
+          <!-- widget grid -->
+          <sa-widgets-grid>
+            <!-- row -->
+            <div class="row12">
+              <!-- NEW WIDGET START -->
+              <article class="col-sm-12 col-md-12 col-lg-12">
+                <div *ngIf="tabInfo.fieldName == 'User Preferences' && profileData && profileData['userPreference']">
+                  <div class="userpreference">
+                    <div style="margin-bottom:20px" *ngFor= "let userData of tabInfo.data">
+                      
+                    <div *ngFor="let tabData of userData">
+                      <div class="userpreference--section" *ngIf="tabData.type == 'Select'">
+                        <label class="userpreference--tab">{{tabData.fieldLabel}}</label>
+                        <select class="userpreference--tabselect" [(ngModel)]="profileData['userPreference'][tabData.model]">
+                          <option *ngFor="let value of tabData.option_value" [value]="value">{{value}}</option>
+                        </select>
+                      </div>
+                   
+                      <div class="userpreference--section" *ngIf="tabData.type == 'Label'">
+                          <label class="userpreference--tab fontlabel" >{{tabData.fieldLabel}}</label>
+                        </div>
+                      <div class="userpreference--section widthselect" *ngIf="tabData.type == 'MultiSelect'">
+                        <label class="userpreference--tab">{{tabData.fieldLabel}}</label>
+                        <!-- <select class="userpreference--tabselect" [(ngModel)]="profileData['userPreference'][tabData.model]"
+                          multiple="true" size="8">
+                          <option *ngFor="let value of tabData.option_value" [value]="value">{{value}}</option>
+                        </select> -->
+                        <ng-select2 class="userpreference--tabselect " [options]="options" [data]="tabData.option_value" placeHolder='Please select' [(ngModel)]="profileData['userPreference'][tabData.model]" 
+                        >
+                      </ng-select2>
+                      </div>
+
+                      <div class="userpreference--section btnright" *ngIf="tabData.type == 'Button'">
+                        <button class="btn btn-success blue__btn" (click)="setPreference(tabData.callback)">{{tabData.fieldLabel}}</button>
+                      </div>
+                    </div>
+                    </div>
+               
+                  </div>
+
+                </div>
+
+                <!--App Secure Roles and Authorizations -->
+                <div *ngIf="tabInfo.fieldName == 'Authorizations'">
+                  
+                  <ul class="userpreference col-md-4"  style="display: block;padding:0px;margin-top: 34px;">
+                    <div style="font-size: 15px; font-weight:bold;height: 30px;background-color: #d7d2cb;border-radius: 3px;">{{tabInfo.label}}</div>
+                    <div style="border: 2px solid #888!important;">
+                    <ng-container>
+                      <div class="inner-wrapper-content" style="height: 160px; overflow: auto; max-width: 94.76%; width: 94.76%; display: inline-block;"
+                        >
+                        <input id="roles" name="AppSecureRoles"  [placeholder]="tabInfo.data[0].placeholder"  [(ngModel)]="roles.RoleName" class="form-control"
+                                    (keyup)="filterRoles()">
+                        <!-- <li class="my-prof-role-heading">{{ role }}</li> -->
+                        <ng-container *ngFor="let role of roles.filterData">
+                          <li class="my-prof-role-item" >{{role.RoleName}}</li>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+
+                    <ng-container>
+                      <div class="inner-wrapper-content" style="height: 387px; overflow: auto; max-width: 94.76%; width: 94.76%; display: inline-block;"
+                        >
+                        <input id="roles"
+                        name="AccessPoint" [placeholder]="tabInfo.data[1].placeholder" [(ngModel)]="authorizations.AccessPointName" class="form-control"
+                        (keyup)="filterAccessPoint()">
+                        <!-- <li class="my-prof-role-heading">{{ role }}</li> -->
+                        <ng-container *ngFor="let authorization of authorizations.filterData">
+                          <li class="my-prof-role-item" >{{authorization.AccessPointName}}</li>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                  </div>
+                  </ul>
+                
+              </div>
+
+              <!-- <div *ngIf="tabInfo.fieldName == 'Authorizations'">
+                <div class="workgroup-section-wrappr col-md-6">
+                  <ng-container>
+                    <ul class="inner-wrapper-content" style="height: 150px; overflow: auto; max-width: 36.76%; width: 36.76%; display: inline-block;"
+                      *ngFor="let WG of profileData.workgroupsList">
+                      <li class="my-prof-role-heading">{{ WG.name }}</li>
+                      <ng-container *ngFor="let WGRoles of profileData.workgroupRolesList">
+                        <li class="my-prof-role-item" (click)="toggleChild(WGRoles.workgroupRoleName,WG.name)" *ngIf="WGRoles.workgroupName == WG.name">
+                          <span *ngIf="WGRoles.accesslevels.length>0"><b>></b></span>
+                          <span>{{WGRoles.workgroupRoleName}}</span></li>
+                        <div *ngIf="WGRoles.accesslevels.length>0 && WGRoles.workgroupName == WG.name && show == WGRoles.workgroupRoleName+WG.name">
+                         <li *ngFor="let accessLevel of WGRoles.accesslevels">
+                          <span style="padding-left: 15px;"  *ngIf="WGRoles.accesslevels.length>0">{{accessLevel.permissionName}}
+                          </span>
+                         </li>
+                        </div>
+                      </ng-container>
+                    </ul>
+                  </ng-container>
+                </div>
+              </div> -->
+
+
+              <div *ngIf="tabInfo.fieldName == 'Authorizations'" id="systemtable" class="col-md-8" style="margin-top: 55px;margin-top: 34px;margin-left: 0px;">
+                <div style="font-size: 15px; font-weight:bold;height: 30px;background-color: #d7d2cb;border-radius: 3px;">{{this.sectionheader}}</div>
+                <div style="border: 2px solid #888!important;height:593px;overflow:auto;">
+                <sa-widgets-grid>
+                  <div sa-widget [editbutton]="false" [fullscreenbutton]="true" [deletebutton]="false" [colorbutton]="true"
+                    [togglebutton]="true" name="taskresultwodgetwa">
+                    <sa-alert [error]="error"></sa-alert>
+                    <div class="widget-body" style="padding-top: 5px;overflow-y: hidden;">
+                      <sa-table 
+                        [pagination]="pagination" 
+                        [actionButton]="actionButton" 
+                        [actionColumn]="actionColumn"
+                        [tableHeader]="profileInfo.header" 
+                        [tableData]="profileInfo.tableData"
+                        [tableOtherContent]="profileInfo" 
+                        [filter]="filter"
+                        [tablePaginationData]="tablePaginationData"
+                        [actionList]="actionList"
+                        [exportValues]="exportValues"
+            
+                        (addNewRowParent)="addNewRow()"
+                        (onSaveParent)="onSaveClick($event)" 
+                        (pageChangedParent)="onPaginateInnerGrid($event)"
+                        (onEditParent)="onEditClick($event)" 
+                        (onDeleteParent)="onDeleteClick($event)"
+                        (onCloseParent)="onCloseClick($event)" 
+                        (openTabParent)="openDetailView($event)"
+                        (expandRow)="expandRow($event)" 
+                        (nextAll)="nextTasks()"
+                        (OnActionChangeStatus)="onActionChange($event)"
+                        (onActionStatusSubmit)="onAction($event)"
+                        (CheckUncheckAllRows)="checkAllRows($event)"
+                        (SetActionDropdown)="SetActionDropdown($event)"
+                        (refresh)="onRefresh()" 
+                        >
+                      </sa-table>
+                    </div>
+                  </div>
+                </sa-widgets-grid>
+              </div>
+              </div>
+
+
+                <div *ngIf="tabInfo.fieldName == 'Manager Hierarchy'">
+
+                  <div class="userpreference">
+
+                    <!--<div *ngFor="let tabData of tabInfo.json_descriptor.data.layoutElement"> 
+                        <div class="userpreference--section" *ngIf="tabData.type == 'hierarchyLabel'"> -->
+
+                    <div class="row" *ngIf="employeeHierarchy">
+                      <div *ngFor="let list of employeeHierarchy.empList; let i = index;" style="height:80px;margin-top:30px"
+                        [ngStyle]="{ 'margin-left': i ? 80 * i +'px' : '30px' }">
+
+                        <div class="col-sm-1" style="position: relative;">
+
+                          <div class="dummy-arrow" style="top:-30px" [ngStyle]="{'display': i ? 'block' : 'none'}">
+                          </div>
+
+                          <div class="emp-details-parent" [ngStyle]="{'background-color': list.background}">
+                            <div class="emp-details-box">
+                              <div class="emp-text">
+                                <a href="http://directory.corp.intranet/emd/search.html?f_cuid={{list.cuid}}" target="_blank">
+                                  {{ list.Name }}
+                                </a>
+                              </div>
+                              <div class="emp-designation">
+                                <a href="http://directory.corp.intranet/emd/search.html?f_cuid={{list.cuid}}" target="_blank">{{
+                                  list.title }}</a>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <!--</div>                      
+                      </div> -->
+
+                  </div>
+
+                </div>
+
+                <div *ngIf="tabInfo.fieldName == 'Workgroups' || tabInfo.fieldName == 'Skills' || tabInfo.fieldName == 'Applications'">
+                  <div class="workgroup-section-wrappr" *ngIf="tabInfo.fieldName == 'Workgroups' && paramfieldstatus == true">
+                    <ng-container>
+                      <ul class="inner-wrapper-content" style="height: 150px; overflow: auto; max-width: 18.76%; width: 18.76%; display: inline-block;"
+                        *ngFor="let WG of profileData.workgroupsList">
+                        <li class="my-prof-role-heading">{{ WG.name }}</li>
+                        <ng-container *ngFor="let WGRoles of profileData.workgroupRolesList">
+                          <li class="my-prof-role-item" *ngIf="WGRoles.workgroupName == WG.name">{{WGRoles.workgroupRoleName}}</li>
+                        </ng-container>
+                      </ul>
+                    </ng-container>
+                  </div>
+
+                  <div class="bootstrap-duallistbox-container row" *ngFor="let panelInfo of tabInfo.data">
+                    <div *ngIf="panelInfo.type == 'workgroupSelection'">
+                      <ng-container *ngFor="let elem of panelInfo.json_descriptor.elem">
+
+                        <ng-container *ngIf="tabInfo.fieldName != 'Workgroups'">
+                          <div class="box1 col-md-4 inner-wrapper-content" *ngIf="(elem.model != 'currentWorkgroupUnSelectedVal' && elem.model != 'currentWorkgroupRoleUnSelectedVal' && elem.model != 'currentAppUnSelectedVal') && paramfieldstatus == true">
+                            <!-- <span class="appl-header">{{elem.label}}</span> -->
+                            <div class="inner-wrapper-header">{{elem.label}}</div>
+                            <div class="btn-group buttons" *ngIf="elem.buttons.length>0">
+
+                              <div *ngFor="let button of elem.buttons" style="display:inline-block; width:50%;">
+                                <button type="button" [class]="button.cssRef" (click)="onMoveAllWorkgroupList(panelInfo.json_descriptor.elem)"
+                                  *ngIf="(button.functionName == 'onMoveAllWorkgroupList' || 
+                                                        button.functionName == 'onMoveAllWorkgroupRoleList' || 
+                                                        button.functionName == 'onMoveAllSkillList' ||
+                                                        button.functionName == 'onMoveAllAppList')"
+                                  style="width:100%" [title]="button.title">
+
+                                  <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                  <i [class]="button.icon" style="font-size:24px"></i>
+                                </button>
+
+                                <button type="button" [class]="button.cssRef" (click)="onRemoveAllWorkgroupList(panelInfo.json_descriptor.elem)"
+                                  *ngIf="(button.functionName == 'onRemoveAllWorkgroupList' || 
+                                                      button.functionName == 'onRemoveAllWorkgroupRoleList' ||
+                                                      button.functionName == 'onRemoveAllSkillList' ||
+                                                      button.functionName == 'onRemoveAllAppList') && paramfieldstatus == false"
+                                  style="width:100%" [title]="button.title">
+
+                                  <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                  <i [class]="button.icon" style="font-size:24px"></i>
+                                </button>
+
+                                <button type="button" [class]="button.cssRef" (click)="onSingleSelectWorkgroupList(panelInfo.json_descriptor.elem)"
+                                  *ngIf="button.functionName == 'onSingleSelectWorkgroupList'" style="width:100%" [title]="button.title">
+
+                                  <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                  <i [class]="button.icon" style="font-size:24px"></i>
+                                </button>
+
+                                <button type="button" [class]="button.cssRef" (click)="onSingleUnSelectWorkgroupList(panelInfo.json_descriptor.elem)"
+                                  *ngIf="(button.functionName == 'onSingleUnSelectWorkgroupList') && paramfieldstatus == false"
+                                  style="width:100%" [title]="button.title">
+
+                                  <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                  <i [class]="button.icon" style="font-size:24px"></i>
+                                </button>
+
+                                <button type="button" [class]="button.cssRef" (click)="onSingleSelectWorkgroupRoleList(panelInfo.json_descriptor.elem)"
+                                  *ngIf="button.functionName == 'onSingleSelectWorkgroupRoleList'" style="width:100%"
+                                  [title]="button.title">
+
+                                  <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                  <i [class]="button.icon" style="font-size:24px"></i>
+                                </button>
+
+                                <button type="button" [class]="button.cssRef" (click)="onSingleUnSelectWorkgroupRoleList(panelInfo.json_descriptor.elem)"
+                                  *ngIf="(button.functionName == 'onSingleUnSelectWorkgroupRoleList') && paramfieldstatus == false"
+                                  style="width:100%" [title]="button.title">
+
+                                  <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                  <i [class]="button.icon" style="font-size:24px"></i>
+                                </button>
+
+                                <button type="button" [class]="button.cssRef" (click)="onSingleSelectSkillList(panelInfo.json_descriptor.elem)"
+                                  *ngIf="button.functionName == 'onSingleSelectSkillList'" style="width:100%" [title]="button.title">
+
+                                  <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                  <i [class]="button.icon" style="font-size:24px"></i>
+                                </button>
+
+                                <button type="button" [class]="button.cssRef" (click)="onSingleUnSelectSkillList(panelInfo.json_descriptor.elem)"
+                                  *ngIf="button.functionName == 'onSingleUnSelectSkillList'" style="width:100%" [title]="button.title">
+
+                                  <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                  <i [class]="button.icon" style="font-size:24px"></i>
+                                </button>
+
+                                <button type="button" [class]="button.cssRef" (click)="onSingleSelectAppList(panelInfo.json_descriptor.elem)"
+                                  *ngIf="button.functionName == 'onSingleSelectAppList'" style="width:100%" [title]="button.title">
+
+                                  <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                  <i [class]="button.icon" style="font-size:24px"></i>
+                                </button>
+
+                                <button type="button" [class]="button.cssRef" (click)="onSingleUnSelectAppList(panelInfo.json_descriptor.elem)"
+                                  *ngIf="(button.functionName == 'onSingleUnSelectAppList') && paramfieldstatus == false"
+                                  style="width:100%" [title]="button.title">
+
+                                  <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                  <i [class]="button.icon" style="font-size:24px"></i>
+                                </button>
+
+                              </div>
+                            </div>
+
+                            <select multiple [(ngModel)]="this[elem.model]" id="bootstrap-duallistbox-nonselected-list_"
+                              class="form-control" name="_helperWorkgroup1" style="height: 100px; border: 0 !important;"
+                              (change)="onDropDownClick($event,elem,panelInfo)">
+
+                              <option *ngFor="let element of elem.options" [value]="element" disabled="disabled" style="color: #000 !important;">
+                                {{ element }}
+                              </option>
+
+                            </select>
+
+                            <!--
+                  
+                                              (change)="onUnselectedWorkgroupDropdownClick($event, false)"
+                            *ngIf="elem.change == 'onUnselectedWorkgroupDropdownClick'"
+                  
+                                            <select multiple [(ngModel)]="this[elem.model]"
+                                            (change)="onUnselectedWorkgroupRoleDropdownClick($event, false)"
+                                            id="bootstrap-duallistbox-nonselected-list_"
+                                            class="form-control"
+                                            name="_helperWorkgroup1"
+                                            style="height: 100px;" 
+                                            *ngIf="elem.change == 'onUnselectedWorkgroupRoleDropdownClick'">
+                  
+                                            <option *ngFor="let element of elem.options" [value]="element">
+                                              {{ element }}
+                                            </option>
+                  
+                                          </select>
+                  -->
+                          </div>
+                        </ng-container>
+                        <div class="box1 col-md-4" *ngIf="paramfieldstatus == false">
+                          <span class="appl-header">{{elem.label}}</span>
+                          <div class="btn-group buttons" *ngIf="elem.buttons.length>0">
+
+                            <div *ngFor="let button of elem.buttons" style="display:inline-block; width:50%;">
+                              <button type="button" [class]="button.cssRef" (click)="onMoveAllWorkgroupList(panelInfo.json_descriptor.elem)"
+                                *ngIf="(button.functionName == 'onMoveAllWorkgroupList' || 
+                                                      button.functionName == 'onMoveAllWorkgroupRoleList' || 
+                                                      button.functionName == 'onMoveAllSkillList' ||
+                                                      button.functionName == 'onMoveAllAppList')"
+                                style="width:100%" [title]="button.title">
+
+                                <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                <i [class]="button.icon" style="font-size:24px"></i>
+                              </button>
+
+                              <button type="button" [class]="button.cssRef" (click)="onRemoveAllWorkgroupList(panelInfo.json_descriptor.elem)"
+                                *ngIf="(button.functionName == 'onRemoveAllWorkgroupList' || 
+                                                    button.functionName == 'onRemoveAllWorkgroupRoleList' ||
+                                                    button.functionName == 'onRemoveAllSkillList' ||
+                                                    button.functionName == 'onRemoveAllAppList')"
+                                style="width:100%" [title]="button.title">
+
+                                <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                <i [class]="button.icon" style="font-size:24px"></i>
+                              </button>
+
+                              <button type="button" [class]="button.cssRef" (click)="onSingleSelectWorkgroupList(panelInfo.json_descriptor.elem)"
+                                *ngIf="button.functionName == 'onSingleSelectWorkgroupList'" style="width:100%" [title]="button.title">
+
+                                <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                <i [class]="button.icon" style="font-size:24px"></i>
+                              </button>
+
+                              <button type="button" [class]="button.cssRef" (click)="onSingleUnSelectWorkgroupList(panelInfo.json_descriptor.elem)"
+                                *ngIf="(button.functionName == 'onSingleUnSelectWorkgroupList')" style="width:100%"
+                                [title]="button.title">
+
+                                <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                <i [class]="button.icon" style="font-size:24px"></i>
+                              </button>
+
+                              <button type="button" [class]="button.cssRef" (click)="onSingleSelectWorkgroupRoleList(panelInfo.json_descriptor.elem)"
+                                *ngIf="button.functionName == 'onSingleSelectWorkgroupRoleList'" style="width:100%"
+                                [title]="button.title">
+
+                                <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                <i [class]="button.icon" style="font-size:24px"></i>
+                              </button>
+
+                              <button type="button" [class]="button.cssRef" (click)="onSingleUnSelectWorkgroupRoleList(panelInfo.json_descriptor.elem)"
+                                *ngIf="(button.functionName == 'onSingleUnSelectWorkgroupRoleList')" style="width:100%"
+                                [title]="button.title">
+
+                                <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                <i [class]="button.icon" style="font-size:24px"></i>
+                              </button>
+
+                              <button type="button" [class]="button.cssRef" (click)="onSingleSelectSkillList(panelInfo.json_descriptor.elem)"
+                                *ngIf="button.functionName == 'onSingleSelectSkillList'" style="width:100%" [title]="button.title">
+
+                                <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                <i [class]="button.icon" style="font-size:24px"></i>
+                              </button>
+
+                              <button type="button" [class]="button.cssRef" (click)="onSingleUnSelectSkillList(panelInfo.json_descriptor.elem)"
+                                *ngIf="button.functionName == 'onSingleUnSelectSkillList'" style="width:100%" [title]="button.title">
+
+                                <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                <i [class]="button.icon" style="font-size:24px"></i>
+                              </button>
+
+                              <button type="button" [class]="button.cssRef" (click)="onSingleSelectAppList(panelInfo.json_descriptor.elem)"
+                                *ngIf="button.functionName == 'onSingleSelectAppList'" style="width:100%" [title]="button.title">
+
+                                <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                <i [class]="button.icon" style="font-size:24px"></i>
+                              </button>
+
+                              <button type="button" [class]="button.cssRef" (click)="onSingleUnSelectAppList(panelInfo.json_descriptor.elem)"
+                                *ngIf="(button.functionName == 'onSingleUnSelectAppList')" style="width:100%" [title]="button.title">
+
+                                <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                <i [class]="button.icon" style="font-size:24px"></i>
+                              </button>
+
+                            </div>
+                          </div>
+
+                          <select multiple [(ngModel)]="this[elem.model]" id="bootstrap-duallistbox-nonselected-list_"
+                            class="form-control" name="_helperWorkgroup1" style="height: 100px;" (change)="onDropDownClick($event,elem,panelInfo)">
+
+                            <option *ngFor="let element of elem.options" [value]="element">
+                              {{ element }}
+                            </option>
+
+                          </select>
+                        </div>
+                      </ng-container>
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <div *ngIf="tabInfo.fieldName == 'Params'">
+                  <div class="">
+                    <!-- <div class="col-md-2" *ngFor="let obj of tabInfo.data; let i=index;">
+                      <div [ngSwitch]="obj.type">
+                        <ng-container *ngFor="let paramMdl of paramsModelKey;">
+                          <ng-container *ngIf="paramMdl.name == obj.label">
+                            <div *ngSwitchCase="'TextBox'">
+                              <div class="form-group mr-5-temp">
+                                <label class="control-label">{{obj.label}}</label>
+                                <input type="text" class="form-control input" name="textObj" style="width:95%;height: 50px;"
+                                  *ngIf="obj.fieldName != 'EC'" [disabled]="(paramfieldstatus)? paramfieldstatus : !obj.editable"
+                                  [(ngModel)]="paramMdl.value">
+                                <input name="number" type="text" class="form-control input" maxlength="3" onlyNumber
+                                  *ngIf="obj.fieldName == 'EC'" style="width:95%;height: 50px;" [disabled]="(paramfieldstatus)? paramfieldstatus : !obj.editable"
+                                  [(ngModel)]="paramMdl.value">
+                              </div>
+                            </div>
+                            <div *ngSwitchCase="'textArea'">
+                              <div class="form-group mr-5-temp">
+                                <label class="control-label">{{obj.label}}</label>
+                                <textarea class="form-control input" autosize name="textAreaObj-{{i}}" rows="1" style="width:95%;"
+                                  [disabled]="(paramfieldstatus)? paramfieldstatus : !obj.editable" [(ngModel)]="paramMdl.value">
+                                              </textarea>
+                              </div>
+                            </div>
+                            <div *ngSwitchCase="'select'">
+                              <div class="form-group" style="width: 95%;
+                                              margin-bottom: 2px;">
+                                <label class="control-label">{{obj.label}}</label>
+                                <ng-select2 [data]="obj.OptionValue" [width]="(paramfieldstatus)? 638:629" placeHolder='Please select'
+                                  name="selectObj" [options]="options" [disabled]="(paramfieldstatus)? paramfieldstatus : !obj.editable"
+                                  [(ngModel)]="paramMdl.value">
+                                </ng-select2>
+                              </div>
+                            </div>
+                            <div *ngSwitchCase="'checkbox'">
+                              <label class="control-label">{{obj.label}}</label>
+                              <input type="checkbox" style="margin-left: 0px" [disabled]="(paramfieldstatus)? paramfieldstatus : !obj.editable"
+                                [(ngModel)]="paramMdl.value" class="checkbox" style="visibility: visible" name='{{"fieldValue_1_"+i}}'>
+                            </div>
+                            <div *ngSwitchCase="'radio'" class="smart-form">
+                              <label class="control-label">{{obj.label}}</label>
+                              <input type="radio" style="margin-left: 0px;visibility: visible" [disabled]="(paramfieldstatus)? paramfieldstatus : !obj.editable"
+                                [(ngModel)]="paramMdl.value" class="radiobox" name='{{"fieldValue_1_"+i}}'>
+                            </div>
+                            <div *ngSwitchCase="'MultiSelect'" class="select-field-size">
+                              <div class="form-group" style="width: 95%;">
+                                <label class="control-label">{{obj.label}}</label>
+                                <ng-select2 [data]="obj.OptionValue" [width]="(paramfieldstatus)? 638:629" name="multiObj"
+                                  [options]="options" [disabled]="(paramfieldstatus)? paramfieldstatus : !obj.editable"
+                                  [(ngModel)]="paramMdl.value">
+                                </ng-select2>
+                              </div>
+                            </div>
+
+                            <div *ngSwitchDefault>
+                              <label class="example-margin">{{obj.label}}:</label>
+                              field type <b>{{obj.type}}</b> is not supported yet.
+                            </div>
+                          </ng-container>
+                        </ng-container>
+                      </div>
+                    </div> -->
+                    <div class="col-md-12 p-0" *ngFor="let resourceLyt of resourceLayout.pageLayoutTemplate; let i = index">
+                      <sa-paramas-layout *ngIf="resourceLayout.pageLayoutTemplate" [paramfieldstatus]="paramfieldstatus"
+                        [pageLayoutData]="resourceLyt" [templateName] = "resourceLayout.templateName" [pageLayoutValues]="resourceLayoutResp"></sa-paramas-layout>
+                    </div>
+                    <!-- <div *ngFor="let tabData of tabInfo.data">
+                        <div class="userpreference--section p-0" *ngIf="tabData.type == 'Select'">
+                          <select class="userpreference--tabselect" style="height:24px;" [(ngModel)]="profileData['userPreference'][tabData.model]" (change)="SetParamSelectDropDownValue($event.target.value)">
+                            <option  *ngFor="let value of tabData.option_value" [value]="value">{{value}}</option>
+                          </select>
+                        </div>
+
+                        <div class="userpreference--section" *ngIf="tabData.type == 'MultiSelect'">
+                          <label class="userpreference--tab">{{tabData.fieldLabel}}</label>
+                          <select class="userpreference--tabselect" [(ngModel)]="profileData['userPreference'][tabData.model]" multiple="true" size="8">
+                            <option  *ngFor="let value of tabData.option_value" [value]="value">{{value}}</option>
+                          </select>
+                        </div>
+  
+                        <div class="userpreference--section" *ngIf="tabData.type == 'Button'">
+                          <button class="btn btn-success blue__btn" (click)="setPreference(tabData.callback)">{{tabData.fieldLabel}}</button>
+                        </div>
+
+                        <div class="userpreference--section" *ngIf="tabData.type == 'TextBox'">
+                            <input ame="number" style="width: 40px;" type="text" maxlength="3" onlyNumber [(ngModel)]="ParamTextboxValue">
+                        </div>
+                        
+  
+                      </div> -->
+
+                  </div>
+
+                </div>
+              </article>
+            </div>
+          </sa-widgets-grid>
+        </div>
+      </div>
+    </ul>
+  </div>
+</sa-widgets-grid>

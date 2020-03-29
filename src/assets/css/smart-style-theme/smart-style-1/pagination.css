@@ -1,0 +1,10 @@
+:root{    
+    --button_background:#15a703; 
+    --button_font:#ffffff;
+}
+
+.smart-style-1 .pagination > .active > a, .smart-style-1 .pagination > .active > a:focus, .smart-style-1 .pagination > .active > a:hover, .smart-style-1 .pagination > .active > span, .smart-style-1 .pagination > .active > span:focus, .smart-style-1 .pagination > .active > span:hover {
+    background: var(--button_background) !important;
+    color: var(--button_font) !important;
+    border-color: #36AECC
+}

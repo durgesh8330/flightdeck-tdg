@@ -1,0 +1,118 @@
+<aside id="left-panel">
+
+    <nav id="nav_bar" class="leftSideNav">
+        <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+    Please note that these links work a bit different than
+    traditional href="" links. See documentation for details.
+    -->
+
+        <sa-widgets-grid>
+            <!-- <div class="icon-bar">
+          <a href="#" class="sme"><i class="fa fa-scribd" (click)="showSME=!showSME" tooltip="matTooltip" matTooltip="Status Manager" matTooltipPosition="right"></i></a> 
+          <a href="#" class="flightdeck"><i class="fa fa-foursquare" (click)="showFL=!showFL" tooltip="matTooltip" matTooltip="Flight Deck" matTooltipPosition="right"></i></a> 
+          <a href="#" class="lmos"><i class="fa fa-foursquare" (click)="showLOMS=!showLOMS" tooltip="matTooltip" matTooltip="Lmos" matTooltipPosition="right"></i></a> 
+          <a href="#" class="sme"><i class="fa fa-info" (click)="showIPVPN=!showIPVPN" tooltip="matTooltip" matTooltip="IPVPN" matTooltipPosition="right"></i></a> 
+      </div>  -->
+            <!-- <sme-menu (showMainMenu)="showMenu()"></sme-menu>
+     
+        <fl-menu (showMainMenu)="showMenu()"></fl-menu>
+     
+        <lmos-menu (showMainMenu)="showMenu()"></lmos-menu>
+      
+          <ipvpn-menu (showMainMenu)="showMenu()"></ipvpn-menu> -->
+            <div class="accordiondiv">
+                <div *ngIf="menuLevel.count == 1">
+                    <sme-menu *ngIf="menuLevel.LeftMenu_SME == 'LeftMenu_SME'"></sme-menu>
+                    <fl-menu (AutoSelectCall)="autoselect()" *ngIf="menuLevel.LeftMenu_Basic == 'LeftMenu_Basic'"></fl-menu>
+                    <lmos-menu [HeaderMenuStatus]="Headermenustatus" (AutoSelectCall)="autoselect()" (MainLoader)="MainLoader($event)" (message)="messageCall($event)" *ngIf="menuLevel.LeftMenu_LMOS == 'LeftMenu_LMOS'"></lmos-menu>
+                    <rcmac-menu (AutoSelectCall)="autoselect()" (MainLoader)="MainLoader($event)" (message)="messageCall($event)" *ngIf="menuLevel.LeftMenu_RCMAC == 'LeftMenu_RCMAC'"></rcmac-menu>
+                    <ipvpn-menu *ngIf="menuLevel.LeftMenu_IPVPN == 'LeftMenu_IPVPN'"></ipvpn-menu>
+                </div>
+                
+                <accordion *ngIf="menuLevel.count > 1">
+                    <accordion-group *ngIf="menuLevel.LeftMenu_Basic == 'LeftMenu_Basic'">
+                        <button class="menu_tx_l btn btn-link btn-block clearfix" accordion-heading>
+                            Basic Menu
+                        </button>
+                        <button class="menu_image btn btn-link btn-block clearfix" accordion-heading title="System Admin">
+                            <img src="assets/img/letter-f.svg" />
+                        </button>
+                        <fl-menu (AutoSelectCall)="autoselect()"></fl-menu>
+                    </accordion-group>
+                    <accordion-group *ngIf="menuLevel.LeftMenu_SME == 'LeftMenu_SME'">
+                        <button class="menu_tx_l btn btn-link btn-block clearfix" accordion-heading>
+                            Order Management
+                        </button>
+                        <button class="menu_image btn btn-link btn-block clearfix" accordion-heading title="Order Management">
+                            <img src="assets/img/letter-s.svg" />
+                        </button>
+                        <sme-menu></sme-menu>
+                    </accordion-group>
+                    <!-- <accordion-group *ngIf="menuLevel.LeftMenu_rule_engine == 'LeftMenu_rule_engine'">
+                        <button class="menu_tx_l btn btn-link btn-block clearfix" accordion-heading>
+                            Rule Engine
+                        </button>
+                        <button class="menu_image btn btn-link btn-block clearfix" accordion-heading title="Rule Engine">
+                            <img src="assets/img/letter-f.svg" />
+                        </button>
+                        <rule-menu></rule-menu>
+
+                    </accordion-group> -->
+                    <accordion-group *ngIf="menuLevel.LeftMenu_LMOS == 'LeftMenu_LMOS'">
+                        <button class="menu_tx_l btn btn-link btn-block clearfix" accordion-heading>
+                            Screening
+                        </button>
+                        <button class="menu_image btn btn-link btn-block clearfix" accordion-heading title="Screening">
+                            <img src="assets/img/letter-l.svg" />
+                        </button>
+                        <lmos-menu [HeaderMenuStatus]="Headermenustatus" (AutoSelectCall)="autoselect()" (MainLoader)="MainLoader($event)" (message)="messageCall($event)"></lmos-menu>
+                    </accordion-group>
+                    <accordion-group *ngIf="menuLevel.LeftMenu_RCMAC == 'LeftMenu_RCMAC'">
+                        <button class="menu_tx_l btn btn-link btn-block clearfix" accordion-heading>
+                            RCMAC
+                        </button>
+                        <button class="menu_image btn btn-link btn-block clearfix" accordion-heading title="Screening">
+                            <img src="assets/img/letter-l.svg" />
+                        </button>
+                        <rcmac-menu (AutoSelectCall)="autoselect()" (MainLoader)="MainLoader($event)" (message)="messageCall($event)"></rcmac-menu>
+                    </accordion-group>
+                    <accordion-group *ngIf="menuLevel.LeftMenu_IPVPN == 'LeftMenu_IPVPN'">
+                        <button class="menu_tx_l btn btn-link btn-block clearfix" accordion-heading>
+                            IPVPN
+                        </button>
+                        <button class="menu_image btn btn-link btn-block clearfix" accordion-heading title="IPVPN">
+                            <img src="assets/img/letter-i.svg" />
+                        </button>
+                        <ipvpn-menu></ipvpn-menu>
+                    </accordion-group>
+                        <accordion-group *ngIf="menuLevel.LeftMenu_R2DG == 'LeftMenu_R2DG'">
+                            <button class="menu_tx_l btn btn-link btn-block clearfix" accordion-heading>
+                                Hybrid Ordering
+                            </button>    
+                            <create-task (MainLoader)="MainLoader($event)" (message)="messageCall($event)"></create-task>
+                        </accordion-group>
+                            
+                            <!-- <accordion-group *ngIf="menuLevel.LeftMenu_WG_QH == 'display'" >
+                                    <button class="menu_tx_l btn btn-link btn-block clearfix" accordion-heading>
+                                            Query History
+                                         </button>                                  
+                                    <sa-query-history></sa-query-history>                                
+                            </accordion-group>     -->
+                          
+                    </accordion>
+                <div *ngIf="menuLevel.LeftMenu_SME == 'LeftMenu_NotAssigneds'">
+                    <no-leftmenu></no-leftmenu>
+                </div>
+                <div *ngIf="menuLevel.LeftMenu_QH == 'LeftMenu_QueryHistory'"> 
+                    <div class="query-history">                                       
+                        <sa-query-history></sa-query-history>
+                    </div>
+                    </div>
+                
+            </div>
+        </sa-widgets-grid>
+    </nav>
+
+    <sa-minify-menu></sa-minify-menu>
+
+</aside>

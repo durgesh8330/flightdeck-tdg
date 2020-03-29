@@ -1,0 +1,449 @@
+// this.pageLayout = {
+						// 	"pageLayoutTemplate": [
+						// 		{
+						// 			"sectionHeader": "Related-Tabs",
+						// 			"fieldsList": [
+						// 				{
+						// 					"fieldName": "detr",
+						// 					"visible": true,
+						// 					"editable": false,
+						// 					"service": "http://vlodts012.test.intranet:3000/v1/MCMD?CMD=detr&ARG=TN",
+						// 					"active": true,
+						// 					"label": "DETR",
+						// 					"httpMethod": "put",
+						// 					"type": "related-tab",
+						// 					"fieldValue": "",
+						// 					"accessPoint": "Tabs_LMOS_DETR"
+						// 				},
+						// 				{
+						// 					"fieldName": "dsh",
+						// 					"visible": true,
+						// 					"editable": false,
+						// 					"service": "http://vlodts012.test.intranet:3000/v1/MCMD?CMD=dsh&ARG=TN",
+						// 					"active": false,
+						// 					"label": "DSH",
+						// 					"httpMethod": "put",
+						// 					"type": "related-tab",
+						// 					"fieldValue": "",
+						// 					"accessPoint": "Tabs_LMOS_DSH"
+						// 				},
+						// 				{
+						// 					"fieldName": "dlrl",
+						// 					"visible": true,
+						// 					"editable": false,
+						// 					"service": "http://vlodts012.test.intranet:3000/v1/DLR/TN?EC=",
+						// 					"active": false,
+						// 					"label": "DLRL",
+						// 					"httpMethod": "get",
+						// 					"type": "related-tab",
+						// 					"fieldValue": "",
+						// 					"accessPoint": "Tabs_LMOS_DLRL"
+						// 				},
+						// 				{
+						// 					"fieldName": "dleth",
+						// 					"visible": true,
+						// 					"editable": false,
+						// 					"service": "http://vlodts012.test.intranet:3000/v1/DLETH/TN?EC=",
+						// 					"active": false,
+						// 					"label": "DLETH",
+						// 					"httpMethod": "get",
+						// 					"type": "related-tab",
+						// 					"fieldValue": "",
+						// 					"accessPoint": "Tabs_LMOS_DLETH"
+						// 				},
+						// 				{
+						// 					"fieldName": "mltfx",
+						// 					"visible": true,
+						// 					"editable": false,
+						// 					"service": "http://vlodts012.test.intranet:3000/v1/TV?EC=replaceEC&TN=replaceTN&REQ=replaceREQ",
+						// 					"active": false,
+						// 					"label": "MLTFX",
+						// 					"httpMethod": "post",
+						// 					"type": "related-tab",
+						// 					"fieldValue": "",
+						// 					"accessPoint": "Tabs_LMOS_MLTFX"
+						// 				},
+						// 				{
+						// 					"fieldName": "Predictor",
+						// 					"visible": true,
+						// 					"editable": false,
+						// 					"service": "https://sasi-sasiwrap-dev1.kubeodc.corp.intranet/wrappers/predictor/scrapePredictor?TN=replaceTN&predictorRegion=PREDICTOR_CENTRAL&modeIndicator=y",
+						// 					"active": false,
+						// 					"label": "PREDICTOR",
+						// 					"httpMethod": "get",
+						// 					"type": "related-tab",
+						// 					"fieldValue": "",
+						// 					"accessPoint": "Tabs_LMOS_MLTFX"
+						// 				}
+						// 			]
+						// 		},
+						// 		{
+						// 			"sectionHeader": "Table Fields",
+						// 			"fieldsList": [
+						// 				{
+						// 					"filter": true,
+						// 					"fieldName": "sourceTaskId",
+						// 					"visible": true,
+						// 					"link": true,
+						// 					"label": "ID",
+						// 					"sort": true,
+						// 					"fieldValue": "",
+						// 					"class": "systemtype",
+						// 					"key": "sourceTaskId"
+						// 				},
+						// 				{
+						// 					"filter": true,
+						// 					"fieldName": "taskName",
+						// 					"visible": true,
+						// 					"label": "Sub Task",
+						// 					"sort": true,
+						// 					"fieldValue": "",
+						// 					"class": "systemtype",
+						// 					"key": "taskInstDesc"
+						// 				},
+						// 				{
+						// 					"filter": true,
+						// 					"fieldName": "taskStatus",
+						// 					"visible": true,
+						// 					"label": "Status",
+						// 					"sort": true,
+						// 					"fieldValue": "",
+						// 					"class": "systemtype",
+						// 					"key": "sourceSystemName"
+						// 				},
+						// 				{
+						// 					"filter": true,
+						// 					"fieldName": "statusMessage",
+						// 					"visible": true,
+						// 					"label": "Status Details",
+						// 					"sort": true,
+						// 					"fieldValue": "",
+						// 					"class": "systemtype",
+						// 					"key": "escalatedId"
+						// 				},
+						// 				{
+						// 					"filter": true,
+						// 					"fieldName": "statusCode",
+						// 					"visible": true,
+						// 					"label": "Status CD",
+						// 					"sort": true,
+						// 					"fieldValue": "",
+						// 					"class": "systemtype",
+						// 					"key": "taskStatus"
+						// 				},
+						// 				{
+						// 					"filter": true,
+						// 					"fieldName": "createdDtTm",
+						// 					"visible": true,
+						// 					"label": "RCV Date",
+						// 					"sort": true,
+						// 					"fieldValue": "",
+						// 					"class": "systemtype",
+						// 					"key": "assignedCuid"
+						// 				},
+						// 				{
+						// 					"filter": true,
+						// 					"fieldName": "cmpDate",
+						// 					"visible": true,
+						// 					"label": "CMP Date",
+						// 					"sort": true,
+						// 					"fieldValue": "",
+						// 					"class": "systemtype",
+						// 					"key": "taskName"
+						// 				},
+						// 				{
+						// 					"filter": true,
+						// 					"fieldName": "duration",
+						// 					"visible": true,
+						// 					"label": "Duration",
+						// 					"sort": true,
+						// 					"fieldValue": "",
+						// 					"class": "systemtype",
+						// 					"key": "createdById"
+						// 				},
+						// 				{
+						// 					"filter": true,
+						// 					"fieldName": "totalCounts",
+						// 					"visible": true,
+						// 					"label": "CHILDREN",
+						// 					"sort": true,
+						// 					"fieldValue": "",
+						// 					"class": "systemtype",
+						// 					"key": "createdDtTm"
+						// 				}
+						// 			]
+						// 		},
+						// 		{
+						// 			"sectionHeader": "pagination",
+						// 			"fieldsList": [
+						// 				{
+						// 					"totalRecords": 1,
+						// 					"fieldName": "pagination",
+						// 					"pageNumber": 1,
+						// 					"pageNumberText": "Page Number -",
+						// 					"totalRecordsText": "Total number of records: ",
+						// 					"pageLimitOptions": [
+						// 						10,
+						// 						20,
+						// 						50,
+						// 						100
+						// 					],
+						// 					"pageSize": 10,
+						// 					"label": "pagination",
+						// 					"perPageText": "Per Page",
+						// 					"type": "pagination",
+						// 					"fieldValue": ""
+						// 				}
+						// 			]
+						// 		},
+						// 		{
+						// 			"sectionHeader": "Buttons",
+						// 			"fieldsList": [
+						// 				{
+						// 					"fieldName": "assign_user",
+						// 					"visible": true,
+						// 					"actionbutton": true,
+						// 					"apiUrl": "",
+						// 					"label": "Assign",
+						// 					"fieldValue": "",
+						// 					"class": "fa-sign-out"
+						// 				},
+						// 				{
+						// 					"fieldName": "add_comment",
+						// 					"visible": true,
+						// 					"actionbutton": true,
+						// 					"apiUrl": "",
+						// 					"label": "Add Comments",
+						// 					"fieldValue": "",
+						// 					"class": "fa-comment"
+						// 				}
+						// 			]
+						// 		},
+						// 		{
+						// 			"sectionHeader": "summary",
+						// 			"fieldsList": [
+						// 				{
+						// 					"fieldName": "",
+						// 					"header": {
+						// 						"showHistory": true,
+						// 						"headerButton": true,
+						// 						"label": "Status",
+						// 						"history": true,
+						// 						"key": "status"
+						// 					},
+						// 					"label": "",
+						// 					"body": [
+						// 						{
+						// 							"fieldName": "statusCode",
+						// 							"textarea": false,
+						// 							"label": "Status Code",
+						// 							"key": "status_code"
+						// 						},
+						// 						{
+						// 							"fieldName": "statusMessage",
+						// 							"textarea": false,
+						// 							"label": "Status Message",
+						// 							"key": "status_message"
+						// 						},
+						// 						{
+						// 							"fieldName": "version",
+						// 							"textarea": false,
+						// 							"label": "Version",
+						// 							"key": "version"
+						// 						},
+						// 						{
+						// 							"fieldName": "notes",
+						// 							"textarea": true,
+						// 							"label": "Notes",
+						// 							"key": "description"
+						// 						}
+						// 					],
+						// 					"fieldValue": ""
+						// 				},
+						// 				{
+						// 					"fieldName": "",
+						// 					"header": {
+						// 						"showHistory": true,
+						// 						"headerButton": false,
+						// 						"label": "Assigned To",
+						// 						"history": true,
+						// 						"key": "status"
+						// 					},
+						// 					"label": "",
+						// 					"body": [
+						// 						{
+						// 							"fieldName": "assignedName",
+						// 							"textarea": false,
+						// 							"label": "Assigned To Name",
+						// 							"key": "status_code"
+						// 						},
+						// 						{
+						// 							"fieldName": "escalatedId",
+						// 							"textarea": false,
+						// 							"label": "Escalated",
+						// 							"key": "status_message"
+						// 						},
+						// 						{
+						// 							"fieldName": "parentTaskId",
+						// 							"textarea": false,
+						// 							"label": "Parent ID",
+						// 							"key": "version"
+						// 						},
+						// 						{
+						// 							"fieldName": "assignedWorkGroups",
+						// 							"textarea": false,
+						// 							"label": "Assigned Workgroup(s)",
+						// 							"key": "description"
+						// 						}
+						// 					],
+						// 					"fieldValue": ""
+						// 				},
+						// 				{
+						// 					"fieldName": "",
+						// 					"header": {
+						// 						"showHistory": true,
+						// 						"headerButton": false,
+						// 						"label": "Duration",
+						// 						"history": true,
+						// 						"key": "status"
+						// 					},
+						// 					"label": "",
+						// 					"body": [
+						// 						{
+						// 							"fieldName": "createdDtTm",
+						// 							"textarea": false,
+						// 							"label": "Created DT",
+						// 							"key": "status_code"
+						// 						},
+						// 						{
+						// 							"fieldName": "createdByName",
+						// 							"textarea": false,
+						// 							"label": "Created By",
+						// 							"key": "status_message"
+						// 						},
+						// 						{
+						// 							"fieldName": "modifiedByName",
+						// 							"textarea": false,
+						// 							"label": "Modified By",
+						// 							"key": "version"
+						// 						},
+						// 						{
+						// 							"fieldName": "modifiedDtTm",
+						// 							"textarea": false,
+						// 							"label": "Modified DT",
+						// 							"key": "description"
+						// 						},
+						// 						{
+						// 							"textarea": false,
+						// 							"label": "Completed DT",
+						// 							"key": "completedDT"
+						// 						},
+						// 						{
+						// 							"textarea": false,
+						// 							"label": "Completed By",
+						// 							"key": "completedBy"
+						// 						}
+						// 					],
+						// 					"fieldValue": ""
+						// 				}
+						// 			]
+						// 		},
+						// 		{
+						// 			"sectionHeader": "details",
+						// 			"fieldsList": [
+						// 				{
+						// 					"fieldName": "",
+						// 					"headerLabel": "Children Status Summary",
+						// 					"label": "",
+						// 					"fieldValue": ""
+						// 				},
+						// 				{
+						// 					"fieldName": "",
+						// 					"headerLabel": "Order",
+						// 					"label": "",
+						// 					"fieldValue": ""
+						// 				},
+						// 				{
+						// 					"fieldName": "",
+						// 					"headerLabel": "Customer",
+						// 					"label": "",
+						// 					"fieldValue": ""
+						// 				},
+						// 				{
+						// 					"fieldName": "",
+						// 					"headerLabel": "Info Used",
+						// 					"label": "",
+						// 					"fieldValue": ""
+						// 				}
+						// 			]
+						// 		},
+						// 		{
+						// 			"sectionHeader": "LMOS Buttons",
+						// 			"fieldsList": [
+						// 				{
+						// 					"buttonIcon": "",
+						// 					"fieldName": "close",
+						// 					"visible": true,
+						// 					"color": "warn",
+						// 					"toolTip": "",
+						// 					"label": "Close",
+						// 					"fieldValue": "",
+						// 					"class": "search-btn",
+						// 					"accessPoint": "Button_close",
+						// 					"order": 2
+						// 				},
+						// 				{
+						// 					"buttonIcon": "",
+						// 					"fieldName": "cancel",
+						// 					"visible": true,
+						// 					"color": "warn",
+						// 					"toolTip": "",
+						// 					"label": "Cancel",
+						// 					"fieldValue": "",
+						// 					"class": "search-btn",
+						// 					"accessPoint": "Button_cancel",
+						// 					"order": 3
+						// 				},
+						// 				{
+						// 					"buttonIcon": "",
+						// 					"fieldName": "reroute",
+						// 					"visible": true,
+						// 					"color": "primary",
+						// 					"toolTip": "",
+						// 					"label": "Reroute",
+						// 					"fieldValue": "",
+						// 					"class": "search-btn",
+						// 					"accessPoint": "Button_dispatch",
+						// 					"order": 4
+						// 				},
+						// 				{
+						// 					"buttonIcon": "",
+						// 					"fieldName": "transfter",
+						// 					"visible": true,
+						// 					"color": "primary",
+						// 					"toolTip": "",
+						// 					"label": "Transfer",
+						// 					"fieldValue": "",
+						// 					"class": "search-btn",
+						// 					"accessPoint": "Button_assign",
+						// 					"order": 5
+						// 				},
+						// 				{
+						// 					"buttonIcon": "",
+						// 					"fieldName": "returntasktoworkgroup",
+						// 					"visible": true,
+						// 					"color": "primary",
+						// 					"service": "http://vlodts012.test.intranet:3000/v1/MSCR/TTN/UPDATE?MC=placeMC&EC=999&TTN=placeTTN&WP=3&IST=112&RTE=452&NARR=placeCUID",
+						// 					"toolTip": "",
+						// 					"label": "Return Task To Workgroup",
+						// 					"fieldValue": "",
+						// 					"class": "search-btn",
+						// 					"accessPoint": "Button_release",
+						// 					"order": 6
+						// 				}
+						// 			]
+						// 		}
+						// 	],
+						// 	"templateName": "SME TaskDetails",
+						// 	"createdById": "AC30161"
+						// }

@@ -1,0 +1,45 @@
+<form    [formGroup]="createRoleFormGroup" >
+		<h4 mat-dialog-title style="text-align:center;font-weight: 700;">{{uiObject.pageTitle}}</h4>
+		<hr>
+		<div mat-dialog-content>
+			<div class="row">
+				<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+					<div *ngFor="let field of uiObject.fields; let i = index" class="col-xs-12 col-md-4 col-sm-12 col-lg-4">
+					<label class="control-label">{{field.label}}</label>
+					<span *ngIf="field.mandatory" aria-hidden="true" class="text-danger">&nbsp;*</span>
+					<input [type]="field.type" class="form-control" [placeholder]="field.label" [name]="field.fieldName"  [formControlName]="field.fieldName" [(ngModel)]="field.fieldValue"
+					[attr.disabled]="field['editable'] == false ? '' : null"  required>
+					<div *ngIf="createRoleFormGroup.controls[field.fieldName] && createRoleFormGroup.controls[field.fieldName].invalid && createRoleFormGroup.controls[field.fieldName].touched" class="text-danger text-left">
+						<small>{{field.label}} is required .</small>
+					</div>
+					</div>
+					<!-- <div class="col-xs-12 col-md-4 col-sm-12 col-lg-4">
+						<label class="control-label">Role Desc</label>
+						<span aria-hidden="true" class="text-danger">&nbsp;*</span>
+						<input type="textarea" class="form-control" placeholder="Role Desc" name="workgroupRoleDesc" required #workgroupRoleDesc="ngModel" [(ngModel)]="workgroupRole.workgroupRoleDesc">
+						<div *ngIf="!workgroupRoleDesc.valid" class="text-danger text-left">
+								<small>Role Description is required.</small>
+							</div>
+					</div>
+					<div class="col-xs-12 col-md-4 col-sm-12 col-lg-4">
+						<label class="control-label">{{createdByText}}</label>
+						<input type="text" disabled class="form-control" name="createdBy" #createdBy="ngModel" [(ngModel)]="workgroupRole.createdById">
+					</div> -->
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>
+				<div *ngFor="let action of uiObject.buttons" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<button [type]="action.type" class="btn btn-primary" (click)="onButtonClick(action.fieldName)">
+						{{action.label}}
+					</button>
+				</div>
+				<!-- <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<button type="button" class="btn btn-default" (click)="closeModal();">
+						Cancel
+					</button>
+				</div> -->
+			</div>
+		</div>
+</form>

@@ -1,0 +1,221 @@
+{
+  "pageLayoutTemplate": [
+    {
+      "sectionHeader": "Table Fields",
+      "fieldsList": [
+        {
+          "filter": true,
+          "fieldName": "seq",
+          "visible": true,
+          "link": true,
+          "label": "SEQ",
+          "sort": true,
+          "fieldValue": "",
+          "class": "systemtype",
+          "key": "sourceTaskId"
+        },
+        {
+          "filter": true,
+          "fieldName": "taskName",
+          "visible": true,
+          "label": "Sub Task",
+          "sort": true,
+          "fieldValue": "",
+          "class": "systemtype",
+          "key": "taskInstDesc"
+        },
+        {
+          "filter": true,
+          "fieldName": "taskStatus",
+          "visible": true,
+          "label": "Status",
+          "sort": true,
+          "fieldValue": "",
+          "class": "systemtype",
+          "key": "sourceSystemName"
+        },
+        {
+          "filter": true,
+          "fieldName": "statusMessage",
+          "visible": true,
+          "label": "Status Details",
+          "sort": true,
+          "fieldValue": "",
+          "class": "systemtype",
+          "key": "escalatedId"
+        },
+        {
+          "filter": true,
+          "fieldName": "statusCode",
+          "visible": true,
+          "label": "Status CD",
+          "sort": true,
+          "fieldValue": "",
+          "class": "systemtype",
+          "key": "taskStatus"
+        },
+        {
+          "filter": true,
+          "fieldName": "createdDtTm",
+          "visible": true,
+          "label": "RCV Date",
+          "sort": true,
+          "fieldValue": "",
+          "class": "systemtype",
+          "key": "assignedCuid"
+        },
+        {
+          "filter": true,
+          "fieldName": "cmpDate",
+          "visible": true,
+          "label": "CMP Date",
+          "sort": true,
+          "fieldValue": "",
+          "class": "systemtype",
+          "key": "taskName"
+        },
+        {
+          "filter": true,
+          "fieldName": "duration",
+          "visible": true,
+          "label": "Duration",
+          "sort": true,
+          "fieldValue": "",
+          "class": "systemtype",
+          "key": "createdById"
+        },
+        {
+          "filter": true,
+          "fieldName": "totalCounts",
+          "visible": true,
+          "label": "CHILDREN",
+          "sort": true,
+          "fieldValue": "",
+          "class": "systemtype",
+          "key": "createdDtTm"
+        }
+      ]
+    },
+    {
+      "sectionHeader": "pagination",
+      "fieldsList": [
+        {
+          "totalRecords": 1,
+          "fieldName": "pagination",
+          "pageNumber": 1,
+          "pageNumberText": "Page Number -",
+          "totalRecordsText": "Total number of records: ",
+          "pageLimitOptions": [
+            10,
+            20,
+            50,
+            100
+          ],
+          "pageSize": 10,
+          "label": "pagination",
+          "perPageText": "Per Page",
+          "type": "pagination",
+          "fieldValue": ""
+        }
+      ]
+    },
+    {
+      "sectionHeader": "Buttons",
+      "fieldsList": [
+        {
+          "fieldName": "assign_user",
+          "visible": true,
+          "actionbutton": true,
+          "apiUrl": "",
+          "label": "Assign",
+          "fieldValue": "",
+          "class": "fa-sign-out"
+        },
+        {
+          "fieldName": "add_comment",
+          "visible": true,
+          "actionbutton": true,
+          "apiUrl": "",
+          "label": "Add Comments",
+          "fieldValue": "",
+          "class": "fa-comment"
+        },
+        {
+          "fieldName": "edit_retry",
+          "visible": true,
+          "actionbutton": true,
+          "apiUrl": "",
+          "label": "Edit & Retry",
+          "fieldValue": "",
+          "class": "fa-pencil"
+        }
+      ]
+    },
+    {
+      "sectionHeader": "summary",
+      "fieldsList": [
+        {
+          "fieldName": "",
+          "header": {
+            "showHistory": false,
+            "headerButton": false,
+            "label": "Duration",
+            "history": true,
+            "key": "status"
+          },
+          "label": "",
+          "body": [
+            {
+              "fieldName": "createdDtTm",
+              "textarea": false,
+              "label": "Created DT",
+              "key": "status_code"
+            },
+            {
+              "fieldName": "createdByName",
+              "textarea": false,
+              "label": "Created By",
+              "key": "status_message"
+            },
+            {
+              "fieldName": "modifiedByName",
+              "textarea": false,
+              "label": "Modified By",
+              "key": "version"
+            },
+            {
+              "fieldName": "modifiedDtTm",
+              "textarea": false,
+              "label": "Modified DT",
+              "key": "description"
+            },
+            {
+              "textarea": false,
+              "label": "Completed DT",
+              "key": "completedDT"
+            },
+            {
+              "textarea": false,
+              "label": "Completed By",
+              "key": "completedBy"
+            }
+          ],
+          "fieldValue": ""
+        }
+      ]
+    },
+    {
+      "sectionHeader": "details",
+      "fieldsList": [
+        {
+          "fieldName": "",
+          "headerLabel": "Info Used",
+          "label": "",
+          "fieldValue": ""
+        }
+      ]
+    }
+  ],
+  "templateName": "SME TaskDetails",
+  "createdById": "AC30161"
+}

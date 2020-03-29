@@ -1,0 +1,1178 @@
+<div sa-widget class="well" [color]="false" [editbutton]="false" [togglebutton]="false" [deletebutton]="false"
+  [fullscreenbutton]="false" [custombutton]="false" [sortable]="false">
+  <!-- widget options:
+          usage: <div sa-widget [editbutton]="false">
+
+          [colorbutton]="false"
+          [editbutton]="false"
+          [togglebutton]="false"
+          [deletebutton]="false"
+          [fullscreenbutton]="false"
+          [custombutton]="false"
+          [collapsed]="true"
+          [sortable]="false"
+
+          -->
+
+  <header>
+    <span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+    <h2>Default Tabs with border </h2>
+
+  </header>
+
+  <!-- widget div-->
+  <div>
+
+
+    <!-- widget content -->
+    <div class="widget-body">
+      <!-- <ul class="nav nav-tabs bordered">
+        <li [class.active]="state.tabs.demo2 == 10">
+          <a (click)="state.tabs.demo2 = 10">Settings</a>
+        </li>        
+      </ul> -->
+
+      <!-- <tabset class="padding-10">
+        <tab [active]="state.tabs.demo2 == 10"> -->
+
+      <div class="theme">
+        <div class="row">
+          <form class="smart-form" #gsForm="ngForm" (ngSubmit)="onSubmit(gsForm)">
+            <header style="border: 1px solid; background-color: rgba(0, 0, 0, .2);
+                                margin: 0px !important; padding-left: 10px !important;">
+              Theme Settings
+            </header>
+
+            <fieldset style="border: 1px solid rgba(0, 0, 0, .2); 
+                background-color: rgba(255, 255, 255, 0); padding: 10px 14px 5px;">
+              <!-- <h2 class="label" style="font-size: 15px !important; font-weight: 600 !important;">Available Themes</h2> -->
+
+              <div class="row">
+                <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-6" style="border-right: 1px solid lightgrey;">
+                  <div class="row">
+                    <section class="col col-md-8">
+
+                      <label class="">
+                        <h4>Select Theme</h4>
+                      </label>
+
+                      <div class="inline-group theme-selection" style="margin:10px 0px;">
+                        <label class="radio">
+                          <input type="radio" name="radio-inline" [(ngModel)]="selectedPreference" value="predefined" checked="checked">
+                          <i></i>Predefined Theme</label>
+                        <label class="radio">
+                          <input type="radio" name="radio-inline" [(ngModel)]="selectedPreference" value="custom">
+                          <i></i>Custom Theme</label>
+                      </div>
+
+                      <label class="select" *ngIf="selectedPreference == 'predefined'">
+                        <div *ngIf="storeLocal">
+                          <select class="input-sm" name="state" (change)="onChange($event)" [(ngModel)]="themeName">
+                            <!--
+                                <option *ngFor="let skin of storeLocal.skins" [value]="skin.name">{{skin.label}}
+                                </option>
+                                -->
+
+                            <option *ngFor="let theme of themes" [value]="theme.value">{{theme.name}}
+                            </option>
+
+                          </select>
+                        </div>
+                        <i></i>
+                      </label>
+                    </section>
+                    
+                    <div class="col-md-12">
+                      
+                      
+                      <button type="button" *ngIf="selectedPreference == 'predefined'" style="float: left; margin-left: 10px;" class="btn btn-primary" >
+                        Set as default
+                      </button>
+                      <button type="button" style="float: left; margin-left: 10px;" class="btn btn-primary" (click)="factoryReset()">
+                          Factory Reset 
+                        </button>
+                      <button type="submit" *ngIf="selectedPreference != 'predefined'" style="float: left; margin-left: 10px;" class="btn btn-primary">
+                            Preview </button>
+                      <button type="button" [disabled]="disableSave" class="btn btn-primary" data-toggle="modal"
+                            data-target="#myModal" style="float: left; margin-left: 10px;">Save</button>
+                          
+                    </div>
+                  </div>
+                </div>
+                <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-6" style="border-right: 1px solid lightgrey;">
+                    <div class="tabbable tabs-left" *ngIf="selectedPreference != 'predefined'" >
+                        <ul class="nav nav-tabs">
+                          <li class="active"><a href="#1" data-toggle="tab">Header & Title</a></li>
+                          <li><a href="#2" data-toggle="tab">Menu</a></li>
+                          <li style="width: 122px;"><a href="#3" data-toggle="tab">Top Bar & Footer</a></li>
+                          <li><a href="#4" data-toggle="tab">Input & Button</a></li>
+                          <li><a href="#5" data-toggle="tab">Content Area</a></li>
+                          <li><a href="#6" data-toggle="tab">Font Family</a></li>
+                        </ul>
+    
+                        <div class="tab-content" style="border-right: 1px solid lightgrey;
+                            border-bottom: 1px solid lightgrey; 
+                            /* height: 243px; */
+                            margin-left: 122px !important;
+                            border-top: 1px solid lightgrey;
+                            background-color: #fff !important;">
+                          <!-- <div class="col col-md-6"> -->
+                          <div class="tab-pane active" id="1">
+                            <div class="topPadding15">
+    
+                              <h1></h1>
+                              <div class="row">
+                                <section class="col col-md-5">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Header BackGround: </label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <input id="color6" [value]="color6" [style.background]="color6" [cpCancelButton]="true"
+                                      [(colorPicker)]="color6" (cpInputChange)="onColorPikcerInputChange($event, 'color6')"
+                                      (cpSliderDragStart)="onColorPikcerInputChange($event, 'color6')" (cpSliderDragEnd)="onColorPikcerInputChange($event, 'color6')" />
+                                  </div>
+                                </section>
+    
+                                <section class="col col-md-5">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Title Background: </label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <input id="color8" [value]="color8" [style.background]="color8" [cpCancelButton]="true"
+                                      [(colorPicker)]="color8" (cpInputChange)="onColorPikcerInputChange($event, 'color8')"
+                                      (cpSliderDragStart)="onColorPikcerInputChange($event, 'color8')" (cpSliderDragEnd)="onColorPikcerInputChange($event, 'color8')" />
+                                  </div>
+                                </section>
+    
+                                <section class="col col-md-5">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Header Font Color: </label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <input id="color7" [value]="color7" [style.background]="color7" [cpCancelButton]="true"
+                                      [(colorPicker)]="color7" (cpInputChange)="onColorPikcerInputChange($event, 'color7')"
+                                      (cpSliderDragStart)="onColorPikcerInputChange($event, 'color7')" (cpSliderDragEnd)="onColorPikcerInputChange($event, 'color7')" />
+                                  </div>
+                                </section>
+    
+                                <section class="col col-md-5">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Title Font Color: </label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <input id="color9" [value]="color9" [style.background]="color9" [cpCancelButton]="true"
+                                      [(colorPicker)]="color9" (cpInputChange)="onColorPikcerInputChange($event, 'color9')"
+                                      (cpSliderDragStart)="onColorPikcerInputChange($event, 'color9')" (cpSliderDragEnd)="onColorPikcerInputChange($event, 'color9')" />
+                                  </div>
+                                </section>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane" id="2">
+                            <div class="topPadding15">
+                              <h1></h1>
+                              <div class="row">
+                                <section class="col col-md-5">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Menu Background:</label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <input id="color4" [value]="color4" [style.background]="color4" [cpCancelButton]="true"
+                                      [(colorPicker)]="color4" (cpInputChange)="onColorPikcerInputChange($event, 'color4')"
+                                      (cpSliderDragStart)="onColorPikcerInputChange($event, 'color4')" (cpSliderDragEnd)="onColorPikcerInputChange($event, 'color4')" />
+                                  </div>
+                                </section>
+                                <section class="col col-md-5">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Menu Font Color:</label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <input id="color5" [value]="color5" [style.background]="color5" [cpCancelButton]="true"
+                                      [(colorPicker)]="color5" (cpInputChange)="onColorPikcerInputChange($event, 'color5')"
+                                      (cpSliderDragStart)="onColorPikcerInputChange($event, 'color5')" (cpSliderDragEnd)="onColorPikcerInputChange($event, 'color5')" />
+                                  </div>
+                                </section>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane" id="3">
+                            <div class="topPadding15">
+                              <h1></h1>
+                              <div class="row">
+                                <section class="col col-md-5">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Nav Bar Background: </label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <input id="color1" [value]="color1" [style.background]="color1" [cpCancelButton]="true"
+                                      [(colorPicker)]="color1" (cpInputChange)="onColorPikcerInputChange($event, 'color1')"
+                                      (cpSliderDragStart)="onColorPikcerInputChange($event, 'color1')" (cpSliderDragEnd)="onColorPikcerInputChange($event, 'color1')" />
+                                  </div>
+                                </section>
+                                <section class="col col-md-5">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Footer Background: </label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <input id="color2" [value]="color2" [style.background]="color2" [cpCancelButton]="true"
+                                      [(colorPicker)]="color2" (cpInputChange)="onColorPikcerInputChange($event, 'color2')"
+                                      (cpSliderDragStart)="onColorPikcerInputChange($event, 'color2')" (cpSliderDragEnd)="onColorPikcerInputChange($event, 'color2')" />
+                                  </div>
+                                </section>
+                                <section class="col col-md-5">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Footer Font Color: </label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <input id="color3" [value]="color3" [style.background]="color3" [cpCancelButton]="true"
+                                      [(colorPicker)]="color3" (cpInputChange)="onColorPikcerInputChange($event, 'color3')"
+                                      (cpSliderDragStart)="onColorPikcerInputChange($event, 'color3')" (cpSliderDragEnd)="onColorPikcerInputChange($event, 'color3')" />
+                                  </div>
+                                </section>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane" id="4">
+                            <div class="topPadding15">
+                              <h1></h1>
+                              <div class="row">
+                                <section class="col col-md-5">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Button BackGround: </label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <input id="color12" [value]="color12" [style.background]="color12" [cpCancelButton]="true"
+                                      [(colorPicker)]="color12" (cpInputChange)="onColorPikcerInputChange($event, 'color12')"
+                                      (cpSliderDragStart)="onColorPikcerInputChange($event, 'color12')" (cpSliderDragEnd)="onColorPikcerInputChange($event, 'color12')" />
+                                  </div>
+                                </section>
+                                <section class="col col-md-5">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Input BackGround: </label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <input id="color14" [value]="color14" [style.background]="color14" [cpCancelButton]="true"
+                                      [(colorPicker)]="color14" (cpInputChange)="onColorPikcerInputChange($event, 'color14')"
+                                      (cpSliderDragStart)="onColorPikcerInputChange($event, 'color14')" (cpSliderDragEnd)="onColorPikcerInputChange($event, 'color14')" />
+                                  </div>
+                                </section>
+                                <section class="col col-md-5">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Button Font Color: </label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <input id="color13" [value]="color13" [style.background]="color13" [cpCancelButton]="true"
+                                      [(colorPicker)]="color13" (cpInputChange)="onColorPikcerInputChange($event, 'color13')"
+                                      (cpSliderDragStart)="onColorPikcerInputChange($event, 'color13')" (cpSliderDragEnd)="onColorPikcerInputChange($event, 'color13')" />
+                                  </div>
+                                </section>
+                                <section class="col col-md-5">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Input Font color: </label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <input id="color15" [value]="color15" [style.background]="color15" [cpCancelButton]="true"
+                                      [(colorPicker)]="color15" (cpInputChange)="onColorPikcerInputChange($event, 'color15')"
+                                      (cpSliderDragStart)="onColorPikcerInputChange($event, 'color15')" (cpSliderDragEnd)="onColorPikcerInputChange($event, 'color15')" />
+                                  </div>
+                                </section>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane" id="5">
+                            <div class="topPadding15">
+                              <h1></h1>
+                              <div class="row">
+                                <section class="col col-md-5">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Content BackGround: </label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <input id="color10" [value]="color10" [style.background]="color10" [cpCancelButton]="true"
+                                      [(colorPicker)]="color10" (cpInputChange)="onColorPikcerInputChange($event, 'color10')"
+                                      (cpSliderDragStart)="onColorPikcerInputChange($event, 'color10')" (cpSliderDragEnd)="onColorPikcerInputChange($event, 'color10')" />
+                                  </div>
+                                </section>
+                                <section class="col col-md-5">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Content Font Color: </label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <input id="color11" [value]="color11" [style.background]="color11" [cpCancelButton]="true"
+                                      [(colorPicker)]="color11" (cpInputChange)="onColorPikcerInputChange($event, 'color11')"
+                                      (cpSliderDragStart)="onColorPikcerInputChange($event, 'color11')" (cpSliderDragEnd)="onColorPikcerInputChange($event, 'color11')" />
+                                  </div>
+                                </section>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane" id="6">
+                            <div class="topPadding15">
+                              <h1></h1>
+                              <div class="row">
+                                <section class="col col-6">
+                                  <div class="col-md-12 left-margin">
+                                    <label>Select Font Family: </label>
+                                  </div>
+                                  <div class="col-md-12 left-margin">
+                                    <label class="select">
+                                      <select style="border: 1px solid" name="fontFamily" [(ngModel)]="selectedFont">
+                                        <option value="">Select font</option>
+                                        <option value="Agency FB">Agency FB</option>
+                                        <option value="Albertina">Albertina</option>
+                                        <option value="Antiqua">Antiqua</option>
+                                        <option value="Architect">Architect</option>
+                                        <option value="Arial">Arial</option>
+                                        <option value="BankFuturistic">BankFuturistic</option>
+                                        <option value="BankGothic">BankGothic</option>
+                                        <option value="Blackletter">Blackletter</option>
+                                        <option value="Blagovest">Blagovest</option>
+                                        <option value="Calibri">Calibri</option>
+                                        <option value="Comic Sans MS">Comic Sans MS</option>
+                                        <option value="Courier">Courier</option>
+                                        <option value="Cursive">Cursive</option>
+                                        <option value="Decorative">Decorative</option>
+                                        <option value="Fantasy">Fantasy</option>
+                                        <option value="Fraktur">Fraktur</option>
+                                        <option value="Frosty">Frosty</option>
+                                        <option value="Garamond">Garamond</option>
+                                        <option value="Georgia">Georgia</option>
+                                        <option value="Helvetica">Helvetica</option>
+                                        <option value="Impact">Impact</option>
+                                        <option value="Minion">Minion</option>
+                                        <option value="Modern">Modern</option>
+                                        <option value="Monospace">Monospace</option>
+                                        <option value="Open Sans">Open Sans</option>
+                                        <option value="Palatino">Palatino</option>
+                                        <option value="Perpetua">Perpetua</option>
+                                        <option value="Roman">Roman</option>
+                                        <option value="Sans-serif">Sans-serif</option>
+                                        <option value="Serif">Serif</option>
+                                        <option value="Script">Script</option>
+                                        <option value="Swiss">Swiss</option>
+                                        <option value="Times">Times</option>
+                                        <option value="Times New Roman">Times New Roman</option>
+                                        <option value="Tw Cen MT">Tw Cen MT</option>
+                                        <option value="Verdana">Verdana</option>
+    
+                                      </select> <i></i> </label>
+                                  </div>
+                                </section>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- </div>
+                            <div class="col col-md-6">
+                        
+                            </div> -->
+                        </div>
+                      </div>
+                      <div class="row" *ngIf="selectedPreference == 'predefined'">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <carousel [interval]="2000" [noWrap]="false">
+                              <slide *ngFor="let theme of themeList"
+                                    [active]="theme.active">
+                                <img [src]="theme.src" style="margin:auto;">
+    
+                                <div class="carousel-caption">
+                                  <h4>
+                                      {{theme.name}}
+                                  </h4>                            
+                                </div>
+    
+                              </slide>
+                            </carousel>
+                        </div>
+                      </div>
+                </div>
+                <!--
+                <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                  <div style="margin-left: 10px; margin-right: 15px;">
+                    <div class="row">
+                      
+
+
+                      <button type="button" class="btn btn-primary" (click)="getCSS()" style="float: right; margin-right: 10px;">
+                        Get Css
+                      </button>
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                      <div style="height: 200px; overflow: auto; background-color: #dcdcdc; word-break: break-word">
+
+                        {{cssText}}
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              -->
+              </div>
+            </fieldset>
+            <fieldset style="border: 1px solid rgba(0, 0, 0, .2); background-color: rgba(255, 255, 255, 0);">
+
+              <div class="row">
+                <section class="col col-12">
+                  <label class="label margin-Bottom10">
+                    <h3><b>Top Navigation</b></h3>
+                  </label>
+                  <header id="header">
+                    <div id="logo-group" style="width:140px;">
+
+                      <!-- PLACE YOUR LOGO HERE -->
+                      <span id="logo"> <img src="assets/img/logo.png" alt="SmartAdmin"> </span>
+                      <!-- END LOGO PLACEHOLDER -->
+
+                      <!-- Note: The activity badge color changes when clicked and resets the number to 0
+                                          Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
+
+                    </div>
+
+                    <!-- pulled right: nav area -->
+                    <div class="pull-right">
+
+                      <!-- #MOBILE -->
+                      <!-- Top menu profile link : this shows only when top menu is active -->
+                      <ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
+                        <li class="">
+                          <a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown">
+                            <img src="assets/img/avatars/sunny.png" alt="John Doe" class="online" />
+                          </a>
+                          <ul class="dropdown-menu pull-right">
+                            <li>
+                              <a (click)="(null)" class="padding-10 padding-top-0 padding-bottom-0"><i class="fa fa-cog"></i>
+                                Setting</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                              <a routerLink="/app-views/profile" class="padding-10 padding-top-0 padding-bottom-0">
+                                <i class="fa fa-user"></i>
+                                <u>P</u>rofile</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                              <a (click)="(null)" class="padding-10 padding-top-0 padding-bottom-0" data-action="toggleShortcut"><i
+                                  class="fa fa-arrow-down"></i> <u>S</u>hortcut</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                              <a (click)="(null)" class="padding-10 padding-top-0 padding-bottom-0" data-action="launchFullscreen"><i
+                                  class="fa fa-arrows-alt"></i> Full
+                                <u>S</u>creen</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                              <a routerLink="/auth/login" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i
+                                  class="fa fa-sign-out fa-lg"></i>
+                                <strong><u>L</u>ogout</strong></a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+
+                      <!-- search mobile button (this is hidden till mobile view port) -->
+                      <div id="search-mobile" class="btn-header transparent pull-right">
+                        <span> <a title="Search"><i class="fa fa-search"></i></a> </span>
+                      </div>
+                      <!-- end search mobile button -->
+
+                      <!-- input: search field -->
+                      <form #searchForm="ngForm" class="header-search pull-right">
+                        <input id="search-fld" type="text" name="param" required placeholder="Find reports and more">
+                        <button type="submit">
+                          <i class="fa fa-search"></i>
+                        </button>
+                        <a id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+                      </form>
+                      <!-- end input: search field -->
+
+
+                    </div>
+                    <!-- end pulled right: nav area -->
+
+                  </header>
+                </section>
+              </div>
+
+              <div class="row">
+                <section class="col col-8">
+                  <label class="label margin-Bottom10" style="padding-left: 15px;">
+                    <h3><b>Footer</b></h3>
+                  </label>
+                  <div id="page-footer" class="page-footer" style="position: relative !important;
+                                      height: 40px; width: 65%">
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-6">
+                        <span class="txt-color-white">Flight Deck WebApp � 2019</span>
+                      </div>
+
+                      <div class="col-xs-6 col-sm-6 text-right hidden-xs">
+                        <div class="txt-color-white inline-block">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section class="col col-4">
+                  <div class="col-sm-12 col-lg-12">
+
+                    <label class="label margin-Bottom10">
+                      <h3><b>Menu</b></h3>
+                    </label>
+                  </div>
+                  <div class="col-sm-12 col-lg-12">
+                    <div class="row">
+                      <aside id="left-panel">
+                        <nav>
+                          <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+                                              Please note that these links work a bit different than
+                                              traditional href="" links. See documentation for details.
+                                              -->
+
+                          <ul saSmartMenu>
+                            <li>
+                              <a title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">{{'Dashboard'
+                                  | i18n}}</span></a>
+                              <ul>
+                                <li routerLinkActive="active">
+                                  <a>{{'Analytics Dashboard' | i18n}}</a>
+                                </li>
+                                <li routerLinkActive="active">
+                                  <a>{{'Social Wall' | i18n}}</a>
+                                </li>
+                              </ul>
+                            </li>
+
+                            <li class="top-menu-invisible">
+                              <a href="#"><i class="fa fa-lg fa-fw fa-cube txt-color-blue"></i> <span class="menu-item-parent">{{'Task'
+                                  | i18n}}</span></a>
+                              <ul>
+                                <li routerLinkActive="active">
+                                  <a><i class="fa fa-gear"></i>
+                                    {{'App Layouts' | i18n}}</a>
+                                </li>
+                                <li routerLinkActive="active">
+                                  <a><i class="fa fa-picture-o"></i>
+                                    {{'Prebuilt Skins' | i18n}}</a>
+                                </li>
+                              </ul>
+                            </li>
+
+                            <li routerLinkActive="active">
+                              <a title="Outlook">
+                                <i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">{{'Create' |
+                                  i18n}}</span></a>
+                            </li>
+                          </ul>
+                        </nav>
+                      </aside>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <div class="row">
+                <section class="col col-4" style="width: 30%; margin-right: 3%">
+                  <label class="margin-Bottom10">
+                    <h3><b>Table</b></h3>
+                  </label>
+                  <div sa-widget [editbutton]="false" color="blueDark">
+                    <header>
+                      <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+
+                      <h2>Normal Table</h2>
+                    </header>
+                    <div style="width: 84%; margin-left: 4%;">
+                      <div class="widget-body">
+
+                        <div class="table-responsive">
+
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>Column name</th>
+                                <th>Column name</th>
+                                <th>Column name</th>
+                                <th>Column name</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Row 1</td>
+                                <td>Row 2</td>
+                                <td>Row 3</td>
+                                <td>Row 4</td>
+                              </tr>
+                              <tr>
+                                <td>Row 1</td>
+                                <td>Row 2</td>
+                                <td>Row 3</td>
+                                <td>Row 4</td>
+                              </tr>
+                              <tr>
+                                <td>Row 1</td>
+                                <td>Row 2</td>
+                                <td>Row 3</td>
+                                <td>Row 4</td>
+                              </tr>
+                              <tr>
+                                <td>Row 1</td>
+                                <td>Row 2</td>
+                                <td>Row 3</td>
+                                <td>Row 4</td>
+                              </tr>
+                              <tr>
+                                <td>Row 1</td>
+                                <td>Row 2</td>
+                                <td>Row 3</td>
+                                <td>Row 4</td>
+                              </tr>
+                              <tr>
+                                <td>Row 1</td>
+                                <td>Row 2</td>
+                                <td>Row 3</td>
+                                <td>Row 4</td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section class="col col-4" style="width: 30%; margin-right: 3%">
+                  <label class="margin-Bottom10">
+                    <h3><b>Tabs</b></h3>
+                  </label>
+                  <div sa-widget class="well" [color]="false" [editbutton]="false" [togglebutton]="false"
+                    [deletebutton]="false" [fullscreenbutton]="false" [custombutton]="false" [sortable]="false">
+                    <!-- widget options:
+                                    usage: <div sa-widget [editbutton]="false">
+                          
+                                    [colorbutton]="false"
+                                    [editbutton]="false"
+                                    [togglebutton]="false"
+                                    [deletebutton]="false"
+                                    [fullscreenbutton]="false"
+                                    [custombutton]="false"
+                                    [collapsed]="true"
+                                    [sortable]="false"
+                          
+                                    -->
+                    <header>
+                      <span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+                      <h2>Default Tabs with border </h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+
+                      <!-- widget content -->
+                      <div class="widget-body">
+                        <hr class="simple">
+                        <ul class="nav nav-tabs bordered">
+                          <li [class.active]="state.tabs.demo1 == 0">
+                            <a (click)="state.tabs.demo1 = 0">Left Tab <span class="badge bg-color-blue txt-color-white">12</span></a>
+                          </li>
+                          <li [class.active]="state.tabs.demo1 == 1">
+                            <a (click)="state.tabs.demo1 = 1"><i class="fa fa-fw fa-lg fa-gear"></i> Tab Item 2</a>
+                          </li>
+                        </ul>
+
+                        <tabset class="padding-10">
+                          <tab [active]="state.tabs.demo1 == 0">
+                            <p>
+                              I have six locks on my door all in a row. When I go out, I lock every other one. I
+                              figure no
+                              matter
+                              how long somebody stands there picking the locks, they are always locking three.
+                            </p>
+                          </tab>
+                          <tab [active]="state.tabs.demo1 == 1">
+                            <p>
+                              Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee
+                              squid.
+                              Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson
+                              artisan four
+                              loko
+                              farm-to-table craft beer twee.
+                            </p>
+                          </tab>
+                        </tabset>
+
+                      </div>
+                      <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                  </div>
+                </section>
+                <section class="col col-4" style="width: 30%; margin-right: 3%">
+                </section>
+              </div>
+
+              <div class="row">
+                <section class="col col-4" style="width: 30%; margin-right: 3%">
+                  <div class="">
+                    <label class="label margin-Bottom10">
+                      <h3><b>Default text input</b></h3>
+                    </label>
+                  </div>
+                  <div class="">
+                    <label class="input">
+                      <input maxlength="10" type="text" style="border: 1px solid">
+                    </label>
+                  </div>
+                </section>
+                <section class="col col-4" style="width: 30%; margin-right: 3%">
+                  <label class="label margin-Bottom10">
+                    <h3><b>Select default</b></h3>
+                  </label>
+                  <label class="select">
+                    <select style="border: 1px solid">
+                      <option value="0">Choose name</option>
+                      <option value="1">Alexandra</option>
+                      <option value="2">Alice</option>
+                      <option value="3">Anastasia</option>
+                      <option value="4">Avelina</option>
+                    </select> <i></i> </label>
+                </section>
+                <section class="col col-4" style="width: 30%; margin-right: 3%">
+                  <label class="label margin-Bottom10">
+                    <h3><b>Radio Buttons</b></h3>
+                  </label>
+
+                  <div class="row" style="text-align: center;">
+                    <div class="col col-4">
+                      <label class="radio radio-width">
+                        <input type="radio" name="radio" checked="checked">
+                        <i></i>Alexandra</label>
+                      <label class="radio radio-width">
+                        <input type="radio" name="radio">
+                        <i></i>Alice</label>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <div class="row">
+                <section class="col col-4" style="width: 30%; margin-right: 3%">
+                  <label class="margin-Bottom10">
+                    <h3><b>Checkboxes</b></h3>
+                  </label>
+                  <div class="row">
+                    <div class="col col-4">
+                      <label class="checkbox">
+                        <input type="checkbox" name="checkbox" checked="checked">
+                        <i></i>Alexandra</label>
+                      <label class="checkbox">
+                        <input type="checkbox" name="checkbox">
+                        <i></i>Alice</label>
+                    </div>
+                  </div>
+                </section>
+                <section class="col col-4" style="width: 30%; margin-right: 3%">
+                  <div class="">
+                    <label class="margin-Bottom10">
+                      <h3><b>Button</b></h3>
+                    </label></div>
+                  <div style="text-align: center;">
+                    <a class="btn btn-default" style="height: 25px; width: 36%;" (click)="(null)">Default</a>
+                  </div>
+                </section>
+                <section class="col col-4" style="width: 30%; margin-right: 3%">
+                  <label class="margin-Bottom10">
+                    <h3><b>File Input</b></h3>
+                  </label>
+
+                  <div class="input input-file">
+                    <span class="button"><input type="file" id="file" name="file">Browse</span>
+                    <input type="text" placeholder="Include some files" readonly>
+                  </div>
+                </section>
+              </div>
+
+              <div class="row">
+                <section class="col col-4" style="width: 30%; margin-right: 3%">
+                  <label class="margin-Bottom10">
+                    <h3><b>Textarea resizable</b></h3>
+                  </label>
+                  <label class="textarea textarea-resizable">
+                    <textarea rows="3" class="custom-scroll"></textarea>
+                  </label>
+                </section>
+
+                <section class="col col-4" style="width: 30%; margin-right: 3%">
+                  <label class="margin-Bottom10">
+                    <h3><b>Pagination</b></h3>
+                  </label>
+                  <div class="well well-light">
+                    <div class="text-center">
+                      <ul class="pagination pagination-lg">
+                        <li>
+                          <a (click)="(null)"><i class="fa fa-chevron-left"></i></a>
+                        </li>
+                        <li class="active">
+                          <a (click)="(null)">1</a>
+                        </li>
+                        <li>
+                          <a (click)="(null)">2</a>
+                        </li>
+                        <li>
+                          <a (click)="(null)">3</a>
+                        </li>
+                        <li>
+                          <a (click)="(null)">4</a>
+                        </li>
+                        <li>
+                          <a (click)="(null)">5</a>
+                        </li>
+                        <li>
+                          <a (click)="(null)"><i class="fa fa-chevron-right"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="col col-4" style="width: 30%; margin-right: 3%">
+                  <label class="margin-Bottom10">
+                    <h3><b>Toggle Buttons</b></h3>
+                  </label>
+                  <label class="toggle">
+                    <input type="radio" name="radio-toggle" checked="checked">
+                    <i data-swchon-text="ON" data-swchoff-text="OFF"></i>Alexandra</label>
+                  <label class="toggle">
+                    <input type="radio" name="radio-toggle">
+                    <i data-swchon-text="ON" data-swchoff-text="OFF"></i>Anastasia</label>
+                  <label class="toggle">
+                    <input type="radio" name="radio-toggle">
+                    <i data-swchon-text="ON" data-swchoff-text="OFF"></i>Avelina</label>
+                </section>
+              </div>
+
+              <div class="row">
+                <label class="margin-Bottom10">
+                  <h3><b>Accordions</b></h3>
+                </label>
+                <h2 class="row-seperator-header"><i class="fa fa-th-list"></i> </h2>
+
+                <!-- NEW WIDGET START -->
+                <article class="col-sm-12 col-md-12 col-lg-6">
+
+                  <!-- Widget ID (each widget will need unique ID)-->
+                  <div sa-widget [colorbutton]="false" [editbutton]="false" [togglebutton]="false" [deletebutton]="false"
+                    [fullscreenbutton]="false" [custombutton]="false" [sortable]="false">
+                    <!-- widget options:
+          usage: <div sa-widget [editbutton]="false">
+
+          [colorbutton]="false"
+          [editbutton]="false"
+          [togglebutton]="false"
+          [deletebutton]="false"
+          [fullscreenbutton]="false"
+          [custombutton]="false"
+          [collapsed]="true"
+          [sortable]="false"
+
+          -->
+                    <header>
+                      <span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+                      <h2>Accordions </h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+                      <!-- widget content -->
+                      <div class="widget-body">
+
+                        <div>
+                          <accordion class="smart-accordion-default panel-group" [closeOthers]="true">
+                            <accordion-group [isOpen]="true" #group1>
+                              <h4 class="panel-title" accordion-heading><a><i class="pull-right fa fa-lg" [ngClass]="{'fa-angle-down': group1?.isOpen,
+                                            'fa-angle-up': !group1?.isOpen}"></i>
+                                  Collapsible Group Item #1</a>
+                              </h4>
+                              <div class="no-padding">
+                                <table class="table table-bordered table-condensed">
+                                  <thead>
+                                    <tr>
+                                      <th>Column name</th>
+                                      <th>Column name</th>
+                                      <th>Column name</th>
+                                      <th>Column name</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>Row 1</td>
+                                      <td>Row 2</td>
+                                      <td>Row 3</td>
+                                      <td>Row 4</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Row 1</td>
+                                      <td>Row 2</td>
+                                      <td>Row 3</td>
+                                      <td>Row 4</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Row 1</td>
+                                      <td>Row 2</td>
+                                      <td>Row 3</td>
+                                      <td>Row 4</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </accordion-group>
+                            <accordion-group #group2>
+                              <h4 class="panel-title" accordion-heading><a><i class="pull-right fa fa-lg" [ngClass]="{'fa-angle-down': group2?.isOpen,
+                                            'fa-angle-up': !group2?.isOpen}"></i>
+                                  Collapsible Group Item #2</a>
+                              </h4>
+
+                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
+                              ad squid. 3
+                              wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                              nesciunt laborum
+                              eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                              coffee nulla
+                              assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                              cred
+                              nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
+                              craft beer
+                              farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
+                              accusamus
+                              labore sustainable VHS.
+
+                            </accordion-group>
+                            <accordion-group #group3>
+                              <h4 class="panel-title" accordion-heading><a><i class="pull-right fa fa-lg" [ngClass]="{'fa-angle-down': group3?.isOpen,
+                                            'fa-angle-up': !group3?.isOpen}"></i>
+                                  Collapsible Group Item #3</a>
+                              </h4>
+
+                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
+                              ad squid. 3
+                              wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                              nesciunt laborum
+                              eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                              coffee nulla
+                              assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                              cred
+                              nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
+                              craft beer
+                              farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
+                              accusamus
+                              labore sustainable VHS.
+                            </accordion-group>
+                          </accordion>
+                        </div>
+
+
+                      </div>
+                      <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                  </div>
+                  <!-- end widget -->
+
+                </article>
+              </div>
+
+              <div class="row">
+                <div class="" style="padding-left: 15px;">
+                  <h3>Popovers</h3>
+                  <br>
+                  <ul class="demo-btns">
+                    <li>
+                      <a (click)="(null)" class="btn btn-default btn-lg" popoverPlacement="right" [popoverOnHover]="true"
+                        popoverTitle="Popover activated on hover" popover="Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."><strong>On</strong>
+                        <i>Hover</i></a>
+                    </li>
+                    <li>
+                      <popover-content #myPopover title="this header can be omitted" [closeOnClickOutside]="true">
+                        <b>Very</b> <span style="color: #C21F39">Dynamic</span> <span style="color: #00b3ee">Reusable</span>
+                        <b><i><span style="color: #ffc520">Popover With</span></i></b>
+                        <small>Html support</small>
+                        .
+                        Click outside of this popover and it will be dismissed automatically.
+                      </popover-content>
+                      <a class="btn btn-default btn-lg" popoverPlacement="top" [popover]="myPopover"><strong>Active</strong>
+                        <i>Content</i></a>
+
+                    </li>
+                    <li>
+
+                      <popover-content #formPopoverContent title="Form inside popover" [closeOnClickOutside]="true">
+                        <form action='/api/plug' style='min-width:170px'>
+                          <div class='checkbox'><label><input type='checkbox' class='checkbox style-0' checked='checked'><span>Read</span></label></div>
+                          <div class='checkbox'><label><input type='checkbox' class='checkbox style-0'><span>Write</span></label></div>
+                          <div class='checkbox'><label><input type='checkbox' class='checkbox style-0'><span>Execute</span></label></div>
+                          <div class='form-actions'>
+                            <div class='row'>
+                              <div class='col-md-12'><button class='btn btn-primary btn-sm' type='submit'>SAVE</button></div>
+                            </div>
+                          </div>
+                        </form>
+                      </popover-content>
+
+                      <a class="btn btn-default btn-lg" popoverPlacement="top" [popover]="formPopoverContent"><strong>File</strong>
+                        <i>Access</i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </fieldset>
+
+            <!-- <button type="submit">Submit</button> -->
+          </form>
+        </div>
+      </div>
+
+      <form>
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog" style="margin-top:100px;">
+
+            <!-- Modal content-->
+
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Save As</h4>
+              </div>
+              <div class="modal-body">
+                <section>
+                  <div class="col-xs-12 col-md-8 col-sm-12 col-lg-8">
+                    <div class="col-xs-12 col-md-7 col-sm-5 col-lg-5" style="padding-right:0px;">
+                      <label class="control-label">
+                        Enter Theme Name:
+                        <span aria-hidden="true" class="text-danger">*</span>
+                      </label>
+
+                    </div>
+
+                    <div class="col-xs-12 col-md-7 col-sm-7 col-lg-7" style="padding-left:0px;">
+                      <div class="form-group">
+                        <input type="text" maxlength="50" name='themeName' [(ngModel)]="themeName" [required]="true"
+                          #theme="ngModel">
+                        <div *ngIf="theme.invalid" class="text-danger text-left">
+                          <small>Please enter theme name.</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-md-4 col-sm-12 col-lg-4">
+                    <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+                      <label class="checkbox" style="margin-top:0px;">
+                        <input type="checkbox" name="checkbox" checked="checked" [(ngModel)]="isDefault">
+                        <i></i>Make Default Theme
+                      </label>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="modal-footer" style="clear:both">
+
+                <button type="button" class="btn btn-default" (click)='saveThemeCss()' [disabled]="theme.invalid"
+                  data-dismiss="modal">
+                  Save
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </form>
+
+
+      <div class="modal fade" id="myModalCss" role="dialog">
+        <div class="modal-dialog"> -->
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Css For Your Theme</h4>
+            </div>
+            <div class="modal-body">
+              <section>
+                <div class="col-sm-12 col-md-12 col-lg-12" style="width: 100%;">
+                  <label class="textarea textarea-resizable" style="width: 100%;">
+                    <textarea [attr.disabled]="true" rows="10" class="custom-scroll" [(ngModel)]="cssText" style="width: 75%;"></textarea>
+                  </label>
+                </div>
+              </section>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- </tab> -->
+      <!-- <tab [active]="state.tabs.demo2 == 20">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12" style="padding-bottom: 15px;">
+              <button type="button" style="margin-right: 10px" class="btn btn-primary" 
+              (click)="getCSS()">Get CSS...</button>
+              <button type="button" style="margin-right: 10px" class="btn btn-primary" 
+              (click)="applyCss()">Apply CSS</button>
+              <button [disabled]="disableSave" type="button" style="margin-right: 10px" class="btn btn-primary" data-toggle="modal"
+              data-target="#myModalCss">Save</button>            
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12" style="width: 100%;">
+              <label class="textarea textarea-resizable" style="width: 100%;">
+                <textarea rows="15" class="custom-scroll" [(ngModel)]="cssText" style="width: 75%;"></textarea>
+              </label>
+            </div>
+          </div>
+
+          <div class="modal fade" id="myModalCss" role="dialog">
+            <div class="modal-dialog"> -->
+
+      <!-- Modal content-->
+      <!-- <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Save As</h4>
+                </div>
+                <div class="modal-body">
+                  <section>
+                    <label style="margin-right: 10px">Enter Theme Name</label>
+                    <label class="input">
+                      <input type="text" maxlength="50" [(ngModel)]="cssThemeName" name='themeName1'>
+                    </label>
+                  </section>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" (click)='saveThemeCss()' data-dismiss="modal">Save</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </tab> -->
+      <!-- </tabset> -->
+
+    </div>
+    <!-- end widget content -->
+
+  </div>
+  <!-- end widget div -->
+
+</div>

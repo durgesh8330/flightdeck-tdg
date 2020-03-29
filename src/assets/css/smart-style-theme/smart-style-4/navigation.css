@@ -1,0 +1,87 @@
+:root{
+  --navigation_background:#22262e; 
+  --leftPanel_background:#1b1e24; 
+  --footer_background:#1b1e24; 
+  --header_background:#eeeeee;
+  --title_background:#353D4B; 
+  --leftPanel_font:#E1EAF1; 
+  --footer_font:#ffffff; 
+  --header_font:#000000; 
+  --button_background:#275b89; 
+  --button_font:#ffffff; 
+  --input_background:#ffffff; 
+  --input_font:#000000; 
+  --title_font:#000000; 
+  --content_background:#eeeeee; 
+  --content_font:#000000; 
+}
+
+.smart-style-4 aside {
+  background: var(--leftPanel_background);
+}
+.smart-style-4 aside .minifyme {
+  background: #71a06a;
+  color: #e8efe7;
+}
+.smart-style-4 aside .minifyme:hover {
+  background: #8fb489;
+  color: #fff;
+}
+
+.smart-style-4 .smart-style-4.menu-on-top aside {
+  background: inherit;
+}
+.smart-style-4 .smart-style-4.menu-on-top aside#left-panel {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-bottom: 1px solid #b8b8b8;
+  border-top: 1px solid #333;
+}
+.smart-style-4 .smart-style-4.menu-on-top aside#left-panel nav > ul > li {
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+}
+.smart-style-4 .smart-style-4.menu-on-top aside#left-panel nav > ul > li > a {
+  text-shadow: none !important;
+  font-size: 13px;
+  padding: 10px 9px !important;
+}
+.smart-style-4 .smart-style-4.menu-on-top aside#left-panel nav > ul > li > ul {
+  background: #2c3742;
+}
+.smart-style-4 .smart-style-4.menu-on-top aside#left-panel nav > ul > li:hover {
+  background: #2e3e57;
+  border-right-color: #fff;
+  border-left-color: #fff;
+}
+.smart-style-4 .smart-style-4.menu-on-top aside#left-panel nav > ul > li:hover > a {
+  color: #f1f1f1 !important;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
+
+.smart-style-4:not(.menu-on-top) #left-panel {
+  padding-top: 49px;
+}
+
+.smart-style-4 .smart-style-4.menu-on-top #left-panel {
+  padding-right: 0;
+  padding-left: 0;
+  padding-bottom: 0;
+}
+
+.smart-style-4 nav ul li a {
+  color: var(--leftPanel_font) !important;
+}
+.smart-style-4 nav ul span.menu-item-parent {
+  color: var(--leftPanel_font) !important;
+}
+.smart-style-4 nav ul ul {
+  background: var(--leftPanel_background) !important;
+  color: var(--leftPanel_font) !important;
+}
+.smart-style-4 .smart-style-1 nav ul ul li > a {
+  color: var(--leftPanel_font) !important;
+}

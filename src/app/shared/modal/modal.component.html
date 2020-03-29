@@ -1,0 +1,170 @@
+<div bsModal #modalDialog="bs-modal" class="modal fade modalshadow" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-child-name" style="margin-top:2%;">
+     <div class="main_loader" *ngIf="loader">
+        <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div></div>
+  <div class="modal-dialog modal-sm modalbox" [ngClass]="modal.size">
+    <div class="modal-content">
+      <div class="modal-header" [ngClass]="modal.title=='Complete' ? 'custom-modal-header' : ''">
+        <h4 id="dialog-child-name" class="modal-title pull-left">{{modal.title}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" *ngIf="modal.isClose" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--  this.modalDetails = { isDeleteConfirm: true, title: "Confirm", subTitle: "Are you sure that you want to delete the selected Workgroup(s)?", from:"deleteworkgroup"}; -->
+        <div >
+          <sa-alert  [error]="modal.error"></sa-alert>
+        </div>
+        <div class="pad--25">
+          <div *ngIf="modal.isDeleteConfirm">
+            {{modal?.subTitle}}
+            <div *ngIf="modal.errorMessage != null && modal.errorMessage != ''">
+              {{modal.errorMessage}}
+            </div>
+            <div class="buttonsection">
+              <div class="pad-r15">
+                <button   type="button" class="btn btn-primary search-btn" 
+                  (click)="onButtonClick(undefined)">
+                  Yes
+                </button>
+                <button  type="button" class="btn btn-primary search-btn reset-bgclr"  
+                  (click)="hideModal()">
+                  No
+                </button>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!modal.isDeleteConfirm">
+            <form *ngIf="modal.title != 'Complete'" name="form" novalidate>
+              <div>
+                <div class="row">
+                  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+                    <h4> <strong><label class="control-label" *ngIf="modal.title=='Cancel'">Cancel Remarks</label></strong></h4>
+                    <input  class="form-control" name="reasonForCancel" (focus)="focusFunction()" *ngIf="modal.title=='Cancel' ||  modal.title=='Accepted' ||  modal.title=='Complete'" #reasonForCancel="ngModel" [(ngModel)]="modal.Reason" required >
+                    <div *ngIf="modal.title=='Block'">
+                    <h4><label class="control-label">Please select a blocking Category</label><span *ngIf="modal.title=='Block'" class="text-danger">&nbsp;*</span></h4>
+                    <ng-select2 *ngIf="modal.title=='Block'" [data]="modal.blockingCategory" placeHolder='Please select' [(ngModel)]="modal.Category" name="lookUpObj-{{i}}"
+                    #lookUpObj="ngModel" (valueChanged)="blockCategoryChange($event,false)"  [options]="options">
+                  </ng-select2>      
+                    <br/>
+                    <h4 class="mar-top"><label class="control-label" *ngIf="modal.title=='Block'">Please select a blocking reason</label><span *ngIf="modal.title=='Block'" class="text-danger">&nbsp;*</span></h4>
+                    <ng-select2 *ngIf="modal.title=='Block'" [data]="modal.blockingReasons" placeHolder='Please select' [(ngModel)]="modal.Reason" name="lookUpObj-{{i}}"
+                    #lookUpObj="ngModel" (valueChanged)="blockReasonChange($event)"  [options]="options"  (selected)="selected($event)">                   
+                  </ng-select2> 
+                        <h4 class="mar-top"><strong> <label class="control-label" *ngIf="resolutionTask">Resolution Task: </label></strong>  {{resolutionTask}}</h4>
+                        <h4 class="mar-top"><strong> <label class="control-label" *ngIf="isBlockTimeStamp">Please Select a Ready date/time </label></strong><span *ngIf="isBlockTimeStamp && modal.title=='Block'" class="text-danger">&nbsp;*</span></h4>
+                       <div *ngIf="isBlockTimeStamp ">
+                                                    <input class="dt-padding" [min]="minDate" [(ngModel)]="blockingTstmp" name="blockingTstmp" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="Date Time" [readonly]="true">
+                                                    <span [owlDateTimeTrigger]="dt2"><i class="fa fa-calendar calendar-icon"></i></span>
+                                                    <owl-date-time #dt2></owl-date-time>
+                                                    </div>
+                                                    <!-- added css class here-->
+                      <div class="col-md-6 pad-Block">
+                        <h4 class="mar-top"> <strong><label class="control-label">Block Remarks</label></strong></h4>
+                    <textarea  name="blockingGlNotes" [(ngModel)]="blockingGlNotes"></textarea>
+                      </div>
+                    <!-- <div class="col-md-6">
+                      <h4> <strong><label class="control-label">Blocked by User</label></strong></h4>
+                      <input name="cuid" disabled class="form-control" [(ngModel)]="modal.UserDetailsObj.cuid" required >
+                    </div> -->
+                  </div>
+
+                    <h4><label class="control-label" *ngIf="modal.title=='Dispatch'">Please select a Workgroup</label><span *ngIf="modal.title=='Dispatch'" class="text-danger">&nbsp;*</span></h4>
+                    <select *ngIf="modal.title=='Dispatch'" name="dispatchWorkgroup" #dispatchWorkgroup="ngModel" [(ngModel)]="modal.DispatchWorkgroup" 
+                            (focus)="focusFunction()"
+                            id="bootstrap-duallistbox-nonselected-list_"
+                            class="form-control"
+                            name="_dispatchWorkgroup" required>
+                            <option value=""></option>
+                            <option *ngFor="let element of modal.workgroupList" [value]="element">
+                              {{ element }}
+                            </option>
+
+                          </select>
+
+                    <h4><label class="control-label" *ngIf="modal.title=='Copy Task'">Task Type</label><span
+                        *ngIf="modal.title=='Copy Task'" class="text-danger">&nbsp;*</span></h4>
+                    <ng-select2 *ngIf="modal.title=='Copy Task'" name="taskType" [(ngModel)]="modal.taskType" [data]="modal.taskTypeList"
+                      [options]="options" [placeholder]="'Please select a Task Type...'" required>
+                    </ng-select2>
+                    <br />
+                    
+                    <h4><label class="control-label" *ngIf="modal.title=='Copy Task'">Dispatch Area</label><span
+                        *ngIf="modal.title=='Copy Task'" class="text-danger">&nbsp;*</span></h4>
+                    <ng-select2 *ngIf="modal.title=='Copy Task'" name="dispatchArea" [(ngModel)]="modal.dispatchArea"
+                      [data]="modal.dispatchAreaList" [options]="options" required>
+                    </ng-select2>
+
+                    <div *ngFor="let field of modal.fields; let i = index" 
+                      class="col-xs-12 col-md-4 col-sm-12 col-lg-12">
+                      <p *ngIf="modal.title=='Assign' && modal.errorMessage != null && modal.errorMessage != ''"><span style="color: red;" [innerHTML]="modal.errorMessage"></span> <br><br> <span>{{modal.infoMessage}}</span></p>                      
+                      <div *ngIf="modal.errorMessage == null || modal.errorMessage == ''">
+                      <label class="control-label" 
+                        *ngIf="modal.title!='Cancel' && modal.title!='Block' && modal.title!='Dispatch' && modal.title!='Accepted' && modal.title!='Complete' && modal.title!='Copy Task'">{{field.label}}</label>
+                      <span *ngIf="field && field.mandatory && modal.title!='Cancel' &&  modal.title!='Block' && modal.title!='Dispatch' && modal.title!='Accepted' && modal.title!='Complete' && modal.title!='Copy Task'" aria-hidden="true" class="text-danger">&nbsp;*</span>
+                      <input *ngIf="field && field.type == 'text'" [type]="field.type" class="form-control" 
+                        [placeholder]="field.label" [name]="field.fieldName"  #workgroupName="ngModel"
+                        [attr.disabled]="field['editable'] == false ? '' : null" (focus)="focusFunction()" 
+                        [(ngModel)]="modal.output[field.fieldName]" required>
+                        <mat-form-field class="example-full-width" 
+                          *ngIf="modal.title!='Cancel' &&  modal.title!='Block' && modal.title!='Dispatch' &&  modal.title!='UnBlock' && modal.title!='Accepted' && modal.title!='Complete' && modal.title!='Copy Task'">
+                          <input type="text"  name="search" matInput [matAutocomplete]="auto" (focus)="focusFunction()" 
+                            [(ngModel)]="field.fieldValue" (input)="filter($event.target.value)" >
+                                   {{ modal.output[field.fieldName] }}                
+                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                              <mat-option *ngFor="let element of DropdownList" [value]="element.cuid">
+                                {{ element.cuid }} - {{element.fullName}}
+                              </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                       </div>
+                        <br>
+                        
+                        <div *ngIf="field && field.mandatory && mandatoryAlert" class="text-danger text-left"> 
+                          {{mandatoryAlert}} 
+                          <!-- <small>Workgroup Name is required.</small> -->
+                        </div>
+                        <div *ngIf="errorMessage != null && errorMessage != ''" class="text-danger text-left">
+                            {{errorMessage}}
+                        </div>
+                    </div>
+                  </div>
+                </div> 
+                <div class="buttonsection"> 
+                  <div *ngFor="let action of modal.buttons" class="pad-r15">
+                    <button  [type]="action.type" class="btn btn-primary" [ngClass]="action.class" (click)="onButtonClick(action.fieldName)">
+                      {{action.label}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div *ngIf="modal.title == 'Complete'" class="col-12">
+                <div class="cmplt-cotainer" *ngIf="modal.pageLayoutData.pageLayoutTemplate.length>1">
+                    <div class="col-md-12 p-0" *ngFor="let pagelyt of modal.pageLayoutData.pageLayoutTemplate; let i = index">
+                        <sa-paramas-layout *ngIf="modal.pageLayoutData.pageLayoutTemplate" [paramfieldstatus]="paramfieldstatus"
+                          [pageLayoutData]="pagelyt" [templateName]="modal.pageLayoutData.templateName" [columnWidth]="'col-md-4'" [pageLayoutValues]="completePageLayoutResp"></sa-paramas-layout>
+                      </div>
+                </div>
+                <ng-container *ngFor="let pagelyt of modal.pageLayoutData.pageLayoutTemplate">
+                  <div class="cmplt-footer" *ngIf="pagelyt.sectionHeader == 'Buttons'">
+                    <div class="buttonsection p-0" [ngStyle]="{'border-top': modal.pageLayoutData.pageLayoutTemplate.length<=1  ? '0' : '1px solid #cac7c4' }">
+                        <div *ngFor="let action of pagelyt.fieldsList">
+                          <button  [type]="action.type" class="btn btn-primary" [ngClass]="action.class" (click)="onButtonClick(action.fieldName)">
+                            {{action.label}}
+                          </button>
+                        </div>
+                      </div>
+                </div>
+                </ng-container>                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

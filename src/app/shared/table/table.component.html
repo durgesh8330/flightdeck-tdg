@@ -1,0 +1,345 @@
+<div id="tablesection">
+    <div *ngIf="error && error.type">
+        <alert [type]="error.type" [dismissible]="dismissible" (onClosed)="onClosed()">{{error.msg}}</alert>
+    </div>
+
+<!-- Added dropdown to show the meta data values -->
+<div class="{{(pagination.totalRecords)? 'globalnotes': 'row globalnotes'}}" *ngIf="pagination && (tableOtherContent.from == 'globalNotes')" style="margin-left: 0;">
+<div class="{{(tableOtherContent.from == 'globalNotes')? 'col-md-3': 'col-md-4'}}"
+*ngIf="tableOtherContent.from == 'globalNotes' ">
+<div style="float: left; width:130px">
+    <select class="form-control action-option border-radius-5"
+        (change)="onMetaChange($event.target.value)" [(ngModel)]="clikedMetaValue">
+        <option [selected]="option.value" *ngFor="let option of metaList" [value]="option.value"> {{ option.display }}</option>
+    </select>
+</div>
+ 
+<div style=" display:inline;margin-left:10px">
+    <a class="btn btn-default buttons-pdf buttons-html5 border-radius-5" tabindex="0"
+        (click)="onMetaStatus()" aria-haspopup="true" aria-expanded="false">
+        <span>Go</span></a> &nbsp;
+</div>
+</div>
+</div>
+<!-- End -->
+
+    <div class="row mar--l10 displayflex" *ngIf="pagination && pagination.totalRecords" style="margin-left: 0;">
+        <div class="{{(tableOtherContent.from == 'taskresults')? 'col-md-3': 'col-md-4'}}"
+            *ngIf="tableOtherContent.from == 'taskresults' || tableOtherContent.from == 'mytasks' || tableOtherContent.from == 'myworkgrouptasks' || tableOtherContent.from == 'childTasks'">
+            <div style="float: left;">
+                <select class="form-control action-option border-radius-5"
+                    (change)="onActionChange($event.target.value)">
+                    <option *ngFor="let option of actionList" [value]="option.value"> {{ option.value }}</option>
+                </select>
+            </div>
+
+            <div style=" display:inline;margin-left:10px">
+                <a class="btn btn-default buttons-pdf buttons-html5 border-radius-5" tabindex="0"
+                    (click)="onActionStatus()" aria-haspopup="true" aria-expanded="false">
+                    <span>Go</span></a> &nbsp;
+            </div>
+        </div>
+        
+        <div class="{{(tableOtherContent.from == 'taskresults')? 'col-md-3': 'col-md-4'}} inputboxsearch">
+            <input type="text"
+                class="filter_input {{(tableOtherContent.from == 'taskresults')? 'filter-input-width-100': ''}}"
+                (input)="filterColumn()" name="globalsearch" [(ngModel)]="tableOtherContent.globalSearch" />
+            <div class="iconsearch"><i class="fa fa-search iconsearchimg"></i></div>
+        </div>
+        <div class="{{(tableOtherContent.from == 'taskresults')? 'col-md-3 retriveDiv-Paddingleft-15': 'col-md-4'}}">
+            <div style="font-weight: 600;" *ngIf="totalItemsCount > 0">
+                Retrieving {{ pager.startIndex + 1 }} - {{ pager.endIndex + 1 }} of {{ totalItemsCount }} records.
+            </div>
+        </div>
+        <div class="{{(tableOtherContent.from == 'taskresults')? 'col-md-3': 'col-md-4'}} actionbtnsection">
+            <div *ngFor="let button of actionButton">
+                <a class="btn btn-default buttons-pdf buttons-html5" *ngIf="button.fieldName != 'showHideColumns' && button.fieldName != 'Export'"
+                    href="#" (click)="viewerFn(button.fieldName)">
+                    <span><i class="fa fa-print" *ngIf="button.fieldName == 'Print'"></i> 
+                        <i class="fa fa-file-pdf" *ngIf="button.fieldName == 'Pdf'"></i> 
+                        <span><img class="filtertoggle" *ngIf="button.fieldName == 'Filter' && showfilter"
+                                src="assets/img/showfilter.png" /><img class="filtertoggle"
+                                *ngIf="button.fieldName == 'Filter' &&  !showfilter"
+                                src="assets/img/hidefilter.png" /></span>
+                    </span></a> &nbsp;
+
+  <!-- Checking Export values -->
+                    <div id="Profile Management" *ngIf="button.fieldName == 'Export'" class=" pull-right dropdown"
+                    dropdown>
+                    <span class="project-selector dropdown-toggle" dropdownToggle> <a [title]="button.label"
+                            class="btn btn-default buttons-html5 show-hide">
+                            <i class="fa fa-file showimg"></i>
+                            <i class="fa fa-file hideimg"></i>
+                    </a>
+                    </span>
+                    <ul *dropdownMenu class="dropdown-menu ColVis_collection">
+                        <li class="fileddropdown" *ngFor="let fieldname of exportValues "  (click)="viewerFn(fieldname.value)">
+                            <label class="filedNameOverflow"><span>{{fieldname.display}}</span></label>
+                        </li>
+                    </ul>
+                </div>
+<!-- END -->
+                <div id="Profile Management" *ngIf="button.fieldName == 'showHideColumns'" class=" pull-right dropdown"
+                    dropdown [insideClick]="true">
+                    <span class="project-selector dropdown-toggle" dropdownToggle> <a [title]="button.label"
+                            class="btn btn-default buttons-html5 show-hide">
+                            <i class="fa fa-cog showimg"></i>
+                            <i class="fa fa-cog hideimg"></i>
+                        </a>
+                    </span>
+                    <ul *dropdownMenu class="dropdown-menu ColVis_collection">
+                        <li class="fileddropdown" *ngFor="let fieldname of tableHeader | orderBy: 'visible' : true ">
+                            <label class="filedNameOverflow"><input type="checkbox"
+                                    [(ngModel)]="fieldname.visible"><span>{{fieldname.label}}</span></label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="tableOtherContent.from != 'profileInfo'" style="display:inline-block">
+            <a class="cm-refresh pull-right margin-right-13" (click)="onRefresh()"
+            style="font-size:150%">
+                <span class="glyphicon glyphicon-refresh"></span>
+            </a>
+        </div>
+    </div>
+    <div class="row padding-top-0 tablesectiondiv" #TABLE>
+        <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> -->
+        <div id="table-section"
+            class="tab-content padding-10 table-responsive {{(tableOtherContent && (tableOtherContent.from == 'systemparameteritem' || tableOtherContent.from == 'globalNotes'))? 'table-responsive-detaills':''}}">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <!-- added cicle button for adding new system parameter row -->
+                        <th class="systemtypeCheckboxwidth "
+                            *ngIf="tableOtherContent && tableOtherContent.from != 'taskDependency' && (tableOtherContent.from == 'taskresults' || tableOtherContent.from == 'mytasks' || tableOtherContent.from == 'myworkgrouptasks' || tableOtherContent.from == 'childTasks' )">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="defaultUnchecked"
+                                    (change)="checkAllRows($event)">
+                            </div>
+                        </th>
+                        
+                        <th class=" cursor-pointer addbutton"
+                            *ngIf="tableOtherContent.from != 'taskDependency' && tableOtherContent.from != 'childTasks' &&  actionColumn && actionColumn.length > 0 && (( actionColumn[0] && actionColumn[0].visible) || ( actionColumn[1] && actionColumn[1].visible) || ( actionColumn[2] && actionColumn[2].visible) || tableOtherContent.from =='tasktypedependency')">
+                            <i class="fa fa-plus-circle fa-2x   system__add" aria-hidden="true"
+                                *ngIf="tableOtherContent.add && actionColumn[0] && actionColumn[0].visible"
+                                [ngClass]=" 1 == activeAnimation ? 'active': ''" (click)="addNewRow()"></i>
+                        </th>
+
+                        <ng-container *ngFor="let head of tableHeader; let headerIndex = index;">
+                            <th *ngIf="head.visible" [ngClass]="head.class"
+                                (dragstart)="dragstartheader($event, headerIndex)"
+                                (drop)="dropheader($event, headerIndex)" draggable="true"
+                                (dragover)="dragoverheader($event, headerIndex)" [id]="'box' + headerIndex"
+                                [attr.index]="headerIndex">
+                                <div class="inputbox_section" *ngIf="head.filter && showfilter">
+                                    <input type="text" class="filter_input" (input)="filterColumn()"
+                                        [name]="head.fieldName" [(ngModel)]="filter[head.fieldName]" />
+
+                                </div>
+                                <div *ngIf="head.sort" class="cursor-pointer activesort"
+                                    [ngClass]="[ head.fieldName == activeSort ?(tableOtherContent.isSortAsc ? 'sort_asc': 'sort_desc'):'']"
+                                    (click)="onSortSelection(head.fieldName);">
+                                    <span>{{head.label}}</span>
+                                    <span class="sortarrow">
+                                        <i class="fa upsortarrow"></i>
+                                        <i class="fa downsortarrow"></i>
+                                    </span>
+                                </div>
+                                <div *ngIf="!head.sort">
+                                    {{head.label}}
+                                </div>
+
+                            </th>
+                        </ng-container>
+                    </tr>
+                </thead>
+                <tbody class="bg_white" *ngFor="let rowData of pagedItems; let rowIndex = index">
+
+                    <tr *ngIf="!rowData.isRowDetailOpen">
+                        <!-- save, edit, close and delete operation for system parameter -->
+
+                        <td *ngIf="tableOtherContent.from == 'taskresults' || tableOtherContent.from == 'mytasks' || tableOtherContent.from == 'myworkgrouptasks' || tableOtherContent.from == 'childTasks' ">
+                            <div class="custom-control custom-checkbox">
+                                <!-- {{rowData | json}} -->
+                                <input type="checkbox" class="custom-control-input" id="defaultUnchecked"
+                                    [(ngModel)]="rowData.isChecked" (click)="OnChecked(rowIndex, $event)">
+                            </div>
+                        </td>
+                        <td class="editanddelete"
+                            *ngIf="tableOtherContent.from != 'taskDependency' && tableOtherContent.from != 'childTasks' && (( actionColumn[0] && actionColumn[0].visible) || ( actionColumn[1] && actionColumn[1].visible) || ( actionColumn[2] && actionColumn[2].visible)) || ( tableOtherContent.from == 'systemparameter' || tableOtherContent.from == 'tasktypedependency'
+                                    || tableOtherContent.from == 'systemparameteritem'|| tableOtherContent.from == 'myworkgrouptasks'||  tableOtherContent.from =='searchresults' || tableOtherContent.from =='systemparameterparams' || tableOtherContent.from == 'mytasks' || tableOtherContent.from == 'manageUser' || tableOtherContent.from == 'manageapplication' || tableOtherContent.from == 'globalNotes')">
+
+                            <div>
+                                <i class="fa fa-save sys_save fa-lg" aria-hidden="true" *ngIf="rowData['rowEdit']"
+                                    (click)="onSaveClick(rowIndex)"></i>
+                                <i class="fa fa-pencil-square-o sys_edit  fa-lg" aria-hidden="true"
+                                    *ngIf="!rowData['rowEdit'] && tableOtherContent.editable && actionColumn[1] && actionColumn[1].visible"
+                                    (click)="onEditClick(rowIndex)"></i>
+                                <i class="fa fa-trash-o  sys_delete fa-lg" style="padding-left: 5px;color:red;"
+                                    aria-hidden="true"
+                                    *ngIf="!rowData['rowEdit'] && tableOtherContent.deleteable && actionColumn[2] && actionColumn[2].visible"
+                                    (click)="onDeleteClick(rowIndex)"></i>
+                                <i class="fa fa-close sys_close fa-lg" style="padding-left: 5px;" aria-hidden="true"
+                                    *ngIf="rowData['rowEdit']" (click)="onCloseClick(rowIndex)"></i>
+
+
+                                <span (click)="expandAddRow(rowData,rowIndex)"
+                                    *ngIf="tableOtherContent.from == 'myworkgrouptasks' || tableOtherContent.from =='taskresults' || tableOtherContent.from == 'mytasks'">
+                                    <i *ngIf="rowData.isIconMinus" class="material-icons add_box system__add">
+                                        remove_circle_outline
+                                    </i>
+                                    <i *ngIf="!rowData.isIconMinus"
+                                        class="fa fa-plus-circle fa-2x   system__add add_box">
+
+                                    </i>
+
+                                </span>
+                                <span (click)="additionalDetails(rowData,rowIndex)"
+                                    *ngIf="tableOtherContent.from == 'logDetails' && rowData.isAdditionalDetailsPresent">
+                                    <i class="fa fa-file-text-o fa-2x   system__add add_box">
+                                    </i>
+                                </span>
+                                <span *ngIf="!rowData.isEditing && tableOtherContent.from == 'manageUser'"
+                                    (click)="onDeleteMemberClick(rowData,i)" style="cursor: pointer;color:red;">
+                                    <i class="fa fa-trash-o  sys_delete fa-lg" title="Delete"></i>
+                                </span>
+                            </div>
+                        </td>
+
+                        <ng-container *ngFor="let header of tableHeader; let headerIndex = index">
+                            <td class="text-center" *ngIf="header.visible" style="white-space:pre-wrap; word-wrap:break-word; font-size: 13px;">
+                                <ng-container *ngIf="header.editable">
+                                     <input class="form-control default_input" placeholder="Text Field" type="text"
+                                        *ngIf="rowData['rowEdit'] && header.type != 'dropdown' && header.type != 'textarea' && header.type != 'MultiSelect'"
+                                        name="index_colIndex" #index_colIndex="ngModel"
+                                        [(ngModel)]="rowData[header.fieldName]" [disabled]="header.disabled"> 
+
+                                        <textarea class="form-control" rows="2" 
+                                        *ngIf="rowData['rowEdit'] && header.type == 'textarea'" name="index_colIndex" #index_colIndex="ngModel" 
+                                        [(ngModel)]="rowData[header.fieldName]" [disabled]="header.disabled"> </textarea>
+
+                                    <select class="form-control select_box"
+                                        *ngIf="rowData['rowEdit'] && header.type == 'dropdown'" name="index_colIndex"
+                                        #index_colIndex="ngModel" [(ngModel)]="rowData[header.fieldName]">
+                                        <option *ngFor="let value of header.dropDown"> {{value}}</option>
+                                    </select>
+
+
+                                    <ng-select2 *ngIf="rowData['rowEdit'] && header.type == 'MultiSelect'"
+                                        [data]="header.dropDown" [width]="180" [options]="options"
+                                        [(ngModel)]="rowData[header.fieldName]" name="index_colIndex"
+                                        #multiObj="ngModel" class="tdmultiselectbox">
+                                    </ng-select2>
+
+
+                                </ng-container>
+                                <span *ngIf="(!rowData['rowEdit'] && tableOtherContent.from != 'logDetails') || tableOtherContent.from == 'taskDependency'"
+                                    (click)="onRowClick( rowIndex, header.link, rowData[header.fieldName], rowData)"
+                                    [ngClass]="[header.link ? 'linktext':'']">{{rowData[header.fieldName]}}</span>
+                                <span
+                                    *ngIf="rowData['rowEdit'] && !header.editable && tableOtherContent.from != 'logDetails'"
+                                    [ngClass]="[header.link ? 'linktext':'']">{{rowData[header.fieldName]}}</span>
+                                <div *ngIf="tableOtherContent.from == 'logDetails'">
+                                    <!-- div *ngIf="header.fieldName == 'activityDetails'">
+                                            <pre class="pre-style" style="white-space: pre-wrap;">{{rowData[header.fieldName]}}</pre>
+                                        </div-->
+                                    <!-- div *ngIf="header.fieldName != 'activityDetails'"-->
+                                    {{(header.fieldName === 'logdetailscreatedById') ? rowData['createdById'] :
+                                            (header.fieldName ===
+                                            'logdeatilscreatedDateTime')? rowData['createdDateTime'] :
+                                            rowData[header.fieldName]}}
+                                    <!-- /div-->
+                                </div>
+                            </td>
+                        </ng-container>
+
+                    </tr>
+                    <tr>
+                        <ng-container *ngIf="rowData.isRowDetailOpen">
+                            <td [colSpan]="actionColumn.length + 1">
+                                <div class="inner widget-name">
+                                    <div class="row">
+                                        <div class="dynamic-table">
+                                            <div class="widget-body">
+                                                <div class="table-responsive">
+                                                    <div class="panel-body general-tasks">
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 no-padding-right elemWrapper"
+                                                                *ngFor="let header of actionColumn">
+
+                                                                <div>
+                                                                    <label
+                                                                        class="col-xs-12 col-sm-6 col-md-6 col-lg-6 control-label">
+                                                                        {{header.label}}
+                                                                    </label>
+
+                                                                    <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
+                                                                        <input type="text" class="form-control"
+                                                                            [ngModel]="rowData[header['key']]"
+                                                                            disabled="true" readonly="true" />
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </ng-container>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <!-- </div> -->
+            </div>
+        </div>
+        <!-- Pagination -->
+        <div class="row pad-l-13 paginationcontent"  style="margin:0;"
+            *ngIf="pagination && pagination.allItems && pagination.allItems.length > 0 && totalItemsCount">
+            <div class="col-xs-3 col-lg-5 perpagetext">
+                <div class="total_records">
+                    <div>
+                        <label class="pr-10 perpagetext">{{pagination.perPageText}} </label>
+                        <select [(ngModel)]="pagination.selectedLimit" (change)="paginationChange()" class="perpage">
+                            <option *ngFor="let value of pagination.pageLimitOptions" [value]="value">
+                                {{value}}
+                            </option>
+                        </select>
+                    </div>
+                    <div> {{ pagination.totalRecordsText }}{{ (totalItemsCount > 0)? totalItemsCount : 0 }}</div>
+                    <div> {{ pagination.pageNumberText }} {{ pager.currentPage }} / {{ pager.totalPages }}</div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 col-6 text-right" *ngIf="totalItemsCount > 0 && pagination && pagination.allItems && pagination.allItems.length > 0 "
+                style="padding-left: 0;padding-right: 0;">
+                <div style="width: 90%;float: right; margin-top: 10px; margin-bottom:20px;"
+                    class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                        <li [ngClass]="{disabled:loader || pager.currentPage === 1}">
+                            <a (click)="setPage(1)">First</a>
+                        </li>
+                        <li [ngClass]="{disabled:loader || pager.currentPage === 1}">
+                            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                        </li>
+                        <li *ngFor="let page of pager.pages" [ngClass]="{active: pager.currentPage === page,  disabled:loader}">
+                            <a (click)="setPage(page)">{{page}}</a>
+                        </li>
+                        <li [ngClass]="{disabled:loader || pager.currentPage === pager.totalPages}">
+                            <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                        </li>
+                        <li [ngClass]="{disabled:loader || pager.currentPage === pager.totalPages}">
+                            <a (click)="setLastPage(pager.totalPages)">Last</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

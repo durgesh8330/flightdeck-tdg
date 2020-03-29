@@ -1,0 +1,91 @@
+
+.spinner-style{
+    position: absolute;
+    top: 30%;
+    left: 40%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    padding: 0 15px 0 10px;
+}
+
+mat-card{
+    width: 99.5%;
+}
+mat-slide-toggle{
+    padding-left: 10px;
+    padding-top: 20px;
+}
+
+::ng-deep .mat-expansion-panel-header {
+    height: 64px !important;
+}
+
+::ng-deep .select2-container {
+    width: 100% !important;
+    border: 1px solid lightgrey !important;
+}
+
+::ng-deep .onoffswitch-container {
+    margin-left: 0px;
+}
+::ng-deep .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    text-align:center;
+    padding-top:1px;
+    min-height:17px;
+}
+::ng-deep .select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+    color: #000;
+    padding-right: 20px;
+}
+
+.select2-container--default .select2-selection--multiple{
+    border: 0px solid #ccc !important;
+    border-radius: 0px !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    margin-top: 5px !important;
+}
+
+/* .form-control.input {
+    height:42px;
+} */
+
+.clear-btn{
+    margin-right:10px;
+}
+
+.mr-5{
+    margin-right:5% !important;
+}
+
+
+.task-search-form .form-control.input{
+    padding-left:0px;
+}
+
+.spr-search-wrapper .mt-12 {
+    margin-top: 12px !important;
+}
+
+.search-panel .section-block{
+    margin-top: 12px;
+}
+
+.search-btn-control{
+    background: #fff;
+    margin: -7px 0px;
+    padding: 10px;
+}
+
+.wrap {
+    /* padding-top: 40px; */
+}
+
+.content-scroll {
+    max-height: calc(100vh - 142px);
+    overflow: auto;
+}

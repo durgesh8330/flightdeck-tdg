@@ -1,0 +1,231 @@
+.well.theme-builder{
+  border:none !important;
+  box-shadow: none !important;
+
+.theme {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    padding: 24px;
+    font-weight: 300;
+  }
+
+  .left-margin {
+    text-align: left;
+    height: 25px;
+  }
+
+  .smart-form header {
+    padding: 8px 0 !important;
+    padding-top: 8px !important;
+    padding-right: 0px !important;
+    padding-bottom: 8px !important;
+  }
+
+  .smart-form section {
+    margin-bottom: 15px !important;
+    position: relative !important;
+}
+
+.carousel-indicators{
+  margin-left: -30% !important;
+}
+
+.carousel-caption h4 {
+  margin-bottom: 20px;
+}
+
+.smart-form .select i {
+  height: 10px !important;
+}
+
+.smart-form .checkbox, .smart-form .radio { 
+  color: #000;
+}
+
+.smart-form {
+  color: #000;
+}
+
+.margin-Bottom10 {
+  margin-bottom: 20px;
+}
+
+::ng-deep .modal-backdrop {
+  z-index: -1 !important;
+}
+
+.color-style {
+  position: relative; 
+  margin-left: 6px !important;
+  color: #fff; 
+  margin-top: 3px; 
+  pointer-events: none;
+  font-weight: bold
+}
+
+.color-input-type
+{
+  position:absolute;
+  width: 26%;
+  height: 25px
+}
+
+#left-panel {
+  padding-top: 0px;
+}
+
+.input-color-container {
+  position: relative;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  border: solid 2px #ddd;
+  border-radius: 40px;
+}
+
+.input-color {
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  width: 56px;
+  height: 56px;
+  border: none;
+}
+
+.input-color-label {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #3498db;
+}
+
+.radio-row-style {
+  padding-left: 45px;
+}
+
+.theme-element {
+  width: 33% !important;
+}
+
+.showAreaTopBarFooter {
+  display: none;
+}
+
+.showAreaLeftPanel {
+  display: none;
+} 
+
+.showAreaHeaderTitle {
+  display: none;
+}
+
+.showAreaContent {
+  display: none;
+}
+
+.showAreaInputButton {
+  display: none;
+}
+
+.mat-tab-body.mat-tab-body-active {
+  z-index: auto;
+}
+
+.buttonClass {
+  height: 25px;
+  width: 80%;
+  margin-right: 10px;
+  margin-top: 35px;
+}
+
+.left-margin input{
+  width: 85%;
+}
+
+button {
+  width: 110px;
+  padding: 4px 12px;
+}
+
+
+
+.tabs-left > .nav-tabs {
+  border-bottom: 0 !important;
+}
+
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+  display: none !important;
+}
+
+.tab-content > .active,
+.pill-content > .active {
+  display: block !important;
+}
+
+.tabs-left > .nav-tabs > li {
+  float: none !important;
+}
+
+.tabs-left > .nav-tabs > li > a {
+  min-width: 74px !important;
+  margin-right: 0 !important;
+  margin-bottom: 3px !important;
+}
+
+.tabs-left > .nav-tabs {
+  float: left !important;
+  margin-right: 19px !important;
+  border-right: 1px solid #ddd !important;
+}
+
+.tabs-left > .nav-tabs > li > a {
+  margin-right: -1px !important;
+  -webkit-border-radius: 4px 0 0 4px !important;
+     -moz-border-radius: 4px 0 0 4px !important;
+          border-radius: 4px 0 0 4px !important;
+}
+
+.tabs-left > .nav-tabs > li > a:hover,
+.tabs-left > .nav-tabs > li > a:focus {
+  border-color: #eeeeee #dddddd #eeeeee #eeeeee !important;
+}
+
+.tabs-left > .nav-tabs .active > a,
+.tabs-left > .nav-tabs .active > a:hover,
+.tabs-left > .nav-tabs .active > a:focus {
+  border-color: #ddd transparent #ddd #ddd !important;
+  border-right-color: #ffffff !important;
+}
+
+.tabs-left .nav-tabs > li.active > a {
+  color: #000000 !important;
+  background: #fff !important;
+}
+
+.topPadding15 {
+  padding-top: 15px;
+}
+
+.theme-wrapper .well.text-center{
+  padding:12px;
+  margin:10px;
+  h5{
+    color: #000;
+  }
+}
+
+.btns{
+  button{
+    float:right;
+    margin-right:12px;
+    padding: 0px;
+    line-height: 36px;
+  }
+}
+
+#content{
+  margin-top:-50px;
+}
+}

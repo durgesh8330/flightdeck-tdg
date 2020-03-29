@@ -1,0 +1,4 @@
+.content-scroll{
+    max-height: calc(100vh - 142px);
+    overflow: auto;
+}

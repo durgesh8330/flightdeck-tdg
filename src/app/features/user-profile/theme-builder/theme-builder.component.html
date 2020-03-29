@@ -1,0 +1,78 @@
+<div sa-widget class="well theme-builder" [color]="false" [editbutton]="false" [togglebutton]="false" [deletebutton]="false"
+  [fullscreenbutton]="false" [custombutton]="false" [sortable]="false">
+
+  <header>
+    <span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+    <h2>Default Tabs with border </h2>
+
+  </header>
+
+    <!-- widget content -->
+    <div class="widget-body theme-wrapper">
+
+        <div class="theme">
+          <div class="row">
+            <form class="smart-form" #gsForm="ngForm">
+              <header style="border: 1px solid; background-color: rgba(0, 0, 0, .2);
+                                  margin: 0px !important; padding-left: 10px !important;">
+                Theme Settings
+              </header>
+  
+              <fieldset>
+  
+                <div id="content">
+  
+                  <!-- row -->
+                  <div class="row">
+  
+                    <!-- col --> 
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <h1 class="page-title txt-color-blueDark text-center well">
+                        <!-- PAGE HEADER -->
+                        Select Theme                      </h1>
+                    </div>
+                    <!-- end col -->
+                
+                  </div>
+                  <!-- end row -->
+  
+                  <!-- widget grid -->
+                  <section id="widget-grid" class="">
+  
+
+                    <div class="row">
+                      <div class="col-sm-6 pull-right btns">
+                        <button class="mat-raised-button mat-primary" (click)="save()">Save</button> &nbsp;
+                        <button class="mat-raised-button mat-primary" (click)="factoryReset()">Factory Reset</button> &nbsp;
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-3" *ngFor="let theme of themes">
+                        <!-- your contents here -->
+                        <div class="well text-center">
+                          <h5>
+                            <input type="radio" name="theme" [(ngModel)]="selectedTheme" [value]="theme['value']"/> &nbsp;&nbsp;
+                            <strong>{{theme['name']}}</strong><br/><br/>
+                          </h5>
+                          <img src="{{theme['image']}}" class="img-responsive center-block" style="box-shadow: 0px 0px 3px 0px #919191;">
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </section>
+                  <!-- end widget grid -->
+  
+                </div>
+  
+              </fieldset>
+  
+            </form>
+          </div>
+        </div>
+  
+      </div>
+      <!-- end widget content -->
+
+</div>

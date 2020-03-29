@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+$default-font: 'Open Sans', sans-serif;
+
+// default colors
+/*
+.theme-wrapper {
+
+  --navigation_background: #FFF;  
+  --leftPanel_background: #FFF;
+  --footer_background: #FFF;  
+  --title_background: #FFF;  
+  --leftPanel_font: #FFF;  
+  --footer_font: #FFF;  
+  --header_background: #FFF;  
+  --header_font: #FFF;  
+  --button_background: #FFF;  
+  --button_font: #FFF;  
+  --input_background: #FFF;  
+  --input_font: #FFF;  
+  --title_font: #FFF;  
+  --content_background: #FFF;  
+  --content_font: #FFF;
+  --font_family: '';
+}
+
+*/
+$variables: (
+  --navigation_background: var(--navigation_background),
+  --leftPanel_background: var(--leftPanel_background),
+  --footer_background: var(--footer_background),
+  --title_background: var(--title_background),
+  --leftPanel_font: var(--leftPanel_font),
+  --footer_font: var(--footer_font),
+  --header_background: var(--header_background),
+  --header_font: var(--header_font),
+  --button_background: var(--button_background),
+  --button_font: var(--button_font),
+  --input_background: var(--input_background),
+  --input_font: var(--input_font),
+  --title_font: var(--title_font),
+  --content_background: var(--content_background),
+  --content_font: var(--content_font),
+  --font_family: var(--font_family)
+);

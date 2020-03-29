@@ -1,0 +1,58 @@
+<div *ngIf="loaderTaskDetail" class="center__loader">
+  <!-- <mat-spinner class="spinner-style"></mat-spinner> -->
+  <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+  <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+      </div>
+</div>
+<sa-modal [modal]="modalDetails" (buttonClicked)="buttonClicked($event)"></sa-modal>
+<div *ngIf="!loaderTaskDetail" class="system__parameter">
+  <div class="alert alert-success alert-dismissible" *ngIf="IsSuccess" style="background-color: green;color: #fff;">
+      <strong>Success! </strong>{{message}}.
+      <button type="button" class="close" data-dismiss="alert" style="opacity: 1;color: #fff !important;" (click)="IsSuccess = false">&times;</button>
+  </div>
+  <div class="alert alert-danger alert-dismissible" *ngIf="IsError" style="background-color: #ce2f2f;color: #fff;">
+      <strong>Error! </strong>{{message}}.
+      <button type="button" class="close" data-dismiss="alert" style="opacity: 1;color: #fff !important;" (click)="IsError = false">&times;</button>
+  </div>
+  <sa-widgets-grid>
+      <div sa-widget [editbutton]="false" [name]="userdetailswodgetwa" [deletebutton]="false" [fullscreenbutton]="true"
+          color="blueDark">
+          <!-- <header>
+              <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+              <h2>{{sectionheader}}</h2>
+          </header> -->
+          <sa-alert  [error]="error"></sa-alert>
+          <div class="widget-body table-container">
+                  <sa-table 
+                  [pagination]="pagination" 
+                  [actionButton]="actionButton" 
+                  [actionColumn]="actionColumn"
+                  [tableHeader]="workGroupNotification.header"
+                  [tableData]="workGroupNotification.tableData"
+                  [tableOtherContent]="workGroupNotification"
+                  [filter]="filter"
+                  [tablePaginationData]="tablePaginationData"
+                 
+                  (addNewRowParent)="addNewRow($event)"
+                  (onSaveParent)="onSaveClick($event)"
+                  (pageChangedParent)="pageChanged($event)"
+                  (onEditParent)="onEditClick($event)"
+                  (onDeleteParent)="onDeleteClick($event)"
+                  (onCloseParent)="onCloseClick($event)"
+                  (paginationChangeParent)="paginationChange($event)"
+                  (openTabParent)="openTab($event)"
+                  (filterColumnParent)="filterRows()"
+                  (onSortParent)="onSortSelection($event)"
+                  (previousAll)="previousTasks()"
+                  (previous)="onGridPrevious()"
+                  (nextAll)="nextTasks()"
+                  (next)="onGridNext()"
+                  ></sa-table>
+  
+            </div>
+      </div>
+  </sa-widgets-grid>
+</div>

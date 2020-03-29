@@ -1,0 +1,29 @@
+:root{
+  --navigation_background:#22262e; 
+  --leftPanel_background:#1b1e24; 
+  --footer_background:#1b1e24; 
+  --header_background:#eeeeee;
+  --title_background:#353D4B; 
+  --leftPanel_font:#E1EAF1; 
+  --footer_font:#ffffff; 
+  --header_font:#000000; 
+  --button_background:#275b89; 
+  --button_font:#ffffff; 
+  --input_background:#ffffff; 
+  --input_font:#000000; 
+  --title_font:#000000; 
+  --content_background:#eeeeee; 
+  --content_font:#000000; 
+}
+
+.smart-style-4 .page-footer, .smart-style-4 .superbox-show {
+  background-image: none;
+  background: var(--footer_background);
+  color: var(--footer_font);
+}
+
+.smart-style-4 .txt-color-white {
+  color: var(--footer_font) !important;
+}
+
+  

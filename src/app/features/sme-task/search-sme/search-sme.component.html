@@ -1,0 +1,24 @@
+<div *ngIf="loader" class="taskloader_div">
+  <div class="task_loader">
+    <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+  </div>
+</div>
+<div id="content" *ngIf="!loader" class="content-scroll">
+  <div class="alert alert-success alert-dismissible" *ngIf="IsSuccess" style="background-color: green;color: #fff;">
+    <strong>Success! </strong>{{message}}.
+    <button type="button" class="close" data-dismiss="alert" style="opacity: 1;color: #fff;" (click)="IsSuccess = false">&times;</button>
+  </div>
+  <div class="alert alert-danger alert-dismissible" *ngIf="IsError" style="background-color: #ce2f2f;color: #fff;">
+    <strong>Error! </strong>{{message}}.
+    <button type="button" class="close" data-dismiss="alert" style="opacity: 1;color: #fff;" (click)="IsError = false">&times;</button>
+  </div>
+  <!-- <sa-boxed-layout [pageLayout]="pageLayout" [isShow]="'true'"></sa-boxed-layout> -->
+  <sa-boxed-layout [pageLayout]="pageLayout" [isShow]="'advanced-search'" [modelValue]="modelValue" [layOutCounter]="layOutCounter"
+    [errorMessage]="errorMessage" (SearchTask)="searchTask($event)" (ClearData)="clear($event)">
+  </sa-boxed-layout>
+</div>

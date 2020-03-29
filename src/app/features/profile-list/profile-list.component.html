@@ -1,0 +1,731 @@
+<!-- <div *ngIf="loader">
+		<mat-spinner class="spinner-style"></mat-spinner>
+	  </div> -->
+	  <div class="row">
+		  <div class="col-sm-12" style="border-bottom: 1px solid #ccc;margin-bottom: 15px;">
+			  <div >
+				  <ul class="nav nav-tabs tabs-pull-right">
+						
+					  <li class="nav nav-tabs" [ngClass]="{'active':isWorkflowActive}" *ngIf="!isOnlyManageMember && (userRole && (userRole=='ADMIN' || userRole=='SUPER ADMIN'))" (click)="onSelectWorkgroupTab()">
+						  <a href="#a1" data-toggle="tab">Manage Workgroups</a>
+					  </li>
+					  <!-- <li class="active">
+						  <a href="#a2" data-toggle="tab">Manage Members</a>
+					  </li> -->
+					  <li *ngIf="!isOnlyManageMember" class="nav nav-tabs tabs-pull-right active" [ngClass]="{'active':isMemberActive}" (click)="onSelectMembersTab()">
+						  <a href="#a3" data-toggle="tab">Manage Members</a>
+					  </li>
+					  
+					  <!-- <li class="pull-left">
+						  <span class="margin-top-10 display-inline"><i class="fa fa-rss text-success"></i> Activity</span>
+					  </li> -->
+				  </ul>
+				  <div class="tab-content padding-top-7">
+					  <div class="tab-pane fade in" id="a1" [ngClass]="{'active':isWorkflowActive}">
+						  <div>
+								
+							  <div class="widget-body" data-sparkline-container="">	
+									<div style="float:left;width: 100%;background-color: white;"><span (click)="onAddNewProfileClick()" style="cursor: pointer;">
+											<i title="Add" class="material-icons">
+													add_box
+													</i>
+											</span>
+										</div>					
+				  <table id="tablepdf" class="table121 table table-bordered table-hover smart-form datatable-header-cell sortable resizeable ng-star-inserted">
+									  <thead>
+									  <tr style="border-top:1px solid #ccc">
+										  <th style="width:3%;">
+														  
+											  </th>    
+											  <th style="width:5%;" class="header-td-background">
+												  
+											  </th>                                   
+										  <th style="width:12%" class="header-td-background">
+											<div style="cursor: pointer; text-align: center;" (click)="onSortSelection('workgroupName')">Work Group Name</div>
+											<div style="float: left;width:95%; margin-top: 5px;">
+													<input type="text"
+													(input)="filterTaskResult('workGroupName')"
+													[(ngModel)]="workGroupName"
+													name="workGroupName"
+											 style="width: 100%;overflow: visible;padding: 3px;"/>
+											</div>
+										</th>
+										<th style="width:11%" class="header-td-background">
+										  <div style="cursor: pointer; text-align: center;" (click)="onSortSelection('appName')">App Name</div>
+										  <div style="float: left;width:95%; margin-top: 5px;">
+												  <input type="text"
+												  (input)="filterTaskResult('appName')"
+												  [(ngModel)]="appName"
+												  name="appName"
+										   style="width: 100%;overflow: visible;padding: 3px;"/>
+										  </div>
+									  </th>
+	  
+										<th style="width:14%" class="header-td-background">
+											  <div style="cursor: pointer; text-align: center;" (click)="onSortSelection('workgroupDesc')">Work Group Description</div>
+											  <div style="float: left;width:95%; margin-top: 5px;">
+													  <input type="text"
+													  (input)="filterTaskResult('workGroupDescription')"
+													  [(ngModel)]="workGroupDescription"
+													  name="workGroupDescription"
+											   style="width: 100%;overflow: visible;padding: 3px;"/>
+											  </div>
+										  </th>
+										  <th style="width:14%;" class="header-td-background">
+												<div style="cursor: pointer; text-align: center;"
+													 (click)="onSortSelection('createdById')">Created By</div>
+												<div style="float: left;width:95%; margin-top: 5px;">
+														<input type="text"
+														(input)="filterTaskResult('createdBy')"
+														[(ngModel)]="createdBy"
+														name="createdBy"
+												 style="width: 100%;overflow: visible;padding: 3px;"/>
+												</div>
+										</th>
+										  <th  style="width:14%;" class="header-td-background">
+												<div style="cursor: pointer; text-align: center;" (click)="onSortSelection('modifiedById')">Modified By</div>
+												<div style="float: left;width:95%; margin-top: 5px;">
+												<input type="text"
+												(input)="filterTaskResult('modifiedBy')"
+												[(ngModel)]="modifiedBy"
+												name="modifiedBy"
+										 style="width: 100%;overflow: visible;padding: 3px;"/>
+										 </div>
+										</th>                                   
+										  <th style="width:14%;" class="header-td-background">
+											  <div style="cursor: pointer; text-align: center;" (click)="onSortSelection('createdDateTime')">Created DateTime</div>
+												  <div style="float: left;width:95%; margin-top: 5px;">
+												  <input type="text"
+												  (input)="filterTaskResult('createdDate')"
+												  [(ngModel)]="createdDate"
+												  name="createdDate"
+										   style="width: 100%;overflow: visible;padding: 3px;"/>
+										   </div>
+										  </th>
+										  <th style="width:14%" class="header-td-background">
+											  <div style="cursor: pointer; text-align: center;" (click)="onSortSelection('modifiedDateTime')">Modified DateTime</div>
+												  <div style="float: left;width:95%; margin-top: 5px;">
+												  <input type="text"
+												  (input)="filterTaskResult('modifiedDate')"
+												  [(ngModel)]="modifiedDate"
+												  name="modifiedDate"
+										   style="width: 100%;overflow: visible;padding: 3px;"/>
+										   </div>
+										  </th>
+									  </tr>
+									  </thead>
+									  <tbody style="background: white;">
+									 
+									  <tr   *ngFor="let profile of displayProfileList; let pid = index" [ngClass]="{'row-highlight-background':profile.isIconMinus}">
+										  <td style="width: 1%;" *ngIf="!profile.isRowDetailOpen">
+														 <div (click)="onRowDetailClick(profile,pid)" *ngIf="!profile.isNewAppNAmeWorkgroup" style="cursor:pointer;">
+																  <i *ngIf="profile.isIconMinus" title="collapse" class="material-icons" style="font-weight:bold;font-size:15px;">
+																		  remove
+																		  </i>
+																		  <i *ngIf="!profile.isIconMinus" title="expand" class="material-icons" style="font-weight:bold;font-size:15px;">
+																						  add
+																						  </i>       
+																				  </div>
+										  </td>
+										  <td style="width: 5%;" *ngIf="!profile.isRowDetailOpen">
+											  <div>
+											  <span style="cursor: pointer;">
+												  <i *ngIf="profile.isEditing" title="Save" class="material-icons" (click)="onProfileSaveClick(profile,pid)" >
+														  save
+														  </i>
+														  <i *ngIf="profile.isEditing" title="Cancel" class="material-icons" (click)="onProfileCancelClick(profile,pid)" >
+																  close
+															</i>
+											  <!-- <i (click)="onProfileditClick(profile,pid)" *ngIf="!profile.isEditing" class="material-icons">
+												  edit
+												  </i> -->
+												</span>
+											  <span (click)="onDeleteProfileRow(profile,pid)" *ngIf="!profile.isEditing" style="cursor: pointer;">
+												<i class="material-icons" title="Delete">
+														  delete
+														  </i></span>
+											  </div>
+										   </td>									
+											<td *ngIf="!profile.isRowDetailOpen" style="width:12%;">
+												  <span *ngIf="!profile.isEditing">
+														  {{profile.workgroupName}}
+													  </span>
+													  <span *ngIf="profile.isEditing">
+														  <input type="text" [(ngModel)]="profile.workgroupName" />
+													  </span>
+											  </td>
+											  <td *ngIf="!profile.isRowDetailOpen" style="width:11%;">
+												  <span *ngIf="!profile.isEditing">
+														  {{profile.appName}}
+													  </span>
+													  <span *ngIf="profile.isEditing">
+														  <!-- <input type="text" [(ngModel)]="profile.appName" /> -->
+														  <select (change)="updateManageWorkGroupAppNameValue($event,profile,pid)" class="form-control custom-select d-block w-100" style="width:90%;float:left;height:25px;"
+														  [(ngModel)]="profile.appName" name='"appNameListManageWorkgroupAppNameRole_{{i}}'
+														  #appNameLisManageWorkGroup_="ngModel">
+													  <option *ngFor="let element of appNameList" [value]="element.applicationName">{{element.applicationName}}</option>
+														  </select>
+													  </span>
+											  </td>
+										  <td *ngIf="!profile.isRowDetailOpen" style="width:14%;">
+											  <span *ngIf="!profile.isEditing">
+												  {{profile.workgroupDesc}}
+											  </span>
+											  <span *ngIf="profile.isEditing">
+												  <input type="text" [(ngModel)]="profile.workgroupDesc" />
+											  </span>
+										  </td>
+											<td *ngIf="!profile.isRowDetailOpen" style="width:14%;">
+											  <span>
+												  {{profile.createdById}}
+											  </span>
+											  <!-- <span *ngIf="profile.isEditing">
+												  <input type="text" [(ngModel)]="profile.createdById" />
+											  </span> -->
+										  </td>
+											<td *ngIf="!profile.isRowDetailOpen" style="width:14%;">
+											  <span>
+												  {{profile.modifiedById}}
+											  </span>
+											  <!-- <span *ngIf="profile.isEditing">
+												  <input type="text" [(ngModel)]="profile.modifiedById" />
+											  </span> -->
+										  </td>
+											<td *ngIf="!profile.isRowDetailOpen" style="width:14%;">
+											  <span>
+												  {{profile.createdDateTime}}
+											  </span>
+											  <!-- <span *ngIf="profile.isEditing">
+												  <input type="text" [(ngModel)]="profile.createdDateTime" />
+											  </span> -->
+										  </td>
+											<td *ngIf="!profile.isRowDetailOpen" style="width:14%;">
+											  <span>
+												  {{profile.modifiedDateTime}}
+											  </span>
+											  <!-- <span *ngIf="profile.isEditing">
+												  <input type="text" [(ngModel)]="profile.modifiedDateTime" />											
+											  </span> -->
+										  </td>
+										  <td *ngIf="profile.isRowDetailOpen" colspan="9">
+												  <table id="tablepdf" class="table122 table table-bordered table-striped table-hover smart-form">
+														  <thead>
+														  <tr>
+															  <th style="width:10%">Actions</th>
+															  <th style="width:24%">
+																<div style="cursor: pointer; text-align: center;" (click)="onInnerSortSelection('roleName',profile)">Role Name</div>
+																<div style="float: left;width:100%; margin-top: 5px;">
+																	   
+																</div>
+															</th>
+															<th style="width:22%">
+																  <div style="cursor: pointer; text-align: center;" (click)="onInnerSortSelection('accessName',profile)">Access Levels</div>
+																  <div style="float: left;width:100%; margin-top: 5px;">
+																		  
+																  </div>
+															  </th>
+															  <th style="width:22%;">
+																	<div style="cursor: pointer; text-align: center;"
+																		 (click)="onInnerSortSelection('accessValue',profile)">Access Value</div>
+																	<div style="float: left;width:100%; margin-top: 5px;">
+																			
+																	</div>
+															</th>
+															<th style="width:22%;">
+																	<div style="cursor: pointer; text-align: center;"
+																		 (click)="onInnerSortSelection('accessModule',profile)">Access Module</div>
+																	<div style="float: left;width:100%; margin-top: 5px;">
+																			
+																	</div>
+															</th>														
+														  </tr>
+														  </thead>
+														  <tbody style="background: white;">
+														 
+														  <tr *ngFor="let role of profile.roleList; let i = index">
+															  <td style="width:10%;">
+																	  <span style="margin: 4px; cursor: pointer;">
+																			  <i  (click)="onWorkgroupSaveClick(role,i,profile)" title="Save" *ngIf="role.isEditing" class="material-icons">
+																					  save
+																				</i>
+																			<i (click)="onWorkgroupCancelClick(role,i,profile)" title="Cancel" *ngIf="role.isEditing" class="material-icons">
+																							close
+																				</i>
+																		  <!-- <i (click)="onWorkgroupEditClick(role,i,profile)" *ngIf="!role.isEditing" class="material-icons">
+																			  edit
+																			  </i> -->
+																			</span>
+																		  <span *ngIf="(!role.isNewRole || !role.isEditing)" (click)="deleteWorkgroupRole(profile,role,i,profile.id)"style="cursor: pointer;"><i class="material-icons" title="Delete">
+																					  delete
+																					  </i></span>
+															  </td>
+																<td style="width:24%;">
+																  <div *ngIf="!role.isEditing">{{role.roleName}}</div>
+																  <div *ngIf="role.isEditing">
+																	  <input type="text" [(ngModel)]="role.roleName" />
+																  </div>
+																  </td>
+															  
+																<td colspan="3">
+																	  <!-- <div *ngIf="!role.isEditing">{{role.accessValue}}</div>
+																	  <div *ngIf="role.isEditing">
+																			  <select (blur)="onTaskStatusEding(task.taskId, false)"
+																			  [value]="value"
+																			  (change)="updateValue($event, 'search', profile.id,i)">
+																			 <option value="Read">Read</option>
+																			 <option value="Read/Write">Read/Write</option>
+																			 <option value="Restrict">Restrict</option>
+																	 </select>
+																	  </div> -->
+																	<table style="width:100%;">
+																		<tr *ngFor="let access of role.accessList; let accessIndex = index">
+																			<td style="width:33%;padding-bottom: 15px !important;">
+																				<!-- <span>{{access.accessName}}</span> -->
+																				<select (blur)="updateWorkgroupAccessNameValue(null, access, role, accessIndex)" (change)="updateWorkgroupAccessNameValue($event,access, role,accessIndex)"
+																				  class="form-control custom-select d-block w-100" style="width:75%;float: left;"
+																				[(ngModel)]="access.accessName" name='"roleLists_{{i}}'
+																				#workgroupAccessList_="ngModel">
+																			<option *ngFor="let element of workgroupAccessList" [value]="element.accessLevelName">{{element.accessLevelName}}</option>
+																		</select>
+																			<span style="cursor: pointer;">
+																					<i title="Delete" (click)="onDeleteNewWorkgroupAccessList(role,profile,access, accessIndex)" class="material-icons">
+																							delete
+																							</i>
+																					<i class="material-icons" title="Save" (click)="onSaveNewWorkgroupAccessList(role,profile,access, i)">
+																									save
+																									</i>
+																			</span>
+																			</td>
+																			<td style="width:33%;padding-bottom: 15px !important;padding-left:100px;">
+																				<span>{{access.accessValue}}</span>
+																			
+																			</td>
+																			<td style="width:34%;padding-bottom: 15px !important;padding-left:100px;">
+																					<span>{{access.accessModule}}</span>
+																				
+																				</td>
+																		</tr>
+																	</table>
+																	<div style="float: left;">
+																			<span  style="cursor: pointer;" *ngIf="!role.isNewRole">
+																					<i title="Add" (click)="onAddNewWorkgroupAccessList(role,profile, i)" class="material-icons">
+																							add_box
+																							</i>
+																							<!-- <i class="material-icons" (click)="onSaveNewWorkgroupAccessList(role,profile,access, i)">
+																									save
+																									</i> -->
+																			</span>
+																		</div>
+																  </td>													  
+															  
+															  </tr>
+														  </tbody>
+													  </table>
+													  <div style="float: left;">
+														  <span (click)="onAddNewRoleClick(profile,profile.id)" style="cursor: pointer;">
+																  <i class="material-icons" title="Add" >
+																		  add_box
+																		  </i>
+														  </span>
+													  </div>
+										  </td>
+										  </tr>
+									  </tbody>
+								  </table>
+								  
+								  <div *ngIf="tablePaginationData.length > 1" style="width: 50%;float: right; margin-top: 5px;" class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+										   <ul class="pagination" style="float: right;">
+										  <li class="paginate_button previous" [ngClass]="{'disabled':currentPageNumber === 1}" id="DataTables_Table_0_previous">
+												  <a (click)="onGridPrevious()" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">
+														  Previous</a></li>
+										  <li *ngFor="let pageNumber of tablePaginationData" class="paginate_button" [ngClass]="{'active':currentPageNumber === pageNumber}">
+												  <a aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" (click)="onPaginateOuterGrid(pageNumber)">
+												  {{pageNumber}}</a></li>                        
+										  <li class="paginate_button next" [ngClass]="{'disabled':currentPageNumber===tablePaginationData.length}" id="DataTables_Table_0_next">
+										  <a (click)="onGridNext()" aria-controls="DataTables_Table_0" data-dt-idx="8" tabindex="0">Next</a></li>
+										  </ul>
+								  </div>
+							  </div>
+						  </div>
+					  </div>
+					  
+					  <div class="tab-pane fade in active" id="a3" [ngClass]="{'active':isMemberActive}">
+							<sa-table 
+								[pagination]="pagination" 
+								[actionButton]="actionButton" 
+								[actionColumn]="searchDetails.headers"
+								[tableHeader]="searchDetails.headers"
+								[tableData]="connectionsListPerPage"
+								[tableOtherContent]="systemParameter"
+								[filter]="filter"
+								[tablePaginationData]="tablePaginationData"
+							
+								(onDeleteMember)="onDeleteMemberClick($event.rowData, $event.i)"
+								(openTabParent)="onShowProfileDetails($event.name)"
+							></sa-table>
+
+							<!-- <div class="row pl-10">
+								<div class="col-lg-3">
+									<label class="pr-10">Per Page </label>
+									<select [(ngModel)]="paginationLimitOption" (change)="paginationChange(paginationLimitOption)">
+										<option *ngFor="let value of pagination.pageLimitOptions" [value]="value">
+											{{value}}
+										</option>
+									</select>
+								</div>
+								<div class="col-lg-4">
+									Page Number - {{pagination.totalRecords == 0 ? 0: pagination.pageNumber }} / {{pagination.totalPage}}
+								</div>
+								<div style="float: right; margin: -5px 23px 5px 0px;">
+									<a class="btn btn-default buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_8" href="#"
+										(click)="printPDF()">
+									<span>PDF</span></a> &nbsp;
+									<a class="btn btn-default buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_8" (click)="printData()"
+										href="#">
+									<span>Print</span></a>
+								</div>
+							</div>
+							<br>
+							  <div style="float: left;"> -->
+									  <!-- <span (click)="onAddNewMemberClick(profile)" *ngIf="(userRole=='ADMIN' || userRole=='SUPER ADMIN')" style="cursor: pointer;">
+											  <i class="material-icons"  title="Add" >
+													  add_box
+													  </i>
+									  </span> -->
+								  <!-- </div>
+						  <table id="tablepdf" class="table123 table table-bordered table-hover smart-form datatable-header-cell sortable resizeable ng-star-inserted">
+							  <thead>
+							  <tr style="border-top:1px solid #ccc">
+									<th *ngIf="searchDetails.showActions" style="width:5%;" class="header-td-background">
+										
+									</th>     -->
+									<!-- Dynamic Search Users Header Section -->                               
+									<!-- <th [style.width.%]="95/searchDetails.headers.length"
+											*ngFor="let header of searchDetails.headers" class="header-td-background">
+										<div style="cursor: pointer; text-align: center;" (click)="onSortSelectionConnection(header.fieldName)">{{ header.label }}</div>
+										<div style="float: left;width:95%; margin-top: 5px;">
+												<input type="text"
+												(input)="filterTaskResultConnection(header.fieldName, $event.target.value)"
+												name="{{header.fieldName}}"
+										style="width: 100%;overflow: visible;padding: 3px;"/>
+										</div>
+									</th> -->
+									<!-- Dynamic Search Users Header Section -->  
+									<!--
+										<th style="width:20%" class="header-td-background">
+										<div style="cursor: pointer; text-align: center;" (click)="onSortSelectionConnection('userCuid')">User CUID</div>
+										<div style="float: left;width:95%; margin-top: 5px;">
+												<input type="text"
+												(input)="filterTaskResultConnection('userCuid')"
+												[(ngModel)]="userCuid"
+												name="userCuid"
+										style="width: 100%;overflow: visible;padding: 3px;"/>
+										</div>
+									</th>
+										<th style="width:15%" class="header-td-background">
+										<div style="cursor: pointer; text-align: center;" (click)="onSortSelectionConnection('fullName')">Profile Name</div>
+										<div style="float: left;width:95%; margin-top: 5px;">
+												<input type="text"
+												(input)="filterTaskResultConnection('fullName')"
+												[(ngModel)]="fullName"
+												name="fullName"
+										style="width: 100%;overflow: visible;padding: 3px;"/>
+										</div>
+									</th>
+									<th style="width:15%" class="header-td-background">
+										<div style="cursor: pointer; text-align: center;" (click)="onSortSelectionConnection('email')">Email</div>
+										<div style="float: left;width:95%; margin-top: 5px;">
+												<input type="text"
+												(input)="filterTaskResultConnection('email')"
+												[(ngModel)]="email"
+												name="email"
+										style="width: 100%;overflow: visible;padding: 3px;"/>
+										</div>
+							  		</th>
+	  
+									<th style="width:15%" class="header-td-background">
+										<div style="cursor: pointer; text-align: center;" (click)="onSortSelectionConnection('phone')">Phone</div>
+										<div style="float: left;width:95%; margin-top: 5px;">
+												<input type="text"
+												(input)="filterTaskResultConnection('phone')"
+												[(ngModel)]="phone"
+												name="phone"
+										style="width: 100%;overflow: visible;padding: 3px;"/>
+										</div>
+								  	</th>
+									<th style="width:15%;" class="header-td-background">
+										<div style="cursor: pointer; text-align: center;"
+											(click)="onSortSelectionConnection('title')">Title</div>
+										<div style="float: left;width:95%; margin-top: 5px;">
+												<input type="text"
+												(input)="filterTaskResultConnection('title')"
+												[(ngModel)]="title"
+												name="title"
+										style="width: 100%;overflow: visible;padding: 3px;"/>
+										</div>
+									</th>
+								  <th  style="width:15%;" class="header-td-background">
+										<div style="cursor: pointer; text-align: center;" (click)="onSortSelectionConnection('managerId')">Manager</div>
+										<div style="float: left;width:95%; margin-top: 5px;">
+										<input type="text"
+										(input)="filterTaskResultConnection('userRole')"
+										[(ngModel)]="memberRoles"
+										name="memberUserRole"
+								 style="width: 100%;overflow: visible;padding: 3px;"/>
+								 </div>
+								</th>-->
+							  <!-- </tr>
+							  </thead>
+							  <tbody style="background: white;">
+							 
+							  <tr  *ngFor="let profile of connectionsListPerPage; let i =index" [ngClass]="{'row-highlight-background':profile.isIconMinus}"> -->
+								  <!-- <td style="width: 3%;" *ngIf="!profile.collapsed">
+												 <div (click)="onConnectionDetailOpen(profile,i)" *ngIf="!profile.isNewConnection" style="cursor:pointer;">
+														  <i *ngIf="profile.isIconMinus" title="Collapse" class="material-icons" style="font-weight:bold;font-size:15px;">
+																  remove
+																  </i>
+																  <i *ngIf="!profile.isIconMinus" title="Expand" class="material-icons" style="font-weight:bold;font-size:15px;">
+																				  add
+																				  </i>       
+																		  </div>
+								  </td> -->
+								<!-- <td style="width: 5%;" *ngIf="searchDetails.showActions && !profile.collapsed">
+									<div style="width:60px;"> -->
+										<!-- <span style="cursor: pointer;">
+											<i (click)="onSaveMemberClick(profile,i)" title="Save" *ngIf="profile.isNewConnection" class="material-icons">
+													save
+													</i>
+													<i (click)="onUpdateMemberClick(profile,role,i)" title="Update" *ngIf="profile.isEditing" class="material-icons">
+														update
+														</i>
+													<i (click)="onDeleteMemberClick(profile,i,true)" title="Cancel" *ngIf="profile.isNewConnection || profile.isEditing" class="material-icons">
+															close
+															</i>
+										<i (click)="onEditMemberClick(profile,i)" title="Edit" *ngIf="!profile.isEditing && !profile.isNewConnection && (profile.userRole!='SUPER ADMIN' || userRole=='SUPER ADMIN')" class="material-icons">
+											edit
+											</i>
+										</span> -->
+										<!-- <span *ngIf="!profile.isNewConnection && !profile.isEditing" 
+												(click)="onDeleteMemberClick(profile,i)"style="cursor: pointer;">
+											<i class="material-icons" title="Delete">
+												delete
+											</i>
+										</span>
+									</div>
+								</td> -->
+								<!-- Dynamic search users body section -->
+								<!-- <ng-template [ngIf]="!profile.collapsed" >
+									<td *ngFor="let header of searchDetails.headers" [style.width.%]="95/searchDetails.headers.length">
+										<div *ngIf="header.link; else displayField">
+											<span *ngIf="!profile.isNewConnection">
+												<a (click)="onShowProfileDetails(profile.userCuid)">{{profile[header.fieldName]}}</a>
+											</span>
+											<span *ngIf="profile.isNewConnection">
+												<input type="text" [(ngModel)]="profile[header.fieldName]" />
+											</span>
+										</div>
+										<ng-template #displayField>
+											{{ profile[header.fieldName] }}
+										</ng-template>
+									</td>
+								</ng-template> -->
+								<!-- Dynamic search users body section -->
+									
+								  <!-- <td *ngIf="profile.collapsed" colspan="8">
+									  <table id="tablepdf" class="table124 table table-bordered table-striped table-hover smart-form">
+											  <thead>
+											  <tr>
+													  <th style="width:7%" *ngIf="((userRole=='ADMIN' || userRole=='SUPER ADMIN') && userRole!='USER')"></th>
+												  <th style="width:15%">Application</th>
+												  <th style="width:15%">
+													<div style="cursor: pointer; text-align: center;" (click)="onInnerSortSelection('roleName',profile)">App Role</div>
+													<div style="float: left;width:100%; margin-top: 5px;">
+														   
+													</div>
+												</th>
+												<th style="width:15%">
+													  <div style="cursor: pointer; text-align: center;" (click)="onInnerSortSelection('accessName',profile)">Workgroups</div>
+													  <div style="float: left;width:100%; margin-top: 5px;">
+															  
+													  </div>
+												  </th>
+												  <th style="width:20%;">
+														<div style="cursor: pointer; text-align: center;"
+															 (click)="onInnerSortSelection('accessValue',profile)">Roles</div>
+														<div style="float: left;width:100%; margin-top: 5px;">
+																
+														</div>
+												</th>		
+												<th style="width:58%;">
+												  <div style="cursor: pointer; text-align: center;"
+													   (click)="onInnerSortSelection('accessValue',profile)">Access Levels</div>
+												  <div style="float: left;width:100%; margin-top: 5px;">
+														  
+												  </div>
+										  </th>														
+											  </tr>
+											  </thead>
+											  <tbody style="background: white;">									   
+											  <tr *ngFor="let role of profile.userProfile.profileAppsList; let roleIndex = index">
+													  <td style="width:10%;" *ngIf="((userRole=='ADMIN' || userRole=='SUPER ADMIN') && userRole!='USER')">
+															  <span style="margin: 4px; cursor: pointer;">
+																	  <i (click)="saveAssociatedUserApp(role,i,profile)" title="Save" *ngIf="role.isNewProfileApp" class="material-icons">
+																			  save
+																			  </i>
+																			  <i (click)="onSaveMemberApp(profile,role,i)" title="Update" *ngIf="role.isEditing" class="material-icons">
+																					update
+																					</i>
+																			  <i (click)="editAssociatedUserApp(role,i,profile)" title="Edit" *ngIf="!role.isEditing && !role.isNewProfileApp && (profile.userRole!='SUPER ADMIN' || userRole=='SUPER ADMIN')" class="material-icons">
+																					  edit
+																					  </i>
+																			<i (click)="cancelAssociatedUserApp(role,roleIndex,profile)" title="Cancel" *ngIf="role.isEditing || role.isNewProfileApp" class="material-icons">
+																						close
+																				</i>
+																		  </span>
+																  <span *ngIf="!role.isEditing  && !role.isNewProfileApp && (profile.userRole!='SUPER ADMIN' || userRole=='SUPER ADMIN')" (click)="deleteAssociatedUserApp(role,roleIndex,profile)"style="cursor: pointer;">
+																	  <i class="material-icons" title="Delete">
+																			  delete
+																			  </i></span>																		
+												  </td>
+												  <td style="width:15%;"> -->
+														  <!-- <span (click)="onWorkgroupEditClick(role,i,profile)" style="margin: 4px; cursor: pointer;">
+																  <i *ngIf="role.isEditing" class="material-icons">
+																		  save
+																		  </i>
+															  <i *ngIf="!role.isEditing" class="material-icons">
+																  edit
+																  </i></span>
+															  <span (click)="deleteWorkgroupRole(role,i,profile.id)"style="cursor: pointer;"><i class="material-icons">
+																		  close
+																		  </i></span> -->
+																		  <!-- <div  *ngIf="!role.isNewProfileApp">{{role.profileAppName}}</div>
+													  <div *ngIf="role.isNewProfileApp"> -->
+														  <!-- <input type="text" [(ngModel)]="role.profileAppName" /> -->
+														  <!-- <select (change)="updateProfileAppNameRoleValue($event,role, profile,i)" class="form-control custom-select d-block w-100" style="width:90%;float:left;"
+														  [(ngModel)]="role.profileAppName" name='"appNameListProfileAppNameRole_{{i}}'
+														  #appNameLis_="ngModel">
+													  <option *ngFor="let element of appNameList" [value]="element.applicationName">{{element.applicationName}}</option>
+												  </select>
+													  </div>
+												  </td>
+													<td style="width:15%;">
+													  <div *ngIf="!role.isEditing && !role.isNewProfileApp">{{role.profileAppRole}}</div>
+													  <div *ngIf="role.isEditing || role.isNewProfileApp"> -->
+														  <!-- <input type="text" [(ngModel)]="role.profileAppRole" /> -->
+														  <!-- <select class="form-control custom-select d-block w-100"
+																			  [value]="value"
+																			  (change)="updateValueAppRole($event, 'search', role)">
+																			 <option *ngIf="userRole!='USER'" value="Admin">Admin</option>
+																			 <option *ngIf="userRole!='USER' && userRole=='SUPER ADMIN'" value="SUPER ADMIN">SUPER ADMIN</option>
+																			 <option value="User">User</option>
+																	 </select> -->
+																	 <!-- <select (change)="updateValueAppRole($event,role, profile,i)" class="form-control custom-select d-block w-100" style="width:90%;float:left;"
+														  [(ngModel)]="role.profileAppRole" name='"appNameRoleList_{{i}}'
+														  #appNameRoleList_="ngModel">
+													  <option *ngFor="let element of role.appRoleList" [value]="element">{{element}}</option>
+												  </select>
+													  </div>
+													  </td>
+												  <td style="width:60%;" colspan="3">
+													  <table style="width:100%;">
+														  <tr *ngFor="let wg of role.workgroupList, let wgIndex=index">
+															  <td style="width:23%;padding-bottom: 15px!important;">
+																<div>
+																	<span *ngIf="(wg.isEditing || !wg.isEditing) && !wg.isAddNewWorkgroup">{{wg.workgroupName}}</span>
+																  <select  *ngIf="wg.isAddNewWorkgroup" (change)="updateRoleDropDownValue($event,role,wg, profile,i)" class="form-control custom-select d-block w-100" style="width:90%;float:left;"
+																		  [(ngModel)]="wg.workgroupName" name='"workgroupList_{{i}}'
+																		  #workgroupList_="ngModel">
+																	  <option *ngFor="let element of role.workgroupDropDownList" [value]="element">{{element}}</option>
+																  </select>
+																</div>
+															  </td>
+															  <td style="width:27%;padding-bottom: 15px!important;padding-left:50px;">
+																<div style="width:100%;margin-left: 10px;" *ngIf="wg.workgroupName">
+																	<span *ngIf="((userRole=='ADMIN' || userRole=='SUPER ADMIN') && userRole!='USER')" style="cursor: pointer;float: right;padding: 0px;">
+																		<i class="material-icons" title="Delete" *ngIf="!wg.isEditing && (profile.userRole!='SUPER ADMIN' || userRole=='SUPER ADMIN')" (click)="onDeleteWorkgroupRow(profile,role,wg,wgIndex)">
+																					delete
+																		</i>
+																		<i class="material-icons" title="Edit" *ngIf="!wg.isEditing && (profile.userRole!='SUPER ADMIN' || userRole=='SUPER ADMIN')" (click)="onEditWorkgroupRow(profile,role,wg,wgIndex)">
+																			edit
+																		</i>
+																		<i class="material-icons" title="Cancel" *ngIf="wg.isEditing" (click)="onCancelWorkgroupRow(profile,role,wg,wgIndex)">
+																			close
+																</i> -->
+																<!-- <i class="material-icons" *ngIf="wg.isEditing" (click)="onSaveWorkgroupRow(profile,role,wg,wgIndex)">
+																	save
+														</i> -->
+																	<!-- </span>
+																	<span *ngIf="!wg.isEditing">{{wg.workgroupRole}}</span>
+																  <select *ngIf="wg.isEditing" (change)="updateMemberWorkgroupRole($event,role,wg, profile,i)" class="form-control custom-select d-block w-100" style="width:75%;"
+																		  [(ngModel)]="wg.workgroupRole" name='"roleLists_{{wgIndex}}'
+																		  #roleLists_="ngModel">
+																	  <option *ngFor="let element of wg.roleListDropDownList" [value]="element">{{element}}</option>
+																  </select>
+																  </div>
+															  </td>
+															  <td style="width:50%;padding-bottom: 15px!important;padding-left: 15%;">															
+																	  <a (click)="onNavigateToManageWorkgroup(role, profile,wg)">{{wg.accessList.join(', ')}}</a>															 -->
+																  <!-- <ng-select2 [data]="role.accessListDropDownList"  style="width:92%;"
+																			  [options]="selectOptions"
+																			  [width]="500"
+																			  [(ngModel)]="wg.accessList"
+																			  name='"accessLevels{{i}}'
+																			  #accessLevels="ngModel">
+																  </ng-select2> -->
+															  <!-- </td>
+														  </tr>
+														  <tr  *ngIf="!role.isNewProfileApp">
+															  <td style="padding-bottom: 15px!important;">
+																  <span style="cursor: pointer;" *ngIf="((userRole=='ADMIN' || userRole=='SUPER ADMIN') && userRole!='USER')">
+																	  <i (click)="onNewWorkgroupAdd(profile,role,wg,wgIndex)" title="Add" class="material-icons">
+																			  add_box
+																			  </i>
+																			  <i class="material-icons" (click)="onSaveWorkgroupList(profile,role,wg,i)" title="Save">
+																					  save
+																					  </i>
+															  </span>
+															  </td>
+														  </tr>
+													  </table>
+													  </td>	
+												  </tr>
+											  </tbody>
+										  </table>
+										  <div style="float: left;">
+											  <span (click)="onAddNewProfileAppsClick(profile,i)" style="cursor: pointer;" *ngIf="((userRole=='ADMIN' || userRole=='SUPER ADMIN') && userRole!='USER')">
+													  <i class="material-icons" title="Add">
+															  add_box
+															  </i>
+											  </span>
+										  </div>
+							  </td>
+								  </tr>
+							  </tbody>
+						  </table> -->
+						  <!-- <div *ngIf="memberTablePaginationData.length > 1" style="width: 50%;float: right; margin-top: 5px;" class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+								<ul class="pagination" style="float: right;">
+							   <li class="paginate_button previous" [ngClass]="{'disabled':memberCurrentPageNumber === 1}" id="DataTables_Table_0_previous">
+									   <a (click)="onMemberGridPrevious()" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">
+											   Previous</a></li>
+							   <li *ngFor="let pageNumber of memberTablePaginationData" class="paginate_button" [ngClass]="{'active':memberCurrentPageNumber === pageNumber}">
+									   <a aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" (click)="onPaginateMemberGrid(pageNumber)">
+									   {{pageNumber}}</a></li>                        
+							   <li class="paginate_button next" [ngClass]="{'disabled':memberCurrentPageNumber===memberTablePaginationData.length}" id="DataTables_Table_0_next">
+							   <a (click)="onMemberGridNext()" aria-controls="DataTables_Table_0" data-dt-idx="8" tabindex="0">Next</a></li>
+							   </ul>
+					   </div> -->
+					  <!-- </div> -->
+
+					  <!-- end tab -->
+				  <!-- </div>
+			  </div>
+			  <div class="row pr-20">
+				  <div class="col-xs-6 col-6"></div>
+				  <div class="col-xs-6 col-6 text-right" *ngIf="pagination.totalRecords">
+					  <pagination [totalItems]="pagination.totalRecords" [itemsPerPage]="paginationLimitOption" [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)"></pagination>
+				  </div>
+			  </div> -->
+		  </div>
+	  </div>
+	  
+	  

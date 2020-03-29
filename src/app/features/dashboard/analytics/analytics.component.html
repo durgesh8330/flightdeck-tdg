@@ -1,0 +1,158 @@
+<div *ngIf="isLoading" class="dashboard-task_loader">
+  <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+  <div class="spinner">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+  </div>
+</div>
+<div id="content">
+  
+  <sa-widgets-grid>
+      <div class="">
+        <!-- *ngIf="level == 3" -->
+          <div class="offer_combined" >
+              <article>
+                <div *ngFor="let items of  topLevel;let i = index;" class="content_box"  (click)="summaryCount(items.label, items.count, i)" [ngClass]=" i == activeIndex ? 'active': ''">
+                  <div class="box_icon" [ngStyle]="{background: items.color}">
+                    <i [ngClass]="items.icon"></i>
+                  </div>
+                  {{ topLevel.label }}
+                  <div>
+                    <a  class="item_tx_box">
+                      <p class="offer_label">{{items.label}}</p>
+                      <h3 class="offer_count"> <a class="source_name_tx">{{items.count}}</a></h3>
+                      <div class="offer_arrow"><i class="fa fa-arrow-circle-right"></i></div>
+                    </a>
+      
+                  </div>
+                </div>
+              </article>
+            </div>
+          <!-- <article class="col-xs-12 p-0"> -->
+      <div sa-widget [editbutton]="false" [fullscreenbutton]="true"
+                [deletebutton]="false" [togglebutton]="true" class=" margin-bottom-10"  *ngIf="level != 3" >
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+            <h2>Work Type Snapshot</h2>
+          </header>
+          <div class="min_he_50 p_20">
+          <div class="row table_graph_con ml_30" *ngIf="isSourceSystem">
+              <article class="col-sm-12 col-md-12 col-lg-8 p-0 overflow-scroll">
+                  <table class="offering_table table-font-color">
+                    <thead>
+                      <tr>
+                        <th >Work Type</th>
+                        <th >Ready</th>
+                        <th >Assigned</th>                        
+                        <!--<th *ngFor="let head of sourceChart">{{head}} </th>-->
+                        <th>Total</th>
+                        <th>AVG Age</th>
+                        <th>% vs Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let items of chartjsData.tableData.body;let i = index;">                      
+                        <th>
+                            {{items?.criteriaKey}}{{items?.taskName}}                          
+                        </th> 
+                        <th *ngFor="let item of items.taskCountList;let j = index"> 
+                                                  
+                          <span><a [ngClass]="{'disabled': items?.criteriaKey =='Totals:' || items?.Ready == 0}" (click)="openWorkTypeTab(                              
+                            items?.criteriaKey,'Ready' 
+                            );"
+                            class="source_name_tx">{{items?.Ready}}</a></span>                           
+                        </th>
+                        <th> 
+                          <span ><a [ngClass]="{'disabled': items?.criteriaKey =='Totals:' || items?.Assigned == 0}" (click)="openWorkTypeTab(                              
+                            items?.criteriaKey,'Assigned' 
+                            );"
+                            class="source_name_tx">{{items?.Assigned }}</a></span>
+                        </th>
+                        <th> 
+                          <span >{{items?.total}}</span>
+                        </th>
+                        <th> 
+                            <span >{{items?.average}}</span>
+                          </th>
+                        <th> 
+                          <span >{{items?.percentage}} %</span>
+                        </th>
+                      </tr>                     
+                    </tbody>
+                  </table>
+                </article>
+            <article class="col-sm-12 col-md-12 col-lg-4 p-0 overflow-hidden source-pie">
+                <div class="widget-body pie_chart_he">
+                    <sa-flot-chart class="sa-flot-chart" [data]="chartjsData.sourceData"
+                               [options]="flotExamples.pieChartDemoOptions" ></sa-flot-chart>
+                  </div>
+            </article>
+          </div>
+        </div>
+        </div>
+        <!-- </article> -->
+    </div>
+    <div class="">
+        <!-- <article class="col-xs-12 p-0"> -->
+      <!--<div sa-widget [editbutton]="false"  [fullscreenbutton]="true"
+                [deletebutton]="false" [togglebutton]="true"  class=" margin-bottom-10">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+            <h2>Weekly Status : ({{startDate  | date: 'dd/MM/yyyy'}} - {{endDate  | date: 'dd/MM/yyyy'}})</h2>
+          </header>
+          <div class="min_he_50">
+            <div *ngIf="isWeeklyStatusLoading">
+              <div class="widget-body ">
+                  <sa-chart-js type="bar" [data]="chartjsData.weeklyStatusData" [options]="chartjsData.weeklyOptions"></sa-chart-js>
+              </div>
+            </div>
+          </div>
+        </div>-->
+        <!-- </article> -->
+    </div>
+    <!-- <div class="">
+      <article class="col-xs-12 p-0 margin-bottom-10">
+        <div sa-widget [editbutton]="false"  [fullscreenbutton]="true"
+                [deletebutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Site Stats Chart</h2>
+          </header>
+
+          <div>
+            <div class="widget-body ">
+              <sa-flot-chart [data]="flotData.siteStatsData"
+                         [options]="flotExamples.siteStatsDemoOptions" ></sa-flot-chart>
+            </div>
+          </div>
+        </div>
+
+
+      </article>
+    </div> -->
+    <div class="">
+      <!-- <article class="col-xs-12 p-0"> -->
+        <!--<div sa-widget [editbutton]="false"  [fullscreenbutton]="true"
+                [deletebutton]="false" [togglebutton]="true"  class=" margin-bottom-10">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+            <h2>Monthly Status</h2>
+          </header>
+          <div class="min_he_50">  
+          <div *ngIf="isMonthlyStatusLoading">
+              <div class="widget-body no-padding">
+                <sa-morris-graph [data]="chartjsData.monthlyStatusData"
+                                 type="area"
+                                 [options]="monthlyOptions"
+                ></sa-morris-graph>
+              </div>
+            </div>
+          </div>
+        </div>-->
+
+      <!-- </article> -->
+    </div>
+  </sa-widgets-grid>
+</div>

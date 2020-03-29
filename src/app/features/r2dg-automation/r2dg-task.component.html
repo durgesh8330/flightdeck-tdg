@@ -1,0 +1,181 @@
+<!-- This is the Div's for success and failure toastr messages, should be a common component ??-->
+<div class="wrap wrap-scroll" *ngIf="displayTaskDetails">
+  <div class="alert alert-success alert-dismissible" *ngIf="IsSucess" style="background-color: green;color: #fff;">
+    <strong>Success! </strong>{{message}}
+    <button type="button" class="close" data-dismiss="alert" (click)="IsSucess = false">&times;</button>
+  </div>
+  <div class="alert alert-danger alert-dismissible" *ngIf="IsError" style="background-color: #ce2f2f;color: #fff;">
+    <strong></strong>{{message}}
+    <button type="button" class="close" data-dismiss="alert" style="background-color: #fff;" (click)="IsError = false">&times;</button>
+  </div>
+</div>
+
+<!-- This is the Div's for loader, should be a common component ??-->
+<div *ngIf="loader" class="task_loader">
+  <div class="spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+</div>
+
+<!-- Input for Swift Order and Fetch Button.  label, field and button not part of page layout data? -->
+
+<div class="col-md-12">
+  <div class="col-md-8" style="padding: 5px 1px;">
+    <div class="ng-star-inserted">
+      <div class="form-group mr-5-temp">
+        <div>
+          <p style="font-size:18px; font-weight: bold; padding-right: 10px">Order Number</p>
+        </div>
+        <form name="Swiftform" (ngSubmit)="fetchOrderDataAndFillForm()" class="smart-form task-search-form" #SwiftModelForm="ngForm">
+          <div class="col-md-12" style="margin-bottom: 10px;">
+            <div class="col-md-4 form-group">
+              <input class="form-control input fectchDataInput" type="text" name="orderIdValue" [(ngModel)]="OrderValue" placeholder="&nbsp;Order Number" required>
+            </div>
+            <div class="col-md-2">
+              <button type="submit" class="btn btn-success blue__btn" mat-raised-button style="margin: 0px 0px 0px 15px;" [disabled]="!SwiftModelForm.form.valid">AutoFill</button>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-2">
+              <!-- <on-off-switch [title]="(ShowInputFilter)? 'PPV':'PID'" (change)="ShowInputFilter = !ShowInputFilter" ></on-off-switch> -->
+              <label>
+                <input type="radio" name="filtertype" value="PPV" (change)="ShowInputFilter = !ShowInputFilter" [checked]="ShowInputFilter == true">&nbsp;Product/PSP ID
+              </label>
+              <label>
+                <input type="radio" name="filtertype" value="PID" (change)="ShowInputFilter = !ShowInputFilter" [checked]="ShowInputFilter == false">&nbsp;Service/Circuit ID
+              </label>
+            </div>
+            <div class="col-md-2 form-group">
+              <input class="form-control input fectchDataInput" type="text" name="PPOrPI" [(ngModel)]="PPOrPIValue" placeholder="&nbsp;33XXXXXX" *ngIf="ShowInputFilter == false" required>
+              <input class="form-control input fectchDataInput" type="text" name="PPOrPI" [(ngModel)]="PPOrPIValue" placeholder="&nbsp;44XXXXXXX" *ngIf="ShowInputFilter == true" required>
+            </div>
+          </div>
+
+          <!-- <br> -->
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- This is the Div's for success and failure toastr messages, should be a common component -->
+
+<div class="col-md-12" style="margin-top:10px;margin-bottom: 10px;" *ngIf="loadDataValue">
+  <div *ngFor="let layoutElem of pageLayout['pageLayoutTemplate']">
+    <div class="search-task-widget-wrapper" *ngIf="layoutElem.sectionHeader == 'Form'">
+      <!-- Section Header/group area for form. -->
+      <div class="panel panel-primary spr-panel">
+        <!-- Section Header Title for Group area. -->
+        <div class="panel-heading" style="font-weight: bold;font-size: 16px;">Red to Dark Green Automation Form</div>
+        <!-- Div for body of the Section/Group Area. -->
+        <div class="panel-body" style="column-count: 1;">
+          <div style="height: auto;" class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right search-panel">
+
+            <!-- Form Begins -->
+            <form #workmateform="ngForm" name="form" (ngSubmit)="workmateform.form.valid && submitData()" class="smart-form task-search-form">
+              <!-- ngFor iterates through the data object returned from page layout call. -->
+              <div style="display: inline-block;" *ngFor="let dataObj of layoutElem.body; let i=index;">
+                <div style="display: block;">
+                  <div>
+                    <!-- looking for fields with childSectionHeader as header to give special <p> code. -->
+                    <p style="font-size:16px; font-weight: bold; padding: 10px 15px 10px 14px;">{{dataObj.childSectionHeader}}</p>
+                  </div>
+                  <!-- NgFor through the field list.  Should we be setting width to 288px? -->
+                  <div class="col-xs-12 col-md-4 col-sm-6 col-lg-3" style="width: 260px;margin-bottom: 10px;" *ngFor="let obj of dataObj.fieldsList; let i=index;">
+                    <ng-container *ngFor="let data of modelValue">
+                      <ng-container *ngIf="dataObj.childSectionHeader == data.header && data.label == obj.label">
+                        <!-- checking type of object as it iterates to determine the type of field HTML to use -->
+                        <div [ngSwitch]="obj.type">
+                          <!-- below may or may not be used depending on return of page layout fields -->
+                          <div *ngSwitchCase="'TextBox'">
+                            <div class="form-group" style="width: 95%;">
+                              <!-- each have mandatory check embedded. -->
+                              <label class="control-label">{{obj.label}}<span style="color:red"> {{obj.mandatory ? '*': ''}}</span></label> <span *ngIf="workmateform.submitted && textObj.invalid" class="text-danger text-left"> is required. </span>
+                              <input type="text" class="form-control input" name="textObj-{{i}}" #textObj="ngModel" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.value" [required]="obj.mandatory" [readonly]="obj.readonly">
+                            </div>
+                          </div>
+                          <div *ngSwitchCase="'textArea'">
+                            <div class="form-group">
+                              <label class="control-label">{{obj.label}}<span style="color:red"> {{obj.mandatory ? '*': ''}}</span></label><span *ngIf="workmateform.submitted && textObj.invalid" class="text-danger text-left"> is required. </span>
+                              <textarea class="form-control input" autosize name="textAreaObj-{{i}}" #textAreaObj="ngModel" [(ngModel)]="modelValue[obj.label]" rows="1" style="width:95%;" [required]="obj.mandatory">
+                                          </textarea>
+                            </div>
+                          </div>
+                          <div *ngSwitchCase="'select'">
+                            <div class="form-group" style="width: 90%">
+                              <label class="control-label">{{obj.label}}<span style="color:red"> {{obj.mandatory ? '*': ''}}</span></label><span *ngIf="workmateform.submitted && selectObj.invalid" class="text-danger text-left"> is required. </span>
+                              <ng-select2 [data]="obj.dropdownList" placeHolder='Please select' [(ngModel)]="data.value" name="selectObj-{{i}}" #selectObj="ngModel" [required]="obj.mandatory">
+                              </ng-select2>
+                            </div>
+                          </div>
+                          <div *ngSwitchCase="'lookup'">
+                            <div class="form-group" style="width: 95%;margin-bottom: 2px;">
+                              <label class="control-label">{{obj.label}}<span style="color:red"> {{obj.mandatory ? '*': ''}}</span></label><span *ngIf="workmateform.submitted && textObj.invalid" class="text-danger text-left"> is required. </span>
+                              <ng-select2 [data]="obj.dropdownList" placeHolder='Please select' [width]="500" [(ngModel)]="modelValue[obj.label]" name="lookUpObj-{{i}}" #lookUpObj="ngModel" [required]="obj.mandatory">
+                              </ng-select2>
+                            </div>
+                          </div>
+                          <div *ngSwitchCase="'slide'">
+                            <on-off-switch title="{{obj.label}}" [(ngModel)]="modelValue[obj.label]" (change)="onChange()" [required]="obj.mandatory"></on-off-switch>
+                          </div>
+                          <div *ngSwitchCase="'checkbox'">
+                            <label class="control-label">{{obj.label}}<span style="color:red"> {{obj.mandatory ? '*': ''}}</span></label><span *ngIf="workmateform.submitted && textObj.invalid" class="text-danger text-left"> is required. </span>
+                            <input type="checkbox" style="margin-left: 0px" [disabled]="!obj.editable" class="checkbox" style="visibility: visible" name='{{"fieldValue_1_"+i}}' [(ngModel)]="modelValue[obj.label]" [required]="obj.mandatory">
+                          </div>
+                          <div *ngSwitchCase="'radio'" class="smart-form">
+                            <label class="control-label">{{obj.label}}<span style="color:red"> {{obj.mandatory ? '*': ''}}</span></label><span *ngIf="workmateform.submitted && textObj.invalid" class="text-danger text-left"> is required. </span>
+                            <input type="radio" style="margin-left: 0px;visibility: visible" [disabled]="!obj.editable" class="radiobox" name='{{"fieldValue_1_"+i}}' [(ngModel)]="modelValue[obj.label]" [required]="obj.mandatory">
+                          </div>
+                          <div *ngSwitchCase="'MultiSelect'">
+                            <div class="form-group" style="width: 95%;">
+                              <label class="control-label">{{obj.label}}<span style="color:red"> {{obj.mandatory ? '*': ''}}</span></label><span *ngIf="workmateform.submitted && multiObj.invalid" class="text-danger text-left"> is required. </span>
+                              <ng-select2 [data]="obj.dataSource" [width]="500" [options]="options" [(ngModel)]="data.value" name="multiObj-{{i}}" #multiObj="ngModel"
+                                class="multiselectbox" [required]="obj.mandatory">
+                              </ng-select2>
+                            </div>
+                          </div>
+                          <div *ngSwitchCase="'Date'">
+                            <div class="form-group">
+                              <label class="control-label">{{obj.label}}<span style="color:red"> {{obj.mandatory ? '*': ''}}</span></label><span *ngIf="workmateform.submitted && textObj.invalid" class="text-danger text-left"> is required. </span>
+                              <div class="">
+                                <input [matDatepicker]="picker" class="form-control input" name="textObj-{{i}}" #textObj="ngModel" [(ngModel)]="modelValue[obj.label]" style="width:83%;float: left;" (click)="picker.open()" (focus)="picker.open();"
+                                  [required]="obj.mandatory">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- default field if field type returned is not supported yet -->
+                          <div *ngSwitchDefault>
+                            <label class="example-margin">{{obj.label}}<span style="color:red"> {{obj.mandatory ? '*': ''}}</span>:</label> <span *ngIf="workmateform.submitted && textObj.invalid" class="text-danger text-left"> is required. </span>
+                            field type <b>{{obj.type}}</b> is not supported yet.
+                          </div>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                    <!-- End of Dynamic fields returned from DB -->
+                  </div>
+                  <p *ngIf="addBreak()"></p>
+                </div>
+              </div>
+              <div class="row" style="margin-right: 20px;">
+                <div class="col-lg-12 text-right" style="margin-top: 16px;">
+                  <!-- buttons at bottom of form to clear or submit the task for creation. -->
+                  <button class="clear-btn reset-bgclr" mat-raised-button (click)="workmateform.reset();reset();" style="margin-right: 10px;">Clear</button>
+                  <button type="submit" class="btn btn-success blue__btn" [disabled]="SubmitButtonDisabled" mat-raised-button style="margin-right: 16px">Start Order Automation</button>
+                </div>
+              </div>
+              <!-- Form Closed here -->
+            </form>
+          </div>
+        </div>
+        <!-- Section Header/Group Area closed here -->
+      </div>
+    </div>
+    <!-- new section could start here -->
+  </div>
+</div>

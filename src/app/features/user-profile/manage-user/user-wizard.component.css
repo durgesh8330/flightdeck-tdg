@@ -1,0 +1,292 @@
+.progress-title{
+    display : block;
+    margin-top: -20px;
+    font-size: 85%;
+}
+.step-btn{
+    margin-left:2%;
+    margin-top:5px;
+}
+
+.step-row{
+    margin-top:-12px;
+}
+.spinner-style{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    z-index: 999;
+}
+.group-all-items{
+    border-radius: 8px; 
+    border: 3px solid #D0D0D0; 
+    margin-bottom: 10px; 
+    min-height: 210px;
+}
+.grid-data{
+    word-break: break-word;
+}
+.step-bar {
+    display: flex;
+    background-color: #f9f9f9;
+    border: 1px solid #d4d4d4;
+    border-radius: 4px;
+    padding-left: 0px;
+    padding-right: 0px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .065);
+    position: relative;
+    overflow: hidden;
+}
+
+.search-row{
+    display: inline-flex;
+}
+.user-info-btn {
+    margin-left: 5px;
+}
+label.user-detail-header {
+    font-weight: bold !important;
+}
+
+.user-data-header {
+    width: 100%;
+    font-weight: bold;
+    color: green;
+    font-size: 14px;
+    margin: 10px;
+}
+
+.user-row {
+    margin-top: 17px;
+}
+
+.radio-label {
+    margin-left: 10px;
+}
+
+.appl-header {
+    padding: 3%;
+    font-size: medium;
+    margin: 10%;
+}
+.btn move btn-default  .btn remove btn-default .btn moveall btn-default{
+    width: 50% !important;
+}
+.btn{
+    background-color: #15a703;
+}
+.wrkgroup-row {
+    margin-top:20px;
+    padding-top:20px;
+}
+
+.background-green{
+    background-color: green;
+}
+
+
+/* dynamic UI CSS */
+.select-field-size{
+    width: 30%;
+}
+
+::ng-deep .cdk-overlay-container .mat-select-panel {
+    margin-top: 33px;
+    min-width: 0px !important;
+}
+
+.user-details-wrapper {
+    margin:10px;
+}
+
+
+.inner-wrapper-content{
+    border: 1px solid #888;
+    margin: 8px;
+    border-radius: 7px;
+    padding: 0px;
+}
+.inner-wrapper-header {
+    padding: 7px;
+    /* background-color: green; */
+    color: white;
+    /* border-radius: 7px; */
+}
+
+
+.inner-wrapper-body{
+    display: table;
+}
+
+.cell-row{
+    display: table-row;
+}
+
+.cell-label, .cell-value{
+    display:table-cell;
+    padding: 5px;
+}
+
+.cell-label{
+    font-weight:900;
+}
+
+select.select-workgroup{
+    width: 95%;
+    background: whitesmoke;
+    padding: 6px;
+    margin-top: 7px;
+    border-radius: 5px;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li > a:hover {
+    background: white !important;
+    color:blue !important;
+}
+
+.nav-tabs > li {
+    border-right:1px solid #ccc
+}
+
+.tab-content{
+    background: none !important;
+}
+
+
+
+.progress-title{
+    display : block;
+    margin-top: -20px;
+    font-size: 85%;
+}
+.step-btn{
+    margin-left:2%;
+    margin-top:5px;
+}
+
+.step-row{
+    margin-top:-12px;
+}
+.spinner-style{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    z-index: 999;
+}
+.group-all-items{
+    border-radius: 8px; 
+    border: 3px solid #D0D0D0; 
+    margin-bottom: 10px; 
+    min-height: 210px;
+}
+.grid-data{
+    word-break: break-word;
+}
+.step-bar {
+    display: flex;
+}
+
+.search-row{
+    display: inline-flex;
+}
+.user-info-btn {
+    margin-left: 5px;
+}
+label.user-detail-header {
+    font-weight: bold !important;
+}
+
+.user-data-header {
+    width: 100%;
+    font-weight: bold;
+    color: green;
+    font-size: 14px;
+    margin: 10px;
+}
+
+.user-row {
+    margin-top: 17px;
+}
+
+.radio-label {
+    margin-left: 10px;
+}
+
+.appl-header {
+    padding: 3%;
+    font-size: medium;
+    margin: 10%;
+}
+.btn move btn-default  .btn remove btn-default .btn moveall btn-default{
+    width: 50% !important;
+}
+.btn{
+    background-color: #15a703;
+}
+.wrkgroup-row {
+    margin-top:20px;
+    padding-top:20px;
+}
+.background-green{
+    background: green;
+}
+
+.dummy-arrow {
+    width: 13px;
+    height: 60px;
+    position: absolute;
+    background: transparent;
+    left: 0;
+    border-left: 1px solid blue;
+    border-bottom: 1px solid blue;
+}
+.emp-details-box {
+    padding-left: 20px; display: flex; flex-direction: column; justify-content: center
+}
+.emp-details-parent {
+     height: 80px;
+     width:460px; 
+     max-width: 460px;
+     overflow: auto;
+      display: flex;
+      justify-content: center;
+}
+.emp-details-parent::-webkit-scrollbar {
+    width: 10px;
+}
+.emp-text, .emp-text a {
+    color: white;
+    font-size: 15px;
+    white-space:nowrap
+}
+.emp-designation, .emp-designation a {
+    color: white; 
+    font-size: 12px;
+    /* white-space:nowrap  */
+} 
+
+/* start: user preference */
+
+.userpreference {
+    display: flex;
+    padding: 40px;
+  }
+  .userpreference--tabselect, .userpreference--tabselect:focus {
+    padding: 10px;
+    border-radius: 6px;
+  }
+  .userpreference--tab {
+    display: block;
+  }
+  .userpreference--section {
+    padding: 0px 20px;
+  }
+  .userpreference--btn {
+    background: #33995f;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    margin-top: 22px;
+  }
+  /* end: user preference */

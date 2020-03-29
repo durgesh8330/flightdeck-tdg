@@ -1,0 +1,290 @@
+<sa-modal [modal]="modalDetails" (buttonClicked)="buttonClicked($event)"></sa-modal>
+<div class="alert alert-success alert-dismissible" *ngIf="IsSuccess" style="background-color: green;color: #fff;">
+	<strong>Success! </strong>{{message}}.
+	<button type="button" class="close" data-dismiss="alert" (click)="IsSuccess = false">&times;</button>
+</div>
+<div class="alert alert-danger alert-dismissible" *ngIf="IsError" style="background-color: #ce2f2f;color: #fff;">
+	<strong>Error! </strong>{{message}}.
+	<button type="button" class="close" data-dismiss="alert" style="background-color: #fff;" (click)="IsError = false">&times;</button>
+</div>
+<div class="alert alert-warning  alert-dismissible" *ngIf="IsWarning">
+	<strong><i class="fa fa-warning"></i>
+		Warning! </strong>{{message}}.
+</div>
+<div *ngIf="loaderTaskDetail || loader" class="task_loader">
+
+	<!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+	<div class="spinner">
+		<div class="bounce1"></div>
+		<div class="bounce2"></div>
+		<div class="bounce3"></div>
+	</div>
+</div>
+
+<div class="" *ngIf="!loaderTaskDetail">
+	<div id="systemtable">
+		
+				<sa-widgets-grid>
+						<div sa-widget 
+						[editbutton]="false" 
+						[fullscreenbutton]="true"
+						[deletebutton]="false"
+						[colorbutton]="true"
+						[togglebutton]="true" 
+						name="taskresultwodgetwa">
+							<!-- <header>
+					<span class="widget-icon"> <i class="fa fa-table"></i> </span> -->
+					<!-- <h2>{{ layoutElem.sectionHeader }}</h2> -->
+					<!-- <h2>My Tasks</h2>
+				</header> -->
+				<sa-alert  [error]="error"></sa-alert>
+						<div class="widget-body" style="padding-top: 5px" *ngIf="showSATable">
+								<sa-table 
+								[pagination]="pagination" 
+								[actionButton]="actionButton" 
+								[actionColumn]="actionColumn"
+								[defaultActionColumns]="defaultActionColumns"
+								[tableHeader]="actionColumn"
+								[tableData]="displayTaskResult"
+								[tableOtherContent]="systemParameter"
+								[filter]="filter"
+								[tablePaginationData]="tablePaginationData"
+								[actionList]="actionList"
+
+								(filterColumnParent)="filterTaskResult($event)"
+								(addNewRowParent)="addNewRow()"
+								(onSaveParent)="onSaveClick($event)"
+								(pageChangedParent)="onPaginateInnerGrid($event)"
+								(onEditParent)="onEditClick($event)"
+								(onDeleteParent)="onDeleteClick($event)"
+								(onCloseParent)="onCloseClick($event)"
+								(paginationChangeParent)="onLimitChange($event)"
+								(openTabParent)="openDetailView($event)"
+							 
+								(onSortParent)="onSortSelection($event)"
+								(expandRow)="expandRow($event)"
+								(nextAll)="nextTasks()"
+								(OnActionChangeStatus)="onActionChange($event)"
+								(onActionStatusSubmit)="onAction($event)"
+								(CheckUncheckAllRows)="checkAllRows($event)"
+								(SetActionDropdown)="SetActionDropdown($event)"
+								(refresh)="onRefresh()"
+								></sa-table>
+						</div>
+					
+
+				<!-- <div class="mat-elevation-z8" style="padding-top: 2px">
+					<div class="table-container" style="padding-top: 0px">
+						<div style="height: auto;"> -->
+	
+							<!-- Upper pagination section -->
+							<!-- <div style="display:inline; position:relative; color:#15a703;top:10px;">						
+								Retrieving {{(currentPageNumber-1)*100 +(pagination.totalRecords>0?1:0)}} - {{
+								((currentPageNumber )*pagination.pageSize)>pagination.totalRecords?pagination.totalRecords:
+								((currentPageNumber)*100)
+								}} of {{pagination.totalRecords}} records.
+							</div> -->
+	
+							<!-- <div style=" display:inline;margin-left:60px; margin-right:60px;position:relative;top:10px;">
+								<label for="per-page" style=" color:#15a703;">
+								Per Page:
+								</label>&nbsp;
+								<select id="per-page" (change)="onLimitChange($event.target.value)">
+									<option *ngFor="let option of pageLimitOptions" [value]="option.value" [selected]="option.value == currentPageLimit">
+										{{ option.value }}
+									</option>
+								</select>						
+							</div>
+	
+							<div style=" display:inline;margin-left:60px; margin-right:60px;position:relative;top:10px;">
+								<label for="per-page" style=" color:#15a703;">
+									Page Number:
+								</label>&nbsp;
+								<label style=" color:#15a703;"  *ngIf="tablePaginationData" >{{currentPageNumber}}/{{tablePaginationData.length}}</label>
+							</div>	 -->
+							<!-- <div style="float: right; margin: 3px;">
+								<a class="btn btn-default buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_8" href="#"
+									(click)="printPDF()">
+								<span>PDF</span></a> &nbsp;
+								<a class="btn btn-default buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_8" (click)="printData()"
+									href="#">
+								<span>Print</span></a>
+							</div> -->
+							<!-- <div class="row mar--l10 actionbtnsection">
+								<div *ngFor="let button of actionButton">
+									<a class="btn btn-default buttons-pdf buttons-html5" *ngIf="button.fieldName != 'showHideColumns'" href="#"
+									(click)="viewerFn(button.fieldName)">
+									<span>{{button.label}}</span></a> &nbsp;
+									<div id="Profile Management" *ngIf="button.fieldName == 'showHideColumns'" class=" pull-right dropdown" dropdown [insideClick]="true">
+										<span class="project-selector dropdown-toggle" dropdownToggle> <a [title]="button.label" class="btn btn-default buttons-html5 show-hide">{{button.label}}</a>
+										</span>
+										<ul *dropdownMenu class="dropdown-menu ColVis_collection">
+											<li *ngFor="let fieldname of actionColumn">
+												<label><input type="checkbox" [(ngModel)]="fieldname.visible"><span>{{fieldname.label}}</span></label> 
+											</li> -->
+											<!-- <li *ngFor="let fieldname of skillTabs[0]['skillDetails']['header']">
+											<label><input type="checkbox" [(ngModel)]="fieldname.visible"><span>{{fieldname.label}}</span></label> 
+											</li> -->
+										<!-- </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="table-wrapper">
+								<table id="tablepdf" class="table table-bordered table-striped table-hover smart-form">
+									<thead>
+										<tr>
+											<th></th>
+											<ng-container *ngFor="let task of actionColumn; let i = index">
+												<th *ngIf="task.visible">
+													<div style="cursor: pointer; text-align: center;" [ngClass]="[ task.fieldName == activeSort ?(isSortAsc ? 'sort_asc': 'sort_desc'):'']" 
+														(click)="onSortSelection(task.key)">
+														{{task.label}}
+														<span class="sortarrow">
+															<i class="fa upsortarrow"></i>
+															<i class="fa downsortarrow"></i>
+														</span>
+													</div>
+														 -->
+													<!-- <div style="float: left;width:100%; margin-top: 5px;">
+														<input type="text" 
+															(input)="filterTaskResult(task.key)" 
+															[(ngModel)]="header[task.key]" [name]="task.key"
+															style="width: 100%;overflow: visible;padding: 3px;" />
+													</div>
+												</th>
+											</ng-container>
+											
+										</tr>
+									</thead> -->
+
+									<!-- TBODY here -->
+									<!-- <tbody style="background: white;">
+										<tr *ngFor="let task of displayTaskResult; let i = index">
+											<td style="width: 1%;" *ngIf="!task.isRowDetailOpen">
+												<div (click)="onRowDetailClick(task,i)" style="cursor:pointer;">
+													<i *ngIf="task.isIconMinus" class="material-icons add_box" style="font-weight:bold;font-size:15px;">
+														remove
+													</i>
+													<i *ngIf="!task.isIconMinus" class="fa fa-plus add_box" style="font-weight:bold;font-size:15px;">
+														
+													</i>
+												</div>
+											</td> -->
+											<!-- <td style="width: 1%;" *ngIf="!task.isRowDetailOpen">
+												<div (click)="onRowDetailClick(task,i)" style="cursor:pointer;">
+													<i *ngIf="task.isIconMinus" class="material-icons" style="font-weight:bold;font-size:15px;">
+														remove
+													</i>
+													<i *ngIf="!task.isIconMinus" class="material-icons" style="font-weight:bold;font-size:15px;">
+														add
+													</i>
+												</div>
+											</td> -->
+											
+											<!-- <ng-container *ngFor="let header of actionColumn; let j = index">
+												<td *ngIf="!task.isRowDetailOpen && header.visible == true">
+													<span (click)="openDetailView(task)" style="text-decoration:underline;cursor: pointer;" *ngIf="header.key == 'taskInstanceId'">
+														{{task[header.key]}}
+													</span>
+													<span *ngIf="header.key != 'taskInstanceId'">
+														{{task[header.key]}}
+													</span>
+												</td>
+											</ng-container>
+											<ng-container *ngIf="task.isRowDetailOpen">
+												<td [colSpan]="actionColumn.length + 1">
+													<div class="inner widget-name">
+														<div class="row">
+															<div class="dynamic-table">
+																<div class="widget-body">
+																	<div class="table-responsive">
+																		<div class="panel-body general-tasks">
+																			<div class="row">
+																				<div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 no-padding-right elemWrapper"  *ngFor="let header of actionColumn">
+
+																					<div>
+																						<label class="col-xs-12 col-sm-6 col-md-6 col-lg-6 control-label">
+																							{{header.label}}
+																						</label> -->
+																						
+																						<!-- <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
+																							<input type="text" class="form-control"
+																								[ngModel]="task[header['key']]"
+																								disabled="true"
+																								readonly="true" />
+																						</div>
+																						
+																					</div>
+
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</td>
+											</ng-container>
+										</tr>
+									</tbody>
+
+								</table>
+
+							</div>
+							 -->
+							<!-- Footer pagination section-->
+							<!-- <div style="float:left;width: 200px; margin-top: 5px;">{{selectedTaskResultCount}} selected / {{totalPageData}}
+								total
+							</div>
+
+							<div style="width: 70%;float: right; margin-top: 10px; margin-bottom:20px;" class="dataTables_paginate paging_simple_numbers"
+								id="DataTables_Table_0_paginate" *ngIf="tablePaginationData && tablePaginationData.length">
+								<ul class="pagination" style="float: right;">
+									<li class="paginate_button previous" [ngClass]="{'disabled':pagination.pageNumber == 0 }" id="DataTables_Table_0_previous">
+										<a  (click)="pagination.pageNumber == 0 || previousTasks()"  [ngClass]="{'disabled':pagination.pageNumber == 0 }"
+										aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">
+										</a>
+									</li>
+									<li class="paginate_button previous" [ngClass]="{'disabled':currentPageNumber === 1}" id="DataTables_Table_0_previous">
+								<a (click)="onGridPrevious()" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">
+								</a>
+									</li>
+									<li *ngFor="let pageNumber of tablePaginationData" class="paginate_button" [ngClass]="{'active':currentPageNumber === pageNumber}">
+									<a aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" (click)="onPaginateInnerGrid(pageNumber)">
+									{{pageNumber}}</a></li>					 
+									<li class="paginate_button next" [ngClass]="{'disabled':currentPageNumber===tablePaginationData.length}" id="DataTables_Table_0_next">
+								<a (click)="onGridNext()" aria-controls="DataTables_Table_0" data-dt-idx="8" tabindex="0">></a>
+								<li class="paginate_button next" [ngClass]="{'disabled': pagination.totalRecords < 100}" id="DataTables_Table_0_next">
+									<a (click)="pagination.totalRecords < 100 || nextTasks()" [ngClass]="{'disabled': pagination.totalRecords < 100}" aria-controls="DataTables_Table_0" data-dt-idx="8" tabindex="0">>></a>
+									</li>
+								</ul>
+							</div> -->
+							<!-- <div class="pad-l-13">
+								<div class="col-xs-2 col-lg-3" style="padding-top: 2%">
+									<label class="pr-10 perpagetext">{{Newpagination.perPageText}} </label>
+									<select [(ngModel)]="paginationLimitOption" (change)="onLimitChange($event.target.value)" class="perpage">
+										<option *ngFor="let value of Newpagination.pageLimitOptions" [value]="value">
+											{{value}}
+										</option>
+									</select>
+								</div>
+								<div class="col-xs-3 col-lg-2 perpagetext" style="padding-top: 2%">
+									{{Newpagination.pageNumberText}} {{pagination.totalRecords == 0 ? 0: pagination.pageNumber }}/{{totalPage}}
+								</div>
+								<div class="col-lg-7 col-6 text-right" *ngIf="pagination.totalRecords" style="margin: 18px 0;">
+									<pagination [totalItems]="pagination.totalRecords" previousText="<" nextText=">" [itemsPerPage]="paginationLimitOption"
+										[maxSize]="10" [(ngModel)]="pagination.pageNumber" (pageChanged)="onPaginateInnerGrid($event.page)"></pagination>
+								</div>
+							</div>
+
+						</div>
+					</div> -->
+				<!-- </div> -->
+			</div>
+		</sa-widgets-grid>
+	</div>
+</div>
+
+<!-- Old code was here -->

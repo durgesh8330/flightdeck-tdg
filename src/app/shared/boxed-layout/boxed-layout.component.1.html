@@ -1,0 +1,255 @@
+<div class="wrap">
+    <div *ngIf="loaderTaskDetail" class="task_loader">
+      <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+      <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+      </div>
+    </div>
+  
+    
+    <div class="alert alert-success alert-dismissible" *ngIf="IsSucess" style="background-color: green;color: #fff;">
+      <strong>Success! </strong>{{message}}.
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    <div class="alert alert-danger alert-dismissible" *ngIf="IsError" style="background-color: #ce2f2f;color: #fff;">
+      <strong>Error! </strong>{{message}}.
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    <div class="form-group">
+  
+      <div class="sticky-tab-header spr-tabs">
+        <ul class="nav nav-tabs tabs-left text-align-center" id="demo-pill-nav">
+          <li [class.active]="leftSideTabs.tab == 'task-details'">
+            <a (click)="leftSideTabs.tab = 'task-details'">
+              Order Details</a>
+          </li>
+          <li [class.active]="leftSideTabs.tab == 'general-details'">
+            <a (click)="(leftSideTabs.tab = 'general-details');">
+              Task General Details</a>
+          </li>
+          <li [class.active]="leftSideTabs.tab == 'audit-log'">
+            <a (click)="(leftSideTabs.tab = 'audit-log');">
+              Audit Log</a>
+          </li>
+        </ul>
+      </div>
+  
+      <tabset>
+        <tab [active]="leftSideTabs.tab == 'task-details'" class="left-tab-pane">
+  
+          <div class="col-sm-12 cm-mrg-left-30 " >
+            <div class="form-group">
+              <div class="input-group cm-pd-top-15">
+                <label class="key">ID</label>
+                <label class="value">{{ data.sourceTaskId }}</label>
+              </div>
+              <div class="input-group">
+                <label class="key">Type</label>
+                <label class="value">{{ data.taskName }}</label>
+              </div>
+              <div class="input-group">
+                <label class="key">STATUS</label>
+                <label class="value">{{ data.taskStatus }}</label>
+              </div>
+              <div class="input-group">
+                <label class="key">CD</label>
+                <label class="value">{{ data.statusCode }}</label>
+              </div>
+  
+              <div class="input-group pull-right cm-mrg-right-15">
+                <!-- <button class="btn btn-primary" (click)="OpenDuaDateDialog()" [disabled]="data.taskStatus == 'Cancelled' && (data.taskName == 'UNI' || data.taskName == 'OVC') ">Due Date</button>
+                <button class="btn btn-primary" (click)="OpenCancelDialog()" [disabled]="data.taskStatus == 'Cancelled' && (data.taskName == 'UNI' || data.taskName == 'OVC') ">Cancel</button>
+                <a class="cm-refresh" (click)="refresh()" style="font-size:150%">
+                  <span class="glyphicon glyphicon-refresh"></span>
+                </a>  -->
+              </div>
+            </div>
+          </div>
+  
+          
+  
+          <div class="col-sm-12 row" *ngIf="isShow && pageLayout && pageLayout.pageLayoutTemplate">
+            <div *ngFor="let layoutElem of pageLayout.pageLayoutTemplate">
+                <div class="col-sm-6" *ngIf="layoutElem.sectionHeader == 'Customer Attributes'">
+                    <div class="panel panel-primary spr-panel">
+                      <div class="panel-heading">{{layoutElem.sectionHeader}}</div>
+                      <div class="panel-body pnl-scrll">
+                        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right">
+                          <table class="table table-boradred cstmr-att-tbl">
+                            <thead>
+                              <tr>
+                                <th *ngFor="let field of layoutElem.fieldsList">{{field.label}}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let value of CustomerAttributorData">
+                                <td *ngFor="let field of layoutElem.fieldsList">
+                                  <input class="tbl-inpt form-control" name="{{value[field.fieldName]}}" value="{{value[field.fieldName]}}">
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            
+            <div *ngFor="let field of NewV2Data; let i =index">
+              <div class="col-sm-6" *ngIf="field.header != 'Customer Attributes' ">
+                <div class="panel panel-primary spr-panel">
+                  <div class="panel-heading">{{ field.header}}</div>
+                  <div class="panel-body">
+                    <div class="col-xs-4 col-md-4 col-sm-4 col-lg-4 no-padding-right" *ngFor="let fieldData of field.paramList; let j=index">
+  
+                      <label class="control-label">
+                        {{ fieldData.name}}<br>
+                        <textarea class="c-inpt-fc form-control" rows="2" name="{{ fieldData.value}}" value="{{ fieldData.value}}"></textarea>
+  
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tab>
+  
+        <tab [active]="leftSideTabs.tab == 'general-details'" class="left-tab-pane">
+  
+          <ng-container *ngIf="isShow && pageLayout && pageLayout.pageLayoutTemplate">
+              <div class="col-sm-12" *ngFor="let layoutElem of pageLayout.pageLayoutTemplate" style="padding-top: 10px;">
+                  <div class="panel panel-primary spr-panel" *ngIf="layoutElem.sectionHeader == 'Task General Details'">
+                    <div class="panel-heading">{{layoutElem.sectionHeader}}</div>
+                    <div class="panel-body">
+                      <div class="dynamic-table">
+                        <div class="widget-body">
+                          <div class="table-responsive">
+                            <div class="panel-body general-tasks">
+                              <div class="row">
+                                <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 no-padding-right elemWrapper" *ngFor="let elem of layoutElem.fieldsList">
+        
+                                  <div class="" *ngIf="elem.type == 'TextBox' && elem.visible">
+                                    <label [class]="elem.labelCssClass">
+                                      {{elem.label}}
+                                    </label>
+                                    <div [class]="elem.inputWrapperCssClass" *ngIf="elem.label !== 'Task Type' ">
+                                      <input type="text" class="form-control" [name]="elem.fieldName" [(ngModel)]="data[elem.model]"
+                                        [required]="elem.required" [readonly]="!elem.editable" />
+                                    </div>
+                                    <div [class]="elem.inputWrapperCssClass" *ngIf="elem.label === 'Task Type' ">
+                                      <input type="text" class="form-control" [name]="elem.fieldName" [(ngModel)]="data['taskName']"
+                                        [required]="elem.required" [readonly]="!elem.editable" />
+                                    </div>
+                                  </div>
+        
+                                  <div class="" *ngIf="elem.type == 'MultiSelect' && elem.visible">
+                                    <label [class]="elem.labelCssClass">
+                                      {{elem.label}}
+                                    </label>
+                                    <div [class]="elem.inputWrapperCssClass">
+                                      <ul class="select2">
+                                        <li *ngFor="let e of data[elem.model]" class="cm-pd-right-5">
+                                          {{e.workgroupName}},
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+        
+                                  <!-- <div class="" *ngIf="elem.type == 'switch' && elem.visible">
+                                    <label [class]="elem.labelCssClass">
+                                      {{elem.label}}
+                                    </label>
+                                    <div [class]="elem.inputWrapperCssClass">
+                                      <on-off-switch title="" [(model)]="elem.fieldValue" [disabled]="elem.disabled" (change)="this[elem.change]()">
+                                      </on-off-switch>
+                                    </div>
+                                  </div> -->
+        
+                                  <div class="" *ngIf="elem.type == 'textarea' && elem.visible">
+                                    <label [class]="elem.labelCssClass">
+                                      {{elem.label}}
+                                    </label>
+                                    <div [class]="elem.inputWrapperCssClass">
+                                      <textarea class="form-control" [name]="elem.fieldName" [(ngModel)]="data[elem.model]"
+                                        [required]="elem.required" [readonly]="!elem.editable"
+                                        [rows]="elem.rows">
+                                                          </textarea>
+                                    </div>
+                                  </div>
+        
+                                </div>
+                              </div>
+  
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </ng-container>
+  
+        </tab>
+  
+        <tab [active]="leftSideTabs.tab == 'audit-log'" class="left-tab-pane">
+          <div *ngIf="loaderTaskDetail" class="task_loader">
+            <img src="assets/img/task_loader.svg" width="125px" alt="task" />
+          </div>
+          <div *ngIf="!loaderTaskDetail">
+              <div id="systemtable" class="table-responsive" *ngFor="let layoutElem of logPageLayout['pageLayoutTemplate']">
+  
+                  <!-- <sa-widgets-grid> -->
+                      <div >
+                      <!--  sa-widget [editbutton]="false" [fullscreenbutton]="isHeaderControlVisible"
+                          [deletebutton]="false" color="blueDark" [colorbutton]="isHeaderControlVisible"
+                          [togglebutton]="isHeaderControlVisible" -->
+                          <header>
+                              <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                              <h2>{{layoutElem['sectionHeader']}}</h2>
+                          </header>
+                          <div id="tablesection" class="tablesectiondiv">
+                            <div id="table-section" class="tab-content padding-10 table-responsive" style="width:100%;">
+                              <table class="table table-bordered table-striped table-hover smart-form">
+                                  <thead>
+                                      <tr>
+                                          <th *ngFor="let elem of layoutElem['fieldsList']">
+                                              <div style="float: left;cursor: pointer;" (click)="onSortSelection(elem.fieldName)">
+                                                  {{elem.label}}
+                                              </div>
+                                              <div style="float: left;width:100%; margin-top: 5px;">
+                                                  <input type="text" (input)="filterTaskResult(elem.fieldName)"
+                                                      [(ngModel)]="activityLog[elem.fieldName]" 
+                                                      [name]="elem.fieldName"
+                                                      [disabled]="elem.editable"
+                                                      style="width: 100%;overflow: visible;padding: 3px;" />
+                                              </div>
+                                          </th>
+                                      </tr>
+                                  </thead>
+                                  <tbody *ngFor="let row of logData">
+                                      <tr>
+                                          <td *ngFor="let elem of layoutElem['fieldsList']">
+                                              <div *ngIf="elem.fieldName == 'activityDetails'" style="width:400px;">
+                                                  <pre class="pre-style" style="white-space: pre-wrap;" >{{row[elem.fieldName]}}</pre>
+                                              </div>
+                                              <div *ngIf="elem.fieldName != 'activityDetails'">
+                                                  {{(elem.fieldName === 'logdetailscreatedById') ? row['createdById'] : (elem.fieldName === 'logdeatilscreatedDateTime')? row['createdDateTime'] : row[elem.fieldName]}}
+                                              </div>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                            </div>
+                          </div>
+                          
+                      </div>
+                  <!-- </sa-widgets-grid> -->
+              </div>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>

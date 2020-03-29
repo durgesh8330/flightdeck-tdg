@@ -1,0 +1,75 @@
+:root{
+    --leftPanel_background:#021e0f;
+    --leftPanel_font:#5b7f27;
+}
+
+.smart-style-2 aside {
+    background: var(--leftPanel_background);
+    background: -webkit-gradient(linear, left top, right top, color-stop(99%, #f7f7f7), color-stop(100%, #cacaca));
+    background: -webkit-linear-gradient(left, #f7f7f7 99%, #cacaca 100%);
+    background: -webkit-gradient(linear, top left, top right, from(#f7f7f7), to(#cacaca));
+    background: linear-gradient(to right, #f7f7f7 99%, #cacaca 100%);
+    min-height: 100%
+}
+
+.smart-style-2 #left-panel {
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    padding-top: 64px
+}
+
+.smart-style-2.menu-on-top aside {
+    background: inherit
+}
+
+.smart-style-2.menu-on-top aside#left-panel {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-bottom: 1px solid #B8B8B8;
+    border-top: 1px solid #333
+}
+
+.smart-style-2.menu-on-top aside#left-panel nav > ul > li {
+    border-right: 1px solid transparent;
+    border-left: 1px solid transparent
+}
+
+.smart-style-2.menu-on-top aside#left-panel nav > ul > li > a {
+    text-shadow: none !important;
+    font-size: 13px;
+    padding: 10px 9px !important
+}
+
+.smart-style-2.menu-on-top aside#left-panel nav > ul > li > ul {
+    background: var(--leftPanel_background)
+}
+
+.smart-style-2.menu-on-top aside#left-panel nav > ul > li:hover {
+    background: var(--leftPanel_background);
+    border-right-color: #fff;
+    border-left-color: #fff
+}
+
+.smart-style-2.menu-on-top aside#left-panel nav > ul > li:hover > a {
+    color: var(--leftPanel_font) !important;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    padding-left: 8px !important;
+    padding-right: 8px !important
+}
+
+.menu-on-top.smart-style-2 #left-panel {
+    padding-top: 49px !important
+}
+
+.smart-style-2.minified #left-panel {
+    padding: 0 !important;
+    padding-top: 50px !important
+}
+
+.smart-style-2.menu-on-top #left-panel {
+    padding-right: 0;
+    padding-left: 0;
+    padding-bottom: 0
+}

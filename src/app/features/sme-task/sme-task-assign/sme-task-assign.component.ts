@@ -1,0 +1,44 @@
+import { Component, OnInit, Inject } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
+import { SmeTaskComponent } from '../sme-task/sme-task.component';
+import { TaskService } from "@app/features/task/task.service";
+
+@Component({
+  selector: 'sa-sme-task-assign',
+  templateUrl: './sme-task-assign.component.html',
+  styleUrls: ['./sme-task-assign.component.css']
+})
+export class SmeTaskAssignComponent implements OnInit {
+
+  taskDetails: any = {};
+  ShowGroup = 'cuid';
+  workgroupList: any = [];
+  public options: any;
+
+  constructor(
+    public dialogRef: MatDialogRef<SmeTaskComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private taskService: TaskService,
+    public snackBar: MatSnackBar,
+  ) {
+    this.taskDetails = this.data;
+  }
+
+  ngOnInit() {
+    this.options = {
+      multiple: true,
+      tags: true
+    };
+    this.taskService.getWorkgroups().toPromise().then((res) => {
+      this.workgroupList = res;
+    }).catch((err: any) => {
+
+    });
+  }
+
+  onClose(): void {
+    this.dialogRef.close();
+  }
+
+}

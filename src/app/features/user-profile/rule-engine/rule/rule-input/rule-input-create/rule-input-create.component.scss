@@ -1,0 +1,25 @@
+.ngx-mat-codemirror {
+    .CodeMirror {
+      height: auto;
+      width: 100;
+    }
+  
+    .CodeMirror-scroll {
+      max-height: 250px;
+    }
+  }
+  /deep/ .mat-step-header .mat-step-icon {
+  background-color: #1b1e24;
+  color: #fff;
+}
+// mat-form-field{
+//   width: 100%;
+// }
+
+// .mat-step-icon-selected {
+//   background-color: red; 
+// }
+
+// .mat-horizontal-stepper-header .mat-step-header {
+//   background-color: red; 
+// }

@@ -1,0 +1,42 @@
+<form name="form" novalidate>
+		<h4 mat-dialog-title style="text-align:center;font-weight: 700;">{{uiObject.pageTitle}}</h4>
+		<hr>
+		<div mat-dialog-content style="width:70%; text-align: center;">
+			<div class="row">
+				<div *ngFor="let field of uiObject.fields" class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+					<label class="control-label">{{field.label}}</label>
+					<span *ngIf= "field.mandatory" aria-hidden="true" class="text-danger">&nbsp;*</span>
+					<select id='availableWorkgroupsSkill' name='availableWorkgroups' (change)="onSelectedSkillValue($event)"
+                        class="form-control" style="width:60%; margin-left:40%;">
+                                <option *ngFor="let skill of field.data" [value]="skill">{{skill}}</option>
+                     </select>
+					<!-- <div class="col-xs-12 col-md-5 col-sm-12 col-lg-5">
+						<label class="control-label">Skill Desc</label>
+						<span aria-hidden="true" class="text-danger">&nbsp;*</span>
+						<input type="textarea" class="form-control" placeholder="Skill Desc" name="desc" required #workgroupSkillDesc="ngModel" [(ngModel)]="skill.desc">
+						<div *ngIf="!desc.valid" class="text-danger text-left">
+								<small>Skill Description is required.</small>
+							</div>
+					</div>
+					<div class="col-xs-12 col-md-3 col-sm-12 col-lg-3">
+						<label class="control-label">Created By</label>
+						<input type="text" disabled class="form-control" name="createdBy" #createdBy="ngModel" [(ngModel)]="skill.createdById">
+					</div> -->
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>
+				<div *ngFor="let action of uiObject.buttons" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+						<button [type]="action.type" class="btn btn-primary" (click)="onButtonClick(action.fieldName)">
+							{{action.label}}
+						</button>
+					</div>
+				<!-- <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<button type="button" class="btn btn-default" (click)="closeModal();">
+						Cancel
+					</button>
+				</div> -->
+			</div>
+		</div>
+</form>

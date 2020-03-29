@@ -1,0 +1,28 @@
+:root{
+  --navigation_background:#22262e; 
+  --leftPanel_background:#1b1e24; 
+  --footer_background:#1b1e24; 
+  --header_background:#eeeeee;
+  --title_background:#353D4B; 
+  --leftPanel_font:#E1EAF1; 
+  --footer_font:#ffffff; 
+  --header_font:#000000; 
+  --button_background:#275b89; 
+  --button_font:#ffffff; 
+  --input_background:#ffffff; 
+  --input_font:#000000; 
+  --title_font:#000000; 
+  --content_background:#eeeeee; 
+  --content_font:#000000; 
+}
+
+.smart-style-4 #logo-group span#activity {
+  background: #5a8354;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #5a8354), color-stop(1, #8fb489));
+  background: -ms-linear-gradient(bottom, #5a8354, #8fb489);
+  background: -moz-linear-gradient(center bottom, #5a8354 0, #8fb489 100%);
+  background: -o-linear-gradient(#8fb489, #5a8354);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8fb489', endColorstr='#5a8354', GradientType=0);
+  border-color: #5a8354;
+  color: #e8efe7;
+}

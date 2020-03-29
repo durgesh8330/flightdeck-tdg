@@ -1,0 +1,95 @@
+.smeSubMenu{
+    // position: absolute;
+    left: 100%; 
+    top: 30px; 
+    // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); 
+    transition: opacity 0.1s linear; 
+    border-top: 1px solid rgba(69, 74, 84, 0.7);
+    width: 98%;
+    color: white;
+    background-color: #53565A !important;
+    padding: 10px;
+}
+.smeSubMenu-Body{
+    padding: 10px;
+}
+.smeSubMenu-Footer{
+    padding: 10px;
+    padding-top: 0px;
+}
+.menulink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.menulinkicon {
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+.statusmanagermenu .menuitemsdiv {
+    // height: calc(100vh - 76px);
+    overflow-y: overlay;
+    padding-bottom: 20px;
+}
+.horizontallinks {
+    font-size: 16px;
+    display: inline-block;
+    border-bottom: 1px solid #dee2e6;
+    width: 25%;
+}
+.horizontallinksicon {
+    font-size: 22px;
+}
+nav ul ul.horizontalsubmenu {
+    display: inherit;
+}
+.horizontalsubicon {
+    padding-right: 11px;
+}
+.activemenu, .activemenu.horizontallinksanchor:hover {
+    border-radius: 6px;
+    border: 1px solid;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin-bottom: -1px !important;
+    border-color: #dee2e6 #dee2e6 #f4f7f6;
+    background-color: transparent;
+    border-bottom: none;
+}
+.horizontallinksanchor{
+    transition: all 500ms ease-out;
+}
+.horizontallinksanchor:hover {
+    border: 1px solid;
+    border-radius: 6px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin-bottom: -1px !important;
+    border-color: #e9ecef #e9ecef #dee2e6;
+    background-color: #f5f5f5;
+ }
+ .activemenulist {
+     border-bottom: none !important;
+ }
+ nav ul ul.horizontalsubmenu  li > a {
+    padding-left: 15px;
+ }
+ ::ng-deep .panel-body, .panel-body {
+    padding: 0px !important;
+    padding-bottom: 15px !important;
+}
+.pad_b10 {
+    padding-bottom: 10px;
+}
+::ng-deep .navigationmenu {
+    padding: 0px !important;
+}
+::ng-deep .minified .menulink {
+    align-items: flex-start;
+}
+::ng-deep .minified .menulinkicon {
+    font-size: 18px;
+    padding-bottom: 0px;
+    // padding-bottom: 0px;
+}
+ 

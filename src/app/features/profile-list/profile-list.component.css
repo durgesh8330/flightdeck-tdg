@@ -1,0 +1,59 @@
+.select-field-size{
+    width: 30%;
+}
+
+.spinner-style{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    z-index: 999;
+}
+.row-highlight-background{
+    background-color: #d0d0d0;
+}
+::ng-deep .cdk-overlay-container .mat-select-panel {
+    margin-top: 33px;
+    min-width: 0px !important;
+}
+
+.membersTable tbody .details-control {
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer
+}
+
+.membersTable tbody .details-control:before {
+    font-family: FontAwesome;
+    content: "\f055";
+    font-size: 1.4em;
+    color: #739e73
+}
+
+.membersTable tbody .shown .details-control:before {
+    content: "\f056";
+    color: #a90329
+}
+
+.membersTable tbody .shown + tr > td {
+    padding: 0 !important
+}
+
+.membersTable tbody .shown {
+    background: rgba(205, 209, 98, .2) !important
+}
+
+.membersTable tbody .shown > td {
+    background: none !important
+}
+
+.membersTable tbody .shown + tr > td > table > tbody > tr:last-child {
+    border-bottom: 1px solid #c2c2c2
+}
+
+.membersTable tbody .shown + tr > td > table tbody tr {
+    background-color: rgba(205, 209, 98, .05) !important
+}
+
+.membersTable tbody .shown .table > tbody > tr > td {
+    border: none !important
+}

@@ -1,0 +1,46 @@
+<h2 class="modal-title" mat-dialog-title>Choose Due Date</h2>
+<div mat-dialog-content>
+
+	<form name="form" novalidate>
+		<div mat-dialog-content class="model-content">
+			<div class="row">
+				<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+					
+					<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+						<label class="control-label col-md-4">Due Date:</label>
+
+						<mat-form-field class="datepicker col-md-8">
+							<input matInput 
+								[min]="todayDate" 
+								[matDatepicker]="picker"
+								[(ngModel)]="selectedDate"
+								name="dueDate"
+								disabled
+								(click)="picker.open()"
+								>
+
+							<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+							<mat-datepicker #picker disabled="false"></mat-datepicker>
+						</mat-form-field>
+
+					</div>
+					<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+						<label class="control-label col-md-4">Reason: </label>
+
+						<div class="datepicker col-md-8">
+							<textarea rows="5" style="width: 100%;" [(ngModel)]="Reason" name="reason"></textarea>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</form>
+
+</div>
+
+<div mat-dialog-actions class="pull-right" style="margin-right: 70px;">
+	<button class="clear-btn reset-bgclr mat-raised-button" mat-button (click)="onClose()">Close</button>
+	<button class="btn btn-success blue__btn mat-raised-button" mat-button (click)="onSave()">Save</button>
+</div>

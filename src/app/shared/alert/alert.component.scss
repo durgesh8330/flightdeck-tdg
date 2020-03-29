@@ -1,0 +1,9 @@
+::ng-deep div.alert {
+    position: relative;
+}
+::ng-deep .alert .close {
+  color: #000 !important;
+  padding: 9px;
+  position: absolute;
+  right: 0px;
+}

@@ -1,0 +1,19 @@
+.modal-title{
+    margin-top: 0px;
+    border-bottom: 1px solid #ccc;
+}
+
+.model-content{
+    margin: 10px 0;
+}
+
+.mat-form-field-infix{
+    padding-top: 0px !important;
+}
+
+.control-label.col-md-4 {
+    padding-top: 10px;
+}
+.mat-snack-bar-container {
+    max-width: 100% !important;
+}

@@ -1,0 +1,83 @@
+::ng-deep .select2-container {
+  width: 100% !important;
+  border: 1px solid lightgrey !important;
+}
+
+::ng-deep .onoffswitch-container {
+  margin-left: 0px;
+}
+::ng-deep .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  text-align:center;
+  padding-top:1px;
+  min-height:17px;
+}
+::ng-deep .select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+  color: #000;
+  padding-right: 20px;
+}
+
+/* ::ng-deep .select2-container .select2-selection--multiple {
+  min-width: 80vw;
+} */
+::ng-deep .select2-container .select2-selection--multiple {
+  max-height: 80vh !important;
+}
+
+.select2-container--default .select2-selection--multiple{
+  border: 0px solid #ccc !important;
+  border-radius: 0px !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+  margin-top: 5px !important;
+}
+
+.user-details-wrapper {
+  margin: 10px;
+  border-bottom: 2px solid #ccc;
+}
+
+.select2-container--disabled{
+  max-height: 50px;
+  overflow: auto;
+}
+::ng-deep .select2-container--default .select2-selection--multiple {
+  /* height: 48px !important; */
+  overflow: auto;
+}
+
+
+/* ::ng-deep .select2-container--default .select2-selection--single {
+  height: 61px;
+}
+
+::ng-deep .select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 58px !important;
+} */
+.panel.spr-panel {
+  border-radius: 10px;
+}
+
+.spr-panel .panel-heading{
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+}
+
+.panel-primary>.panel-heading{
+  background-color: #D7D2CB;
+  border-color: #53565A;
+}
+.panel-primary {
+  border-color: #53565A;
+}
+.control-label {
+  text-overflow: ellipsis;
+  /* white-space: nowrap; */
+  overflow: hidden;
+}
+.paramLayoutSelect {
+  width: 95%;
+  margin-bottom: 2px;
+  display: inline-grid;
+  height: 30px;
+}

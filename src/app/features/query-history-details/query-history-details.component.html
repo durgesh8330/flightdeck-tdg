@@ -1,0 +1,15 @@
+<div *ngIf="loader" class="center__loader">
+  <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+      </div>
+</div>
+<section class="sortable-grid" id="widgets-grid" *ngIf="test">
+<div  class="widget-body table-container">
+  <sa-table [pagination]="pagination" [actionButton]="actionButton" [tableHeader]="queryParameter.header"
+    [tableData]="queryParameter.tableData" [tableOtherContent]="queryParameter"
+    [tablePaginationData]="tablePaginationData" (openTabParent)="openDetailView($event)" (refresh)="onRefresh()">
+  </sa-table>
+</div>
+</section>

@@ -1,0 +1,66 @@
+
+<!-- <aside (mouseleave)="toggleOnHover(false)" (mouseenter)="toggleOnHover(true)">
+    <div *ngFor="let menu of leftMenuData.leftMenu;">
+        <div class="lmos_section">
+            <div class="lmos_sectionbox">
+                <div *ngFor="let mainmenu of menu.fieldsList" style="padding: 10px;">
+                    <button mat-stroked-button [routerLink]="mainmenu.routerLink"  routerLinkActive="active" style="width:100%; background: #49d597;" class="sbmt-btn" (click)="openTab(mainmenu.componentString, mainmenu.label, mainmenu.url);">{{mainmenu.label}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside> -->
+              
+<aside>
+    <nav (mouseleave)="toggleOnHover(false)" (mouseenter)="toggleOnHover(true)">
+        <div *ngFor="let menu of leftMenuData.pageLayoutTemplate.leftMenu;">
+            <div *ngIf="menu.sectionHeader == 'Auto Select'" class="text-center" style="padding: 5px; color: white;margin-top: 3%;">
+                <div *ngFor="let button of menu.fieldsList">
+                    <button mat-stroked-button class="sbmt-btn auto-select-button-width" (click)="AutoSelect()">{{ button.label }}</button>
+                </div>
+            </div>
+
+            <div *ngIf="menu.sectionHeader == 'Menu-Items'" class="lmos_section">
+                <div style="" class="lmos_sectionbox">
+                    <div *ngFor="let mainmenu of menu.fieldsList" style="padding-bottom: 10px;">
+                        <a style="color: white" [title]="mainmenu.label" [routerLink]="mainmenu.routerLink"  routerLinkActive="active" (click)="openTab(mainmenu.componentString, mainmenu.label, mainmenu.url);">
+                            <i class="{{mainmenu.icon}} fa-2x" aria-hidden="true" style="padding-right: 10px;"></i>
+                            <b> {{ mainmenu.label }} </b>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="menu.sectionHeader == 'Search Task Fields'" style="padding: 5px; color: white">
+                <div style="" class="searchsection">
+                    <div style="padding-bottom: 10px;padding: 5px">
+                        <div *ngFor="let formData of menu.fieldsList">
+                            <a *ngIf="formData.type == 'Header'" [routerLink]="formData.routerLink" style="cursor: pointer" (click)="openTab(formData.componentString, formData.name, formData.url);" class="searchheader" >
+                                <b class="searchtx"> Search Tasks</b>
+                                <i class="fa fa-chevron-right rightarrow" aria-hidden="true" style="float: right; padding-top: 3px;" ></i>
+                                <i class="fa fa-chevron-right rightarrow" aria-hidden="true" style="float: right; padding-top: 3px;"></i>
+                            </a>
+                            <div *ngIf="formData.type == 'Form'" class="searchform">
+                                <div style="margin-top: 5%;">
+                                    <div *ngFor="let form of formData.fieldsList">
+                                        <div *ngIf="form.type == 'TextBox'">
+                                            <mat-form-field appearance="fill" class="R2DGInputGroup">
+                                                <mat-label class="R2DGInputText">{{ form.label }}</mat-label>
+                                                <input matInput [(ngModel)]="form.fieldValue" class="R2DGMenuInputTag" (input)="keyPress($event)">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="text-center" *ngIf="form.type == 'Button'">
+                                            <button mat-stroked-button (click)="searchTask(formData.fieldsList);disableSearch=true;" class="sbmt-btn" [disabled]="disableSearch">
+                                                <i class="fa fa-search text-white" aria-hidden="true" style="padding-right: 5px; color: #fff; vertical-align: initial;"></i>
+                                                {{form.label}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</aside>

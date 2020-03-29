@@ -1,0 +1,9 @@
+:root{    
+    --button_background:#15a703; 
+    --button_font:#ffffff;
+}
+
+.smart-style-3 .btn {
+    background-color: var(--button_background) !important;
+    color: var(--button_font) !important;
+  }

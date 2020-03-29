@@ -1,0 +1,135 @@
+{
+  "pageLayoutTemplate": [
+    {
+      "sectionHeader": "Log Details",
+      "fieldsList": [
+        {
+          "filter": true,
+          "fieldName": "activityType",
+          "visible": true,
+          "editable": false,
+          "link": false,
+          "label": "Activity Type",
+          "sort": true,
+          "type": "TableHeader",
+          "fieldValue": "",
+          "class": "systemtype"
+        },
+        {
+          "filter": true,
+          "fieldName": "activityStatus",
+          "visible": true,
+          "editable": false,
+          "link": false,
+          "label": "Activity Status",
+          "sort": true,
+          "type": "TableHeader",
+          "fieldValue": "",
+          "class": "systemname"
+        },
+        {
+          "filter": true,
+          "fieldName": "activityDetails",
+          "visible": true,
+          "editable": false,
+          "link": false,
+          "label": "Activity Details",
+          "sort": true,
+          "type": "TableHeader",
+          "fieldValue": "",
+          "class": "systemvalue"
+        },
+        {
+          "filter": true,
+          "fieldName": "createdById",
+          "visible": true,
+          "editable": false,
+          "link": false,
+          "label": "Activity User",
+          "sort": true,
+          "type": "TableHeader",
+          "fieldValue": "",
+          "class": "systemcreatedby"
+        },
+        {
+          "filter": true,
+          "fieldName": "createdDateTime",
+          "visible": true,
+          "editable": false,
+          "link": false,
+          "label": "Activity Date Time",
+          "sort": true,
+          "type": "TableHeader",
+          "fieldValue": "",
+          "class": "systemcreatedtime"
+        }
+      ]
+    },
+    {
+      "sectionHeader": "pagination",
+      "fieldsList": [
+        {
+          "totalRecords": 1,
+          "fieldName": "pagination",
+          "pageNumber": 1,
+          "pageNumberText": "Page Number -",
+          "totalRecordsText": "Total number of records: ",
+          "pageLimitOptions": [
+            10,
+            20,
+            50,
+            100
+          ],
+          "pageSize": 10,
+          "label": "pagination",
+          "perPageText": "Per Page",
+          "type": "pagination",
+          "fieldValue": ""
+        }
+      ]
+    },
+    {
+      "sectionHeader": "Search Table Buttons",
+      "fieldsList": [
+        {
+          "fieldName": "Filter",
+          "visible": true,
+          "actionbutton": true,
+          "apiUrl": "",
+          "label": "Filter",
+          "fieldValue": "",
+          "class": "search-btn"
+        },
+        {
+          "fieldName": "Pdf",
+          "visible": true,
+          "actionbutton": true,
+          "apiUrl": "",
+          "label": "PDF",
+          "fieldValue": "",
+          "class": "search-btn"
+        },
+        {
+          "fieldName": "Print",
+          "visible": true,
+          "actionbutton": true,
+          "apiUrl": "",
+          "label": "Print",
+          "fieldValue": "",
+          "class": "search-btn"
+        },
+        {
+          "fieldName": "showHideColumns",
+          "visible": true,
+          "actionbutton": true,
+          "apiUrl": "",
+          "label": "Show / Hide columns",
+          "fieldValue": "",
+          "class": "search-btn"
+        }
+      ]
+    }
+  ],
+  "templateName": "Log Details Table",
+  "createdById": "AC30161"
+}

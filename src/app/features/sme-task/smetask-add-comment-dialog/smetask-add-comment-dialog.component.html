@@ -1,0 +1,43 @@
+<h2 class="modal-title" mat-dialog-title>Add Comment</h2>
+<div mat-dialog-content>
+
+	<form name="form" novalidate>
+		<div mat-dialog-content class="model-content" style="width: 445px;">
+			<div class="row">
+				<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+
+					<!-- <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+						<label class="control-label col-md-4">Due Date:</label>
+
+						<mat-form-field class="datepicker col-md-8">
+							<input matInput 
+								
+								name="dueDate"
+								disabled
+								>
+
+							<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+							<mat-datepicker #picker disabled="false"></mat-datepicker>
+						</mat-form-field>
+
+					</div> -->
+					<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+						<label class="control-label col-md-4">Comment: </label>
+
+						<div class="datepicker col-md-8">
+							<textarea rows="5" style="width: 100%;" name="reason" [(ngModel)]="comment_text"></textarea>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</form>
+
+</div>
+
+<div mat-dialog-actions class="pull-right">
+	<button mat-button (click)="onClose()">Close</button>
+	<button mat-button (click)="onSave(comment_text)">Save</button>
+</div>

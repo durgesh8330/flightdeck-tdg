@@ -1,0 +1,94 @@
+<div style="margin: 5px">
+<sa-widgets-grid>
+<div sa-widget [editbutton]="false" [name]="userdetailswodgetwa" [deletebutton]="false" [fullscreenbutton]="true" color="blueDark">
+      <header>
+          <span class="widget-icon"> <i class="fa fa-table"></i> </span>             
+          <h2>{{ skillDetails.title }}</h2>
+      </header>
+      <div class="widget-body">
+          <div class="row">
+            <!-- <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                <div class="row">
+                    <div class="col-md-12 btn-group-vertical">
+                        <button type="button" class="btn btn-success btn-sm" value="Add Skill" (click)="addSkill();"
+                                style="margin-bottom: 5px;">
+                                Add Skill
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm" value="Edit Skill" (click)="getSkillDetails ();"
+                                style="margin-bottom: 5px;">
+                                Edit Skill
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm" value="Delete Skill" (click)="deleteSkill();"
+                                style="margin-bottom: 5px;">
+                                Delete Skill
+                        </button>
+                        <input id="skillName" placeholder="Search skills" name="skillName" [(ngModel)]="skillInputObj.searchCriteria"
+                                class="form-control" (keyup)="filterSkill();">
+                        <select multiple id='availableskills' name='availableskills' [(ngModel)]="skillInputObj.selectedSkills"
+                                class="form-control" style="height: 200px;">
+                            <option *ngFor="let skill of availableSkills">{{skill}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <!-- <ul id="manageskillTabHeader" class="nav nav-tabs bordered">
+                    <li *ngFor="let tab of skillTabs; let skillInx = index;" [ngClass]="{'active': tab.isActive}" class="active">
+                        <a href="skillInx" data-toggle="tab" (click)="markActive(skillInx);">{{tab.title}} <i class="fa fa-times close-icon" (click)="removeTab(skillInx);"></i></a>
+                    </li>
+                </ul> -->
+                <div id="manageskillTabContent" class="tab-content padding-10">
+                        <div *ngFor="let tab of skillTabs; let skillInx = index;" class="tab-pane fade in" [ngClass]="{'active': tab.isActive}" id="{{skillInx}}">
+                           
+                            <table id="roleTable{{skillInx}}" class="table table-bordered table-striped table-hover smart-form">
+                                <thead>
+                                    <!--Dynamic header section-->
+                                    <tr>
+                                        <th *ngIf="skillDetails.showActions" style="width:7%; padding-bottom: 15px;" class="text-center cursor-pointer">
+                                            <i class="fa fa-plus-circle fa-2x" aria-hidden="true" 
+                                            (click)="addNewRow(tab.skillDetails.skills[skillInx].createdById, tab.skillDetails.skills[skillInx].modifiedById)"></i>
+                                        </th>
+                                        <th [style.width.%]="90/skillDetails.headers.length" *ngFor="let header of skillDetails.headers">
+                                            <div class="text-center cursor-pointer" (click)="onSortSelection(header.fieldName)">
+                                                {{ header.label }}
+                                            </div>
+                                            <div style="width:100%; margin-top: 5px;">
+                                                <input type="text" (input)="filterSkills(header.fieldName, $event.target.value)" name="{{header.fieldName}}"
+                                                        style="width: 100%;overflow: visible;padding: 3px;"/>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    <!--Dynamic header section-->
+                                </thead>
+                                <tbody style="background: white;" *ngIf="tab.skillDetails">
+                                    <!--Dynamic body section-->
+                                       <tr *ngFor="let role of tab.skillDetails.skills; let roleIndex = index">
+                                            <td *ngIf="skillDetails.showActions" style="width: 5%;">
+                                                <div style="cursor:pointer;">
+                                                    <i class="fa fa-save fa-lg" aria-hidden="true" *ngIf="role['rowEdit']" 
+                                                    (click)="onSaveClick(skillInx,roleIndex)"></i>
+                                                    <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" *ngIf="!role['rowEdit']"
+                                                    (click)="onEditClick(roleIndex)" ></i>
+                                                    <i class="fa fa-trash-o fa-lg" style="padding-left: 5px;" aria-hidden="true" *ngIf="!role['rowEdit']"
+                                                    (click)="onDeleteClick(role.skillId)" ></i>
+                                                    <i class="fa fa-close fa-lg" style="padding-left: 5px;" aria-hidden="true" *ngIf="role['rowEdit']"
+                                                    (click)="onCloseClick(skillInx,roleIndex)" ></i>
+                                                </div>
+                                            </td>
+                                            <td class="text-center" *ngFor="let header of skillDetails.headers">
+                                                <input class="form-control" [(ngModel)]="role[header.fieldName]" *ngIf="header.edit && role['rowEdit']"
+                                                placeholder="Default Text Field" type="text">
+                                                <span *ngIf="!header.edit || !role['rowEdit']">{{role[header.fieldName]}}</span>
+                                            </td>
+                                       </tr>
+                                       <!--Dynamic body section-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+            </div>
+          </div> 
+      </div>
+  </div>
+</sa-widgets-grid>
+</div>

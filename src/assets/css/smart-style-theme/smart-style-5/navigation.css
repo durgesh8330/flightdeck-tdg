@@ -1,0 +1,42 @@
+:root{
+  --navigation_background:#22262e; 
+  --leftPanel_background:#1b1e24; 
+  --footer_background:#1b1e24; 
+  --header_background:#eeeeee;
+  --title_background:#353D4B; 
+  --leftPanel_font:#E1EAF1; 
+  --footer_font:#ffffff; 
+  --header_font:#000000; 
+  --button_background:#275b89; 
+  --button_font:#ffffff; 
+  --input_background:#ffffff; 
+  --input_font:#000000; 
+  --title_font:#000000; 
+  --content_background:#eeeeee; 
+  --content_font:#000000; 
+}
+
+.smart-style-5 aside#left-panel {
+  background: var(--leftPanel_background);
+}
+
+.smart-style-5.menu-on-top aside#left-panel nav > ul > li:hover > a {
+  background: #000;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  color: var(--leftPanel_font) !important;
+}
+
+.smart-style-5 nav ul li a {
+  color: var(--leftPanel_font) !important;
+}
+.smart-style-5 nav ul span.menu-item-parent {
+  color: var(--leftPanel_font) !important;
+}
+.smart-style-5 nav ul ul {
+  background: var(--leftPanel_background) !important;
+  color: var(--leftPanel_font) !important;
+}
+.smart-style-5 .smart-style-1 nav ul ul li > a {
+  color: var(--leftPanel_font) !important;
+}

@@ -1,0 +1,255 @@
+<div *ngIf="loader" class="taskloader_div">
+   <div class="task_loader">
+      <!-- <mat-spinner class="spinner-style"></mat-spinner> -->
+      <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+      <div class="spinner">
+         <div class="bounce1"></div>
+         <div class="bounce2"></div>
+         <div class="bounce3"></div>
+      </div>
+
+      <!-- <img src="assets/img/task_loader.svg" width="125px" alt="task"/> -->
+   </div>
+</div>
+<div id="content" class="col-sm-12 content-scroll">
+   <div class="wrap">
+      <div class="alert alert-success alert-dismissible" *ngIf="IsSuccess" style="background-color: green;color: #fff;">
+         <strong>Success! </strong>{{message}}.
+         <button type="button" class="close" data-dismiss="alert" style="opacity: 1;color: #fff;" (click)="IsSuccess = false">&times;</button>
+      </div>
+      <div class="alert alert-danger alert-dismissible" *ngIf="IsError" style="background-color: #ce2f2f;color: #fff;">
+         <strong>Error! </strong>{{message}}.
+         <button type="button" class="close" data-dismiss="alert" style="opacity: 1;color: #fff;" (click)="IsError = false">&times;</button>
+      </div>
+      <div class="alert alert-warning  alert-dismissible" *ngIf="IsWarning">
+         <strong><i class="fa fa-warning"></i>
+            Warning! </strong>{{message}}.
+      </div>
+      <div class="resizable resizable1 example-2">
+         <div class="inner">
+            <!-- <sa-boxed-layout [pageLayout]="pageLayout" [isShow]="'true'"></sa-boxed-layout> -->
+            <div class="col-sm-12 no-padding">
+               <sa-search-layout [pageLayout]="pageLayout" [modelValue]="modelValue"
+                  (search)="searchTask($event)" (clear)="clear($event)">
+               </sa-search-layout>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- <div *ngFor="let layoutElem of pageLayout['pageLayoutTemplate']">
+      <div class="search-task-widget-wrapper" *ngIf="layoutElem.sectionHeader != 'Buttons' && layoutElem.sectionVisibility==true">
+         <sa-widgets-grid>
+            <div sa-widget [editbutton]="false" [fullscreenbutton]="true" [deletebutton]="layoutElem.deletebutton"
+               [color]="layoutElem.color">
+               <header>
+                  <h2>{{layoutElem.sectionHeader}}</h2>
+               </header>
+               <div style="height: auto;" class="search-panel">
+                  <form #searchTaskForm class="smart-form task-search-form">
+                     <div *ngFor="let obj of layoutElem.fieldsList; let i=index;">
+                        <div class="col-xs-12 col-md-4 col-sm-6 col-lg-3 section-block">
+                           <div [ngSwitch]="obj.type">
+                              <div *ngSwitchCase="'TextBox'">
+                                 <div class="form-group mr-5-temp">
+                                    <label class="control-label">{{obj.label}}</label>
+                                    <input type="text" class="form-control input" name="textObj-{{i}}" #textObj="ngModel"
+                                       [(ngModel)]="modelValue[obj.fieldName]" style="width:95%;">
+                                 </div>
+                              </div>
+                              <div *ngSwitchCase="'textArea'">
+                                 <div class="form-group mr-5-temp">
+                                    <label class="control-label">{{obj.label}}</label>
+                                    <textarea class="form-control input" name="textAreaObj-{{i}}" #textAreaObj="ngModel"
+                                       [(ngModel)]="modelValue[obj.fieldName]" rows="1" style="width:95%;">
+                                    </textarea>
+                                 </div>
+                              </div>
+                              <div *ngSwitchCase="'select'">
+                                 <div class="form-group" style="width: 95%;
+                                    margin-bottom: 2px;">
+                                    <label class="control-label">{{obj.label}}</label>
+                                    <ng-select2 [data]="obj.dropdownList" placeHolder='Please select' [options]="options"
+                                       [(ngModel)]="modelValue[obj.fieldName]" name="selectObj-{{i}}" #selectObj="ngModel">
+                                    </ng-select2>
+                                 </div>
+                              </div>
+                              <div *ngSwitchCase="'lookup'">
+                                 <div class="form-group" style="width: 95%;
+                                    margin-bottom: 2px;">
+                                    <label class="control-label">{{obj.label}}</label>
+                                    <ng-select2 [data]="obj.dropdownList" placeHolder='Please select' [width]="500"
+                                       [(ngModel)]="modelValue[obj.fieldName]" name="lookUpObj-{{i}}" #lookUpObj="ngModel">
+                                    </ng-select2>
+                                 </div>
+                              </div>
+                              <div *ngSwitchCase="'slide'">
+                                 <on-off-switch title="{{obj.label}}" [(ngModel)]="modelValue[obj.fieldName]" (change)="onChange()"></on-off-switch>
+                              </div>
+                              <div *ngSwitchCase="'checkbox'">
+                                 <label class="control-label">{{obj.label}}</label>
+                                 <input type="checkbox" style="margin-left: 0px" [disabled]="!obj.editable" class="checkbox"
+                                    style="visibility: visible" name='{{"fieldValue_1_"+i}}' [(ngModel)]="modelValue[obj.fieldName]">
+                              </div>
+                              <div *ngSwitchCase="'radio'" class="smart-form">
+                                 <label class="control-label">{{obj.label}}</label>
+                                 <input type="radio" style="margin-left: 0px;visibility: visible" [disabled]="!obj.editable"
+                                    class="radiobox" name='{{"fieldValue_1_"+i}}' [(ngModel)]="modelValue[obj.fieldName]">
+                              </div>
+                              <div *ngSwitchCase="'MultiSelect'" class="select-field-size">
+                                 <div class="form-group" style="width: 95%;">
+                                    <label class="control-label">{{obj.label}}</label>
+                                    <ng-select2 [data]="obj.dataSource" [width]="500" [options]="options" [(ngModel)]="modelValue[obj.fieldName]"
+                                       name="multiObj-{{i}}" #multiObj="ngModel">
+                                    </ng-select2>
+                                 </div>
+                              </div>
+
+                              <div *ngSwitchDefault>
+                                 <label class="example-margin">{{obj.label}}:</label>
+                                 field type <b>{{obj.type}}</b> is not supported yet.
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </sa-widgets-grid>
+      </div>
+      
+      <div class="row search-btn-control pr-0" *ngIf="layoutElem.sectionHeader == 'Buttons'">
+         <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9"> </div>
+         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 text-right p-0">
+            <span *ngFor="let button of layoutElem.fieldsList">
+               <button class="btn btn-success blue__btn mr-0" mat-raised-button (click)="searchTask(layoutElem);" color="primary"
+                  *ngIf="button.click == 'searchTask'">
+                  {{ button.label }}
+               </button>
+               <a mat-raised-button (click)="clear(pageLayout['pageLayoutTemplate']);" routerLink="." class="clear-btn reset-bgclr"
+                  *ngIf="button.click == 'clear'">
+                  {{ button.label }}
+               </a>
+            </span>
+         </div>
+      </div>
+   </div> -->
+   <!--
+   <div class="search-task-widget-wrapper">
+
+      <sa-widgets-grid>
+         <div sa-widget [editbutton]="false" [fullscreenbutton]="true"  
+            [deletebutton]="false" color="blueDark">
+
+            <header>
+               <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+               <h2>{{header}}</h2>
+            </header>
+            <div style="height: auto;" class="search-panel">
+               <form #searchTaskForm class="smart-form task-search-form">
+
+                  <div *ngFor="let obj of fileds; let i=index;">
+                     <div class="col-xs-12 col-md-4 col-sm-6 col-lg-3 section-block">
+                        <div [ngSwitch]="obj.type">
+                           <div *ngSwitchCase="'text'">
+                              <div class="form-group mr-5-temp" >
+                                 <label class="control-label">{{obj.label}}</label>
+                                 <input type="text" class="form-control input"  name="textObj-{{i}}" #textObj="ngModel"
+                                 [(ngModel)]="obj.fieldValue" style="width:95%;">
+                              </div>
+                           </div>
+                           <div *ngSwitchCase="'textArea'">
+                              <div class="form-group mr-5-temp">
+                                 <label class="control-label">{{obj.label}}</label>
+                                 <textarea class="form-control input" name="textAreaObj-{{i}}" #textAreaObj="ngModel" 
+                                 [(ngModel)]="obj.fieldValue" rows="1" style="width:95%;">
+                                 </textarea>
+                              </div>
+                           </div>
+                           <div *ngSwitchCase="'select'">
+                              <div class="form-group" style="width: 95%;
+                                 margin-bottom: 2px;">
+                                 <label class="control-label">{{obj.label}}</label>
+                                 <ng-select2 [data]="obj.dropdownList"
+                                 placeHolder = 'Please select'
+                                 [options]="options"                
+                                 [(ngModel)]="obj.fieldValue"
+                                 name="selectObj-{{i}}"
+                                 #selectObj="ngModel">
+                                 </ng-select2>
+                              </div>
+                           </div>
+                           <div *ngSwitchCase="'lookup'">
+                              <div class="form-group" style="width: 95%;
+                                 margin-bottom: 2px;">
+                                 <label class="control-label">{{obj.label}}</label>
+                                 <ng-select2 [data]="obj.dropdownList"
+                                 placeHolder = 'Please select'
+                                 [width]="500"
+                                 [(ngModel)]="obj.fieldValue"
+                                 name="lookUpObj-{{i}}"
+                                 #lookUpObj="ngModel">
+                                 </ng-select2>
+                              </div>
+                           </div>
+                           <div *ngSwitchCase="'slide'">
+                              <on-off-switch title="{{obj.label}}"
+                              [(model)]="obj.fieldValue"
+                              (change)="onChange()"
+                              ></on-off-switch>
+                           </div>
+                           <div *ngSwitchCase="'checkbox'">
+                              <label class="control-label">{{obj.label}}</label>
+                              <input type="checkbox" style="margin-left: 0px"
+                              [disabled]="!obj.editable" class="checkbox" style="visibility: visible"
+                              name='{{"fieldValue_1_"+i}}' [(ngModel)]="obj.fieldValue"
+                              >
+                           </div>
+                           <div *ngSwitchCase="'radio'" class="smart-form">
+                              <label class="control-label">{{obj.label}}</label>
+                              <input type="radio" style="margin-left: 0px;visibility: visible"
+                              [disabled]="!obj.editable" class="radiobox"
+                              name='{{"fieldValue_1_"+i}}' [(ngModel)]="obj.fieldValue"
+                              >
+                           </div>
+                           <div *ngSwitchCase="'date'" class="smart-form">
+                           </div>
+                           <div *ngSwitchCase="'multiselect'" class="select-field-size">
+                              <div class="form-group" style="width: 95%;">
+                                 <label class="control-label">{{obj.label}}</label>
+                                 <ng-select2 [data]="obj.dropdownList"
+                                 [width]="500"
+                                 [options]="options"
+                                 [(ngModel)]="obj.fieldValue"
+                                 name="multiObj-{{i}}"
+                                 #multiObj="ngModel">
+                                 </ng-select2>
+                              </div>
+                           </div>
+                           <div *ngSwitchDefault>
+                              <label class="example-margin">{{obj.label}}:</label>
+                              field type <b>{{obj.type}}</b> is not supported yet.
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+               </form>
+
+               <div class="row search-btn-control">
+                  <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9"> </div>
+                  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                     <a mat-raised-button (click)="clear();" routerLink="." class="clear-btn">Clear</a>
+                     <button mat-raised-button (click)="searchTask();" color="primary">Search</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </sa-widgets-grid>
+   </div>
+
+-->
+   <div class="search-task-widget-wrapper" *ngIf="showResultsTemp">
+      <sa-task-results></sa-task-results>
+   </div>
+
+</div>

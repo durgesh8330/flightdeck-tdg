@@ -1,0 +1,445 @@
+<div *ngIf="loader">
+    <mat-spinner class="spinner-style"></mat-spinner>
+  </div>
+  <div *ngFor="let layoutElement of stubbedJson.page_layout">
+    <sa-widgets-grid>
+      <div
+        *ngIf="layoutElement.type == 'SectionalHeaderWithIcon'"
+        sa-widget
+        [ngClass]="[layoutElement.metadata.cssRef]"
+        
+        [color]="layoutElement.metadata.color"
+        [editbutton]="layoutElement.metadata.editbutton"
+        [fullscreenbutton]="layoutElement.metadata.fullscreenbutton"
+        [togglebutton]="layoutElement.metadata.togglebutton"
+        [deletebutton]="layoutElement.metadata.deletebutton"
+        [custombutton]="layoutElement.metadata.custombutton"
+        [sortable]="layoutElement.metadata.sortable" 
+      >
+<header>
+  <h2>{{userHeading}}</h2>
+</header>
+
+<!-- widget div-->
+<div>
+
+  <!-- widget content -->
+  <div class="widget-body fuelux">
+    <fuel-ux-wizard (complete)="onWizardComplete($event)" (isStep2)="recieve($event)" (currentStep)="recieveSelected($event)">
+      <div class="wizard user-bar" data-initialize="wizard" id="myWizard" style="background-color: White;border:none;border-radius: 0px;box-shadow:none">
+      <div class="row" style="margin-left:0px; margin-right: 0px;">
+          <div class="col-md-9 step-bar">
+             
+                <div class="steps-container complete">
+                  <ul class="steps">
+                    <li data-step="1" class="active" (click)="setCurrentStep(1)">
+                      <div class="step-row">
+                        <span class="badge badge-info">1</span>Step 1
+                      </div>
+                      <span class="chevron"></span>
+                        <span class="progress-title">User Information</span>
+                    </li>
+                    <li data-step="2" (click)="setCurrentStep(2)">
+                        <div class="step-row">
+                      <span class="badge">2</span>Step 2</div><span class="chevron"></span>
+                      <span class="progress-title">Associate Applications</span>
+                    </li>
+                    <li data-step="3" (click)="setCurrentStep(3)">
+                        <div class="step-row">
+                      <span class="badge">3</span>Step 3</div><span class="chevron"></span>
+                      <span class="progress-title">Associate Workgroups</span>
+                    </li>
+                    <!--<li data-step="4" (click)="setCurrentStep(4)">
+                        <div class="step-row">
+                      <span class="badge">4</span>Step 4</div><span class="chevron"></span>
+                      <span class="progress-title">Associate Skills</span>
+                    </li>-->
+                    <li data-step="4">
+                        <div class="step-row">
+                      <span class="badge">4</span>Step 4</div><span class="chevron"></span>
+                      <span class="progress-title">User Preview</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          
+          <div class="col-md-3">
+              <div class="step-btn">
+                  <button type="button" style="margin:2px;height:35px;width: 110px;" class="btn btn-sm btn-success btn-prev blue__btn" mat-raised-button>
+                    <i class="fa fa-arrow-left"></i>Prev
+                  </button>
+                  <button type="button" [disabled]="check()" style="margin:2px;margin-left:5px;height:35px;width: 110px;" class="btn btn-sm btn-success btn-next blue__btn" mat-raised-button (click)="onAddNewUser()">
+                    {{nextStepText}}<i class="fa fa-arrow-right"></i>
+                  </button>
+              </div>
+          </div>
+      </div>
+      <br>     
+      <div class="step-content" style="padding-left: 14px;">
+        <form class="form-horizontal">
+          <div class="step-pane active" data-step="1">
+                  <div class="row search-row">
+                       <label class="control-label col-md-3">Enter CUID</label>
+                       <input type="text" class="col-md-3" [disabled]="isEditing" [(ngModel)]="userId" name="searchUserInput" required />
+                       <div class="col-md-3">
+                          <button class="btn btn-sm btn-success blue__btn" mat-raised-button (click)="onSearchUserInfo();" color="primary">Get User Info</button>
+                       </div> 
+                  </div>
+                  <br>
+                  <br>
+                <div class="row"  *ngIf="userProfileData.cuid">
+                    <div *ngFor="let section of layoutElement.Json_descriptor"
+                    [ngClass]="['inner-wrapper',section.metadata.sizeClass]" >
+      
+                    <div class="col-sm-12 inner-wrapper-content" 
+                      *ngIf="section.type == 'sectionalHeaderWithoutControl'">
+      
+                      <div class="inner-wrapper-header">
+                        {{section.fieldLabel}}
+                      </div>
+      
+                      <div *ngFor="let innerSection of section.Json_descriptor; index as i"
+                        [ngClass]="['inner-wrapper-body',section.metadata.columnClass]">
+                        <div *ngFor="let cell of innerSection">
+      
+                          <div class="cell-row" *ngIf="cell.type=='tabelCell'">
+                            <div class="cell-label">
+                              {{cell.fieldLabel}}
+                            </div>
+                            <div class="cell-value">
+                              {{cell.value}}
+                            </div>
+                          </div>
+      
+                          <div class="cell-row" *ngIf="cell.type == 'radioSelection'">
+                            <div class="cell-label">
+                              <input
+                                type="radio"
+                                name="permission{{userId}}"
+                                (ngModelChange)="onSelectSystemPermission($event)"
+                                [(ngModel)]="permissionType"
+                                [value]="cell.value"
+                              />
+                            </div>
+                            <div class="cell-value">
+                              {{cell.value}}
+                            </div>
+                          </div>
+      
+                          <!-- <select multiple 
+                            *ngIf="cell.type == 'multiSelect'"
+                          class="select-workgroup custom-scroll" size="5">
+                            <option
+                              *ngFor="let element of cell.options"
+                              [value]="element.value">
+                                {{ element.label }}
+                            </option
+                            >
+                          </select>                     -->
+      
+                        </div>
+                        
+                      </div>
+      
+                    </div>
+      
+                  </div>
+                              
+                  </div>
+          </div>
+
+          <div class="step-pane" data-step="2">
+            <br>
+            <div class="bootstrap-duallistbox-container row">
+                    <div class="bootstrap-duallistbox-container row" *ngFor="let panelInfo of stubbedJson.page_layout[1].tabs[2].json_descriptor.data.layoutElement">
+                  
+                    <div class="box1 col-md-4" *ngFor="let elem of panelInfo.json_descriptor.elem">
+                    <span class="appl-header">{{elem.label}}</span>
+                    <div class="btn-group buttons">
+
+                      <div *ngFor="let button of elem.buttons" style="display:inline-block; width:50%;">
+                            <button type="button" [class]="button.cssRef"
+                            (click)="onMoveAllWorkgroupList(panelInfo.json_descriptor.elem)" 
+                            *ngIf="button.functionName == 'onMoveAllWorkgroupList' || 
+                                button.functionName == 'onMoveAllWorkgroupRoleList' || 
+                                button.functionName == 'onMoveAllSkillList' ||
+                                button.functionName == 'onMoveAllAppList'" 
+                            style="width:100%"
+                            title="button.title">
+  
+                            <i [class]="button.icon" style="font-size:24px"></i>
+                          </button>            
+                          <button type="button" [class]="button.cssRef"
+                          (click)="onRemoveAllWorkgroupList(panelInfo.json_descriptor.elem)" 
+                          *ngIf="button.functionName == 'onRemoveAllWorkgroupList' || 
+                            button.functionName == 'onRemoveAllWorkgroupRoleList' ||
+                            button.functionName == 'onRemoveAllSkillList' ||
+                            button.functionName == 'onRemoveAllAppList'"
+                          style="width:100%"
+                          title="button.title">
+
+                          <i [class]="button.icon" style="font-size:24px"></i>
+                        </button>          
+                        
+                        <button type="button" [class]="button.cssRef"
+                          (click)="onSingleSelectAppList(panelInfo.json_descriptor.elem)" 
+                          *ngIf="button.functionName == 'onSingleSelectAppList'"
+                          style="width:100%"
+                          title="button.title">
+
+                          <i [class]="button.icon" style="font-size:24px"></i>
+                        </button>
+                        
+                        <button type="button" [class]="button.cssRef"
+                          (click)="onSingleUnSelectAppList(panelInfo.json_descriptor.elem)" 
+                          *ngIf="button.functionName == 'onSingleUnSelectAppList'"
+                          style="width:100%"
+                          title="button.title">
+
+                          <i [class]="button.icon" style="font-size:24px"></i>
+                        </button>
+
+                      </div>
+                    </div>
+
+                    <select multiple [(ngModel)]="this[elem.model]"
+                      id="bootstrap-duallistbox-nonselected-list_"
+                      class="form-control"
+                      name="_helperWorkgroup1"
+                      style="height: 100px;"
+                      (change)="onDropDownClick($event,elem)" >
+
+                      <option *ngFor="let element of elem.options" [value]="element">
+                        {{ element }}
+                      </option>
+
+                    </select>
+                </div>
+                </div>
+                <!-- <div class="box1 col-md-4">
+                    <span class="appl-header">Available Applications</span>
+        <div class="btn-group buttons">   
+         <button type="button" class="btn moveall btn-default background-green" (click)="onMoveAllAppList()" title="Move all">  
+           <i class="fa fa-angle-double-right" style="font-size:24px"></i>    
+             </button>   
+               <button type="button" class="btn move btn-default background-green" (click)="onSingleSelectAppList()" title="Move selected">   
+                  <i class="fa fa-angle-right" style="font-size:24px"></i>    
+              </button>
+        </div>
+                     <select multiple [(ngModel)]="currentAppUnSelectedVal" (change)="onUnselectedAppDropdownClick($event)" id="bootstrap-duallistbox-nonselected-list_" 
+                     class="form-control" name="_helper1" style="height: 100px;">
+                     <option *ngFor="let element of unSelectedAppList" [value]="element">{{element}}</option>
+                                                </select>
+                  </div> 
+                  
+                  <div class="box2 col-md-4">
+                    <span class="appl-header">Users Applications</span>
+                 <div class="btn-group buttons">   
+                     <button type="button" class="btn remove btn-default background-green" (click)="onSingleUnSelectAppList()"  title="Remove selected">  
+                        <i class="fa fa-angle-left" style="font-size:24px"></i>    
+                            </button>  
+               <button type="button" class="btn removeall btn-default background-green" (click)="onRemoveAllAppList()" title="Remove all">             
+                  <i class="fa fa-angle-double-left" style="font-size:24px"></i>      
+                    </button>   </div>  
+               <select multiple [(ngModel)]="currentAppSelectedVal" id="bootstrap-duallistbox-selected-list_" (change)="onUnselectedAppDropdownClick($event)" 
+               class="form-control" name="_helper2" style="height: 100px;">
+               <option *ngFor="let element of selectedAppList" [value]="element">{{element}}</option>
+              </select> 
+              </div> -->
+            </div>  
+          </div>
+
+          <div class="step-pane" data-step="3">
+              <br>
+              <div class="bootstrap-duallistbox-container row"> 
+                    <div class="bootstrap-duallistbox-container row" *ngFor="let panelInfo of stubbedJson.page_layout[1].tabs[0].json_descriptor.data.layoutElement">
+                  
+                            <div class="box1 col-md-4" *ngFor="let elem of panelInfo.json_descriptor.elem">
+                            <span class="appl-header">{{elem.label}}</span>
+                            <div class="btn-group buttons">
+        
+                              <div *ngFor="let button of elem.buttons" style="display:inline-block; width:50%;">
+                                    <button type="button" [class]="button.cssRef"
+                                    (click)="onMoveAllWorkgroupList(panelInfo.json_descriptor.elem)" 
+                                    *ngIf="button.functionName == 'onMoveAllWorkgroupList' || 
+                                        button.functionName == 'onMoveAllWorkgroupRoleList' || 
+                                        button.functionName == 'onMoveAllSkillList' ||
+                                        button.functionName == 'onMoveAllAppList'" 
+                                    style="width:100%"
+                                    title="button.title">
+          
+                                    <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                    <i [class]="button.icon" style="font-size:24px"></i>
+                                  </button>
+    
+                                  <button type="button" [class]="button.cssRef"
+                                    (click)="onRemoveAllWorkgroupList(panelInfo.json_descriptor.elem)" 
+                                    *ngIf="button.functionName == 'onRemoveAllWorkgroupList' || 
+                                      button.functionName == 'onRemoveAllWorkgroupRoleList' ||
+                                      button.functionName == 'onRemoveAllSkillList' ||
+                                      button.functionName == 'onRemoveAllAppList'"
+                                    style="width:100%"
+                                    title="button.title">
+          
+                                    <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                    <i [class]="button.icon" style="font-size:24px"></i>
+                                  </button>
+    
+                                  <button type="button" [class]="button.cssRef"
+                                    (click)="onSingleSelectWorkgroupList(panelInfo.json_descriptor.elem)" 
+                                    *ngIf="button.functionName == 'onSingleSelectWorkgroupList'"
+                                    style="width:100%"
+                                    title="button.title">
+    
+                                    <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                    <i [class]="button.icon" style="font-size:24px"></i>
+                                  </button>
+    
+    
+                                  <button type="button" [class]="button.cssRef"
+                                    (click)="onSingleUnSelectWorkgroupList(panelInfo.json_descriptor.elem)" 
+                                    *ngIf="button.functionName == 'onSingleUnSelectWorkgroupList'"
+                                    style="width:100%"
+                                    title="button.title">
+          
+                                    <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                    <i [class]="button.icon" style="font-size:24px"></i>
+                                  </button>
+    
+                                  <button type="button" [class]="button.cssRef"
+                                    (click)="onSingleSelectWorkgroupRoleList(panelInfo.json_descriptor.elem)" 
+                                    *ngIf="button.functionName == 'onSingleSelectWorkgroupRoleList'"
+                                    style="width:100%"
+                                    title="button.title">
+          
+                                    <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                    <i [class]="button.icon" style="font-size:24px"></i>
+                                  </button>
+                                  
+                                  <button type="button" [class]="button.cssRef"
+                                    (click)="onSingleUnSelectWorkgroupRoleList(panelInfo.json_descriptor.elem)" 
+                                    *ngIf="button.functionName == 'onSingleUnSelectWorkgroupRoleList'"
+                                    style="width:100%"
+                                    title="button.title">
+          
+                                    <!-- functionNames[panelInfo.json_descriptor.moveall.functionName] -->
+                                    <i [class]="button.icon" style="font-size:24px"></i>
+                                  </button>
+        
+                              </div>
+                            </div>
+        
+                            <select multiple [(ngModel)]="this[elem.model]"
+                              id="bootstrap-duallistbox-nonselected-list_"
+                              class="form-control"
+                              name="_helperWorkgroup1"
+                              style="height: 100px;"
+                              (change)="onDropDownClick($event,elem)" >
+        
+                              <option *ngFor="let element of elem.options" [value]="element">
+                                {{ element }}
+                              </option>
+        
+                            </select>
+                        </div>
+                        </div>
+
+              </div>
+            <br>
+          </div>
+
+          <!--<div class="step-pane" data-step="4">
+              <br>
+         
+              <div class="bootstrap-duallistbox-container row"> 
+                    <div class="bootstrap-duallistbox-container row" *ngFor="let panelInfo of stubbedJson.page_layout[1].tabs[1].json_descriptor.data.layoutElement">
+                  
+                            <div class="box1 col-md-4" *ngFor="let elem of panelInfo.json_descriptor.elem">
+                            <span class="appl-header">{{elem.label}}</span>
+                            <div class="btn-group buttons">
+        
+                              <div *ngFor="let button of elem.buttons" style="display:inline-block; width:50%;">
+                                    <button type="button" [class]="button.cssRef"
+                                    (click)="onMoveAllWorkgroupList(panelInfo.json_descriptor.elem)" 
+                                    *ngIf="button.functionName == 'onMoveAllWorkgroupList' || 
+                                        button.functionName == 'onMoveAllWorkgroupRoleList' || 
+                                        button.functionName == 'onMoveAllSkillList' ||
+                                        button.functionName == 'onMoveAllAppList'" 
+                                    style="width:100%"
+                                    title="button.title">
+          
+                                    <i [class]="button.icon" style="font-size:24px"></i>
+                                  </button>            
+                                  <button type="button" [class]="button.cssRef"
+                                  (click)="onRemoveAllWorkgroupList(panelInfo.json_descriptor.elem)" 
+                                  *ngIf="button.functionName == 'onRemoveAllWorkgroupList' || 
+                                    button.functionName == 'onRemoveAllWorkgroupRoleList' ||
+                                    button.functionName == 'onRemoveAllSkillList' ||
+                                    button.functionName == 'onRemoveAllAppList'"
+                                  style="width:100%"
+                                  title="button.title">
+        
+                                  <i [class]="button.icon" style="font-size:24px"></i>
+                                </button>          
+                                
+                                <button type="button" [class]="button.cssRef"
+                                (click)="onSingleSelectSkillList(panelInfo.json_descriptor.elem)" 
+                                *ngIf="button.functionName == 'onSingleSelectSkillList'"
+                                style="width:100%"
+                                title="button.title">
+      
+                                <i [class]="button.icon" style="font-size:24px"></i>
+                              </button>
+                              
+                              <button type="button" [class]="button.cssRef"
+                                (click)="onSingleUnSelectSkillList(panelInfo.json_descriptor.elem)" 
+                                *ngIf="button.functionName == 'onSingleUnSelectSkillList'"
+                                style="width:100%"
+                                title="button.title">
+      
+                                <i [class]="button.icon" style="font-size:24px"></i>
+                              </button>
+        
+                              </div>
+                            </div>
+        
+                            <select multiple [(ngModel)]="this[elem.model]"
+                              id="bootstrap-duallistbox-nonselected-list_"
+                              class="form-control"
+                              name="_helperWorkgroup1"
+                              style="height: 100px;"
+                              (change)="onDropDownClick($event,elem)"  >
+        
+                              <option *ngFor="let element of elem.options" [value]="element">
+                                {{ element }}
+                              </option>
+        
+                            </select>
+                        </div>
+                        </div>
+              </div>
+          </div>-->
+
+          <div class="step-pane" data-step="4">
+            <br>
+            <h1 class="text-center text-success">
+                <!-- <i class="fa fa-check"></i>  -->
+             {{responseMessage}}
+            </h1>
+            <br>
+          </div>
+
+        </form>
+      </div>
+    </div>
+    </fuel-ux-wizard>
+  </div>
+  <!-- end widget content -->
+
+</div>
+<!-- end widget div -->
+
+</div>
+</sa-widgets-grid>
+</div>
+

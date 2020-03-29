@@ -1,0 +1,10 @@
+:root{
+    --navigation_background:#011208;
+}
+
+.smart-style-0 #logo img {
+    background: #fff;
+    border-radius: 11px;
+    margin-top: 3px;
+    padding: 5px 10px !important;
+  }

@@ -1,0 +1,47 @@
+:root{
+  --navigation_background:#22262e; 
+  --leftPanel_background:#1b1e24; 
+  --footer_background:#1b1e24; 
+  --header_background:#eeeeee;
+  --title_background:#353D4B; 
+  --leftPanel_font:#E1EAF1; 
+  --footer_font:#ffffff; 
+  --header_font:#000000; 
+  --button_background:#275b89; 
+  --button_font:#ffffff; 
+  --input_background:#ffffff; 
+  --input_font:#000000; 
+  --title_font:#000000; 
+  --content_background:#eeeeee; 
+  --content_font:#000000; 
+}
+
+.smart-style-3 #logo-group span#activity, .smart-style-3 .btn-header > :first-child > a {
+    background-color: #dd7c37;
+    background-image: -moz-linear-gradient(top, #dd7c37, #b9662b);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#b9662b), to(#b9662b));
+    background-image: -webkit-linear-gradient(top, #dd7c37, #b9662b);
+    background-image: -o-linear-gradient(top, #dd7c37, #b9662b);
+    background-image: linear-gradient(to bottom, #dd7c37, #b9662b);
+    color: #fff !important;
+    border: 1px solid #f09d61;
+    text-shadow: #985813 0 -1px;
+  }
+  .smart-style-3 #logo-group span#activity:active, .smart-style-3 #logo-group span#activity:hover {
+    -webkit-box-shadow: inset 1px 1px 0 #985813, inset -1px -1px 0 #985813;
+    -moz-box-shadow: inset 1px 1px 0 #985813, inset -1px -1px 0 #985813;
+    box-shadow: inset 1px 1px 0 #985813, inset -1px -1px 0 #985813;
+    background-color: #dd7a35;
+    background-image: -moz-linear-gradient(top, #dd7a35, #984a13);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#dd7a35), to(#984a13));
+    background-image: -webkit-linear-gradient(top, #dd7a35, #984a13);
+    background-image: -o-linear-gradient(top, #dd7a35, #984a13);
+    background-image: linear-gradient(to bottom, #dd7a35, #984a13);
+  }
+
+  .smart-style-3 #logo img {
+    width: 110px;
+    height: auto;
+    padding-left: 3px;
+    margin-top: -3px;
+  }

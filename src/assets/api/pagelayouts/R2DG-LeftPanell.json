@@ -1,0 +1,83 @@
+{
+    "pageLayoutTemplate": {
+      "leftMenu": [
+        {
+          "sectionHeader": "Menu-Items",
+          "fieldsList": [
+            {
+              "componentString": "AnalyticsComponent",
+              "fieldName": "Dashboard",
+              "routerLink": "/dashboard",
+              "permissions": "R2DGLeftMenu_dashboard",
+              "icon": "fa fa-tachometer",
+              "label": "Dashboard",
+              "type": "Icon-Text",
+              "fieldValue": "",
+              "url": "getSystemTaskCount"
+            },
+            {
+              "componentString": "R2DGTaskComponent",
+              "fieldName": "R2DG Form",
+              "routerLink": "/r2dg-task",
+              "permissions": "R2DGLeftMenu_Mytask",
+              "icon": "fa fa-list",
+              "label": "R2DG Form",
+              "type": "Icon-Text",
+              "fieldValue": "",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "sectionHeader": "Search Task Fields",
+          "fieldsList": [
+            {
+              "componentString": "SearchTaskComponent",
+              "fieldName": "search",
+              "routerLink": "/task",
+              "size": 100,
+              "permissions": "R2DGLeftMenu_SearchArrowIcon",
+              "name": "Advanced Task Search",
+              "label": "Search Tasks",
+              "type": "Header",
+              "fieldValue": "",
+              "url": ""
+            },
+            {
+              "permissions": "R2DGLeftMenu_SearchForm",
+              "type": "Form",
+              "fieldsList": [
+                {
+                  "fieldName": "sourceTaskId",
+                  "size": 100,
+                  "permissions": "R2DGLeftMenu_TaskId",
+                  "label": "Source Task Id",
+                  "type": "TextBox",
+                  "fieldValue": ""
+                },
+                {
+                  "fieldName": "orderNumber",
+                  "size": 100,
+                  "permissions": "R2DGLeftMenu_OrderId",
+                  "label": "Swift Order ID",
+                  "type": "TextBox",
+                  "fieldValue": ""
+                },
+                {
+                  "fieldName": "Search",
+                  "size": 100,
+                  "permissions": "R2DGLeftMenu_SearchButton",
+                  "label": "Search",
+                  "type": "Button",
+                  "class": "fa fa-search",
+                  "fieldValue": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "templateName": "R2DG-LeftPanell",
+    "createdById": "AC30161"
+  }

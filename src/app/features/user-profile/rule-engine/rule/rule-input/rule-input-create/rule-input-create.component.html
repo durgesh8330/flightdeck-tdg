@@ -1,0 +1,79 @@
+<toaster-container [toasterconfig]="config1"></toaster-container>
+<mat-horizontal-stepper [linear]="true" #stepper>
+      <mat-step [stepControl]="ruleInputFormGroup" style="background-color: aqua">
+        <form [formGroup]="ruleInputFormGroup">
+          <ng-template matStepLabel>Rule Details</ng-template>
+          
+          <div class="col-sm-6">
+              <!-- <mat-form-field>
+                  <input matInput placeholder="Rule Name" formControlName="ruleInputName"  required>
+                </mat-form-field> -->
+            <label for="Name">
+              <b>Rule Name</b>
+            </label>
+            <div class="form-group">
+              <input type="text" class="form-control" id="name" formControlName="ruleInputName" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <label for="Description">
+              <b>Description</b>
+            </label>
+            <div class="form-group">
+              <textarea class="form-control" rows="5" id="description" formControlName="description"></textarea>
+            </div>
+            <!-- <mat-form-field>
+                <input matInput placeholder="Description" formControlName="description">
+              </mat-form-field> -->
+          </div>
+          <div>
+            <button class="btn btn-primary" matStepperNext>Next</button>
+            <!-- <button class="btn btn-primary" matStepperNext [disabled]="!ruleInputFormGroup.valid">Next</button> -->
+          </div>
+    
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="ruleInputFormGroup">
+        <form [formGroup]="ruleInputFormGroup">
+          <ng-template matStepLabel>Rule Decision Table</ng-template>
+          <div class="col-sm-12" style="border: 1em">
+            <mat-card-content>
+              <mat-form-field style="width:100%; height:100%;">
+                <app-drools-create-rule formControlName="decisionTable">
+    
+                </app-drools-create-rule>
+              </mat-form-field>
+            </mat-card-content>
+          </div>
+          <div>
+            <button class="btn btn-default" matStepperPrevious>Back</button>
+            <button class="btn btn-primary" matStepperNext >Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="ruleInputFormGroup">
+        <form [formGroup]="ruleInputFormGroup">
+          <ng-template matStepLabel>Rule Script</ng-template>
+          <div class="col-sm-12" style="border: 1em">
+            <mat-card-content>
+              <!-- <mat-form-field style="width:100%; height:100%;">
+                <mat-codemirror formControlName="groovy" required [options]="{ theme: 'eclipse', mode: 'groovy',styleActiveLine: true, autoCloseBrackets: true }"
+                  placeholder="Rule Logic"></mat-codemirror>
+              </mat-form-field> -->
+              <div class="form-group">
+                  <textarea class="form-control" placeholder="Rule Logic" id="description" formControlName="groovy" required></textarea>
+                </div>
+              <div>Console</div>
+              <div id="error"> {{compilationErrorMessage}}
+              </div>
+            </mat-card-content>
+          </div>
+    
+          <div>
+            <button class="btn btn-default" matStepperPrevious >Back</button>
+            <button class="btn btn-primary" (click)="createOrUpdateRuleInput()" *ngIf="compilationErrorMessage!='Success'">Submit</button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
+    

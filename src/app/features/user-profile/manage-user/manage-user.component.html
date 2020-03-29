@@ -1,0 +1,132 @@
+<div *ngIf="loader" class="loaderOnSection">
+    <!-- <mat-spinner class="spinner-style"></mat-spinner> -->
+    <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+    </div>
+<div>
+  <div class="alert alert-success alert-dismissible" *ngIf="IsSuccess" style="background-color: green;color: #fff;">
+    <strong>Success! </strong>{{message}}.
+    <button type="button" class="close" data-dismiss="alert" style="opacity: 1;color: #fff;" (click)="IsSuccess = false">&times;</button>
+  </div>
+  <div class="alert alert-danger alert-dismissible" *ngIf="IsError" style="background-color: #ce2f2f;color: #fff;">
+    <strong>Error! </strong>{{message}}.
+    <button type="button" class="close" data-dismiss="alert" style="opacity: 1;color: #fff;" (click)="IsError = false">&times;</button>
+  </div>
+</div>
+<div class="row search-btn-control tab-content ">
+    <div class="col-xs-12 filterctrl">
+      <div class="col-xs-3 col-md-3 col-sm-4 col-lg-3" *ngFor="let filter of templateObject.filterInput">
+          <div [ngSwitch]="filter.type">
+              <div *ngSwitchCase="'text'">
+                  <label class="col-xs-12 col-sm-6 col-md-2 col-lg-6 control-label">
+                      {{filter.label}} </label>
+                    <input type="text" class="form-control mng-usr-sel" [(ngModel)]="templateObject.criteriaValue" required />
+              </div>
+              <div *ngSwitchCase="'select'">
+                  <label class="col-xs-12 col-sm-6 col-md-6 col-lg-12 control-label">
+                      {{filter.label}} </label>
+                    <select class="form-control mng-usr-sel" (change)="onCriteriaChange($event)" required>
+                      <option *ngFor="let element of filterByNameList" [value]="element">{{element}}</option>
+                    </select>
+              </div>        
+      </div>
+      </div>
+      <!-- <div class="col-xs-3 col-md-3 col-sm-4 col-lg-3">
+        
+      </div> -->
+      <div class="col-xs-4 col-sm-4 col-md-6 col-lg-6 filterbtn-group">
+        <button class="btn btn-success blue__btn" mat-raised-button *ngFor="let action of templateObject.actions" (name)="action.fieldName" (click)="onActionButtonClick(action.fieldName);" color="primary">{{action.label}}</button>
+      
+        <!-- <button mat-raised-button (click)="onAddUser();" color="primary">Add User</button>
+        <button mat-raised-button (click)="onViewAllUser();" color="primary">View All Users</button> -->
+      </div>
+    </div>
+  
+  </div>
+ 
+  <div class="padding-10">
+    <ul class="nav nav-tabs" id="usrTbs">
+      <!-- <li class="nav nav-tabs tabs-pull-right active" [ngClass]="{'active':isThemeBuilderActive}" (click)="onSelectThemeBuilderTab()">
+              <a href="#a3" data-toggle="tab">Theme Builder</a>
+            </li> -->
+      <li *ngFor="let tab of templateObject.tabList" class="nav nav-tab user-tab" (click)="makeTabActive(tab)" [ngClass]="(tab.isWorkflowActive) ? 'mat-tab-label-active mat-tab-label' : 'mat-tab-label'">
+        <div>
+          <a class="mat-tab-label-content" href='#a{{tab.tabId}}' data-toggle="tab">{{tab.tabName}}
+            <i class="fa fa-times close-icon" aria-hidden="true" (click)="removeTab(tab.tabId);"></i>
+          </a>
+        </div>
+        <div *ngIf="tab.isWorkflowActive" class="mat-ink-bar" style="visibility: visible;left: 0px;width: 91%;"></div>
+      </li>
+      <!-- <li class="active">
+            <a href="#a2" data-toggle="tab">Manage Members</a>
+          </li> -->
+      <!-- <li class="nav nav-tabs tabs-pull-right active" [ngClass]="{'active':isMemberActive}" (click)="onSelectMembersTab()">
+            <a href="#a3" data-toggle="tab">Manage Members</a>
+          </li> -->
+  
+      <!-- <li class="pull-left">
+            <span class="margin-top-10 display-inline"><i class="fa fa-rss text-success"></i> Activity</span>
+          </li> -->
+    </ul>
+    <div class="tab-content padding-top-0" style="margin-top:15px;">
+      <!-- <div class="tab-pane fade in" id="a1" [ngClass]="{'active':isWorkflowActive}">
+          </div>
+           -->
+      <div class="tab-pane fade in active" *ngFor="let tabInfo of templateObject.tabList" id="a{{tabInfo.tabId}}" [ngClass]="{'active':tabInfo.isWorkflowActive}">
+  
+        <!-- widget grid -->
+        <sa-widgets-grid>
+  
+          <!-- row -->
+          <div class="row manage-user-profile">
+  
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+  
+              <!-- Widget ID (each widget will need unique ID)-->
+              <!-- <basic-wizard-widget></basic-wizard-widget> -->
+              <!-- end widget -->
+  
+              <!-- </article> -->
+              <!-- WIDGET END -->
+  
+              <!-- NEW WIDGET START -->
+              <!-- <article class="col-sm-12 col-md-12 col-lg-6"> -->
+  
+              <!-- Widget ID (each widget will need unique ID)-->
+              <div *ngIf="!tabInfo.isTableView && !tabInfo.isAddUser">                  
+                  <sa-profile-info (onTabNameChange)="onTabNameChange($event,tabInfo)" [paramfieldstatus]="false" [editingProfileDetail]="tabInfo.userProfileData"></sa-profile-info>
+              </div>
+              <div *ngIf="!tabInfo.isTableView && tabInfo.isAddUser">
+                <sa-user-wizard [isEditing]="isEditing" (onShowUserEditPage)="onShowUserEditPage($event)" (onTabNameChange)="onTabNameChange($event,tabInfo)" [editingProfileDetail]="tabInfo.userProfileData"></sa-user-wizard>
+             </div>
+              <div *ngIf="tabInfo.isTableView && !tabInfo.isAddUser">
+                <div sa-widget [editbutton]="false" [deletebutton]="false">
+                  <header *ngIf="templateObject.showWidgetDetails">
+                    <h2>{{pageTitle}}</h2>
+                  </header>
+                  <sa-profile-list (onProfileDetails)="onProfileDetailClick($event)" [isOnlyManageMember]="true"></sa-profile-list>
+                </div>
+              </div>
+              <!-- end widget -->
+  
+            </article>
+            <!-- WIDGET END -->
+  
+          </div>
+  
+          <!-- end row -->
+  
+        </sa-widgets-grid>
+      </div>
+  
+      <!-- <div class="tab-pane fade in active" id="a3" [ngClass]="{'active':isThemeBuilderActive}">
+            
+          </div> -->
+      <!-- end tab -->
+    </div>
+  </div>

@@ -1,0 +1,35 @@
+{
+  "pageLayoutTemplate": [
+    {
+      "sectionHeader": "Header Details",
+      "fieldsList": [
+        {
+          "fieldName": "sourceTaskId",
+          "visible": true,
+          "label": "ID",
+          "fieldValue": ""
+        },
+        {
+          "fieldName": "taskName",
+          "visible": true,
+          "label": "Type",
+          "fieldValue": ""
+        },
+        {
+          "fieldName": "taskStatus",
+          "visible": true,
+          "label": "STATUS",
+          "fieldValue": ""
+        },
+        {
+          "fieldName": "orderId",
+          "visible": true,
+          "label": "Order Number",
+          "fieldValue": ""
+        }
+      ]
+    }
+  ],
+  "templateName": "R2DG Automation View",
+  "createdById": "AC30161"
+}

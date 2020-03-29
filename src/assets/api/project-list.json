@@ -1,0 +1,39 @@
+{
+    "data": [
+        {
+            "profilename": "Glover Andrew",
+            "status": "ACTIVE",
+            "starts": "08-01-2019",
+            "ends": "08-12-2019",
+            "projects": "AngularJs UI Design",
+            "application": "Omnivue",
+            "workgroups": [
+                "ASP,CDP"
+            ],
+            "roles": [
+                "BPMS Task Manager","QMV Manager"
+            ],
+            "accesslevels": [
+                "Edit Circuit"
+            ]
+
+        },
+        {
+            "profilename": "string",
+            "status": "INACTIVE",
+            "starts": "08-01-2018",
+            "ends": "08-12-2019",
+            "projects": "string",
+            "application": "string",
+            "workgroups": [
+                "string"
+            ],
+            "roles": [
+                "string"
+            ],
+            "accesslevels": [
+                "string"
+            ]
+        }
+    ]
+}

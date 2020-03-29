@@ -1,0 +1,260 @@
+<div *ngIf="loader" class="task_loader">
+	<!-- <mat-spinner class="spinner-style"></mat-spinner> -->
+	<!-- <img src="assets/img/task_loader.svg" width="125px" alt="task" /> -->
+	<!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+	<div class="spinner">
+		<div class="bounce1"></div>
+		<div class="bounce2"></div>
+		<div class="bounce3"></div>
+	</div>
+</div>
+
+<sa-widgets-grid>
+		<!-- <div *ngIf="!previousDisable" style="float: left;margin-left: 10px;cursor: pointer;" (click)="previousTasks()"><i class="material-icons">arrow_back</i></div>
+	 <div *ngIf="previousDisable" style="float: left;margin-left: -30px;opacity: 0.5;"><i class="material-icons">arrow_back</i></div> -->
+		<div sa-widget [editbutton]="false" [fullscreenbutton]="true" [name]="taskresultwodgetwa" [deletebutton]="false"
+		color="blueDark">
+		<header>
+	 <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+	 <h2>Search Results</h2>
+		</header>
+
+	     <div class="mat-elevation-z8">
+		<!-- <mat-form-field>
+		   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search using any column data">
+		   
+		   </mat-form-field> -->
+		<div class="table-container">		   
+		      <div style="height: auto;">
+					<div style="display:inline; position:relative; color:#15a703;top:10px;">						
+						Retrieving {{(pagination.pageNumber)*100 + 1}} - {{
+						((pagination.pageNumber +1 )*pagination.pageSize)>pagination.totalRecords?pagination.totalRecords:
+						((pagination.pageNumber+1)*100)
+						}} of {{pagination.totalRecords}} records.
+					</div>
+					<div style=" display:inline;margin-left:60px; margin-right:60px;position:relative;top:10px;">
+						<label for="per-page" style=" color:#15a703;">
+						Per Page:
+						</label>&nbsp;
+						<select id="per-page" (change)="onLimitChange($event.target.value)">
+						<option *ngFor="let option of pageLimitOptions" [value]="option.value" [selected]="option.value == currentPageLimit">
+						{{ option.value }}
+						</option>
+						</select>						
+					</div>
+
+					<div style=" display:inline;margin-left:60px; margin-right:60px;position:relative;top:10px;">
+						<label for="per-page" style=" color:#15a703;">
+						Page Number:
+						</label>&nbsp;
+						<label style=" color:#15a703;">{{currentPageNumber}}/{{tablePaginationData.length}}</label>
+					</div>
+
+			 <div style="float: right; margin: 3px;">
+			    <a class="btn btn-default buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_8" href="#"
+			       (click)="printPDF()">
+			    <span>PDF</span></a>
+			    <a class="btn btn-default buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_8" (click)="printData()"
+			       href="#">
+			    <span>Print</span></a>
+			 </div>
+			 <table id="tablepdf" class="table table-bordered table-striped table-hover smart-form">
+			    <thead>
+			       <tr>
+				  <th>
+				  </th>
+				  <th style="width:3%;text-align: center;">
+				     <div style="cursor: pointer; margin-top: 60%;">
+					<input type="checkbox" (change)="onSelectAllCheckBox($event)" name="selectAllCheckBox" [ngModel]="isAllTaskSelected" />
+				     </div>
+				  </th>
+				  <th style="width:14%">
+					  <div style="cursor: pointer; text-align: center;" (click)="onSortSelection('appTaskInstanceId')">
+						App Task Instance Id
+				     </div>
+				     <div style="float: left;width:100%; margin-top: 5px;">
+					<input type="text" (input)="filterTaskResult('taskinstance')" [(ngModel)]="taskInstance" name="taskInstance"
+					style="width: 100%;overflow: visible;padding: 3px;" />
+				     </div>
+				  </th>
+				  <th style="width:10%;">
+				     <div style="cursor: pointer; text-align: center;" (click)="onSortSelection('taskStatus')">Task Status</div>
+				     <div style="float: left;width:100%; margin-top: 5px;">
+					<input type="text" (input)="filterTaskResult('tasktatus')" [(ngModel)]="taskStatus" name="taskStatus" style="width: 100%;overflow: visible;padding: 3px;" />
+				     </div>
+				  </th>
+				  <!--
+				  <th style="width:14%">
+				     <div style="cursor: pointer; text-align: center;" (click)="onSortSelection('application')">Application</div>
+				     <div style="float: left;width:100%; margin-top: 5px;">
+					<input type="text" (input)="filterTaskResult('application')" [(ngModel)]="applicationName" name="applicationName"
+					style="width: 100%;overflow: visible;padding: 3px;" />
+				     </div>
+				  </th> -->
+				  <th style="width:11%">
+				     	<div style="cursor: pointer; text-align: center;" (click)="onSortSelection('assignedCuid')">Assigned CUID</div>
+				     	<div style="float: left;width:100%; margin-top: 5px;">
+							<input type="text" (input)="filterTaskResult('assignedCuid')" [(ngModel)]="assignedCuid" name="assignedCuid" 
+							style="width: 100%;overflow: visible;padding: 3px;" />
+				     	</div>
+				  </th>
+				  <th style="width:13%">
+				     <div style="cursor: pointer; text-align: center;" (click)="onSortSelection('sourceSystem')">Application</div>
+				     <div style="float: left;width:100%; margin-top: 5px;">
+							<input type="text" (input)="filterTaskResult('sourcesystem')" [(ngModel)]="sourceSystem" name="sourceSystem"
+								style="width: 100%;overflow: visible;padding: 3px;" />
+				     </div>
+				  </th>
+				  <th style="width:11%">
+				     <div style="cursor: pointer; text-align: center;" (click)="onSortSelection('createdById')">Created By Id</div>
+				     <div style="float: left;width:100%; margin-top: 5px;">
+					<input type="text" (input)="filterTaskResult('createdbyid')" [(ngModel)]="createdById" name="createdById"
+					style="width: 100%;overflow: visible;padding: 3px;" />
+				     </div>
+				  </th>
+				  <th style="width:20%">
+				     <div style="cursor: pointer; text-align: center;" (click)="onSortSelection('createdDateTime')">Created Date
+					Time
+				     </div>
+				     <div style="float: left;width:100%; margin-top: 5px;">
+					<input type="text" (input)="filterTaskResult('createddatetime')" [(ngModel)]="createdDateTime" name="createdDateTime"
+					style="width: 100%;overflow: visible;padding: 3px;" />
+				     </div>
+				  </th>
+			       </tr>
+			    </thead>
+			    <tbody style="background: white;">
+			       <!-- <tr *ngFor="let task of displayTaskResult">
+				  <td style="width: 1%;">
+					  <input (change)="onSingleTaskSelected(task)" type="checkbox" [ngModel]="task.isSelected"/></td>
+				    <td style="width:15%;">
+					  <span (click)="openDetailView(task)" style="text-decoration:underline;cursor: pointer;">
+						  {{task.appTaskInstanceId}}</span></td>
+				    <td style="width:10%;" (dblclick)="onTaskStatusEding(task.taskId, true)">
+					  <span *ngIf="!task.isStatusEditing">{{task.taskStatus}}</span>
+					  <div *ngIf="task.isStatusEditing">
+							  <select (blur)="onTaskStatusEding(task.taskId, false)"
+							   [value]="value"
+							   (change)="updateValue($event, 'taskStatus', task.taskId)">
+							  <option value="Open">Open</option>
+							  <option value="In-Progress">In-Progress</option>
+							  <option value="Cancel">Cancel</option>
+							  <option value="Complete">Complete</option>
+						  </select>
+				  
+					  </div>
+				  </td>
+				    <td style="width:15%;">{{task.application}}</td>
+				    <td style="width:12%;">{{task.claimId}}</td>
+				    <td style="width:13%;">{{task.sourceSystem}}</td>
+				    <td style="width:12%;">{{task.createdById}}</td>
+				    <td style="width:22%;">{{task.createdDateTime}}</td>
+				  </tr> -->
+			       <tr *ngFor="let task of pagedItems; let i = index">
+				  <td style="width: 1%;" *ngIf="!task.isRowDetailOpen">
+				     <div (click)="onRowDetailClick(task,i)" style="cursor:pointer;">
+					<i *ngIf="task.isIconMinus" class="material-icons" style="font-weight:bold;font-size:15px;">
+					remove
+					</i>
+					<i *ngIf="!task.isIconMinus" class="material-icons" style="font-weight:bold;font-size:15px;">
+					add
+					</i>
+				     </div>
+				  </td>
+				  <td *ngIf="!task.isRowDetailOpen" style="width: 1%;">
+				     <input (change)="onSingleTaskSelected(task)" type="checkbox" [ngModel]="task.isSelected" />
+				  </td>
+				  <td *ngIf="!task.isRowDetailOpen" style="width:15%;">
+				     <span (click)="openDetailView(task)" style="text-decoration:underline;cursor: pointer;">
+				     {{task.appTaskInstanceId}}</span>
+				  </td>
+				  <td *ngIf="!task.isRowDetailOpen" style="width:10%;" (dblclick)="onTaskStatusEding(task.taskId, true)">
+				  <span *ngIf="!task.isStatusEditing">{{task.taskStatus}}</span>
+				  <div *ngIf="task.isStatusEditing">
+				     <select (blur)="onTaskStatusEding(task.taskId, false)" [value]="value" (change)="updateValue($event, 'taskStatus', task.taskId)">
+				     <option value="Open">Open</option>
+				     <option value="In-Progress">In-Progress</option>
+				     <option value="Cancel">Cancel</option>
+				     <option value="Complete">Complete</option>
+				     </select>
+				  </div>
+				  </td>
+				  <!--<td *ngIf="!task.isRowDetailOpen" style="width:15%;">{{task.application}}</td> -->
+				  <td *ngIf="!task.isRowDetailOpen" style="width:12%;">{{task.assignedCuid}}</td>
+				  <td *ngIf="!task.isRowDetailOpen" style="width:13%;">{{task.sourceSystem}}</td>
+				  <td *ngIf="!task.isRowDetailOpen" style="width:12%;">{{task.createdById}}</td>
+				  <td *ngIf="!task.isRowDetailOpen" style="width:21%;">{{task.createdDateTime}}</td>
+				  <td *ngIf="task.isRowDetailOpen" colspan="9">
+				     <sa-task-details [processData]="task" [isHeaderControlVisible]="false" id=`id${index}`></sa-task-details>
+				  </td>
+			       </tr>
+			    </tbody>
+			 </table>
+			 <div style="float:left;width: 200px; margin-top: 5px;">{{selectedTaskResultCount}} selected / {{totalPageData}}
+			    total
+			 </div>
+
+			 <div style="width: 70%;float: right; margin-top: 10px; margin-bottom:20px;" class="dataTables_paginate paging_simple_numbers"
+			    id="DataTables_Table_0_paginate">
+					<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+							<li [ngClass]="{disabled:pager.currentPage === 1}">
+								<a (click)="setPage(1)">First</a>
+							</li>
+							<li [ngClass]="{disabled:pager.currentPage === 1}">
+								<a (click)="setPage(pager.currentPage - 1)">Previous</a>
+							</li>
+							<li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+								<a (click)="setPage(page)">{{page}}</a>
+							</li>
+							<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+								<a (click)="setPage(pager.currentPage + 1)">Next</a>
+							</li>
+							<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+								<a (click)="setPage(pager.totalPages)">Last</a>
+							</li>
+						</ul>
+			</div>
+
+			
+			<!--  <div style="width: 70%;float: right; margin-top: 10px; margin-bottom:20px;" class="dataTables_paginate paging_simple_numbers"
+			    id="DataTables_Table_0_paginate">
+				 <ul class="pagination" style="float: right;">
+					<li class="paginate_button previous" [ngClass]="{'disabled':pagination.pageNumber == 0 }" id="DataTables_Table_0_previous">
+						<a  (click)="pagination.pageNumber == 0 || previousTasks()"  [ngClass]="{'disabled':pagination.pageNumber == 0 }"
+						 aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">
+						Previous 100</a>
+						  </li>
+			       <li class="paginate_button previous" [ngClass]="{'disabled':currentPageNumber === 1}" id="DataTables_Table_0_previous">
+				  <a (click)="onGridPrevious()" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">
+				  Previous</a>
+			       </li>
+			       <li *ngFor="let pageNumber of tablePaginationData" class="paginate_button" [ngClass]="{'active':currentPageNumber === pageNumber}">
+			       <a aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" (click)="onPaginateInnerGrid(pageNumber)">
+					 {{pageNumber}}</a></li>					 
+			       <li class="paginate_button next" [ngClass]="{'disabled':currentPageNumber===tablePaginationData.length}" id="DataTables_Table_0_next">
+				  <a (click)="onGridNext()" aria-controls="DataTables_Table_0" data-dt-idx="8" tabindex="0">Next</a>
+				  <li class="paginate_button next" [ngClass]="{'disabled': pagination.totalRecords < 100}" id="DataTables_Table_0_next">
+					<a (click)="pagination.totalRecords < 100 || nextTasks()" [ngClass]="{'disabled': pagination.totalRecords < 100}" aria-controls="DataTables_Table_0" data-dt-idx="8" tabindex="0">Next 100</a>
+			       </li>
+			    </ul>
+			 </div> -->
+			  <!--<div class="row" style="margin-top:5px;" *ngIf="pagination && pagination != null && pagination.totalRecords > 100">
+			    <div class="col-md-8" style="width:100%; margin-top: 5px;">
+			       <div *ngIf="!previousDisable" style="float: left;margin-left: 5px;cursor: pointer;" (click)="previousTasks()"><i
+				  class="material-icons">arrow_back</i>
+			    </div>
+			    <div *ngIf="previousDisable" style="float: left;margin-left: 5px;opacity: 0.5;"><i class="material-icons">arrow_back</i></div>
+			   
+				 <div style="float:left; margin-left:50px;">  {{pagination.pageNumber}}{{currentPageNumber
+				  }} {{currentPageLimit}} Showing {{(pagination.pageNumber*pagination.pageSize)+((currentPageNumber - 1) * currentPageLimit) +1}} - {{(pagination.pageNumber*pagination.pageSize)+(currentPageNumber*currentPageLimit)}} of {{pagination.totalRecords}} records.
+					</div>
+			    <div *ngIf="!nextDisable" style="float: right;cursor: pointer;" (click)="nextTasks()"><i class="material-icons">arrow_forward</i>
+			 </div>
+			 <div *ngIf="nextDisable" style="float: right;opacity: 0.5;"><i class="material-icons">arrow_forward</i></div>
+		      </div>
+			 </div> -->
+	     	      </div>
+</div>
+</div>
+</div>
+</sa-widgets-grid>

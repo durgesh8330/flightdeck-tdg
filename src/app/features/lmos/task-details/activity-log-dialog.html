@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Add Activity Log</h1>
+<div>
+	<div class="col-xs-12 col-md-4 col-sm-6 col-lg-3">
+		<form name="form" (ngSubmit)="f.form.valid && onActivitySubmit()" #f="ngForm" novalidate>
+			<div class="form-group">
+
+				<mat-form-field class="example-full-width">
+					<textarea matInput placeholder="activityValue" name="activityValue" [(ngModel)]="model.activityValue" #activityValue="ngModel" required>
+						</textarea>
+				</mat-form-field>
+
+			<div mat-dialog-actions class="form-group" style="width:215px;">
+				<button mat-raised-button type="button" (click)="onNoClick()" style="margin-right: 10px;">Cancel</button>
+				<button mat-raised-button type="submit" color="primary">Submit</button>
+			</div>
+			</div>
+		</form>
+	</div>
+</div>

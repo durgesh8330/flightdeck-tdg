@@ -1,0 +1,85 @@
+<section #widgetsgrid id="widgets-grid" class="sortable-grid">
+  <div #widget [editbutton]="false" [name]="userdetailswodgetwa" [deletebutton]="false" [fullscreenbutton]="true" [colorbutton]="false" [collapsed]="true" role="widget">
+    <header role="heading" *ngIf="pageLayoutData.sectionHeader != 'Buttons'">
+        <div class="jarviswidget-ctrls" role="menu">
+          <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="Collapse" data-placement="bottom" (click)="collapsedBody = !collapsedBody">
+            <i class="fa fa-minus " *ngIf="collapsedBody"></i>
+            <i class="fa fa-plus " *ngIf="!collapsedBody"></i>
+          </a> 
+          <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="Fullscreen" data-placement="bottom">
+            <i class="fa fa-expand "></i>
+          </a> 
+        </div>
+        <span class="widget-icon"> <i class="fa fa-table"></i> </span>    
+        <!-- <ng-container *ngFor="let pgLayoutDetails of pageLayoutData['pageLayoutTemplate'];"> -->
+          <h2>{{pageLayoutData.sectionHeader}}</h2>
+        <!-- </ng-container> -->
+    </header>
+    <div id="paramaslayout-body" class="widget-body" *ngIf="collapsedBody == true && pageLayoutData.sectionHeader != 'Buttons'">
+      <!-- <ng-container *ngFor="let pgLayoutDetails of pageLayoutData['pageLayoutTemplate'];"> -->
+        <ng-container *ngFor="let obj of pageLayoutData.fieldsList; let i=index;">
+          <div [ngClass]="columnWidth ? columnWidth : 'col-md-2'" *ngIf="obj.visible!=false && pageLayoutData.sectionHeader != 'Buttons'">
+            <div [ngSwitch]="obj.type">
+              <div *ngSwitchCase="'TextBox'">
+                <div class="form-group mr-5-temp">
+                  <label class="control-label">{{obj.label}}</label>
+                  <input type="text" class="form-control input" name="textObj" style="width:95%;height: 30px;" *ngIf="obj.fieldName != 'EC'"
+                    [disabled]="(paramfieldstatus)? paramfieldstatus : !obj.editable" [(ngModel)]="obj.fieldValue">
+                  <input name="number" type="text" class="form-control input" maxlength="3" onlyNumber *ngIf="obj.fieldName == 'EC'"
+                    style="width:95%;height: 30px;" [disabled]="(paramfieldstatus)? paramfieldstatus : !obj.editable"
+                    [(ngModel)]="obj.fieldValue">
+                </div>
+              </div>
+              <div *ngSwitchCase="'textArea'">
+                <div class="form-group mr-5-temp">
+                  <label class="control-label">{{obj.label}}</label>
+                  <textarea class="form-control input" [(ngModel)]="obj.fieldValue" name="textAreaObj-{{i}}" style="width:95%;height: 50px;max-width:100%;"
+                    [disabled]="(paramfieldstatus)? paramfieldstatus : !obj.editable"></textarea>
+                </div>
+              </div>
+              <div *ngSwitchCase="'select'">
+                <div class="form-group" style="width: 95%; margin-bottom: 2px;">
+                  <label class="control-label">{{obj.label}}</label>
+                  <!-- Changed for GETCWM-11606 task fix -->
+                  <!-- <ng-select2 [data]="obj.ListOfValues" placeHolder='Please select' [(ngModel)]="obj.ListOfValues && obj.ListOfValues.length==1 ? obj.ListOfValues[0] : obj.fieldValue" name="lookUpObj-{{i}}"
+                    #lookUpObj="ngModel">
+                  </ng-select2> -->                  
+                  <select class="paramLayoutSelect" [(ngModel)]="obj.ListOfValues && obj.ListOfValues.length==1 ? obj.ListOfValues[0] : obj.fieldValue"
+                    name="lookUpObj-{{i}}" #lookUpObj="ngModel">
+                    <option></option>
+                    <option *ngFor="let listOfValue of obj.ListOfValues">{{listOfValue}}</option>
+                  </select>
+                </div>
+              </div>
+              <div *ngSwitchCase="'checkbox'">
+                <label class="control-label">{{obj.label}}</label>
+                <input type="checkbox" style="margin-left: 0px" [disabled]="(paramfieldstatus)? paramfieldstatus : !obj.editable"
+                  class="checkbox" style="visibility: visible" name='{{"fieldValue_1_"+i}}'>
+              </div>
+              <div *ngSwitchCase="'radio'" class="smart-form">
+                <label class="control-label">{{obj.label}}</label>
+                <input type="radio" style="margin-left: 0px;visibility: visible" [disabled]="(paramfieldstatus)? paramfieldstatus : !obj.editable"
+                  class="radiobox" name='{{"fieldValue_1_"+i}}'>
+              </div>
+              <div *ngSwitchCase="'MultiSelect'" class="select-field-size">
+                <div class="form-group" style="width: 95%;">
+                  <label class="control-label">{{obj.label}}</label>
+                  <ng-select2 [data]="obj.ListOfValues" name="multiObj" [options]="options" [disabled]="(paramfieldstatus)? paramfieldstatus : !obj.editable"
+                    [(ngModel)]="obj.selectedItems">
+                  </ng-select2>
+                </div>
+              </div>
+              <div *ngSwitchDefault>
+                <label class="example-margin">{{obj.label}}:</label>
+                field type <b>{{obj.type}}</b> is not supported yet.
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      <!-- </ng-container> -->
+      <div *ngIf="templateName == 'paramsLayout_TaskType' || templateName == 'paramsLayout_Workgroup' || templateName == 'paramsLayout_WorkgroupRole'">
+        <button class="search-btn save_update_btn pull-right" (click)="saveAndUpdate.emit(pageLayoutData)" style="margin: 50px 24px 0;">Save & Update </button>
+      </div> 
+    </div>
+  </div>
+</section>

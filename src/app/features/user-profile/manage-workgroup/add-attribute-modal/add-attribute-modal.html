@@ -1,0 +1,63 @@
+<h2>{{ dialogData.label }}</h2>
+<div style="height: 130px;" class="add_section">
+  <form
+    name="attrForm"
+    (ngSubmit)="attrForm.form.valid && onAttrSubmit()"
+    #attrForm="ngForm"
+    novalidate
+  >
+    <div class="form-group row">
+      <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+        <div class="row">
+          <div class="col-xs-4 col-md-4 col-sm-4 col-lg-4">
+            <label class="control-label">{{ dialogData.fieldLabel }}</label>
+            <span *ngIf="dialogData.mandatory" aria-hidden="true" class="text-danger"
+              >&nbsp;*</span
+            >
+          </div>
+          <div class="col-xs-8 col-md-8 col-sm-8 col-lg-8" style="min-height: 30px">
+            <div class="form-group">
+              <select
+                [class]="dialogData.class"
+                [disabled]="dialogData.disabled"
+                [(ngModel)]="selectedAttribute"
+                name="selectAttribute"
+                #selectAttribute="ngModel"
+                [required]="dialogData.mandatory"
+              >
+                <option
+                  *ngFor="let element of dialogData.dropdownList"
+                  [value]="element"
+                  >{{ element }}</option
+                >
+              </select>
+              <div
+                *ngIf="attrForm.submitted && selectAttribute.invalid"
+                class="text-danger text-left"
+              >
+                <small>{{ dialogData.fieldError }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-right"
+        style="padding-right: 27px"
+      >
+        <button
+          *ngFor="let action of dialogData.actions"
+          [title]="action.title"
+          [type]="action.type"
+          [class]="action.class"
+          (click)="!action.primary ? closeModal() : null"
+        >
+          {{ action.label }}
+        </button>
+        <!-- <button type="submit" class="btn btn-primary change_clr">
+          Add
+        </button> -->
+      </div>
+    </div>
+  </form>
+</div>

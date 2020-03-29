@@ -1,0 +1,616 @@
+<div class="col-sm-12 row" *ngIf="isShow == 'true' && pageLayout && pageLayout['pageLayoutTemplate']">
+  <div *ngFor="let layoutElem of pageLayout['pageLayoutTemplate']">
+    <div class="col-sm-12">
+      <div class="panel panel-primary spr-panel">
+        <div class="panel-heading">{{layoutElem.sectionHeader}}</div>
+        <div class="panel-body pnl-scrll">
+          <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right">
+            <form #searchTaskForm class="smart-form task-search-form">
+              <div *ngFor="let obj of layoutElem.fieldsList; let i=index;">
+                <div class="col-xs-12 col-md-4 col-sm-6 col-lg-3 section-block">
+                  <div [ngSwitch]="obj.type">
+                    <div *ngSwitchCase="'TextBox'">
+                      <div class="form-group mr-5-temp">
+                        <label class="control-label">{{obj.label}}</label>
+                        <input type="text" class="form-control input" name="textObj-{{i}}" #textObj="ngModel"
+                          [(ngModel)]="modelValue[obj.fieldName]" style="width:95%;">
+                      </div>
+                    </div>
+                    <div *ngSwitchCase="'textArea'">
+                      <div class="form-group mr-5-temp">
+                        <label class="control-label">{{obj.label}}</label>
+                        <textarea class="form-control input" autosize name="textAreaObj-{{i}}" #textAreaObj="ngModel"
+                          [(ngModel)]="modelValue[obj.fieldName]" rows="1" style="width:95%;">
+                                 </textarea>
+                      </div>
+                    </div>
+                    <div *ngSwitchCase="'select'">
+                      <div class="form-group" style="width: 95%;
+                                 margin-bottom: 2px;">
+                        <label class="control-label">{{obj.label}}</label>
+                        <ng-select2 [data]="obj.dropdownList" placeHolder='Please select' [options]="options"
+                          [(ngModel)]="modelValue[obj.fieldName]" name="selectObj-{{i}}" #selectObj="ngModel">
+                        </ng-select2>
+                      </div>
+                    </div>
+                    <div *ngSwitchCase="'lookup'">
+                      <div class="form-group" style="width: 95%;
+                                 margin-bottom: 2px;">
+                        <label class="control-label">{{obj.label}}</label>
+                        <ng-select2 [data]="obj.dropdownList" placeHolder='Please select' [width]="500" [(ngModel)]="modelValue[obj.fieldName]"
+                          name="lookUpObj-{{i}}" #lookUpObj="ngModel">
+                        </ng-select2>
+                      </div>
+                    </div>
+                    <div *ngSwitchCase="'slide'">
+                      <!-- <on-off-switch title="{{obj.label}}" [(ngModel)]="modelValue[obj.fieldName]" (change)="onChange()"></on-off-switch> -->
+                    </div>
+                    <div *ngSwitchCase="'checkbox'">
+                      <label class="control-label">{{obj.label}}</label>
+                      <input type="checkbox" style="margin-left: 0px" [disabled]="!obj.editable" class="checkbox" style="visibility: visible"
+                        name='{{"fieldValue_1_"+i}}' [(ngModel)]="modelValue[obj.fieldName]">
+                    </div>
+                    <div *ngSwitchCase="'radio'" class="smart-form">
+                      <label class="control-label">{{obj.label}}</label>
+                      <input type="radio" style="margin-left: 0px;visibility: visible" [disabled]="!obj.editable" class="radiobox"
+                        name='{{"fieldValue_1_"+i}}' [(ngModel)]="modelValue[obj.fieldName]">
+                    </div>
+                    <div *ngSwitchCase="'MultiSelect'" class="select-field-size">
+                      <div class="form-group" style="width: 95%;">
+                        <label class="control-label">{{obj.label}}</label>
+                        <!-- <ng-select2 [data]="obj.dataSource" [width]="500" [options]="options" [(ngModel)]="modelValue[obj.fieldName]"
+                          name="multiObj-{{i}}" #multiObj="ngModel">
+                        </ng-select2> -->
+                      </div>
+                    </div>
+
+                    <div *ngSwitchDefault>
+                      <label class="example-margin">{{obj.label}}:</label>
+                      field type <b>{{obj.type}}</b> is not supported yet.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div *ngFor="let field of NewV2Data; let i =index">
+    <div class="col-sm-6" *ngIf="field.header != 'Customer Attributes' ">
+      <div class="panel panel-primary spr-panel">
+        <div class="panel-heading">{{ field.header}}</div>
+        <div class="panel-body">
+          <div class="col-xs-4 col-md-4 col-sm-4 col-lg-4 no-padding-right" *ngFor="let fieldData of field.paramList; let j=index">
+
+            <label class="control-label">
+              {{ fieldData.name}}<br>
+              <textarea class="c-inpt-fc form-control" rows="2" name="{{ fieldData.value}}" value="{{ fieldData.value}}"></textarea>
+
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>
+
+<div class="wrap" *ngIf="pageLayout && pageLayout['pageLayoutTemplate'] && (isShow == 'taskdetails' || isShow == 'sprtask')">
+  <!-- <div *ngIf="loaderTaskDetail" class="task_loader">
+      <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" />
+    </div> -->
+
+  <!-- <div class="form-group"> -->
+  <tabset>
+    <tab [active]="leftSideTabs.tab == 'task-details'" class="left-tab-pane">
+      <div class="col-sm-12" *ngIf="!loaderTaskDetail">
+        <div *ngIf="isShow == 'sprtask'">
+          <div class="col-sm-12 cm-mrg-left-30 " *ngFor="let value of data">
+            <div class="form-group">
+              <div class="input-group cm-pd-top-15">
+                <label class="key">ID</label>
+                <label class="value">{{ value.sourceTaskId }}</label>
+              </div>
+              <div class="input-group">
+                <label class="key">Type</label>
+                <label class="value">{{ value.taskName }}</label>
+              </div>
+              <div class="input-group">
+                <label class="key">STATUS</label>
+                <label class="value">{{ value.taskStatus }}</label>
+              </div>
+              <div class="input-group">
+                <label class="key">CD</label>
+                <label class="value">{{ value.statusCode }}</label>
+              </div>
+
+              <div class="input-group pull-right cm-mrg-right-15">
+                <button *ngIf="!hideDueDate" class="btn btn-success blue__btn mat-raised-button" mat-rasied-button
+                  (click)="OpenDuaDateDialogClick()" [disabled]="value.taskStatus == 'Cancelled' && (value.taskName == 'UNI' || value.taskName == 'OVC') ">Due
+                  Date</button>
+                <button *ngIf="!hideCancel" class="clear-btn reset-bgclr mat-raised-button" mat-rasied-button (click)="OpenCancelDialogClick()"
+                  [disabled]="value.taskStatus == 'Cancelled' && (value.taskName == 'UNI' || value.taskName == 'OVC') ">Cancel</button>
+                <!-- <button class="btn btn-primary">Save</button> -->
+                <!-- <button class="btn" (click)="Refresh()">
+                              <span class="glyphicon glyphicon-refresh"></span>
+                            </button> -->
+                <a class="cm-refresh" (click)="Refresh()" style="font-size:150%">
+                  <span class="glyphicon glyphicon-refresh"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clm-lout-gp-20">
+          <div *ngFor="let layoutElem of pageLayout['pageLayoutTemplate']">
+            <div *ngIf="layoutElem.sectionHeader !== 'Buttons' && layoutElem.sectionHeader != 'Other Fields' && CustomerAttributorData.length == 0 && isShow != 'sprtask'">
+              <div class="clm-card" *ngIf="layoutElem.sectionHeader != 'Other Fields'">
+                <div class="panel panel-primary spr-panel">
+                  <div class="panel-heading">{{ layoutElem.sectionHeader}}</div>
+                  <div class="panel-body">
+                    <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right" *ngFor="let elem of layoutElem.fieldsList; let j=index">
+
+                      <label class="control-label">
+                        {{elem.label}}<br>
+                        <!-- <div *ngIf="elem.label !== 'Task type' ">
+                          <textarea class="c-inpt-fc form-control" *ngIf="elem.fieldName && elem.fieldName.toLowerCase() != 'workgrouplist'"
+                            autosize name="{{ elem.fieldName }}" value="{{ taskDetails[elem.model] }}"></textarea>
+                          <textarea class="c-inpt-fc form-control" *ngIf="elem.fieldName && elem.fieldName.toLowerCase() == 'workgrouplist'"
+                            autosize name="{{ elem.fieldName }}" value="{{ taskDetails[elem.model] }}"></textarea>
+                        </div>
+                        <div *ngIf="elem.label === 'Task type' ">
+                          <textarea class="c-inpt-fc form-control" *ngIf="elem.fieldName.toLowerCase() != 'workgrouplist'"
+                            autosize name="{{ elem.field  Name }}" value="{{ taskDetails['taskName'] }}"></textarea>
+                        </div>   -->
+
+                        <div class="">
+                          <div *ngIf="elem.fieldName !== 'ng2Taskdd' && elem.type !== 'switch' || elem.type == 'MultiSelect' ">
+                            <textarea [name]="elem.fieldName" [(ngModel)]="taskDetails[elem.model]" [disabled]="true"
+                              [required]="elem.required" [readonly]="!elem.editable" class="form-control c-inpt-fc"
+                              autosize></textarea>
+                          </div>
+                          <div *ngIf="elem.fieldName == 'ng2Taskdd'">
+                            <textarea [name]="elem.fieldName" [(ngModel)]="taskDetails['taskName']" [disabled]="true"
+                              [required]="elem.required" [readonly]="!elem.editable" class="form-control c-inpt-fc"
+                              autosize></textarea>
+                          </div>
+                        </div>
+
+                        <!-- <div class="" *ngIf="elem.type == 'MultiSelect' && elem.visible">
+                         
+                          <div>
+                            <ng-select2 [data]="workGroupNamenew" [options]="elem.options" [width]="500" class="form-control c-inpt-fc"
+                              [name]="elem.fieldName" [(ngModel)]="taskDetails[elem.model]" [disabled]="elem.disabled"
+                              [required]="elem.required">
+                            </ng-select2>
+                          </div>
+                        </div> -->
+
+                        <div class="" *ngIf="elem.type == 'switch' && elem.visible">
+                          
+                          <div>
+                            <on-off-switch title="" [(model)]="taskDetails[elem.model]" [disabled]="elem.disabled"
+                              (change)="this[elem.change]()">
+                            </on-off-switch>
+                          </div>
+                        </div>
+
+                        <div class="" *ngIf="elem.type == 'textarea' && elem.visible">
+                          
+                          <div>
+                            <textarea class="form-control c-inpt-fc" [name]="elem.fieldName" [(ngModel)]="taskDetails[elem.model]"
+                              [disabled]="elem.disabled" [required]="elem.required" [readonly]="!elem.editable" [rows]="elem.rows"
+                              autosize>
+                            </textarea>
+                          </div>
+                        </div>
+                        <!-- <mat-form-field class="example-chip-list" *ngIf="elem.fieldName.toLowerCase() == 'workgrouplist'" >
+                                    <mat-chip-list #chipList aria-label="Fruit selection">
+                                      <mat-chip *ngFor="let fruit of taskDetails[elem.model]" [selectable]="selectable"
+                                               [removable]="removable" (removed)="remove(fruit)">
+                                        {{fruit.name}}
+                                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                      </mat-chip>
+                                      <input placeholder="New fruit..."
+                                             [matChipInputFor]="taskDetails[elem.model]"
+                                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                             [matChipInputAddOnBlur]="addOnBlur"
+                                             (matChipInputTokenEnd)="add($event)">
+                                    </mat-chip-list>
+                                  </mat-form-field> -->
+
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="layoutElem.sectionHeader == 'Customer Attributes' && CustomerAttributorData.length>0" class="clm-card">
+              <div class="panel panel-primary spr-panel">
+                <div class="panel-heading">{{layoutElem.sectionHeader}}</div>
+                <div class="panel-body pnl-scrll panel-tbl">
+                  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right avoid-brk">
+                    <table class="table table-boradred cstmr-att-tbl">
+                      <thead>
+                        <tr>
+                          <th *ngFor="let field of layoutElem.fieldsList" [style.minWidth]="field.fieldName == 'emailAddress' ? '220px' : '' ">{{field.label}}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let value of CustomerAttributorData">
+                          <td *ngFor="let field of layoutElem.fieldsList">
+                            <input class="tbl-inpt form-control" name="{{value[field.fieldName]}}" [disabled]="true" value="{{value[field.fieldName]}}">
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+          </div>
+          <div *ngIf="NewV2Data.length == 0 && taskDetails['taskSectionModels'] && taskDetails['taskSectionModels'].length > 0">
+            <div class="clm-card" *ngFor="let component of taskDetails['taskSectionModels']">
+              <div class="panel panel-primary spr-panel">
+                <div class="panel-heading">{{component['header']}}</div>
+                <div class="panel-body">
+                  <!-- <div class="clm-lout"> -->
+                  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right" *ngFor="let elem of component['paramList']">
+                    <!-- {{elem | json}} -->
+                    <label class="control-label" *ngIf="elem.paramFieldLayout">
+                      {{elem.paramFieldLayout.label}}<br>
+                      <textarea class="c-inpt-fc form-control" autosize name="{{ elem.name }}" [disabled]="true"  [(ngModel)]="elem['value']"></textarea>
+                    </label>
+                  </div>
+                  <!-- </div> -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngFor="let field of NewV2Data; let i =index" class="clm-card">
+            <div class="panel panel-primary spr-panel" *ngIf="field.header != 'Customer Attributes' ">
+              <div class="panel-heading">{{ field.header}}</div>
+              <div class="panel-body">
+                <!-- <div class="clm-lout"> -->
+                <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right" *ngFor="let fieldData of field.paramList; let j=index">
+                  <label class="control-label">
+                    {{ fieldData.name}}<br>
+                    <textarea class="c-inpt-fc form-control" autosize name="{{ fieldData.value}}" [disabled]="true"  value="{{ fieldData.value}}"></textarea>
+
+                  </label>
+                </div>
+                <!-- </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </tab>
+
+    <tab [active]="leftSideTabs.tab == 'general-details'" class="left-tab-pane">
+      <ng-container *ngIf="isShow && pageLayout && pageLayout.pageLayoutTemplate">
+        <div class="col-sm-12" *ngFor="let layoutElem of pageLayout.pageLayoutTemplate" style="padding-top: 10px;">
+          <div class="panel panel-primary spr-panel" *ngIf="layoutElem.sectionHeader == 'Task General Details'">
+            <div class="panel-heading">{{layoutElem.sectionHeader}}</div>
+            <div class="panel-body" style="column-count: 2;">
+              <div class="dynamic-table">
+                <div class="widget-body">
+                  <div class="table-responsive">
+                    <div class="panel-body general-tasks" style="column-count: 1;">
+                      <div class="row m-0">
+                        <div class="row m-0" *ngFor="let value of data">
+                          <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right elemWrapper" *ngFor="let elem of layoutElem.fieldsList">
+                            <div class="" *ngIf="elem.type == 'TextBox' && elem.visible">
+                              <label [class]="elem.labelCssClass">
+                                {{elem.label}}
+                              </label>
+                              <div [class]="elem.inputWrapperCssClass" *ngIf="elem.label !== 'Task Type' ">
+                                <input type="text" class="form-control" [name]="elem.fieldName" [(ngModel)]="value[elem.model]"
+                                  [required]="elem.required" [disabled]="true" [readonly]="!elem.editable" />
+                              </div>
+                              <div [class]="elem.inputWrapperCssClass" *ngIf="elem.label === 'Task Type' ">
+                                <input type="text" class="form-control" [name]="elem.fieldName" [(ngModel)]="value['taskName']"
+                                  [required]="elem.required" [disabled]="true" [readonly]="!elem.editable" />
+                              </div>
+                            </div>
+                            <div class="" *ngIf="elem.type == 'MultiSelect' && elem.visible">
+                              <label [class]="elem.labelCssClass">
+                                {{elem.label}}
+                              </label>
+                              <div [class]="elem.inputWrapperCssClass">
+                                <ul class="select2">
+                                  <li *ngFor="let e of value[elem.model]" class="cm-pd-right-5">
+                                    {{e.workgroupName}},
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="" *ngIf="elem.type == 'switch' && elem.visible">
+                              <label [class]="elem.labelCssClass">
+                                {{elem.label}}
+                              </label>
+                              <div [class]="elem.inputWrapperCssClass">
+                                <on-off-switch title="" [(model)]="value[elem.model]" [disabled]="elem.disabled"
+                                  (change)="this[elem.change]()">
+                                </on-off-switch>
+                              </div>
+                            </div>
+                            <div class="" *ngIf="elem.type == 'textarea' && elem.visible">
+                              <label [class]="elem.labelCssClass">
+                                {{elem.label}}
+                              </label>
+                              <div [class]="elem.inputWrapperCssClass">
+                                <textarea class="form-control" autosize [name]="elem.fieldName" [(ngModel)]="value[elem.model]"
+                                  [required]="elem.required" [disabled]="true" [readonly]="!elem.editable" [rows]="elem.rows">
+                                          </textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </tab>
+
+    <tab [active]="leftSideTabs.tab == 'audit-log'" class="left-tab-pane">
+          <div *ngIf="loaderTaskDetail" class="task_loader">
+            <img src="assets/img/task_loader.svg" width="125px" alt="task" />
+          </div>
+          <div *ngIf="!loaderTaskDetail">
+              <div id="systemtable" class="table-responsive" *ngFor="let layoutElem of logPageLayout['pageLayoutTemplate']">
+  
+                  <sa-widgets-grid>
+  
+                      <div sa-widget [editbutton]="false" [fullscreenbutton]="isHeaderControlVisible"
+                          [deletebutton]="false" color="blueDark" [colorbutton]="isHeaderControlVisible"
+                          [togglebutton]="isHeaderControlVisible">
+                          <header>
+                              <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                              <h2>{{layoutElem['sectionHeader']}}</h2>
+                          </header>
+                          <div id="tablesection" class="tablesectiondiv">
+                            <div id="table-section" class="tab-content padding-10 table-responsive" style="width:100%;">
+                              <table class="table table-bordered table-striped table-hover smart-form">
+                                  <thead>
+                                      <tr>
+                                          <th *ngFor="let elem of layoutElem['fieldsList']">
+                                              <div style="float: left;cursor: pointer;" (click)="onSortSelection(elem.fieldName)">
+                                                  {{elem.label}}
+                                              </div>
+                                              <div style="float: left;width:100%; margin-top: 5px;">
+                                                  <input type="text" (input)="filterTaskResult(elem.fieldName)"
+                                                      [(ngModel)]="activityLog[elem.fieldName]" 
+                                                      [name]="elem.fieldName"
+                                                      [disabled]="elem.editable"
+                                                      style="width: 100%;overflow: visible;padding: 3px;" />
+                                              </div>
+                                          </th>
+                                      </tr>
+                                  </thead>
+                                  <tbody *ngFor="let row of logData">
+                                      <tr>
+                                          <td *ngFor="let elem of layoutElem['fieldsList']">
+                                              <div *ngIf="elem.fieldName == 'activityDetails'" style="width:400px;">
+                                                  <pre class="pre-style" style="white-space: pre-wrap;" >{{row[elem.fieldName]}}</pre>
+                                              </div>
+                                              <div *ngIf="elem.fieldName != 'activityDetails'">
+                                                  {{(elem.fieldName === 'logdetailscreatedById') ? row['createdById'] : (elem.fieldName === 'logdeatilscreatedDateTime')? row['createdDateTime'] : row[elem.fieldName]}}
+                                              </div>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                            </div>
+                          </div>
+                          
+                      </div>
+                  </sa-widgets-grid>
+              </div>
+          </div>
+        </tab>
+
+    <tab [active]="leftSideTabs.tab == 'log-details'" class="left-tab-pane">
+      <div id="systemtable" class="table-responsive col-md-12" *ngFor="let layoutElem of logPageLayout['pageLayoutTemplate']"
+        style="margin-top: 12px;">
+        <div class="panel panel-primary spr-panel" *ngIf="layoutElem.sectionHeader == 'Log Details'">
+          <div class="panel-heading">{{layoutElem.sectionHeader}}</div>
+          <div class="panel-body" style="column-count: 1;">
+              <div class="widget-body" style="padding-top: 5px;overflow-y: hidden;padding: 1%;">
+                  <sa-table [actionButton]="actionButton" [actionColumn]="actionColumn" [tableHeader]="actionColumn"
+                    [tableData]="tableData" [filter]="filter" [tablePaginationData]="tablePaginationData"
+                    (showAdditionalDetailsParent)="showAdditionalDetails($event, taskDetails)"
+                    (pageChangedParent)="onPaginateInnerGrid($event)" (paginationChangeParent)="onLimitChange($event)"
+                    (filterColumnParent)="LogfilterTaskResult($event)" (onSortParent)="onLogSortSelection($event)"
+                    (previousAll)="previousTasks()" (previous)="onGridPrevious()" (nextAll)="nextTasks()" (next)="onGridNext()">
+                  </sa-table>
+              </div>
+          </div>
+        </div>
+        <!-- <sa-widgets-grid>
+
+                  <div sa-widget [editbutton]="false" [fullscreenbutton]="isHeaderControlVisible"
+                      [deletebutton]="false" color="blueDark" [colorbutton]="isHeaderControlVisible"
+                      [togglebutton]="isHeaderControlVisible">
+                      <div id="tablesection" class="tablesectiondiv">
+                        <div id="table-section" class="tab-content padding-10 table-responsive" style="width:100%;">
+                          <table class="table table-bordered table-striped table-hover smart-form">
+                              <thead>
+                                  <tr>
+                                      <th *ngFor="let elem of layoutElem['fieldsList']">
+                                          <div style="float: left;cursor: pointer;" (click)="onSortSelection(elem.fieldName)">
+                                              {{elem.label}}
+                                          </div>
+                                          <div style="float: left;width:100%; margin-top: 5px;">
+                                              <input type="text" (input)="filterTaskResult(elem.fieldName)"
+                                                  [(ngModel)]="activityLog[elem.fieldName]" 
+                                                  [name]="elem.fieldName"
+                                                  [disabled]="elem.editable"
+                                                  style="width: 100%;overflow: visible;padding: 3px;" />
+                                          </div>
+                                      </th>
+                                  </tr>
+                              </thead>
+                              <tbody *ngFor="let row of logData">
+                                  <tr>
+                                      <td *ngFor="let elem of layoutElem['fieldsList']">
+                                          <div *ngIf="elem.fieldName == 'activityDetails'" style="width:400px;">
+                                              <pre class="pre-style" style="white-space: pre-wrap;" >{{row[elem.fieldName]}}</pre>
+                                          </div>
+                                          <div *ngIf="elem.fieldName != 'activityDetails'">
+                                              {{(elem.fieldName === 'logdetailscreatedById') ? row['createdById'] : (elem.fieldName === 'logdeatilscreatedDateTime')? row['createdDateTime'] : row[elem.fieldName]}}
+                                          </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      
+                  </div>
+              </sa-widgets-grid> -->
+      </div>
+    </tab>
+    <tab [active]="leftSideTabs.tab == 'version-details'" class="left-tab-pane">
+      <div>
+        Version details
+      </div>
+    </tab>
+  </tabset>
+
+  <!-- </div> -->
+</div>
+
+<div class="col-sm-12 row" *ngIf="isShow == 'advanced-search' && pageLayout && pageLayout['pageLayoutTemplate']">
+  <div *ngFor="let layoutElem of pageLayout['pageLayoutTemplate']">
+    <div class="search-task-widget-wrapper" *ngIf="layoutElem.sectionHeader != 'Buttons' && layoutElem.sectionVisibility==true">
+      <sa-widgets-grid>
+        <div sa-widget [editbutton]="false" [fullscreenbutton]="true" [deletebutton]="layoutElem.deletebutton" [color]="layoutElem.color">
+          <div class="panel panel-primary spr-panel">
+            <div class="panel-heading">{{layoutElem.sectionHeader}}</div>
+            <div class="panel-body" style="column-count: 1;">
+              <div style="height: auto;" class="col-xs-12 col-md-12 col-sm-12 col-lg-12 no-padding-right search-panel">
+                <form #searchTaskForm class="smart-form task-search-form" (keyup.enter)="searchTask(layoutElem)">
+                  <!-- <div > -->
+                    <div class="col-xs-12 col-md-4 col-sm-6 col-lg-3 section-block" *ngFor="let obj of layoutElem.fieldsList; let i=index;">
+                      <div [ngSwitch]="obj.type">
+                        <div *ngSwitchCase="'TextBox'">
+                          <div class="form-group mr-5-temp">
+                            <label class="control-label">{{obj.label}}</label>
+                            <input type="text" class="form-control input" name="textObj-{{i}}" #textObj="ngModel"
+                              [(ngModel)]="modelValue[obj.label]" style="width:95%;">
+                          </div>
+                        </div>
+                        <div *ngSwitchCase="'textArea'">
+                          <div class="form-group mr-5-temp">
+                            <label class="control-label">{{obj.label}}</label>
+                            <textarea class="form-control input" autosize name="textAreaObj-{{i}}" #textAreaObj="ngModel"
+                              [(ngModel)]="modelValue[obj.label]" rows="1" style="width:95%;">
+                                           </textarea>
+                          </div>
+                        </div>
+                        <div *ngSwitchCase="'select'">
+                          <div class="form-group" style="width: 95%; margin-bottom: 2px;">
+                            <label class="control-label">{{obj.label}}</label>
+                            <ng-select2 [data]="obj.dropdownList" placeHolder='Please select' [options]="options"
+                              [(ngModel)]="modelValue[obj.label]" name="selectObj-{{i}}" #selectObj="ngModel">
+                            </ng-select2>
+                          </div>
+                        </div>
+                        <div *ngSwitchCase="'lookup'">
+                          <div class="form-group" style="width: 95%;margin-bottom: 2px;">
+                            <label class="control-label">{{obj.label}}</label>
+                            <ng-select2 [data]="obj.dropdownList" placeHolder='Please select' [width]="500" [(ngModel)]="modelValue[obj.label]"
+                              name="lookUpObj-{{i}}" #lookUpObj="ngModel">
+                            </ng-select2>
+                          </div>
+                        </div>
+                        <div *ngSwitchCase="'slide'">
+                          <on-off-switch title="{{obj.label}}" [(ngModel)]="modelValue[obj.label]" (change)="onChange()"></on-off-switch>
+                        </div>
+                        <div *ngSwitchCase="'checkbox'">
+                          <label class="control-label">{{obj.label}}</label>
+                          <input type="checkbox" style="margin-left: 0px" [disabled]="!obj.editable" class="checkbox"
+                            style="visibility: visible" name='{{"fieldValue_1_"+i}}' [(ngModel)]="modelValue[obj.label]">
+                        </div>
+                        <div *ngSwitchCase="'radio'" class="smart-form">
+                          <label class="control-label">{{obj.label}}</label>
+                          <input type="radio" style="margin-left: 0px;visibility: visible" [disabled]="!obj.editable"
+                            class="radiobox" name='{{"fieldValue_1_"+i}}' [(ngModel)]="modelValue[obj.label]">
+                        </div>
+                        <div *ngSwitchCase="'MultiSelect'" class="select-field-size">
+                          <div class="form-group" style="width: 95%;">
+                            <label class="control-label">{{obj.label}}</label>
+                            <ng-select2 [data]="obj.dataSource" [width]="500" [options]="options" [(ngModel)]="modelValue[obj.label]"
+                              name="multiObj-{{i}}" #multiObj="ngModel" class="multiselectbox">
+                            </ng-select2>
+                          </div>
+                        </div>
+                        <div *ngSwitchCase="'Date'">
+                          <div class="form-group mr-5-temp">
+                            <label class="control-label">{{obj.label}}</label>
+                            <div class="">
+                                <input [matDatepicker]="picker" class="form-control input" name="textObj-{{i}}" #textObj="ngModel"
+                                [(ngModel)]="modelValue[obj.label]" style="width:83%;float: left;" (click)="picker.open()" (focus)="picker.open();">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              <!-- <input class="form-control input" id="to" [saUiDatepicker]="{
+                                dateFormat: 'yy-mm-dd',
+                                defaultDate: '+3w',
+                                changesMonth: true,
+                                numberOfMonth: 3
+                              }"
+                              type="text" name="textObj-{{i}}" #textObj="ngModel"
+                              [(ngModel)]="modelValue[obj.label]" style="width:81%;float: left;">
+                              <span class="input-group-addon" style="width: 72%;height: 34px;"><i class="fa fa-calendar"></i></span> -->
+                            </div>
+                          </div>
+                        </div>
+
+                        <div *ngSwitchDefault>
+                          <label class="example-margin">{{obj.label}}:</label>
+                          field type <b>{{obj.type}}</b> is not supported yet.
+                        </div>
+                      </div>
+                    </div>
+                  <!-- </div> -->
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sa-widgets-grid>
+
+    </div>
+  </div>
+  <div class="errorMessage" *ngIf="layOutCounter==0">
+      {{errorMessage}} Please click <a target="_blank" href="https://audio.level3.com/new/request.asp?platid=5232"><b>here</b></a> to request access using Audio.
+  </div>
+  <div class="advanced-search" *ngFor="let layoutElem of pageLayout['pageLayoutTemplate']">
+    <div class="row search-btn-control text-right" *ngIf="layoutElem.sectionHeader == 'Buttons'">
+      <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9"> </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" style="position: relative;right: 10px;">
+        <span *ngFor="let button of layoutElem.fieldsList">
+          <button class="btn btn-success blue__btn mr-0" mat-raised-button (click)="searchTask(layoutElem);" color="primary"
+            *ngIf="button.click == 'searchTask' && button.btnVisibility == true">
+            {{ button.label }}
+          </button>
+          <a mat-raised-button (click)="clear(pageLayout['pageLayoutTemplate']);" routerLink="." class="clear-btn reset-bgclr"
+            *ngIf="button.click == 'clear' && button.btnVisibility == true">
+            {{ button.label }}
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

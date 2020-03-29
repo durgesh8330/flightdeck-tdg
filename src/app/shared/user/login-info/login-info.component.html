@@ -1,0 +1,7 @@
+<div id="login-info" class="login-info" *ngIf="us.user$ | async as user">
+  <span *ngIf="permissionList && permissionList.length>0"><a (click)="toggleShortcut()" style="margin-left: 28px !important;">
+	   <img *ngIf="user.picture" [src]="user.picture" alt="me"
+          class="online"/><span >{{user.displayName }}</span> <i class="fa fa-angle-down"></i>
+    </a>
+   </span>
+</div>

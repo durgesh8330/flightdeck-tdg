@@ -1,0 +1,8 @@
+:root{
+    --navigation_background:#011208;
+}
+
+.smart-style-1 #header {
+    background-image: none;
+    background-color: var(--navigation_background);
+}

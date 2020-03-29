@@ -1,0 +1,60 @@
+<div [ngSwitch]="obj.type">
+        <div *ngSwitchCase="'text'">
+              <mat-form-field>
+                  <input matInput [disabled]="!obj.editable" [(ngModel)]="obj.value" 
+                        [placeholder]="obj.label" [id]="obj.name">
+              </mat-form-field>
+        </div>
+        <div *ngSwitchCase="'textArea'">
+            <mat-form-field>
+                <textarea matInput [disabled]="!obj.editable" [(ngModel)]="obj.value"
+                         [placeholder]="obj.label" [id]="obj.name"></textarea>
+            </mat-form-field>
+        </div>
+        <div *ngSwitchCase="'select'">
+            <mat-form-field>
+                <mat-select [placeholder]="obj.label" [disabled]="!obj.editable">
+                  <mat-option *ngFor="let element of obj.dropdownList" value="{{element}}">
+                      {{element}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <div *ngSwitchCase="'slide'">
+            <mat-slide-toggle [color]="red" [checked]="obj.value" [disabled]="!obj.editable">
+                {{obj.label}}
+            </mat-slide-toggle>
+        </div>
+        <div *ngSwitchCase="'checkbox'">
+            <label class="example-margin">{{obj.label}}:</label>
+            <mat-checkbox class="example-margin" [disabled]="!obj.editable" [(ngModel)]="obj.element" *ngFor="let element of obj.dropdownList">
+              {{element}}
+            </mat-checkbox>
+        </div>
+        <div *ngSwitchCase="'radio'">
+            <label class="example-margin">{{obj.label}}:</label>
+            <mat-radio-group [disabled]="!obj.editable" class="example-radio-group" [(ngModel)]="obj.value">
+                <mat-radio-button class="example-radio-button" *ngFor="let element of obj.dropdownList" [value]="element">
+                  {{element}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div *ngSwitchCase="'date'">
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" [placeholder]="obj.label">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+        </div>
+        <div *ngSwitchCase="'multiselect'">
+            <mat-form-field>
+                <mat-select [placeholder]="obj.label" multiple>
+                      <mat-option *ngFor="let element of obj.dropdownList" [value]="element">{{element}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div *ngSwitchDefault>
+                <label class="example-margin">{{obj.label}}:</label>
+                field type <b>{{obj.type}}</b> is not supported yet.
+        </div>
+      </div>

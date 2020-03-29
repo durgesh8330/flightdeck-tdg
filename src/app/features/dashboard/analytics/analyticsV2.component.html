@@ -1,0 +1,52 @@
+<div *ngIf="loader" class="dashboard-task_loader">
+    <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>
+<sa-widgets-grid>
+<ng-container  *ngFor="let templateSection of templateLayout;">
+    <ng-container *ngIf="templateSection.sectionStyle == 'Buttons'">
+        <div class="offer_combined" >
+            <article>
+                <ng-container *ngFor="let items of templateSection.fieldsList;let i = index;">
+                    <div *ngIf="items.visible" class="content_box" (click)="summaryCount(items.label, items.fieldValue, i)" [ngClass]=" i == activeIndex ? 'active': ''">
+                        <div class="box_icon" [ngStyle]="{background: items.color}">
+                            <i [ngClass]="items.icon"></i>
+                        </div>
+                        <!-- {{ topLevel.label }} -->
+                        <div>
+                            <a  class="item_tx_box">
+                                <p class="offer_label">{{items.label}}</p>
+                                <h3 class="offer_count"> <a class="source_name_tx">{{items.fieldValue}}</a></h3>
+                                <div class="offer_arrow"><i class="fa fa-arrow-circle-right"></i></div>
+                            </a>
+                        </div>
+                    </div>
+                </ng-container>
+            </article>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="templateSection.sectionStyle == 'Table'">
+        <div sa-widget [editbutton]="false" [fullscreenbutton]="true" [deletebutton]="false" [togglebutton]="true" class=" margin-bottom-10" >
+            <header>
+                <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+                <h2>{{templateSection.sectionHeader}}</h2>
+            </header>
+            <div>
+                <table mat-table [dataSource]="templateSection['data']" class="mat-elevation-z8 col-xs-12 col-md-8">
+                    <ng-container [matColumnDef]="column.key" *ngFor="let column of templateSection['fieldsList']">
+                        <th mat-header-cell *matHeaderCellDef> {{column.label}} </th>
+                        <td mat-cell *matCellDef="let user"> {{user[column.key]}} </td>
+                    </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="templateSection['tableColumns']"></tr>
+                        <tr mat-row *matRowDef="let row; columns: templateSection['tableColumns'];"></tr>
+                </table>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>
+</sa-widgets-grid>

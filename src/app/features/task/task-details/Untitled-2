@@ -1,0 +1,23 @@
+{
+ "action": "Assign",
+ "assignCuid": "AC39709"
+}
+
+
+
+//WG
+
+{
+ "action": "Dispatch",
+ "workgroupList": [
+   {
+     "workgroupName": "CDP_DEV"
+   },
+{
+     "workgroupName": "OV_Team"
+   },
+{
+     "workgroupName": "ASRI-WORKGROUP"
+   }
+ ]
+}

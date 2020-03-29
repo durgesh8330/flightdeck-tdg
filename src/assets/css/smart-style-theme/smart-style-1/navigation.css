@@ -1,0 +1,56 @@
+:root{
+    --leftPanel_background:#021e0f;
+    --leftPanel_font:#5b7f27;
+}
+
+
+.smart-style-1 aside {
+    background: var(--leftPanel_background);
+}
+
+.smart-style-1.menu-on-top aside {
+    background: #14161B
+}
+
+.smart-style-1.menu-on-top aside#left-panel {
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
+    border-bottom: 1px solid #222;
+    border-top: 1px solid #333
+}
+
+.smart-style-1.menu-on-top aside#left-panel nav > ul > li {
+    border-right: 1px solid transparent;
+    border-left: 1px solid transparent
+}
+
+.smart-style-1.menu-on-top aside#left-panel nav > ul > li > a {
+    text-shadow: none !important;
+    font-size: 13px;
+    padding: 10px 9px !important
+}
+
+.smart-style-1.menu-on-top aside#left-panel nav > ul > li > ul {
+    background: var(--leftPanel_background);
+}
+
+.smart-style-1.menu-on-top aside#left-panel nav > ul > li:hover {
+    border-right-color: #333;
+    border-left-color: #333;
+    background: #fff;
+    background: -moz-linear-gradient(top, #04070c 0, #2e3e57 66%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cfcfcf), color-stop(66%, #2e3e57));
+    background: -webkit-linear-gradient(top, #04070c 0, #2e3e57 66%);
+    background: -o-linear-gradient(top, #04070c 0, #2e3e57 66%);
+    background: -ms-linear-gradient(top, #04070c 0, #2e3e57 66%);
+    background: linear-gradient(to bottom, #04070c, #2e3e57 66%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#04070C', endColorstr='#2E3E57', GradientType=0)
+}
+
+.smart-style-1.menu-on-top aside#left-panel nav > ul > li:hover > a {
+    color: var(--leftPanel_font) !important;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    padding-left: 8px !important;
+    padding-right: 8px !important
+}

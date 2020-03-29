@@ -1,0 +1,31 @@
+:root{
+  --navigation_background:#22262e; 
+  --leftPanel_background:#1b1e24; 
+  --footer_background:#1b1e24; 
+  --header_background:#eeeeee;
+  --title_background:#353D4B; 
+  --leftPanel_font:#E1EAF1; 
+  --footer_font:#ffffff; 
+  --header_font:#000000; 
+  --button_background:#275b89; 
+  --button_font:#ffffff; 
+  --input_background:#ffffff; 
+  --input_font:#000000; 
+  --title_font:#000000; 
+  --content_background:#eeeeee; 
+  --content_font:#000000; 
+}
+.smart-style-5 #logo-group span#activity:hover, .smart-style-5 .btn-header > :first-child > a:hover, .smart-style-5 .header-search > input[type=text]:hover, .smart-style-5 .jarviswidget > header:hover, .smart-style-5 .login-info:hover {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.smart-style-5 #logo-group span#activity, .smart-style-5 #project-context > :first-child, .smart-style-5 #project-selector, .smart-style-5 .bs-example-type .table .info {
+  color: #fff;
+}
+
+.smart-style-5 .lockscreen .logo + div {
+  background: rgba(0, 0, 0, 0.43);
+}
+

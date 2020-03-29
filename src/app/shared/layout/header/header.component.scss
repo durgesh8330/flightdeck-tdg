@@ -1,0 +1,40 @@
+.dropdown-submenu {
+    position: block;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    display: block;
+    top: 0;
+    left: 100%;
+ 
+ }
+
+.dropdown-submenu:hover .dropdown-menu {
+    display: block;
+    left: auto;
+    right: 100%;
+     top: -8px;
+}
+
+.dropdown-submenu a:after {
+    display: block;
+    
+}
+
+
+//sub menu
+
+// .dropdown-menu {
+//     float:right;
+// }
+
+// .left-submenu {
+//     float: none;
+// }
+
+// .left-submenu .dropdown-menu {
+//     border-radius: 6px 0px 6px 6px;
+//     left: auto;
+//     margin-left: 10px;
+//     right: 98%;
+// }

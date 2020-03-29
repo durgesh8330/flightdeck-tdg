@@ -1,0 +1,784 @@
+<div *ngIf="loading" class="task_loader">
+    <!-- <mat-spinner class="spinner-style"></mat-spinner> -->
+    <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>
+<sa-modal [modal]="modalDetails" (buttonClicked)="buttonClicked($event)"></sa-modal>
+<div style="margin: 5px">
+    <div class="alert alert-success alert-dismissible" *ngIf="IsSuccess" style="background-color: green;color: #fff;">
+        <strong>Success! </strong>{{message}}.
+        <button type="button" class="close" data-dismiss="alert" style="opacity: 1;color: #fff;" (click)="IsSuccess = false">&times;</button>
+    </div>
+    <div class="alert alert-danger alert-dismissible" *ngIf="IsError" style="background-color: #ce2f2f;color: #fff;">
+        <strong>Error! </strong>{{message}}.
+        <button type="button" class="close" data-dismiss="alert" style="opacity: 1;color: #fff !important;" (click)="IsError = false">&times;</button>
+    </div>
+    <sa-widgets-grid>
+        <div sa-widget [editbutton]="false" [name]="userdetailswodgetwa" [deletebutton]="false" [fullscreenbutton]="true"
+            [colorbutton]="false">
+            <header>
+                <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                <h2>{{uiObject.title}}</h2>
+            </header>
+            <div class="widget-body">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+                        <div class="row" *ngIf="uiObject.workgroupFIlter && uiObject.workgroupFIlter.placeholder">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn-group-vertical">
+                                <!-- getWorkgroupDetails,deleteWorkgroup,addWorkgroup -->
+                                <div *ngFor="let workgroupButton of uiObject.workgroupAction">
+                                    <button type="button" class="btn btn-success btn-sm blue__btn" mat-raised-button
+                                        [value]="workgroupButton.label" (click)="onWorkgroupButtonClick(workgroupButton.fieldName);"
+                                        style="margin-bottom: 5px;width:100%;">
+                                        {{workgroupButton.label}}
+                                    </button>
+                                </div>
+                                <input *ngIf="uiObject.workgroupFIlter" id="workGroupName" [placeholder]="uiObject.workgroupFIlter.placeholder"
+                                    name="workGroupName" [(ngModel)]="uiObject.workgroupFIlter.searchCriteria" class="form-control"
+                                    (keyup)="filterWorkgroup();">
+                                <select *ngIf="uiObject.workgroupFIlter" multiple id='availableWorkgroups' name='availableWorkgroups'
+                                    [(ngModel)]="uiObject.workgroupFIlter.selectedWorkGroups" class="form-control"
+                                    style="height: 250px;" (change)="workGrpSelectionUpdated(uiObject.workgroupFIlter.selectedWorkGroups)">
+                                    <option *ngFor="let workGroup of uiObject.workgroupFIlter.filterData">{{workGroup}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
+                        <ul id="manageWorkgroupTabHeader" class="nav nav-tabs">
+                            <li *ngFor="let tab of uiObject.workgroupTabs; let workgroupInx = index;" class="nav nav-tab user-tab"
+                                [ngClass]="(tab.isActive) ? 'mat-tab-label-active mat-tab-label' : 'mat-tab-label'">
+                                <div>
+                                    <a class="mat-tab-label-content" href="workgroupInx" data-toggle="tab" (click)="markActive(workgroupInx);">{{tab.title}}
+                                        <i class="fa fa-times close-icon" (click)="removeParamsTab(workgroupInx);"></i>
+                                    </a>
+                                </div>
+                                <div *ngIf="tab.isActive" class="mat-ink-bar" style="visibility: visible;left: 0px;width: 91%;"></div>
+                            </li>
+                        </ul>
+                        <div id="manageWorkgroupTabContent" class="tab-content padding-10">
+                            <div *ngFor="let tab of uiObject.workgroupTabs; let workgroupTabInx = index;" class="tab-pane fade in"
+                                [ngClass]="{'active': tab.isActive}" id="{{workgroupInx}}">
+                                <div *ngIf="tab.type=='workgroup'">
+                                    <form name="editWorkgroup{{workgroupTabInx}}" [formGroup]="dynamicFormGroup">
+                                        <div class="row" style="border:solid 1px #73AD21;padding:10px;">
+                                            <div class="row">
+                                                <div class="col-lg-9 col-md-8 col-sm-6 col-xs-0">
+                                                    <button type="submit" class="btn btn-success blue__btn"
+                                                        mat-raised-button (click)="onWorkgroupSubmitButtonClick('member');"
+                                                        style="float: left;margin-right: 10px;">
+                                                        View Workgroup Members
+                                                    </button>
+                                                    <button type="submit" class="btn btn-success blue__btn"
+                                                        mat-raised-button (click)="onWorkgroupSubmitButtonClick('parameters');"
+                                                        style="float: left;margin-right: 10px;">
+                                                        View Routing Parameters
+                                                    </button>
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                                    <!-- restoreWorkgroupDetails,updateWorkgroupDetails -->
+                                                    <div *ngFor="let button of uiObject.buttons; let workgroupInx = index;">
+                                                        <button type="submit" class="" mat-rasied-button [ngClass]="(button.style == 'btn-warning')? 'clear-btn reset-bgclr mat-raised-button':'btn btn-success blue__btn'"
+                                                            (click)="onWorkgroupSubmitButtonClick(button.label,workgroupTabInx);"
+                                                            style="width:70px;float: right;margin-right: 10px;height: 31px;    line-height: 22px;">
+                                                            {{button.label}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div *ngFor="let obj of uiObject.sections; let i=index;">
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                        <div class="elemWrapper" [ngSwitch]="obj.type">
+                                                            <div *ngSwitchCase="'text'">
+                                                                <!-- <div class="form-group">
+                                                                <input type="text" class="form-control" [name]="obj.fieldName" 
+                                                                         [placeholder]="obj.label"
+                                                                        [formControlName]="obj.fieldName" [attr.disabled]="obj['editable'] == false ? '' : null">
+                                                                <div *ngIf="dynamicFormGroup.controls[obj.fieldName].touched && dynamicFormGroup.controls[obj.fieldName].invalid"
+                                                                     class="text-danger text-left">
+                                                                    <small>{{obj.label}} is required.</small>
+                                                                </div>
+                                                            </div> -->
+
+                                                                <div class="form-group">
+                                                                    <label class="form-label">{{obj.label}}</label><span
+                                                                        *ngIf="obj.mandatory" style="color:red">&nbsp;*</span>
+                                                                    <input type="text" class="form-control"
+                                                                        [placeholder]="obj.label" [name]="obj.fieldName+tab.title"
+                                                                        [formControlName]="obj.fieldName+tab.title"
+                                                                        [(ngModel)]="tab.workgroupDetails[obj.fieldName]"
+                                                                        [attr.disabled]="obj['editable'] == false ? '' : null"
+                                                                        required />
+                                                                    <div *ngIf="dynamicFormGroup.controls[obj.fieldName+tab.title] && dynamicFormGroup.controls[obj.fieldName+tab.title].touched && dynamicFormGroup.controls[obj.fieldName+tab.title].invalid"
+                                                                        class="text-danger text-left">
+                                                                        <small>{{obj.label}} is required.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div *ngSwitchDefault>
+                                                                <label class="example-margin">{{obj.label}}:</label>
+                                                                field type <b>{{obj.type}}</b> is not supported yet.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                            <label class="form-label">Workgroup Desc</label><span style="color:red">&nbsp;*</span>
+                                            <input type="textarea" class="form-control" placeholder="Workgroup Desc" #workgroupDesc="ngModel" name="workgroupDesc" required
+                                                [(ngModel)]="tab.workgroupDetails.workgroupDesc"/>
+                                            <div *ngIf="!workgroupDesc.valid" class="text-danger text-left">
+                                                    <small>Workgroup Desc is required.</small>
+                                            </div>
+                                        </div>    
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                <label class="form-label">Created By Id</label>
+                                                <input type="text" class="form-control" disabled name="createdById" [(ngModel)]="tab.workgroupDetails.createdById"/>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                <label class="form-label">Modified By Id</label>
+                                                <input type="text" class="form-control" disabled name="modifiedById" [(ngModel)]="tab.workgroupDetails.modifiedById"/>
+                                            </div>    
+                                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                    <label class="form-label">Created Date Time</label>
+                                                    <input type="text" class="form-control" disabled name="createdDttm" [(ngModel)]="tab.workgroupDetails.createdDttm"/>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                    <label class="form-label">Modified Date Time</label>
+                                                    <input type="text" class="form-control" disabled name="modifiedDttm" [(ngModel)]="tab.workgroupDetails.modifiedDttm"/>
+                                            </div>    -->
+                                                </div>
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <!-- <div class="row">
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                            <label class="form-label">Modified By Id</label>
+                                            <input type="text" class="form-control" disabled name="modifiedById" [(ngModel)]="tab.workgroupDetails.modifiedById"/>
+                                        </div>    
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                <label class="form-label">Created Date Time</label>
+                                                <input type="text" class="form-control" disabled name="createdDttm" [(ngModel)]="tab.workgroupDetails.createdDttm"/>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                <label class="form-label">Modified Date Time</label>
+                                                <input type="text" class="form-control" disabled name="modifiedDttm" [(ngModel)]="tab.workgroupDetails.modifiedDttm"/>
+                                        </div>   
+                                </div> -->
+                                    </form>
+                                    <br>
+                                    <div class="row">
+                                        <div *ngIf="uiObject.workgroupRoleFilter.placeholder" class="col-lg-6 col-md-12 col-sm-6 col-xs-12"
+                                            style="border:solid 1px #73AD21;padding:10px;">
+                                            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
+                                                <input *ngIf="uiObject.workgroupRoleFilter" id="workGroupName"
+                                                    [placeholder]="uiObject.workgroupRoleFilter.placeholder" name="workGroupName"
+                                                    [(ngModel)]="tab.workgroupDetails.roleCriteria" class="form-control"
+                                                    (keyup)="filterWorkgroupRole(tab);" (input)="filterRoles(workgroupInx, 'roleName', tab.workgroupDetails.roleCriteria)">
+                                                <select *ngIf="uiObject.workgroupRoleFilter" multiple id='availableWorkgroups'
+                                                    name='availableWorkgroups' (change)="onSelectedWorkgroupRole($event,tab)"
+                                                    class="form-control" style="height: 200px;">
+                                                    <option *ngFor="let role of tab.workgroupDetails.cpWorkgroupRoles"
+                                                        [value]="role.roleName">{{role.roleName}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn-group-vertical">
+                                                        <div *ngFor="let roleButton of uiObject.workgroupRoleAction">
+                                                            <button type="button" class="btn btn-success btn-sm blue__btn"
+                                                                mat-rasied-button [value]="roleButton.label" (click)="onRoleButtonClick(tab,workgroupInx,roleButton.fieldName)"
+                                                                style="margin-bottom: 5px;width:100%;">
+                                                                {{roleButton.label}}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="uiObject.workgroupSkillFilter.placeholder" class="col-lg-6 col-md-12 col-sm-6 col-xs-12"
+                                            style="border:solid 1px #73AD21;padding:10px;">
+                                            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
+                                                <input *ngIf="uiObject.workgroupSkillFilter" id="workGroupskill"
+                                                    [placeholder]="uiObject.workgroupSkillFilter.placeholder" name="workGroupSkill"
+                                                    (input)="filterSkills(workgroupInx, 'skillName', tab.workgroupDetails.skillCriteria)"
+                                                    class="form-control" (keyup)="filterWorkgroup();" [(ngModel)]="tab.workgroupDetails.skillCriteria">
+                                                <select *ngIf="uiObject.workgroupSkillFilter" multiple="single" id='availableWorkgroupsSkill'
+                                                    name='availableWorkgroups' (change)="onWorkgroupSkillChange($event)"
+                                                    class="form-control" style="height: 200px;">
+                                                    <option *ngFor="let role of tab.workgroupSkillDataList" [value]="role.skillId">{{role.skillName}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn-group-vertical">
+                                                        <div *ngFor="let skillButton of uiObject.workgroupSkillAction">
+                                                            <button type="button" class="btn btn-success btn-sm blue__btn"
+                                                                mat-raised-button [value]="skillButton.label" (click)="onSkillButtonClick(tab,skillButton.fieldName)"
+                                                                style="margin-bottom: 5px;width:100%;">
+                                                                {{skillButton.label}}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: 15px;">
+                                        <button type="button" class="btn btn-success btn-sm blue__btn"
+                                            mat-raised-button value="Delete Skill" (click)="onSaveWorkgroupAccessLevel(tab)"
+                                            style="margin-bottom: 5px;float:right;">
+                                            Save Access Level
+                                        </button>
+                                    </div>
+                                    <div *ngIf="workGroupAccessLoader" class="task_loader_accessLevel">
+                                        <!-- <mat-spinner class="spinner-style"></mat-spinner> -->
+                                        <!-- <img src="assets/img/task_loader.svg" width="125px" alt="task" /> -->
+                                        <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+                                        <div class="spinner">
+                                            <div class="bounce1"></div>
+                                            <div class="bounce2"></div>
+                                            <div class="bounce3"></div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="accessLevelAvailable" class="row prms-blk" style="margin-top:10px; background-color: white; border-radius: 25px;border:solid 1px #73AD21;">
+
+                                        <div class="row" style="border:solid 1px #73AD21; text-align: center;height:30px; border-radius: 20px;margin-left:10px;width:98%; margin-top: 10px;">
+                                            <div style="margin-top: 5px;;">Access Permissions - <span style="font-weight: bold">
+                                                    {{this.selectedWorkgroupRole.roleName}}</span></div>
+                                        </div>
+                                        <!-- <sa-widgets-grid>
+                                                    <div sa-widget [editbutton]="false" [name]="accessLevels" [deletebutton]="false" [fullscreenbutton]="true" color="blueDark">
+                                                          <header>
+                                                              <span class="widget-icon"> <i class="fa fa-table"></i> </span>             
+                                                              <h2>Access Levels</h2>
+                                                          </header> -->
+                                        <table id="accessLevelsTable" style="width:100%; border-spacing: 12px;border-collapse: inherit;">
+                                            <thead style="border-radius: 25px; height: 30px; border-radius: 25px;">
+                                                <tr style="height: 30px;">
+                                                    <th style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="border-radius: 25px; 
+                                                                border:solid 1px #73AD21;height:30px;padding-top:3px;">
+                                                            Access Name
+                                                        </div>
+                                                    </th>
+                                                    <th style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="border-radius: 25px; 
+                                                                    border:solid 1px #73AD21;height:30px;padding-top:3px;">
+                                                            Permission Level
+                                                        </div>
+                                                    </th>
+                                                    <th style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="border-radius: 25px; 
+                                                                    border:solid 1px #73AD21;height:30px;padding-top:3px;">
+                                                            Read
+                                                        </div>
+                                                    </th>
+                                                    <th style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="border-radius: 25px; 
+                                                                        border:solid 1px #73AD21;height:30px;padding-top:3px;">
+                                                            Read/Write
+                                                        </div>
+                                                    </th>
+                                                    <th style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="border-radius: 25px; 
+                                                                            border:solid 1px #73AD21;height:30px;padding-top:3px;">
+                                                            Restricted
+                                                        </div>
+                                                    </th>
+                                                    <!-- <th style="width:14%" *ngFor="let accessHeader of uiObject.workgroupAccessLevelHeaders; let i = index">
+                                                                <div class="text-center cursor-pointer" style="border-radius: 25px; 
+                                                                border:solid 1px #73AD21;height:30px;padding-top:3px;">
+                                                                    {{accessHeader}}
+                                                                </div>
+                                                            </th> -->
+                                                    <!-- <th style="width:14%">
+                                                                    <div class="text-center cursor-pointer" style="border-radius: 25px; 
+                                                                    border:solid 1px #73AD21;height:30px;padding-top:3px;">
+                                                                        Read
+                                                                    </div>                                                                   
+                                                                </th>
+                                                                <th style="width:14%">
+                                                                        <div class="text-center cursor-pointer" style="border-radius: 25px; 
+                                                                        border:solid 1px #73AD21;height:30px;padding-top:3px;">
+                                                                            Write
+                                                                        </div>                                                                   
+                                                                    </th>
+                                                                    <th style="width:14%">
+                                                                            <div class="text-center cursor-pointer" style="border-radius: 25px; 
+                                                                            border:solid 1px #73AD21;height:30px;padding-top:3px;">
+                                                                                Restricted
+                                                                            </div>                                                                   
+                                                                        </th> -->
+                                                </tr>
+                                            </thead>
+                                            <!-- <tbody>
+                                                         <tr *ngFor="let accessLevel of tab.accessLevelDataList; let skillindex = index">
+                                                             <td class="text-center">
+                                                                {{accessLevel.accessLevelName}}
+                                                             </td>
+                                                             <td class="text-center" *ngFor="let accessLevelItem of uiObject.workgroupAccessLevelHeaders; let accessIndex = index">
+                                                                <input type="radio" name="skillradio{{skillindex}}" [checked]="accessLevel.accessLevel == accessLevelItem"
+                                                                 (click)="onWorkgroupAccessLevelSelected(tab,accessLevel,accessLevelItem)"/>
+                                                                    <select [(ngModel)]="accessLevel.accessLevel" class="form-control">
+                                                                <option *ngFor="let element of accessLevelList" [value]="element">{{element}}</option>
+                                                            </select>
+                                                             </td>
+                                                             <td class="text-center">
+                                                                    <input type="radio" name="skillradio{{skillindex}}" [checked]="accessLevel.accessLevel == 'Write'" (click)="onWorkgroupAccessLevelSelected(tab,accessLevel,'Write')"/>
+                                                             </td>
+                                                             <td class="text-center">
+                                                                <input type="radio" name="skillradio{{skillindex}}" [checked]="accessLevel.accessLevel == 'Restricted'" (click)="onWorkgroupAccessLevelSelected(tab,accessLevel,'Restricted')"/>
+                                                             </td>
+                                                         </tr>
+                                                     </tbody> -->
+                                            <tbody>
+                                                <tr style="width: 100%;" *ngFor="let accessLevel of tab.accessLevelDataList; let skillindex = index">
+                                                    <td class="text-center" style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="height:30px;padding-top:3px;">
+                                                            {{accessLevel.module}}
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center" style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="height:30px;padding-top:3px;">
+                                                            {{accessLevel.permissionName}}
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center" style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="height:30px;padding-top:3px;">
+                                                            <input type="radio" name="skillradio{{skillindex}}" (click)="onWorkgroupAccessLevelSelected(tab,accessLevel,'ReadOnly')"
+                                                                [checked]="accessLevel.permissionLevel == 'ReadOnly'" />
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center" style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="height:30px;padding-top:3px;">
+                                                            <input type="radio" name="skillradio{{skillindex}}" (click)="onWorkgroupAccessLevelSelected(tab,accessLevel,'Read/Write')"
+                                                                [checked]="accessLevel.permissionLevel == 'Read/Write'" />
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center" style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="height:30px;padding-top:3px;">
+                                                            <input type="radio" name="skillradio{{skillindex}}" (click)="onWorkgroupAccessLevelSelected(tab,accessLevel,'Restricted')"
+                                                                [checked]=" accessLevel.permissionLevel == 'Restricted'" />
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!-- </div>
+                                        </sa-widgets-grid> -->
+                                        <!-- <div style="width:45%;float:left; margin-left:10px;">
+                                            <sa-widgets-grid>
+                                                    <div sa-widget [editbutton]="false" [name]="workgroupSkillList" [deletebutton]="false" [fullscreenbutton]="true" color="blueDark">
+                                                          <header>
+                                                              <span class="widget-icon"> <i class="fa fa-table"></i> </span>             
+                                                              <h2>Skills</h2>
+                                                          </header> -->
+                                        <!-- <table id="skillsTable" class="table table-bordered table-striped table-hover smart-form">
+                                                <thead>
+                                                     <tr>
+                                                             <th style="width:14%">
+                                                                     <div class="text-center cursor-pointer">
+                                                                         Skill Name
+                                                                     </div>
+                                                                     <div style="width:93%; margin-top: 5px;">
+                                                                            <input type="text" name="skillName"
+                                                                                   style="width: 100%;overflow: visible;padding: 3px;"/>
+                                                                        </div>
+                                                                 </th>
+                                                                 <th style="width:14%">
+                                                                         <div class="text-center cursor-pointer">
+                                                                             Skill Description
+                                                                         </div>
+                                                                         <div style="width:93%; margin-top: 5px;">
+                                                                                <input type="text" name="skillDesc"
+                                                                                       style="width: 100%;overflow: visible;padding: 3px;"/>
+                                                                            </div>
+                                                                     </th>
+                                                         </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                             </table> -->
+                                        <!-- </div>
+                                             </sa-widgets-grid>
+                                        </div> -->
+                                    </div>
+                                    <!-- <table id="roleTable{{workgroupInx}}" class="table table-bordered table-striped table-hover smart-form">
+                                <thead>
+                                    <tr>
+                                        <th style="width:7%; padding-bottom: 15px;" class="text-center cursor-pointer">
+                                            <i class="fa fa-plus-circle fa-2x" aria-hidden="true" (click)="addRoleRow(workgroupInx);"></i>
+                                        </th>
+                                        <th style="width:14%">
+                                            <div class="text-center cursor-pointer" (click)="onSortSelection(workgroupInx, 'roleName')">
+                                                Role Name
+                                            </div>
+                                            <div style="width:93%; margin-top: 5px;">
+                                                <input type="text" (input)="filterRoles(workgroupInx, 'roleName', tab.workgroupDetails.roleCriteria)" [(ngModel)]="tab.workgroupDetails.roleCriteria" name="roleName"
+                                                       style="width: 100%;overflow: visible;padding: 3px;"/>
+                                            </div>
+                                        </th>
+                                        <th style="width:14%">
+                                                <div class="text-center cursor-pointer" (click)="onSortSelection(workgroupInx, 'roleDesc')">
+                                                    Role Description
+                                                </div>
+                                                <div style="width:93%; margin-top: 5px;">
+                                                    <input type="text" [(ngModel)]="tab.workgroupDetails.roleDescCriteria" name="roleDesc" 
+                                                           (input)="filterRoles(workgroupInx, 'roleDesc', tab.workgroupDetails.roleDescCriteria)"
+                                                           style="width: 100%;overflow: visible;padding: 3px;"/>
+                                                </div>
+                                        </th>
+                                        <th style="width:14%">
+  
+                                            <div class="text-center cursor-pointer" (click)="onSortSelection(workgroupInx, 'modifiedDttm')">
+                                                        Modified Date Time
+                                                </div>
+                                                <div style="width:93%; margin-top: 5px;">
+                                                    <input type="text" [(ngModel)]="tab.workgroupDetails.modifiedDateTimeCriteria" name="modifiedDateTime"
+                                                          (input)="filterRoles(workgroupInx, 'modifiedDttm', tab.workgroupDetails.modifiedDateTimeCriteria)"
+                                                           style="width: 100%;overflow: visible;padding: 3px;"/>
+                                                </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody style="background: white;">
+                                       <tr *ngFor="let role of tab.workgroupDetails.cpWorkgroupRoles; let roleIndex = index">
+                                            <td style="width: 5%;">
+                                                <div style="cursor:pointer;">-->
+                                    <!-- View Mode icons-->
+                                    <!-- <i *ngIf="!role.rowEditable" class="fa fa-pencil-square-o fa-lg" aria-hidden="true"
+                                                     (click)="role.rowEditable=true;setRoleBackUp(workgroupInx, roleIndex);"></i>
+                                                    <i *ngIf="!role.rowEditable" class="fa fa-trash-o fa-lg" style="padding-left: 5px;" aria-hidden="true" 
+                                                        (click)="deleteWorkgroupRole(workgroupInx, tab.workgroupDetails.workgroupName, role.roleName);">
+                                                    </i> -->
+                                    <!-- Edit Mode icons-->
+                                    <!-- <i *ngIf="role.rowEditable" class="fa fa-check fa-lg" aria-hidden="true"
+                                                     (click)="updateWorkgroupRole(workgroupInx, roleIndex);"></i>
+                                                    <i *ngIf="role.rowEditable" class="fa fa-times fa-lg" style="padding-left: 5px;" aria-hidden="true" 
+                                                    (click)="removeEmptyRow(workgroupInx, roleIndex);role.rowEditable=false;"></i>
+                                                </div>
+                                            </td>
+                                            <td class="text-center" *ngIf="!role.rowEditable"> {{role.roleName}} </td>
+                                            <td *ngIf="role.rowEditable"> 
+                                                <input type="text" class="form-control text-center" 
+                                                placeholder="Role Name" [(ngModel)]="role.roleName" name="roleName">
+                                            </td>
+                                            <td class="text-center" *ngIf="!role.rowEditable"> {{role.roleDesc}} </td>
+                                            <td *ngIf="role.rowEditable"> <input type="textarea"
+                                                 class="form-control text-center" placeholder="Role Desc" 
+                                                 [(ngModel)]="role.roleDesc" name="roleDesc"></td>
+                                            <td class="text-center"> {{role.createdById}} </td>
+                                            <td class="text-center"> {{role.modifiedById}} </td>
+                                            <td class="text-center"> {{role.createdDttm}} </td>
+                                            <td class="text-center"> {{role.modifiedDttm}} </td>
+                                       </tr>
+                                </tbody>
+                            </table> -->
+                                </div>
+
+                                <div *ngIf="tab.type=='member'">
+                                    <div style="margin: 5px">
+                                        <sa-widgets-grid>
+                                            <div sa-widget [editbutton]="false" [name]="userdetailswodgetwa"
+                                                [deletebutton]="false" [fullscreenbutton]="true" color="blueDark">
+                                                <header *ngIf="tab.memberDetails.showWidgetHeader">
+                                                    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                                    <h2>{{tab.title}}</h2>
+                                                </header>
+                                                <div class="widget-body">
+                                                    <sa-table *ngIf="displayOnRefresh" [pagination]="pagination" [actionButton]="actionButton"
+                                                        [actionColumn]="actionColumn" [tableHeader]="actionColumn"
+                                                        [tableData]="tab.memberDetails.memberList" [tableOtherContent]="systemParameter"
+                                                        [tablePaginationData]="tablePaginationData" [filter]="filter"
+                                                        (addNewRowParent)="addNewMemberRow($event)" (onSaveParent)="onSaveConnectedMemberClick(actionColumn, $event)"
+                                                        (pageChangedParent)="onPaginateInnerGrid($event)"
+                                                        (onEditParent)="onEditClick($event)" (onDeleteParent)="onDeleteConnectedMember('', '', $event)"
+                                                        (onCloseParent)="onCloseClick(0, $event)"
+                                                        (paginationChangeParent)="onLimitChange($event)"
+                                                        (openTabParent)="openDetailView($event)" (filterColumnParent)="filterTaskResult($event)"
+                                                        (onSortParent)="onSortSelection($event)" (expandRow)="expandRow($event)"
+                                                        (previousAll)="previousTasks()" (previous)="onGridPrevious()"
+                                                        (nextAll)="nextTasks()" (next)="onGridNext()" (refresh)="onRefresh()"></sa-table>
+                                                    <!-- <div class="row pl-10">
+                                                        <div class="col-lg-3">
+                                                            <label class="pr-10">Per Page </label>
+                                                            <select [(ngModel)]="paginationLimitOption" (change)="paginationChange(paginationLimitOption)">
+                                                                <option *ngFor="let value of pagination.pageLimitOptions" [value]="value">
+                                                                    {{value}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            Page Number - {{pagination.totalRecords == 0 ? 0: pagination.pageNumber }} / {{pagination.totalPage}}
+                                                        </div>
+                                                        <div style="float: right; margin: -5px 23px 5px 0px;">
+                                                            <a class="btn btn-default buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_8" href="#"
+                                                                (click)="printPDF()">
+                                                            <span>PDF</span></a> &nbsp;
+                                                            <a class="btn btn-default buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_8" (click)="printData()"
+                                                                href="#">
+                                                            <span>Print</span></a>
+                                                        </div>
+                                                    </div> -->
+                                                    <!-- <div class="row"> -->
+                                                    <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <div id="manageskillTabContent" class="tab-content padding-10">                                                                                                    
+                                                            <table id="roleTable{{skillInx}}" class="table table-bordered table-striped table-hover smart-form"> -->
+                                                    <!-- <thead>
+                                                                            <tr >
+                                                                                <th *ngIf="tab.memberDetails.showActions" style="width:7%; padding-bottom: 15px;" class="text-center cursor-pointer">
+                                                                                    <i class="fa fa-plus-circle fa-2x" aria-hidden="true" (click)="addNewMemberRow()"></i>
+
+                                                                                </th>
+                                                                                <th [style.width.%]="90/tab.memberDetails.headers.length" *ngFor="let head of tab.memberDetails.headers">
+                                                                                    <div class="text-center cursor-pointer" (click)="onMemberSortSelection(head.fieldName)">
+                                                                                        {{head.label}}
+                                                                                    </div>
+                                                                                    <div style="width:95%; margin-top: 5px;">
+                                                                                        <input type="text" *ngIf="head.filter" [(ngModel)]="filter[head.fieldName]" (input)="filterConnectedMember(head.fieldName,$event.target.value)" [name]="head.key" style="width: 100%;overflow: visible;padding: 3px;"
+                                                                                        />
+                                                                                    </div>
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead> -->
+                                                    <!-- <tbody style="background: white;" *ngIf="tab.memberDetails">
+                                    
+                                                                            <tr *ngFor="let role of tab.memberDetails.memberList; let roleIndex = index">
+                                                                                <td *ngIf="tab.memberDetails.showActions"  style="width: 5%;">
+                                                                                    <div style="cursor:pointer;">
+                                                                                        <i class="fa fa-save fa-lg" aria-hidden="true" *ngIf="role['rowEdit']" (click)="onSaveConnectedMemberClick(tab.memberDetails.headers,role)"></i> -->
+                                                    <!-- <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" *ngIf="!role['rowEdit']" (click)="onEditClick(roleIndex)"></i> -->
+                                                    <!-- <i class="fa fa-trash-o fa-lg" style="padding-left: 5px;" aria-hidden="true" *ngIf="!role['rowEdit']" (click)="onDeleteConnectedMember(role.cuid,role.roleName,roleIndex)"></i>
+                                                                                        <i class="fa fa-close fa-lg" style="padding-left: 5px;" aria-hidden="true" *ngIf="role['rowEdit']" (click)="onCloseClick(skillInx,roleIndex)"></i>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td class="text-center" *ngFor="let header of tab.memberDetails.headers; let roleIndex = index">
+                                                                                    <ng-container *ngIf="header.edit && role['rowEdit']">
+                                                                                        <input class="form-control" [disabled]="header.fieldName  === 'fullName'" [name]="header.fieldName+roleIndex" (input)="onMemberInput(header,$event)" [(value)]="header.fieldValue" *ngIf="header.fieldName !== 'roleName'" [placeholder]="header.label" type="text">
+                                                                                        <select *ngIf="header.fieldName === 'roleName'" (input)="onMemberInput(header,$event)" [(value)]="header.fieldValue" [name]="header.fieldName+roleIndex" id="" class="form-control">
+                                                                                            <option [value]="role.roleName" *ngFor="let role of templateData.cpWorkgroupRoles">{{ role.roleName }}</option>
+                                                                                        </select>
+                                                                                    </ng-container>
+                                                                                    <span *ngIf="!role['rowEdit']" (click)="openTab(header.link, 'SystemParametersDetailsComponent', role[header.fieldName] + ' Details' , role[header.fieldName] + 'Details')" [ngClass]="[header.link ? 'cuid':'']">{{role[header.fieldName]}}</span>
+                                                                                    <span *ngIf="role['rowEdit'] && !header.edit" (click)="openNewTab()" [ngClass]="[header.link ? 'cuid':'']">{{role[header.fieldName]}}</span>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row pr-20">
+                                                            <div class="col-xs-6 col-6"></div>
+                                                            <div class="col-xs-6 col-6 text-right" *ngIf="pagination.totalRecords">
+                                                                <pagination [totalItems]="pagination.totalRecords" [itemsPerPage]="paginationLimitOption" [(ngModel)]="pagination.pageNumber" (pageChanged)="pageChanged($event)"></pagination>
+                                                            </div>
+                                                        </div>     -->
+                                                    <!-- </div> -->
+                                                </div>
+                                            </div>
+                                        </sa-widgets-grid>
+                                    </div>
+                                </div>
+                                <div *ngIf="tab.type === 'parameters'">
+                                    <sa-manage-workgroup-params [tabData]="tab" (closeTab)="removeParamsTab(workgroupTabInx,'close')"
+                                        (onError)="handleWorkgroupRoutingParamError($event)" (onSuccess)="handleWorkgroupRoutingParamSuccess($event)"
+                                        (closeTabFromCancel)="removeParamsTab(workgroupTabInx,'cancel')">
+                                    </sa-manage-workgroup-params>
+                                </div>
+                                <div *ngIf="tab.type === 'editrole'">
+                                    <form name="editWorkgrouprole{{workgroupTabInx}}">
+                                        <div class="row" style="border:solid 1px #73AD21;padding:10px;">
+                                            <div class="row">
+                                                <div *ngFor="let obj of tab.memberDetails.fields; let i=index;">
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                        <div class="elemWrapper" [ngSwitch]="obj.type">
+                                                            <div *ngSwitchCase="'text'">
+                                                                <div class="form-group">
+                                                                    <label class="form-label">{{obj.label}}</label><span
+                                                                        *ngIf="obj.mandatory" style="color:red">&nbsp;*</span>
+                                                                    <input type="text" class="form-control"
+                                                                        [placeholder]="obj.label" [name]="obj.fieldName+tab.title"
+                                                                        [(ngModel)]="tab.memberDetails.output[obj.fieldName]"
+                                                                        [attr.disabled]="obj['editable'] == false ? '' : null"
+                                                                        required />
+                                                                    <div *ngIf="dynamicFormGroup.controls[obj.fieldName+tab.title] && dynamicFormGroup.controls[obj.fieldName+tab.title].touched && dynamicFormGroup.controls[obj.fieldName+tab.title].invalid"
+                                                                        class="text-danger text-left">
+                                                                        <small>{{obj.label}} is required.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div *ngSwitchDefault>
+                                                                <label class="example-margin">{{obj.label}}:</label>
+                                                                field type <b>{{obj.type}}</b> is not supported yet.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-lg-9 col-md-8 col-sm-6 col-xs-0">
+                                                    <!-- <button type="submit" class="btn btn-success blue__btn" mat-raised-button
+                                                (click)="onWorkgroupSubmitButtonClick('member');" style="float: left;margin-right: 10px;">
+                                                    View Workgroup Members
+                                            </button>
+                                            <button type="submit" class="btn btn-success blue__btn" mat-raised-button
+                                                (click)="onWorkgroupSubmitButtonClick('parameters');" style="float: left;margin-right: 10px;">
+                                                    View Routing Parameters
+                                            </button> -->
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                                    <div *ngFor="let button of tab.memberDetails.buttons">
+                                                        <button type="submit" class="" mat-rasied-button [ngClass]="(button.style == 'tn-warning')? 'clear-btn reset-bgclr mat-raised-button':'btn btn-success blue__btn'"
+                                                            (click)="EditworkgroupRoleButtonClicked(button.fieldName,workgroupTabInx,tab);"
+                                                            style="width:70px;float: right;margin-right: 10px;height: 31px;    line-height: 22px;">
+                                                            {{button.label}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="row" style="margin-top: 15px;" *ngFor="let WorkgroupresourceLyt of WorkgroupresourceLayout.pageLayoutTemplate; let i = index">
+                                        <!-- rendering params UI for the specific workgroups using pagelayout & data -->
+                                        <sa-paramas-layout *ngIf="WorkgroupresourceLayout.pageLayoutTemplate && resWGRObject"
+                                            [paramfieldstatus]="Workgroupparamfieldstatus" [pageLayoutData]="WorkgroupresourceLyt"
+                                            [templateName]="WorkgroupresourceLayout.templateName" [pageLayoutValues]="WorkgroupresourceLayoutResp"
+                                            (saveAndUpdate)="saveAndUpdateSpWgParams($event)"></sa-paramas-layout>
+                                    </div>
+                                    <div class="row" style="margin-top: 15px;">
+                                        <button type="button" class="btn btn-success btn-sm blue__btn"
+                                            mat-raised-button value="Delete Skill" (click)="onSaveWorkgroupAccessLevel(tab)"
+                                            style="margin-bottom: 5px;float:right;">
+                                            Save Access Level
+                                        </button>
+                                    </div>
+                                    <div *ngIf="workGroupAccessLoader" class="task_loader_accessLevel">
+                                        <div class="spinner">
+                                            <div class="bounce1"></div>
+                                            <div class="bounce2"></div>
+                                            <div class="bounce3"></div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="accessLevelAvailable" class="row prms-blk" style="margin-top:10px; background-color: white; border-radius: 25px;border:solid 1px #73AD21;">
+
+                                        <div class="row" style="border:solid 1px #73AD21; text-align: center;height:30px; border-radius: 20px;margin-left:10px;width:98%; margin-top: 10px;">
+                                            <div style="margin-top: 5px;;">Access Permissions - <span style="font-weight: bold">
+                                                    {{this.selectedWorkgroupRole.roleName}}</span></div>
+                                        </div>
+                                        <table id="accessLevelsTable" style="width:100%; border-spacing: 12px;border-collapse: inherit;">
+                                            <thead style="border-radius: 25px; height: 30px; border-radius: 25px;">
+                                                <tr style="height: 30px;">
+                                                    <th style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="border-radius: 25px; 
+                                                border:solid 1px #73AD21;height:30px;padding-top:3px;">
+                                                            Access Name
+                                                        </div>
+                                                    </th>
+                                                    <th style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="border-radius: 25px; 
+                                                border:solid 1px #73AD21;height:30px;padding-top:3px;">
+                                                            Permission Level
+                                                        </div>
+                                                    </th>
+                                                    <th style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="border-radius: 25px; 
+                                                border:solid 1px #73AD21;height:30px;padding-top:3px;">
+                                                            Read
+                                                        </div>
+                                                    </th>
+                                                    <th style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="border-radius: 25px; 
+                                                border:solid 1px #73AD21;height:30px;padding-top:3px;">
+                                                            Read/Write
+                                                        </div>
+                                                    </th>
+                                                    <th style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="border-radius: 25px; 
+                                                border:solid 1px #73AD21;height:30px;padding-top:3px;">
+                                                            Restricted
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="width: 100%;" *ngFor="let accessLevel of tab.accessLevelDataList; let skillindex = index">
+                                                    <td class="text-center" style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="height:30px;padding-top:3px;">
+                                                            {{accessLevel.module}}
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center" style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="height:30px;padding-top:3px;">
+                                                            {{accessLevel.permissionName}}
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center" style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="height:30px;padding-top:3px;">
+                                                            <input type="radio" name="skillradio{{skillindex}}" (click)="onWorkgroupAccessLevelSelected(tab,accessLevel,'ReadOnly')"
+                                                                [checked]="accessLevel.permissionLevel == 'ReadOnly'" />
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center" style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="height:30px;padding-top:3px;">
+                                                            <input type="radio" name="skillradio{{skillindex}}" (click)="onWorkgroupAccessLevelSelected(tab,accessLevel,'Read/Write')"
+                                                                [checked]="accessLevel.permissionLevel == 'Read/Write'" />
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center" style="width:14%">
+                                                        <div class="text-center cursor-pointer" style="height:30px;padding-top:3px;">
+                                                            <input type="radio" name="skillradio{{skillindex}}" (click)="onWorkgroupAccessLevelSelected(tab,accessLevel,'Restricted')"
+                                                                [checked]=" accessLevel.permissionLevel == 'Restricted'" />
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </sa-widgets-grid>
+    <!-- <sa-widgets-grid>
+    <div sa-widget [editbutton]="false" [name]="userdetailswodgetwa" [deletebutton]="false" [fullscreenbutton]="true" [colorbutton]="false">
+        <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>             
+            <h2 *ngIf="resourceLayout.pageLayoutTemplate">{{resourceLayout.pageLayoutTemplate[0].sectionHeader}}</h2>
+        </header>
+        <div class="widget-body"> -->
+    <div style="position: relative;" *ngIf="WGParamsOnRefresh">
+        <div *ngIf="workGrploading" class="task_loader">
+            <!-- <mat-spinner class="spinner-style"></mat-spinner> -->
+            <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+        <!-- Rendering pagelayout using re-usable component. pass Page layout response, page layout data -->
+        <div class="col-md-12 p-0" *ngFor="let resourceLyt of resourceLayout.pageLayoutTemplate; let i = index">
+            <sa-paramas-layout *ngIf="resourceLayout.pageLayoutTemplate && resObject" [paramfieldstatus]="paramfieldstatus"
+                [pageLayoutData]="resourceLyt" [templateName]="resourceLayout.templateName" [pageLayoutValues]="resourceLayoutResp"
+                (saveAndUpdate)="saveAndUpdateWorkGrpParams($event)"></sa-paramas-layout>
+        </div>
+    </div>
+
+    <!-- </div>
+    </div>
+</sa-widgets-grid> -->
+</div>

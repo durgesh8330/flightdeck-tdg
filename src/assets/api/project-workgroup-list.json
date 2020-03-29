@@ -1,0 +1,39 @@
+{
+    "data": [
+        {
+            "name": "Glover Andrew",
+            "description": "test data",
+            "createdBy": "Balajee",
+            "modifiedBy": "Koti",
+            "createdDate": "08-12-2019",
+            "modifiedDate": "08-12-2019",
+            "workgroups": [
+                "ASP,CDP"
+            ],
+            "roles": [
+                "BPMS Task Manager","QMV Manager"
+            ],
+            "accesslevels": [
+                "Edit Circuit"
+            ]
+
+        },
+        {
+            "name": "Glover Simond",
+            "description": "test data 2",
+            "createdBy": "Arshad",
+            "modifiedBy": "Balajee",
+            "createdDate": "08-12-2020",
+            "modifiedDate": "08-12-2019",
+            "workgroups": [
+                "string"
+            ],
+            "roles": [
+                "string"
+            ],
+            "accesslevels": [
+                "string"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,318 @@
+{
+    "createdById": "AC30161",
+    "pageLayoutTemplate": [
+        {
+            "body": [
+                {
+                    "childSectionHeader": "CCM Info",
+                    "fieldsList": [
+                        {
+                            "fieldName": "CCM Name",
+                            "fieldValue": "",
+                            "label": "CCM Name",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "CCM Number",
+                            "fieldValue": "",
+                            "label": "CCM Number",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "CCM Email Address",
+                            "fieldValue": "",
+                            "label": "CCM Email Address",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        }
+                    ]
+                },
+                {
+                    "childSectionHeader": "Order Details",
+                    "fieldsList": [
+                        {
+                            "button": false,
+                            "fieldName": "Order Number",
+                            "fieldValue": "",
+                            "label": "Order Number",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "Originator CUID",
+                            "fieldValue": "",
+                            "label": "Originator CUID",
+                            "mandatory": true,
+                            "readonly": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "dropdownList": [
+                                "Q Wave- Optical Wavelength Service"
+                            ],
+                            "fieldName": "Order Type",
+                            "fieldValue": "",
+                            "label": "Order Type",
+                            "mandatory": true,
+                            "type": "select"
+                        },
+                        {
+                            "fieldName": "Order Remarks",
+                            "fieldValue": "",
+                            "label": "Order Remarks",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "Project ID",
+                            "fieldValue": "",
+                            "label": "Project ID",
+                            "mandatory": false,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "ROCID",
+                            "fieldValue": "",
+                            "label": "ROCID",
+                            "mandatory": false,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "AMS Quote ID",
+                            "fieldValue": "",
+                            "label": "AMS Quote ID",
+                            "mandatory": false,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "Port Speed",
+                            "fieldValue": "",
+                            "label": "Port Speed",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "Service Term",
+                            "fieldValue": "",
+                            "label": "Service Term",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "dataSource": [
+                                "INSTALL(DLR required)",
+                                "CHANGE(DLR required)",
+                                "DISCONNECT"
+                            ],
+                            "fieldName": "Action Type",
+                            "fieldValue": "",
+                            "label": "Action Type",
+                            "mandatory": true,
+                            "type": "MultiSelect"
+                        },
+                        {
+                            "dataSource": [
+                                "10GIG-E LAN",
+                                "1GIG-E",
+                                "2.5GIG",
+                                "100GIG-E",
+                                "OTU1",
+                                "OTU2",
+                                "OTU3",
+                                "OTU4",
+                                "40GIG-E",
+                                "OTU2e",
+                                "OTu4",
+                                "4Gb SAN",
+                                "8Gb SAN",
+                                "2Gb SAN",
+                                "16Gb SAN",
+                                "1Gb SAN",
+                                "10Gb SAN",
+                                "40G",
+                                "10GIG",
+                                "2.5 GIG(OC-48)"
+                            ],
+                            "fieldName": "Bandwidth",
+                            "fieldValue": "",
+                            "label": "Bandwidth",
+                            "mandatory": true,
+                            "type": "MultiSelect"
+                        },
+                        {
+                            "dataSource": [
+                                "Fiber - SMF SC",
+                                "Fiber - MMF SC",
+                                "Fiber - SMF LC",
+                                "Fiber - MMF LC"
+                            ],
+                            "fieldName": "Hand Off Type",
+                            "fieldValue": "",
+                            "label": "Hand Off Type",
+                            "mandatory": true,
+                            "type": "MultiSelect"
+                        }
+                    ]
+                },
+                {
+                    "childSectionHeader": "Customer Info",
+                    "fieldsList": [
+                        {
+                            "fieldName": "Company Name",
+                            "fieldValue": "",
+                            "label": "Company Name",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "Primary Contact Details",
+                            "fieldValue": "",
+                            "label": "Primary Contact Details",
+                            "mandatory": true,
+                            "readonly": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "Customer PON",
+                            "fieldValue": "",
+                            "label": "Customer PON",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "CNDC",
+                            "fieldValue": "",
+                            "label": "CNDC",
+                            "mandatory": false,
+                            "type": "TextBox"
+                        }
+                    ]
+                },
+                {
+                    "childSectionHeader": "Location Info",
+                    "fieldsList": [
+                        {
+                            "fieldName": "A End Street Address",
+                            "fieldValue": "",
+                            "label": "A End Street Address",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "A End City",
+                            "fieldValue": "",
+                            "label": "A End City",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "A End State",
+                            "fieldValue": "",
+                            "label": "A End State",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "A End Postal Code",
+                            "fieldValue": "",
+                            "label": "A End Postal Code",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "A End CLLI",
+                            "fieldValue": "",
+                            "label": "A End CLLI",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        }
+                    ]
+                },
+                {
+                    "childSectionHeader": "",
+                    "fieldsList": [
+                        {
+                            "fieldName": "Z End Street Address",
+                            "fieldValue": "",
+                            "label": "Z End Street Address",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "Z End City",
+                            "fieldValue": "",
+                            "label": "Z End City",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "Z End State",
+                            "fieldValue": "",
+                            "label": "Z End State",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "Z End Postal Code",
+                            "fieldValue": "",
+                            "label": "Z End Postal Code",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "Z End CLLI",
+                            "fieldValue": "",
+                            "label": "Z End CLLI",
+                            "mandatory": true,
+                            "type": "TextBox"
+                        }
+                    ]
+                },
+                {
+                    "childSectionHeader": "OffNet Info",
+                    "fieldsList": [
+                        {
+                            "fieldName": "Primary Contact FirstName",
+                            "fieldValue": "",
+                            "label": "Primary Contact FirstName",
+                            "mandatory": false,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "Primary Contact LastName",
+                            "fieldValue": "",
+                            "label": "Primary Contact LastName",
+                            "mandatory": false,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "Primary Contact Number",
+                            "fieldValue": "",
+                            "label": "Primary Contact Number",
+                            "mandatory": false,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "Primary Contact Email",
+                            "fieldValue": "",
+                            "label": "Primary Contact Email",
+                            "mandatory": false,
+                            "type": "TextBox"
+                        },
+                        {
+                            "fieldName": "Vendor Comments",
+                            "fieldValue": "",
+                            "label": "Vendor Comments",
+                            "mandatory": false,
+                            "type": "TextBox"
+                        }
+                    ]
+                }
+            ],
+            "sectionHeader": "Form"
+        }
+    ],
+    "templateName": "R2DG Create Task"
+}

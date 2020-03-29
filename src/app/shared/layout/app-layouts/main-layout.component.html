@@ -1,0 +1,48 @@
+<sa-header (HeaderMenuStatus)="HeaderMenuStatus($event)"></sa-header>
+
+<sa-navigation [Headermenustatus]="Headermenustatus" (AutoSelectCall)="autoselect()" (MainLoaderStatus)="LoaderStatus($event)" (messageData)="displayMessage($event)"></sa-navigation>
+
+<div id="main" role="main">
+
+  <!-- Removed ribbion-->
+  <!-- <sa-ribbon></sa-ribbon> -->
+ 
+  <!-- <router-outlet #o="outlet"></router-outlet> -->
+    <div class="alert alert-success alert-dismissible" *ngIf="IsSuccess" style="background-color: green;color: #fff;">
+        <strong>Success! </strong>{{message}}.
+        <button type="button" class="close" data-dismiss="alert" (click)="IsSuccess = false">&times;</button>
+    </div>
+    <div class="alert alert-danger alert-dismissible" *ngIf="IsError" style="background-color: #ce2f2f;color: #fff;">
+        <strong>Error! </strong>{{message}}.
+        <button type="button" class="close" data-dismiss="alert" style="background-color: #fff;" (click)="IsError = false">&times;</button>
+    </div>
+    <div *ngIf="loader" class="taskloader_div">
+        <div class="task_loader">
+            <!-- <div class="spinner-loader">Loading...</div>
+            <div class="spinner-loader">Loading...</div>
+            <div class="spinner-loader">Loading...</div> -->
+            <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+    </div>
+  <mat-tab-group class="main-tab-group"  [selectedIndex]="selectedTab" (selectedTabChange)="tabChanged($event)">
+      <mat-tab *ngFor="let tab of tabs; let tabIndex=index;" class="temptest">            
+        <ng-template mat-tab-label >{{tab.title}}
+            <a class="fa fa-times close-icon" aria-hidden="true" (click)="removeTab(tabIndex);"></a>
+        </ng-template>
+         
+          <div>
+               <app-page-content [tabs]="tabs" [tab]="tab"></app-page-content>
+          </div>
+      </mat-tab>
+  </mat-tab-group>
+
+</div>
+
+<sa-footer></sa-footer>
+
+<sa-shortcut></sa-shortcut>

@@ -1,0 +1,14 @@
+:root{    
+    --header_background:#5b7f28; 
+    --header_font:#ffffff;
+}
+
+.smart-style-1 .header-search > input[type=text] {
+    border-color: #FFF !important;
+    border-radius: 2px
+}
+
+.smart-style-1 .header-dropdown-list a.dropdown-toggle {
+    color: var(--header_font);
+    text-decoration: none
+}

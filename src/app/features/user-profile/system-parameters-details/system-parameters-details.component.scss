@@ -1,0 +1,81 @@
+label{
+    font-weight: bold; width: 150px;
+}
+
+.break-text{
+    word-break: break-all;
+}
+
+.close-icon {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.close-icon:hover{
+    color: red;
+} 
+.skillname {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+.jarviswidget {
+	margin-bottom: 15px;
+}
+
+.nodata__text {
+    text-align: center;
+    padding: 12px;
+}
+::ng-deep ul.pagination{
+        margin: 0px !important;
+        padding-right: 13px !important;
+    }
+    .dashboard-task_loader{
+        position: absolute !important;
+        top: 15%;
+        /* width: 100%; */
+        z-index: 10;
+        left: 50%;
+        /* overflow-y: hidden !important; */
+    }
+
+    
+// .systemdetailtable thead {
+//     display: block;
+// }
+
+// .systemdetailtable tbody {
+//     display: block;
+//     max-height: 255px;
+//     overflow-y: overlay;
+// }
+// .systemdetailtable th:nth-child(1),.systemdetailtable td:nth-child(1){
+//     width: 4% !important;
+//     max-width: 70px !important;
+// }
+// .systemdetailtable th:nth-child(2),.systemdetailtable td:nth-child(2), .systemdetailtable th:nth-child(3),.systemdetailtable td:nth-child(3), .systemdetailtable th:nth-child(4),.systemdetailtable td:nth-child(4), .systemdetailtable th:nth-child(4),.systemdetailtable td:nth-child(5){
+//     width: 14% !important;
+//     max-width: 70px !important;
+//     border-bottom: none !important;
+// }
+.jarviswidget {
+    margin-bottom: 8px;
+}
+
+.form-group {
+    margin-bottom: 0px;
+}
+.pad_b6 {
+    padding-bottom: 6px;
+}
+// ::ng-deep .table-responsive {
+//     max-height: 24vh !important;
+// }
+.save_update_btn, .save_update_btn:focus {
+    float: right;
+    margin-bottom: 10px !important;
+}

@@ -1,0 +1,290 @@
+label{
+    font-weight: bold;
+}
+
+.break-text{
+    word-break: break-all;
+}
+
+.close-icon {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.linktext {
+    text-decoration: underline;
+    cursor: pointer;
+    word-break: break-word;
+}
+::ng-deep ul.pagination{
+    margin: 0px !important;
+    padding-right: 13px !important;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+.jarviswidget {
+    margin: 0px !important;
+}
+
+#tablesection .table th, #tablesection .table td {
+    vertical-align: middle !important;
+    text-align: left !important;
+}
+
+.actionbtnsection {
+    // padding-right: 22px;
+}
+.inputboxsearch {
+    padding: 0px;
+    position: relative;
+}
+.inputboxsearch .filter_input {
+    padding-left: 29px;
+    height: 30px;
+    width: 90%;
+    border-radius: 5px;
+}
+
+.iconsearch{
+    width: 29px;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    height: 94%;
+}
+.iconsearch .iconsearchimg {
+    padding: 9px 8px;
+}
+#tablesection .table input{
+    /* height: 28px !important;
+    max-height: 28px !important;
+    min-height: 28px !important; */
+    overflow: visible;
+    padding: 0px 2px !important;
+ }
+ #tablesection .table .activesort {
+     padding-top: 7px;
+ }
+ 
+ #tablesection .default_input {
+     margin-top: 2px;
+ }
+ #tablesection .select_box {
+    border-radius: 5px !important;
+    margin-top: 2px;
+    height: 28px !important;
+    max-height: 28px !important;
+    min-height: 28px !important;
+
+ } 
+ #tablesection .system__add {
+    background: transparent !important;
+    font-size: 22px;
+    cursor: pointer;
+ }
+
+
+ ::ng-deep .pagination>li>a,::ng-deep .pagination>li>span {
+    padding: 4px 12px !important;
+ }
+
+#tablesection .tab-content {
+    // padding-top: 5px !important;
+    padding-top: 0px !important;
+    //padding-left: 0px !important;
+}
+
+.inputbox_section {
+    width:100%; 
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.systemtype, .systemname, .systemvalue, .systemcreatedtime, .systemmodifieddate {
+    width:200px;
+    min-width: 200px;
+}
+.systemdetailvalue {
+    min-width: 130px;
+    max-width: 300px;
+}
+
+
+.systemcreatedby, .systemodifiedid {
+    width:110px;
+    min-width: 110px;
+}
+#tablesection .table th.addbutton  {
+    width: 60px;
+    min-width: 60px;
+    padding-top: 45px !important;
+    padding-bottom: 0px !important;
+    text-align: center !important;
+}
+#tablesection .table td.editanddelete {
+    min-width: 60px !important;
+    text-align: center !important;
+}
+
+.tablesectiondiv {
+    overflow-x: overlay;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.actionbtnsection .btn-default {
+    border-radius: 5px;
+    transition: all 500ms
+}
+.actionbtnsection .buttons-pdf:hover, .show-hide:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.total_records {
+    display: flex;
+    justify-content: space-between;
+}
+.paginationcontent {
+    display: flex;
+    align-items: center;
+}
+.fileddropdown {
+    width: 98%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+.filedNameOverflow {
+    white-space: nowrap;
+    overflow: hidden !important;
+}
+.dropdown-menu.ColVis_collection {
+    overflow-y: auto;
+    max-height: 60vh;
+    width: 200px
+}
+.table-responsive {
+    //max-height: calc(100vh - 325px);
+}
+.table-responsive-detaills {
+    max-height: 50vh !important;
+}
+// .table-responsive::-webkit-scrollbar {
+//     width: 5px;
+// }
+ 
+// .table-responsive::-webkit-scrollbar-track {
+//     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+// }
+ 
+// .table-responsive::-webkit-scrollbar-thumb {
+//   background-color: darkgrey;
+//   outline: 1px solid slategrey;
+// }
+.open > .dropdown-menu {
+    -webkit-animation-name: none;
+    -moz-animation-name: none;
+    -o-animation-name: none;
+    animation-name: none;
+    -webkit-animation-duration: 0s;
+    -moz-animation-duration: 0s;
+    -o-animation-duration: 0s;
+    animation-duration: 0s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+#table-section {
+    overflow-y: auto;
+}
+#table-section table{
+    table-layout: fixed;
+}
+#table-section table thead tr {
+    background-color: #eee !important;
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#f2f2f2),to(#fafafa)) !important;
+    background-image: -webkit-linear-gradient(top,#f2f2f2 0,#fafafa 100%) !important;
+    color: #333;
+}
+#table-section table th {
+    top:0;
+    background-color: #eee !important;
+    position: sticky;
+    color: #333;
+
+}
+.systemtypeCheckboxwidth {
+    width: 55px;
+}
+.row.mar--l10.displayflex .col-md-3 {
+    padding-left: 0px;
+}
+.action-option {
+    min-width: 105px;
+}
+.border-radius-5 {
+    border-radius: 5px !important;
+}
+.retriveDiv-Paddingleft-15 {
+    padding-left: 15px !important;
+}
+.filter-input-width-100 {
+    width: 100% !important;
+}
+#tablesection .table .activesort .field-label {
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    width: 44px !important;
+    position: absolute;
+}
+
+
+::ng-deep .tdmultiselectbox .select2-container .select2-selection--multiple {
+    height: 2px !important;
+    width: 100% !important;
+    overflow-y: scroll;
+    border: none;
+    
+}
+
+
+::ng-deep .tdmultiselectbox .select2-container .select2-search input {
+   display: none
+    
+}
+
+::ng-deep .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    text-align:center;
+    padding-top:1px;
+    min-height:17px;
+}
+::ng-deep .select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+    color: #000;
+    padding-right: 20px;
+}
+
+.select2-container--default .select2-selection--multiple{
+    border: 0px solid #ccc !important;
+    border-radius: 0px !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    margin-top: 5px !important;
+}
+
+.clear-btn{
+    margin-right:10px;
+}
+
+.mr-5{
+    margin-right:5% !important;
+}
+
+.content-scroll {
+    max-height: calc(100vh - 142px);
+    overflow: auto;
+}

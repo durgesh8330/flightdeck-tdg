@@ -1,0 +1,50 @@
+
+
+   <div *ngIf="loader" class="loaderOnSection"> 
+    <!--<mat-spinner class="spinner-style"></mat-spinner>  -->
+   <!-- <img src="assets/img/Ellipsis-1s-200px.svg" width="125px" alt="task" /> -->
+   <div class="spinner">
+       <div class="bounce1"></div>
+       <div class="bounce2"></div>
+       <div class="bounce3"></div>
+   </div> 
+   </div>
+<div class="statusmanagermenu" style="position: absolute;
+width: 100%;">
+ 
+   <sa-widgets-grid>
+     <div id="dropdown">
+       <button class="menu_tx_l btn btn-link btn-block clearfix btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="latestRecords()">
+         My History
+       </button>
+     <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+     
+       <ul id="query-menu" class="dropdown-content">
+         <li *ngFor="let records of totalRecords | slice:0:10; let ind=index;">
+           <span class="" *ngIf="records.module=='Manage task'">
+             <i class="fa fa-th-list" aria-hidden="true"></i>
+           </span>
+           <span class="" *ngIf="records.module=='Manage Workgroup'">
+             <i class="fa fa-sitemap" aria-hidden="true"></i>
+           </span>
+           <span class="" *ngIf="records.module=='Manage User'">
+             <i class="fa fa-user" aria-hidden="true"></i>
+           </span>
+           <a href="#" id="query-history"
+             (click)="getModule(records.display, records.module,records.resourceId,records.value)">{{ records.display }}</a>
+          
+         </li>
+       </ul>
+       <div class="view-more" >
+         <a href="#" (click)="viewMore()">View More</a>
+       </div>
+   
+
+ </div>
+ </div>
+</sa-widgets-grid>
+</div>
+
+
+
+

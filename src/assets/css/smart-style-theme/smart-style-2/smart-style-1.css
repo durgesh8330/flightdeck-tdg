@@ -1,0 +1,381 @@
+.smart-style-1 a {
+    transition: color .1s linear 0s, background-color .1s linear 0s !important
+}
+
+.smart-style-1 body.container {
+    border-left: 1px solid rgba(34, 38, 46, .4);
+    border-right: 1px solid rgba(34, 38, 46, .4)
+}
+
+.smart-style-1 .project-context > :first-child {
+    color: #697B92; 
+    text-shadow: 0 0 1px #111318
+}
+
+.smart-style-1 #ribbon {
+    background: #e6e6e6
+}
+
+.smart-style-1 .breadcrumb > li + li:before {
+    color: #646464
+}
+
+.smart-style-1 .project-selector {
+    color: #B9B9B9
+}
+
+.smart-style-1 #cancel-search-js {
+    background: #fb3c4a;
+    line-height: 29px !important
+}
+
+.smart-style-1 .MsgTitle .txt-color-orangeDark {
+    color: #fb3c4a !important
+}
+
+.smart-style-1 .minifyme {
+    background: #434953
+}
+
+.smart-style-1 .minifyme:hover {
+    background: #5C6C86;
+    color: #E1E8F3
+}
+
+.smart-style-1 #show-shortcut:hover > i {
+    color: #fff
+}
+
+.smart-style-1 .superbox-list.active:before {
+    color: #1b1e24
+}
+
+.smart-style-1 nav ul b {
+    font-size: 14px;
+    margin-top: 0
+}
+
+.smart-style-1 nav ul b .fa-plus-square-o:before {
+    content: "\f104"
+}
+
+.smart-style-1 nav ul b .fa-minus-square-o:before {
+    content: "\f107"
+}
+
+.smart-style-1 nav ul ul {
+    background: #22262E
+}
+
+.smart-style-1 nav ul ul li > a {
+    text-shadow: 0 1px 1px #000;
+    font-size: 13px;
+    padding-left: 43px;
+    color: #e1eaf1;
+    display: block;
+    font-weight: 300;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    overflow: hidden
+}
+
+.smart-style-1 nav ul ul li > a:hover {
+    background: #1b1e24 !important
+}
+
+.smart-style-1 nav ul ul ul li a {
+    padding: 8px 17px 8px 54px !important
+}
+
+.smart-style-1 nav ul ul ul ul li a {
+    padding-left: 72px !important
+}
+
+.smart-style-1 nav ul ul ul ul ul li a {
+    padding-left: 90px !important
+}
+
+.smart-style-1 nav ul ul ul ul ul ul li a {
+    padding-left: 108px !important
+}
+
+.smart-style-1 nav ul li a:active {
+    background: 0 0
+}
+
+.smart-style-1 nav ul li a:hover {
+    color: #E1EAF1
+}
+
+.smart-style-1 nav ul li a {
+    padding: 12px 17px 12px 16px
+}
+
+.smart-style-1 nav > ul > li > a > i {
+    font-size: 17px;
+    vertical-align: 0
+}
+
+.smart-style-1 nav > ul > li > a b {
+    right: 17px;
+    top: 12px
+}
+
+.smart-style-1 nav > ul > li > a > i:after {
+    border: 1px solid #fff
+}
+
+.smart-style-1 nav > ul > li > a:hover i {
+    -webkit-animation-name: none;
+    -moz-animation-name: none;
+    -o-animation-name: none;
+    animation-name: none
+}
+
+.smart-style-1 #activity.active .badge {
+    background: #0aa699 !important
+}
+
+.smart-style-1 .ajax-dropdown {
+    background: #E2E8F1
+}
+
+.smart-style-1 .ajax-notifications {
+    background: #fff
+}
+
+.smart-style-1 img.online {
+    border-left-color: #0AA699 !important
+}
+
+.smart-style-1 .onoffswitch-inner:before {
+    background-color: #36AECC !important
+}
+
+.smart-style-1 .bg-color-red {
+    background-color: #fb3c4a !important
+}
+
+.smart-style-1 .jarviswidget-color-darken > header {
+    background: #1B1E24 !important;
+    border-color: #1B1E24 !important
+}
+
+.smart-style-1 .jarviswidget-color-blueDark > header {
+    background: #353D4B !important;
+    border-color: #353D4B !important
+}
+
+.smart-style-1 .jarviswidget-color-blue > header {
+    background: #688F9E;
+    border-color: #6A838D !important
+}
+
+.smart-style-1 .jarviswidget-color-purple > header {
+    background: #736086
+}
+
+.smart-style-1 .jarviswidget-color-red > header {
+    background: #C02631;
+    border-color: #8F2129 !important
+}
+
+.smart-style-1 .jarviswidget .bg-color-red {
+    background: #C02631 !important
+}
+
+.smart-style-1 .ui-chatbox-titlebar {
+    background: #3E4553 !important
+}
+
+.smart-style-1 .ui-chatbox-titlebar.ui-state-focus {
+    background: #1B1F27 !important
+}
+
+.smart-style-1 #ribbon .breadcrumb li:last-child, .smart-style-1 #ribbon .breadcrumb > .active {
+    color: #868686
+}
+
+.smart-style-1 #ribbon .breadcrumb, .smart-style-1 #ribbon .breadcrumb a {
+    color: #747474 !important
+}
+
+.smart-style-1 .dropdown-menu, .smart-style-1 .open > .dropdown-menu {
+    padding: 4px
+}
+
+.smart-style-1 .dropdown-menu > li > a {
+    border-radius: 4px;
+    margin: 3px 0
+}
+
+.smart-style-1 .superbox-show {
+    background: #1b1e24
+}
+
+.smart-style-1 nav > ul ul li::before, .smart-style-1 nav > ul > li > ul::before {
+    border: none !important
+}
+
+.smart-style-1.minified nav ul li a {
+    padding: 12px 17px 12px 14px
+}
+
+.smart-style-1.minified nav ul ul li > a:hover {
+    background: #30343D !important
+}
+
+.smart-style-1.minified nav ul ul li > a {
+    padding-left: 13px;
+    padding-right: 13px !important
+}
+
+.smart-style-1.minified nav ul ul ul li a {
+    padding-left: 33px !important;
+    padding-right: 13px !important
+}
+
+.smart-style-1.minified nav ul ul ul ul li a {
+    padding-left: 43px !important;
+    padding-right: 13px !important
+}
+
+.smart-style-1.minified nav ul ul ul ul ul li a {
+    padding-left: 53px !important;
+    padding-right: 13px !important
+}
+
+.smart-style-1.minified nav ul ul ul ul ul ul li a {
+    padding-left: 63px !important;
+    padding-right: 13px !important
+}
+
+.smart-style-1.minified nav ul > li > ul > li > ul {
+    background: #1B1E24
+}
+
+.smart-style-1.minified nav > ul > li {
+    border-bottom: 1px solid #131416;
+    border-top: 1px solid #303031
+}
+
+.smart-style-1.minified nav > ul > li > a > i {
+    font-size: 18px
+}
+
+.smart-style-1.minified nav > ul > li > ul {
+    background: #1B1E24
+}
+
+.smart-style-1.minified nav > ul > li > ul > li {
+    background: #22262E
+}
+
+.smart-style-1.minified nav > ul > li > ul > li > ul > li {
+    background: #1B1E24
+}
+
+.smart-style-1 .jarviswidget .bg-color-greenLight, .smart-style-1 .jarviswidget-color-greenLight > header {
+    border-color: #96B447 !important;
+    background: #96B447 !important
+}
+
+.smart-style-1 .jarviswidget .bg-color-yellow, .smart-style-1 .jarviswidget-color-yellow > header {
+    border-color: #DBB727 !important;
+    background: #FDD01C !important;
+    color: #25241F
+}
+
+.smart-style-1 .jarviswidget .bg-color-pink, .smart-style-1 .jarviswidget-color-pink > header {
+    background: #DB8EBB !important
+}
+
+.smart-style-1.menu-on-top nav ul ul li > a {
+    text-shadow: none !important;
+    color: #646E75
+}
+
+.smart-style-1.menu-on-top nav ul ul li a {
+    padding-left: 10px !important;
+    font-size: 13px
+}
+
+.smart-style-1.menu-on-top nav ul ul li:hover > a {
+    color: #fff;
+    background-color: #1b1e24
+}
+
+.smart-style-1.menu-on-top nav ul ul .active > a {
+    color: #fff !important
+}
+
+.smart-style-1.menu-on-top nav > ul ul ul {
+    border-top: 1px solid #c7c7c7 !important
+}
+
+.smart-style-1.menu-on-top nav > ul ul li:hover > ul {
+    background: #333
+}
+
+.smart-style-1.menu-on-top nav > ul > li > a:after {
+    color: #8AA1B3 !important
+}
+
+.smart-style-1.menu-on-top nav ul ul li a, .smart-style-1.menu-on-top nav ul ul ul li a {
+    color: #D8DEE5
+}
+
+.smart-style-1.menu-on-top nav ul ul li a:hover, .smart-style-1.menu-on-top nav ul ul ul li a:hover {
+    color: #fff;
+    background-color: #1b1e24 !important
+}
+
+.smart-style-1.menu-on-top nav ul ul, .smart-style-1.menu-on-top nav ul ul ul {
+    background: #2e3e57 !important;
+    border: 1px solid transparent;
+    padding: 0
+}
+
+.smart-style-1.menu-on-top nav ul ul li:hover > a:after, .smart-style-1.menu-on-top nav > ul ul > li a:after, .smart-style-1.menu-on-top nav > ul ul > li a:hover:after, .smart-style-1.menu-on-top nav > ul > li > a:after {
+    color: #D5D5D5
+}
+
+.smart-style-1.menu-on-top nav ul ul li:hover > a:after, .smart-style-1.menu-on-top nav > ul ul > li a:hover:after {
+    color: #fff
+}
+
+.smart-style-1.menu-on-top nav > ul ul > li a:only-child:after, .smart-style-1.menu-on-top nav > ul > li > a:only-child:after {
+    content: "" !important
+}
+
+.smart-style-1.menu-on-top nav ul ul li.active:hover > a, .smart-style-1.menu-on-top nav ul ul li.active > a:hover {
+    color: #fff !important
+}
+
+@media (max-width: 979px) and (min-width: 768px) {
+    .smart-style-1 #hide-menu i {
+        color: #fff !important
+    }
+}
+
+@media (max-width: 767px) {
+    .smart-style-1 #hide-menu i {
+        color: #fff !important
+    }
+}
+
+@media only screen and (max-width: 679px) and (min-width: 0) {
+    .smart-style-1 #hide-menu i {
+        color: #fff !important
+    }
+}
+
+@media only screen and (max-width: 479px) and (min-width: 320px) {
+    .smart-style-1 #sparks {
+        background: #fff
+    }
+
+    .smart-style-1 #cancel-search-js, .smart-style-1 .search-mobile .header-search > button {
+        border-radius: 3px
+    }
+}

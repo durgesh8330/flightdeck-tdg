@@ -1,0 +1,147 @@
+<aside>
+        <nav (mouseleave)="toggleOnHover(false)" (mouseenter)="toggleOnHover(true)">
+            <!-- <hr> -->
+            <div *ngFor="let menu of leftMenuData.leftMenu;">
+                <div *ngIf="menu.sectionHeader == 'Auto Select'" class="text-center" style="padding: 5px; color: white;margin-top: 3%;">
+                    <div *ngFor="let button of menu.fieldsList">
+                        <button mat-stroked-button class="sbmt-btn auto-select-button-width" (click)="AutoSelect()">{{ button.label }}</button>
+                    </div>
+                </div>
+    
+                <div *ngIf="menu.sectionHeader == 'Menu-Items'" class="lmos_section">
+                    <div style="" class="lmos_sectionbox">
+                        <div *ngFor="let mainmenu of menu.fieldsList" style="padding-bottom: 10px;">
+                            <a style="color: white" [title]="mainmenu.label" [routerLink]="mainmenu.routerLink"  routerLinkActive="active" (click)="openTab(mainmenu.componentString, mainmenu.label, mainmenu.url);">
+                                <i class="{{mainmenu.icon}} fa-2x" aria-hidden="true" style="padding-right: 10px;"></i>
+                                <b> {{ mainmenu.label }} </b>
+                            </a>
+                        </div>
+                        <!-- <div style="padding-bottom: 10px;">
+                            <a style="color: white" (click)="openTab('MyTaskComponent', 'My Tasks', '');">
+                                <i class="fa fa-list fa-2x" aria-hidden="true" style="padding-right: 10px;"></i>
+                                <b> My Tasks </b>
+                            </a>
+                        </div>
+                        <div style="padding-bottom: 10px;">
+                            <a style="color: white" (click)="openTab('MyWorkgroupTaskComponent', 'My Workgroup Tasks', '');">
+                                <i class="fa fa-bars fa-2x" aria-hidden="true" style="padding-right: 10px;"></i>
+                                <b> My Workgroup Tasks </b>
+                            </a>
+                        </div> -->
+                    </div>
+                </div>
+                <div *ngIf="menu.sectionHeader == 'Search Task Fields'" style="padding: 5px; color: white">
+                    <div style="" class="searchsection">
+                        <div style="padding-bottom: 10px;">
+                            <div *ngFor="let formData of menu.fieldsList">
+                                <a *ngIf="formData.type == 'Header'" [routerLink]="formData.routerLink" style="cursor: pointer" (click)="openTab(formData.componentString, formData.name, formData.url);" class="searchheader" >
+                                    <b class="searchtx"> Search Tasks</b>
+                                    <i class="fa fa-chevron-right rightarrow" aria-hidden="true" style="float: right; padding-top: 3px;" ></i>
+                                    <i class="fa fa-chevron-right rightarrow" aria-hidden="true" style="float: right; padding-top: 3px;"></i>
+                                </a>
+                                <div *ngIf="formData.type == 'Form'" class="searchform">
+                                    <div style="margin-top: 5%;">
+                                        <div *ngFor="let form of formData.fieldsList">
+                                            <div *ngIf="form.type == 'TextBox'">
+                                                <mat-form-field appearance="fill">
+                                                    <mat-label>{{ form.label }}</mat-label>
+                                                    <input matInput [(ngModel)]="form.fieldValue">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="text-center" *ngIf="form.type == 'Button'">
+                                                <button mat-stroked-button (click)="searchTask(formData.fieldsList);disableSearch=true;" class="sbmt-btn" [disabled]="disableSearch">
+                                                    <i class="fa fa-search text-white" aria-hidden="true" style="padding-right: 5px; color: #fff; vertical-align: initial;"></i>
+                                                    {{form.label}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- <div>
+                                            <mat-form-field appearance="outline">
+                                                <mat-label>TN</mat-label>
+                                                <input matInput [(ngModel)]="searchReq.TN">
+                                            </mat-form-field>
+                                        </div>
+                                        <div>
+                                            <mat-form-field appearance="outline">
+                                                <mat-label>EC</mat-label>
+                                                <input matInput [(ngModel)]="searchReq.EC">
+                                            </mat-form-field>
+                                        </div> -->
+                                        <!-- <div class="text-center">
+                                            <button mat-stroked-button (click)="searchTask(searchReq);disableSearch=true;" class="sbmt-btn" [disabled]="disableSearch">
+                                                <i class="fa fa-search text-white" aria-hidden="true" style="padding-right: 5px; color: #fff; vertical-align: initial;"></i>
+                                                Search
+                                            </button>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- <div *ngIf="menu.sectionHeader == 'Frequently Accessed'" style="padding: 5px; color: white">
+                    <b style="padding-left: 10px;">{{ menu.sectionHeader }}</b>
+                    <div style="padding-top: 10px; padding-left: 10px;">
+                         <i class="fa fa-history fa-2x" aria-hidden="true" style="padding-right: 10px; cursor: pointer;"></i>
+                        <i *ngFor="let icon of menu.fieldsList" class="{{icon.class}} fa-2x" title="{{ icon.label}}" (click)="openTab(icon.componentString, icon.label, icon.url);"
+                            aria-hidden="true" style="padding-right: 10px; cursor: pointer;"></i>
+                        <i class="fa fa-tachometer fa-2x" title="Dashboard" (click)="openTab('AnalyticsComponent', 'Dashboard', 'getSystemTaskCount');"
+                            aria-hidden="true" style="padding-right: 10px; cursor: pointer;"></i>
+                    </div>
+                </div>  -->
+                <!-- <hr> -->
+            </div>
+        </nav>
+        <!-- <sa-minify-menu></sa-minify-menu> -->
+    </aside>
+    
+    <!-- <aside id="left-panel">
+      <nav id="nav_bar">
+          <div class="text-center">
+              <i class="fa fa-long-arrow-left fa-2x" aria-hidden="true" #tooltip="matTooltip"
+                  matTooltip="Back to Menu"
+                  matTooltipPosition="right" style="color: white;cursor: pointer;" (click)="swithcToMainMenu();"></i>
+          </div>
+        <sa-widgets-grid>
+        <ul saSmartMenu class="navigationmenu" id="menuitems">
+          <li>
+            <a title="Search" style="position: relative" (click)="showSearchMenu=!showSearchMenu;">
+                  <i class="fa fa-search fa-lg"> </i> <span class="menu-item-parent">Search</span>
+            </a>
+          </li>
+          <div *ngIf="showSearchMenu" class="smeSubMenu"> 
+            <div class="smeSubMenu-Body">
+                <div class="row">
+                    <div style="padding-bottom: 5px;">
+                        <label style="font-weight: bold; color: white">Search Type</label>
+                    </div>
+                    <div style="padding-bottom: 15px">
+                        <select class="form-control" id="searchType" name="serviceType" [(ngModel)]="searchType">
+                            <option *ngFor="let searchType of searchTypes" [value]="searchType" >{{searchType}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div *ngFor="let field of templateObj[searchType]" class="row">
+                  <div style="padding-bottom: 5px;">
+                      <label style="font-weight: bold; color: white">{{field.label}}</label>
+                  </div>
+                  <div style="padding-bottom: 15px">
+                    <input type="text" class="form-control" [placeholder]="field.label" [name]="field.fieldName">
+                  </div>
+                </div>
+            </div>
+            <div class="smeSubMenu-Footer search-btn-control">
+              <span *ngFor="let button of templateObj['Buttons']">
+                <button class="btn btn-success blue__btn" mat-raised-button (click)="showSearchMenu=!showSearchMenu;" color="primary" style="margin-right: 5px">
+                    {{button.label}}
+                </button>
+              </span>
+            </div>
+          </div>    
+        </ul>
+      </sa-widgets-grid>
+      </nav>
+      <sa-minify-menu></sa-minify-menu>
+    </aside> -->

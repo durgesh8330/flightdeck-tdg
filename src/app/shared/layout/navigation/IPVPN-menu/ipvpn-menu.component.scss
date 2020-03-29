@@ -1,0 +1,78 @@
+.smeSubMenu{
+    // position: absolute;
+    left: 100%; 
+    top: 30px; 
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); 
+    transition: opacity 0.1s linear; 
+    border-top: 1px solid rgba(69, 74, 84, 0.7);
+    width: 98%;
+    color: white;
+    background-color: #53565A !important;
+    padding: 10px;
+    // text-align: center;
+}
+.smeSubMenu-Body{
+    padding: 10px;
+}
+.smeSubMenu-Footer{
+    padding: 10px;
+    padding-top: 0px;
+}
+.menulink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+::ng-deep .minified .menulink {
+    align-items: flex-start;
+    padding: 5px;
+}
+::ng-deep .minified .menulinkicon {
+    font-size: 23px !important;
+    padding-top: 10px;
+}
+::ng-deep .minified .navigationmenu.ipvpn li:first-child {
+    display: none;
+}
+.menulinkicon {
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+.statusmanagermenu .menuitemsdiv {
+    height: calc(100vh - 76px);
+    overflow-y: overlay;
+    padding-bottom: 20px;
+}
+#nav_bar {
+    overflow-y: hidden;
+}
+::ng-deep .minified .sidebar-footer {
+    display: none !important;
+}
+.sidebar-footer {
+    background: #f2f6f8;
+}
+.sidebar-footer {
+    position: fixed;
+    z-index: 10;
+    bottom: 0px;
+    left: 0px;
+    -webkit-transition: 0.2s ease-out;
+    -o-transition: 0.2s ease-out;
+    transition: 0.2s ease-out;
+    width: 220px;
+    background: #53565A;
+    border-top: 1px solid rgba(120, 130, 140, 0.13);
+    height: 50px;
+}
+.sidebar-footer a {
+    padding: 15px 53px;
+    width: 33.333337%;
+    float: left;
+    text-align: center;
+    font-size: 18px;
+    color: #48d597;
+}
+::ng-deep .sa-flot-chart {
+    height: 70px !important;
+}
